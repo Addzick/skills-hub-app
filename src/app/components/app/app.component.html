@@ -24,7 +24,7 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <div class="my-content">
+  <div class="content">
     <mat-toolbar [color]="primary">
       <button mat-icon-button (click)="sidenav.open()">
         <mat-icon>menu</mat-icon>
@@ -43,6 +43,9 @@
       </a>
     </mat-toolbar>
 
-    <router-outlet></router-outlet>
+    <div class="body">
+        <router-outlet></router-outlet>
+    </div>
+    
   </div>
 </mat-sidenav-container>

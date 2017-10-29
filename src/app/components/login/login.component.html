@@ -1,13 +1,21 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-title>Sign in</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate class="form-horizontal">
+        <mat-form-field [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <input matInput type="email" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="Email"/>
+            <mat-error *ngIf="f.submitted && !email.valid" class="help-block">Username is required</mat-error>
+        </mat-form-field>
+        <mat-form-field [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input matInput type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required placeholder="Password"/>
+            <mat-error *ngIf="f.submitted && !password.valid" class="help-block">Password is required</mat-error>
+        </mat-form-field>
+        <button mat-button class="btn btn-primary">Login</button>
+        <mat-error *ngIf="error" class="alert alert-danger">{{error}}</mat-error>
+    </form>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-    </mat-card-actions>
 </mat-card>
+
+

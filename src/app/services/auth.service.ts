@@ -22,6 +22,7 @@ export class AuthService {
   }
 
   login(emailAndPassword) {
+    console.log(emailAndPassword);
     return this.userService.login(emailAndPassword).map(res => res.json()).map(
       res => {
         localStorage.setItem('token', res.token);
@@ -47,17 +48,18 @@ export class AuthService {
     localStorage.removeItem('token');
     this.loggedIn = false;
     this.currentUser = { _id: '', username: ''};
-    this.router.navigate(['/']);
   }
 
   decodeUserFromToken(token) {
+    console.log(token);
     return this.jwtHelper.decodeToken(token).user;
   }
 
   setCurrentUser(decodedUser) {
-    this.loggedIn = (decodedUser);
-    this.currentUser._id = decodedUser._id;
-    this.currentUser.username = decodedUser.username;
+    if(decodedUser){
+      this.loggedIn = true;
+      this.currentUser._id = decodedUser._id;
+      this.currentUser.username = decodedUser.username;
+    }    
   }
-
 }
