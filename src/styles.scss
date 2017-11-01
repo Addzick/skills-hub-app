@@ -1,13 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '/assets/css/plugins.min.css';
+@import '/assets/css/preload.min.css';
+@import '/assets/css/style.deep-purple-700.min.css';
 
-html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+// Set padding to keep content from hitting the edges
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+// Allow only vertical resizing of textareas
+textarea {
+  resize: vertical;
+}

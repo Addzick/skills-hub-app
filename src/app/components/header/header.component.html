@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<header class="ms-header ms-header-white">
+    <div class="container container-full">
+        <div class="ms-title">
+            <a routerLink="'/'">
+                <span class="ms-logo">SH</span>
+                <h1>Skills<span>Hub</span></h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <a routerLink="/login" *ngIf="!auth.loggedIn" class="btn btn-link">Se connecter</a>
+            <a routerLink="/register" *ngIf="!auth.loggedIn" class="btn btn-raised btn-royal">S'inscrire</a>
+            <a routerLink="/logout" *ngIf="auth.loggedIn" class="btn btn-raised btn-royal">Déconnexion</a>
+        </div>
+    </div>
+</header>
+
+<nav class="navbar navbar-static-top yamm ms-navbar ms-navbar-white">
+    <div class="container container-full">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/">
+                <span class="ms-logo ms-logo-sm">SH</span>
+                <span class="ms-title">
+                  <strong>Skills</strong>
+                    Hub
+                </span>
+            </a>
+                  
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>
+                  <a routerLink="/">Accueil</a>
+              </li>  
+              <li>
+                  <a routerLink="/search">Rechercher</a>
+              </li>
+            </ul>
+        </div>
+
+        <!-- navbar-collapse collapse -->
+        <a href="javascript:void(0)" class="sb-toggle-left btn-navbar-menu">
+                <i class="zmdi zmdi-menu"></i>
+        </a>
+        
+    </div>
+</nav>

@@ -4,38 +4,34 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 import { AuthService } from '../../services';
 
-interface User {
-  email: String,
-  password: String
-}
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  
-  user: User = {
-    email: '',
-    password: ''
-  };
-
   error = '';
+  loginForm: FormGroup;
 
   constructor(private auth: AuthService,
               private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router) {
+                this.loginForm = formBuilder.group({
+                  'email' : ['', Validators.compose([Validators.required, Validators.email])],
+                  'password': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ]
+                });
+               }
 
   ngOnInit() {
     this.auth.logout();
   }
 
   login() {
-    this.auth.login({ user: this.user } ).subscribe(
-      res => this.router.navigate(['/']),
-      error => this.error = error
-    );
+    if (this.loginForm.valid) {
+      this.auth.login({ user: this.loginForm.value }).subscribe(
+        res => this.router.navigate(['/']),
+        error => this.error = error
+      );
+    }
   }
-
 }

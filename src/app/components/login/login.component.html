@@ -1,21 +1,53 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Sign in</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate class="form-horizontal">
-        <mat-form-field [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-            <input matInput type="email" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="Email"/>
-            <mat-error *ngIf="f.submitted && !email.valid" class="help-block">Username is required</mat-error>
-        </mat-form-field>
-        <mat-form-field [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <input matInput type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required placeholder="Password"/>
-            <mat-error *ngIf="f.submitted && !password.valid" class="help-block">Password is required</mat-error>
-        </mat-form-field>
-        <button mat-button class="btn btn-primary">Login</button>
-        <mat-error *ngIf="error" class="alert alert-danger">{{error}}</mat-error>
-    </form>
-    </mat-card-content>
-</mat-card>
+<!DOCTYPE html>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="card card-block">
+            <h2 class="text-center">Connectez-vous</h2>
+            <div class="row mt-4 mb-2 text-center">
+                <a routerLink="/facebook" class="btn-circle btn-circle-raised btn-facebook mr-6">
+                    <i class="zmdi zmdi-facebook"></i>
+                </a>
+                <a routerLink="/twitter" class="btn-circle btn-circle-raised btn-twitter mr-6">
+                    <i class="zmdi zmdi-twitter"></i>
+                </a>
+                <a routerLink="/google" class="btn-circle btn-circle-raised btn-google">
+                    <i class="zmdi zmdi-google"></i>
+                </a>
+            </div>
+            <form [formGroup]="loginForm" (submit)="login()">
+                <fieldset class="pl-3 pr-3"> 
+                    <div class="form-group" [class]="{ 'has-error': loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)}">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                            <input type="email" formControlName="email" name="email" placeholder="Adresse e-mail" class="form-control">
+                        </div>                        
+                    </div>
+                    <div class="form-group" [class]="{ 'has-error': loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched) }">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
+                            <input type="password" formControlName="password" name="password" placeholder="Mot de passe" class="form-control">                            
+                        </div>
+                    </div>                    
+                </fieldset>
+                <div class="row pr-2 pl-2 mt-4">
+                    <div class="col-md-6">
+                        <a routerLink="/register" class="btn btn-link btn-sm">
+                            Je n'ai pas encore de compte
+                            <i class="zmdi zmdi-account-add mr-1"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-raised btn-royal btn-block">
+                            Je me connecte
+                            <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 

@@ -8,7 +8,8 @@ import 'hammerjs';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { AppComponent, HomeComponent, RegisterComponent, LoginComponent, LogoutComponent, ArticleComponent } from './components';
+import { AppComponent, HeaderComponent, MenuComponent, FooterComponent, HomeComponent } from './components';
+import { RegisterComponent, LoginComponent, LogoutComponent, ArticleComponent } from './components';
 import { AuthService, AuthGuardLogin, UserService } from './services';
 
 import { routes } from './app.routing';
@@ -16,6 +17,9 @@ import { routes } from './app.routing';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    MenuComponent,
+    FooterComponent,
     HomeComponent,
     RegisterComponent,
     LoginComponent,
@@ -24,7 +28,7 @@ import { routes } from './app.routing';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes), 
+    RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
