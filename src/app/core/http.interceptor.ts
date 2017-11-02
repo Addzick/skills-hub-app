@@ -75,7 +75,7 @@ export class HttpInterceptor extends Http {
   // Handles response errors
   private handleError = (error: Response) => {
     // TODO : Handles errors properly
-    console.error(error);
+    //console.error(error);
     // Rethrow the error
     return Observable.throw(error);
   }

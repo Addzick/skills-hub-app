@@ -17,6 +17,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
+import { EventService } from './services/event.service';
 
 // Core factories
 import { httpFactory } from './http.factory';
@@ -66,6 +67,7 @@ export class CoreModule {
         UserService,
         AuthService,
         AuthGuardLogin,
+        EventService,
       ],
     };
   }

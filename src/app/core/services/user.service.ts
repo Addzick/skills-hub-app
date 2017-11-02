@@ -18,4 +18,8 @@ export class UserService {
   login(user): Observable<any> {
     return this.http.post('/login', user);
   }
+
+  logout(user): Observable<any> {
+    return this.http.post('/logout', user);
+  }
 }

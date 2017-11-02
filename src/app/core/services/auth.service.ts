@@ -42,7 +42,6 @@ export class AuthService {
         localStorage.setItem('token', res.token);
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
-        this.toastr.info('Vous êtes maintenant connecté !');
         return this.loggedIn;
       }
     );
@@ -54,17 +53,18 @@ export class AuthService {
         localStorage.setItem('token', res.token);
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
-        this.toastr.info('Vous êtes maintenant connecté !');
         return this.loggedIn;
       }
     );
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.loggedIn = false;
-    this.currentUser = { _id: '', username: ''};
-    this.toastr.info('Vous êtes maintenant déconnecté !');
+    return this.userService.logout(this.currentUser).map(res => res.json()).map(res => {
+      localStorage.removeItem('token');
+      this.loggedIn = false;
+      this.currentUser = { _id: '', username: ''};
+      return true;
+    });     
   }
 
   decodeUserFromToken(token) {
