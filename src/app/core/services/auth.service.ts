@@ -1,7 +1,12 @@
+// Angular stuff
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
+// 3rd parties
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
+// Skills-Hub services
 import { UserService } from '../services/user.service';
 
 @Injectable()
@@ -11,15 +16,18 @@ export class AuthService {
   jwtHelper: JwtHelper = new JwtHelper();
   currentUser = { _id: '', username: '' };
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService,
+    private toastr: ToastsManager,
+    private router: Router) {
     // On récupére le token depuis les cookie
     const token = localStorage.getItem('token');
     // On contrôle la présence du token
     if (token) {
       // Le token est-il expiré ?
-      if (!this.jwtHelper.isTokenExpired(token)) {
+      if (this.jwtHelper.isTokenExpired(token)) {
         // On execute la méthode de déconnexion
-        this.logout();
+        localStorage.removeItem('token');
       } else {
         // On renseigne l'utilisateur courant a partir du token
         this.setCurrentUser(this.decodeUserFromToken(token));
@@ -34,6 +42,7 @@ export class AuthService {
         localStorage.setItem('token', res.token);
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
+        this.toastr.info('Vous êtes maintenant connecté !');
         return this.loggedIn;
       }
     );
@@ -45,6 +54,7 @@ export class AuthService {
         localStorage.setItem('token', res.token);
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
+        this.toastr.info('Vous êtes maintenant connecté !');
         return this.loggedIn;
       }
     );
@@ -54,10 +64,10 @@ export class AuthService {
     localStorage.removeItem('token');
     this.loggedIn = false;
     this.currentUser = { _id: '', username: ''};
+    this.toastr.info('Vous êtes maintenant déconnecté !');
   }
 
   decodeUserFromToken(token) {
-    console.log(token);
     return this.jwtHelper.decodeToken(token).user;
   }
 
