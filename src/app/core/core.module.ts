@@ -1,9 +1,13 @@
 // Angular modules
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Http, XHRBackend, RequestOptions } from '@angular/http';
 import { RouterModule } from '@angular/router';
+
+// Http components
+import { Http, XHRBackend, RequestOptions } from '@angular/http';
+
+// Skills-hub modules
+import { SharedModule } from '../shared/shared.module';
 
 // Core components
 import { HeaderComponent } from './header/header.component';
@@ -17,7 +21,6 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
-import { EventService } from './services/event.service';
 
 // Core factories
 import { httpFactory } from './http.factory';
@@ -28,9 +31,7 @@ import { routes } from './core-routing';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes),
   ],
   declarations: [
@@ -61,13 +62,10 @@ export class CoreModule {
           useFactory: httpFactory,
           deps: [XHRBackend, RequestOptions]
         },
-        FormsModule,
-        ReactiveFormsModule,
         RouterModule,
         UserService,
         AuthService,
         AuthGuardLogin,
-        EventService,
       ],
     };
   }

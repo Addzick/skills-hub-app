@@ -15,14 +15,14 @@
                 </a>
             </div>
             <form [formGroup]="loginForm" (submit)="login()">
-                <fieldset class="pl-3 pr-3"> 
-                    <div class="form-group" [class]="{ 'has-error': loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)}">
+                <fieldset> 
+                    <div class="form-group" [class.has-error]="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                             <input type="email" formControlName="email" name="email" placeholder="Adresse e-mail" class="form-control">
                         </div>                        
                     </div>
-                    <div class="form-group" [class]="{ 'has-error': loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched) }">
+                    <div class="form-group" [class.has-error]="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                             <input type="password" formControlName="password" name="password" placeholder="Mot de passe" class="form-control">                            

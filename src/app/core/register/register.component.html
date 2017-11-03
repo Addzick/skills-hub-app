@@ -16,32 +16,27 @@
             </div>
             <form [formGroup]="registerForm" (submit)="register()">
                 <fieldset class="pl-3 pr-3"> 
-                    <div class="form-group" [class]="{ 'has-error': registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)}">
+                    <div class="form-group" [class.has-error]="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                         <input type="email" formControlName="email" name="email" placeholder="Adresse e-mail" class="form-control">
                       </div>
                     </div>
-                    <div class="form-group" [class]="{ 'has-error': registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched) }">
+                    <div class="form-group" [class.has-error]="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                         <input type="password" formControlName="password" name="password" placeholder="Mot de passe" class="form-control">                        
                       </div>                        
                     </div>  
-                    <div class="form-group" [class]="{ 'has-error': registerForm.controls.confirmpwd.invalid && (registerForm.controls.confirmpwd.dirty || registerForm.controls.confirmpwd.touched) }">
+                    <div class="form-group" [class.has-error]="registerForm.controls.confirmpwd.invalid && (registerForm.controls.confirmpwd.dirty || registerForm.controls.confirmpwd.touched)">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                           <input type="password" formControlName="confirmpwd" name="confirmpwd" placeholder="Confirmer mot de passe" class="form-control">
-                          <div *ngIf="registerForm.controls.confirmpwd.invalid && (registerForm.controls.confirmpwd.dirty || registerForm.controls.confirmpwd.touched)" class="text-danger">
-                              <em *ngIf="!registerForm.controls.confirmpwd.errors.required && !registerForm.controls.confirmpwd.errors.minlength && registerForm.controls.confirmpwd.errors.notEquivalent">
-                                  Le mot de passe et sa confirmation ne correspondent pas
-                              </em>
-                          </div>
                       </div>                        
                     </div>   
                     <div class="row">
                       <div class="col-md-6">
-                        <div class="form-group" [class]="{ 'has-error': registerForm.controls.firstname.invalid && (registerForm.controls.firstname.dirty || registerForm.controls.firstname.touched) }">
+                        <div class="form-group" [class.has-error]="registerForm.controls.firstname.invalid && (registerForm.controls.firstname.dirty || registerForm.controls.firstname.touched)">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                             <input type="text" formControlName="firstname" name="firstname" placeholder="Prénom" class="form-control">
@@ -49,7 +44,7 @@
                         </div> 
                       </div>
                       <div class="col-md-6">
-                        <div class="form-group" [class]="{ 'has-error': registerForm.controls.lastname.invalid && (registerForm.controls.lastname.dirty || registerForm.controls.lastname.touched) }">
+                        <div class="form-group" [class.has-error]="registerForm.controls.lastname.invalid && (registerForm.controls.lastname.dirty || registerForm.controls.lastname.touched)">
                             <div class="input-group">
                               <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                               <input type="text" formControlName="lastname" name="lastname" placeholder="Nom" class="form-control">
@@ -57,7 +52,7 @@
                         </div> 
                       </div>
                     </div>
-                    <div class="form-group" [class]="{ 'has-error': registerForm.controls.street.invalid && (registerForm.controls.street.dirty || registerForm.controls.street.touched) }">
+                    <div class="form-group" [class.has-error]="registerForm.controls.street.invalid && (registerForm.controls.street.dirty || registerForm.controls.street.touched)">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                         <input type="text" formControlName="street" name="street" placeholder="Rue" class="form-control">
@@ -65,7 +60,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        <div class="form-group" [class]="{ 'has-error': registerForm.controls.zip.invalid && (registerForm.controls.zip.dirty || registerForm.controls.zip.touched) }">
+                        <div class="form-group" [class.has-error]="registerForm.controls.zip.invalid && (registerForm.controls.zip.dirty || registerForm.controls.zip.touched)">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                             <input type="text" formControlName="zip" name="zip" placeholder="NPA" class="form-control">
@@ -73,7 +68,7 @@
                         </div>
                       </div>  
                       <div class="col-md-9">
-                        <div class="form-group" [class]="{ 'has-error': registerForm.controls.city.invalid && (registerForm.controls.city.dirty || registerForm.controls.city.touched) }">
+                        <div class="form-group" [class.has-error]="registerForm.controls.city.invalid && (registerForm.controls.city.dirty || registerForm.controls.city.touched)">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                             <input type="text" formControlName="city" name="city" placeholder="Ville" class="form-control">

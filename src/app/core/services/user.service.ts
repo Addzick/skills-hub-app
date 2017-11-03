@@ -19,7 +19,7 @@ export class UserService {
     return this.http.post('/login', user);
   }
 
-  logout(user): Observable<any> {
-    return this.http.post('/logout', user);
+  logout(username): Observable<any> {
+    return this.http.delete(`/${ username }`);
   }
 }
