@@ -20,11 +20,8 @@ export class RegisterComponent implements OnInit {
         'email' : ['', Validators.compose([Validators.required, Validators.email])],
         'password': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ],
         'confirmpwd': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ],
-        'firstname': ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])],
-        'lastname': ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])],
-        'street': ['', Validators.required],
-        'zip': ['', Validators.required],
-        'city': ['', Validators.required],
+        'firstname': ['', Validators.required],
+        'lastname': ['', Validators.required],
       }, { validator: this.checkIfMatchingPasswords('password', 'confirmpwd')});
      }
 
@@ -47,7 +44,16 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.auth.register({ user: this.registerForm.value }).subscribe(
         res => this.router.navigate(['/']),
-        error => this.error = error
+        err => { 
+          if (err.status === 422) {
+            const data = err.json().errors;
+            const fields = Object.keys(data || {});
+            fields.forEach((field) => {
+              console.log(field);
+              this.registerForm.controls[field].setErrors({ 'remote': data[field] });
+            });
+          }
+        }
       );
     }
   }

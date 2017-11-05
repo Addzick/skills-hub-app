@@ -15,20 +15,23 @@
                 </a>
             </div>
             <form [formGroup]="loginForm" (submit)="login()">
-                <fieldset> 
-                    <div class="form-group" [class.has-error]="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
-                            <input type="email" formControlName="email" name="email" placeholder="Adresse e-mail" class="form-control">
-                        </div>                        
-                    </div>
-                    <div class="form-group" [class.has-error]="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
-                            <input type="password" formControlName="password" name="password" placeholder="Mot de passe" class="form-control">                            
-                        </div>
-                    </div>                    
-                </fieldset>
+                <extended-input  
+                [text]="'Adresse e-mail'" 
+                [errors]="loginForm.controls.email.errors"
+                [defs]="{ 
+                    required: 'Adresse e-mail requise',
+                    email: 'Adresse e-mail invalide',
+                    remote: 'Adresse e-mail incorrecte'}">
+                    <input type="email" formControlName="email" name="email" class="form-control">
+                </extended-input>
+                <extended-input  
+                [text]="'Mot de passe'" 
+                [errors]="loginForm.controls.password.errors"
+                [defs]="{ 
+                    required: 'Mot de passe requis',
+                    remote: 'Mot de passe incorrect'}">
+                    <input type="password" formControlName="password" name="password" class="form-control">
+                </extended-input> 
                 <div class="row pr-2 pl-2 mt-4">
                     <div class="col-md-6">
                         <a routerLink="/register" class="btn btn-link btn-sm">
