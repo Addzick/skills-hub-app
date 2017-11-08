@@ -7,8 +7,6 @@ export const environment = {
   // Indique si on est en mode Production
   production: false,
   // URL du serveur API
-  //apiUrl: 'http://localhost:3000/api',
-  //socketUrl: 'http://localhost:3000',
-  apiUrl: 'https://skills-hub-server.herokuapp.com/api',
-  socketUrl: 'https://skills-hub-server.herokuapp.com',
+  apiUrl: 'http://localhost:3000/api',
+  socketUrl: 'http://localhost:3000',
 };

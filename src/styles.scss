@@ -1,7 +1,6 @@
-@import '/assets/css/plugins.min.css';
 @import '/assets/css/preload.min.css';
-@import '/assets/css/style.deep-purple-700.min.css';
-
+@import '/assets/css/plugins.min.css';
+@import '/assets/css/style.cyan-800.min.css';
 
 // Set padding to keep content from hitting the edges
 .body-content {
@@ -13,3 +12,9 @@
 textarea {
   resize: vertical;
 }
+
+.img-circle {
+  height: 50px;
+  width: 50px;
+}
+

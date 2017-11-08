@@ -1,15 +1,17 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-
+// Angular stuff
+import { NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-// Core services
-import { AuthGuardLogin } from '../core/services/auth-guard-login.service';
-
-// Skills-hib modules
+// Skills-hub modules
 import { SharedModule } from '../shared/shared.module';
 
 // Module components
 import { HomeComponent } from './home.component';
+import { SignComponent } from './sign/sign.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
+// Routing
 import { routes } from './home-routing';
 
 @NgModule({
@@ -19,9 +21,15 @@ import { routes } from './home-routing';
   ],
   declarations: [
     HomeComponent,
+    SignComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   exports: [
     HomeComponent,
+    SignComponent,
+    LoginComponent,
+    RegisterComponent,
   ]
 })
 export class HomeModule { }

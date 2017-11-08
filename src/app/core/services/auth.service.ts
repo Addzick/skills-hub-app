@@ -9,7 +9,7 @@ import * as io from 'socket.io-client';
 // 3rd parties
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Observable } from 'rxjs/Observable';
-import '../rxjs-extensions';
+import '../../shared/rxjs-extensions';
 
 // Skills-Hub services
 import { UserService } from '../services/user.service';
@@ -96,7 +96,7 @@ export class AuthService implements OnInit, OnDestroy {
   }
 
   decodeUserFromToken(token) {
-    return this.jwtHelper.decodeToken(token).user;
+    return this.jwtHelper.decodeToken(token);
   }
 
   setCurrentUser(decodedUser) {

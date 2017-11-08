@@ -1,14 +1,20 @@
-//  Angular modules
+//  Angular stuff
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// 3rd parties
+import { MomentModule } from 'angular2-moment';
+
+// Shared controls
 import { ExtendInput } from './extend-input/extend-input.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MomentModule,
   ],
   declarations: [
     ExtendInput,
@@ -17,6 +23,7 @@ import { ExtendInput } from './extend-input/extend-input.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MomentModule,
     ExtendInput,
   ]
 })

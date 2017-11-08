@@ -1,15 +1,36 @@
+// Angular stuff
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { RouterModule } from '@angular/router';
+
+// Skills-hub modules
+import { SharedModule } from '../shared/shared.module';
+
+// Routing
+import { routes } from './article.routing';
+
+// Article components
 import { ArticleListComponent } from './article-list/article-list.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ArticleEditComponent } from './article-edit/article-edit.component';
 import { ArticleService } from './article.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    SharedModule,
+    RouterModule.forChild(routes),
   ],
-  declarations: [ArticleDetailComponent, ArticleListComponent, ArticleEditComponent],
-  providers: [ArticleService]
+  declarations: [
+    ArticleListComponent,
+    ArticleDetailComponent,
+    ArticleEditComponent,
+  ],
+  providers: [
+    ArticleService
+  ],
+  exports: [
+    ArticleListComponent,
+    ArticleDetailComponent,
+    ArticleEditComponent,
+  ]
 })
 export class ArticleModule { }
