@@ -7,7 +7,7 @@ import { JwtHelper } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
 
 // Socket IO
-import * as io from 'socket.io-client';
+import io from 'socket.io-client/dist/socket.io.js';
 
 // 3rd parties
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
