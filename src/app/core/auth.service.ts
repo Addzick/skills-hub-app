@@ -3,6 +3,9 @@ import { Injectable, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
+// Config
+import { environment } from '../../environments/environment';
+
 // Socket IO
 import * as io from 'socket.io-client';
 
@@ -14,8 +17,6 @@ import './rxjs-extensions';
 // Skills-Hub services
 import { UserService } from './user.service';
 
-// Config
-import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService implements OnInit, OnDestroy {
