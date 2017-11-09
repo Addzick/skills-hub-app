@@ -28,6 +28,9 @@ build/Release
 # Dependency directory
 node_modules
 
+# Ng build directory
+dist
+
 # Optional npm cache directory
 .npm
 
