@@ -58,7 +58,7 @@ export class AuthService implements OnInit, OnDestroy {
 
   initChannel() {
     // On crée une socket
-    this.socket = io(environment.socketUrl);
+    this.socket = io.connect(environment.socketUrl);
     this.channel = new Observable(observer => {
       this.socket.on('new event', event => observer.next(event));
       return () => { this.socket.off('new event'); };
