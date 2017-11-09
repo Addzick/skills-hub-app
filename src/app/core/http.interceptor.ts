@@ -4,7 +4,7 @@ import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response
 
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
-import '../shared/rxjs-extensions';
+import './rxjs-extensions';
 
 // Environment variables
 import { environment } from '../../environments/environment';

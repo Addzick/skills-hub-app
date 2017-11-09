@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <div class="material-background"></div>
-<div class="container">
-    <div id="ms-preload" class="ms-preload" *ngIf="loading">
-        <div id="status">
-            <div class="spinner">
-                <div class="dot1"></div>
-                <div class="dot2"></div>
+<div class="container container-full">
+    <div class="ms-paper">
+        <div class="row">
+            <div class="col-lg-3 ms-paper-menu-left-container">
+                <div class="ms-paper-menu-left">
+                    <h3 class="ms-paper-menu-title">
+                        <i class="zmdi zmdi-collection-text"></i> Actualités
+                        <a role="button" data-toggle="collapse" href="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu" class="withripple">
+                            <i class="zmdi zmdi-menu"></i>
+                        </a>
+                    </h3>
+                    <div class="panel-menu collapse" id="collapseMenu">
+                        <ul class="panel-group ms-collapse-nav" id="components-nav">
+                            <li>
+                                <a class="btn-link" [routerLink]="['/create']">
+                                    <i class="zmdi zmdi-collection-plus"></i> Publier un article
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 ms-paper-content-container">
+                <div class="ms-paper-content">
+                    <section class="ms-component-section"> 
+                        <article class="card card-light-inverse card-block mb-4" *ngFor="let article of articles">
+                            <div class="media">
+                                <div class="media-left media-object">
+                                    <img src="/assets/img/no-picture.jpg" alt="..." class="img-circle mr-1">
+                                </div>
+                                <div class="media-body">
+                                    <a class="media-title" href="#">{{ article.author.firstname }}</a><br>
+                                    <span class="color-medium-dark">{{ article.createdAt | amCalendar }}</span>                        
+                                </div>
+                            </div>
+                            <h4 class="mt-2"><a [routerLink]="article._id">{{ article.title }}</a></h4>
+                            <div class="card-text">{{ article.description }}</div>
+                            <div class="row mt-2 ml-1">
+                                <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+                
             </div>
         </div>
     </div>
-    <div class="row masonry-container">
-        <div class="col-sm-6 masonry-item wow fadeInUp animation-delay-2" *ngFor="let article of articles">
-            <article class="card card-primary card-block mb-4 wow materialUp animation-delay-5">
-                <div class="media">
-                    <div class="media-left media-object">
-                        <img src="/assets/img/no-picture.jpg" alt="..." class="img-circle mr-1">
-                    </div>
-                    <div class="media-body">
-                        <a class="media-title" href="#">{{ article.author.firstname }}</a><br>
-                        <span class="color-medium-dark">{{ article.createdAt | amCalendar }}</span>                        
-                    </div>
-                </div>
-                <h3 class="mt-2">
-                    <a [routerLink]="article._id">{{ article.title }}</a><br>
-                    <small><em>{{ article.description }}</em></small>
-                </h3>
-                <div class="card-text" [innerHtml]="article.body"></div>
-                <div class="row mt-4">
-                    <div class="col-lg-6 col-md-4">
-                        <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
-                    </div>
-                    <div class="col-lg-6 col-md-8">
-                        <a [routerLink]="article._id" class="btn btn-primary btn-raised btn-sm btn-block animate-icon">Lire l'article
-                            <i class="ml-1 no-mr zmdi zmdi-long-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
 </div>
+
 

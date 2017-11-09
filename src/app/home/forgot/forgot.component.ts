@@ -13,45 +13,31 @@ import { AuthService } from '../../core/auth.service';
 import { ExtendInputComponent } from '../../shared/extend-input/extend-input.component';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-forgot',
+  templateUrl: './forgot.component.html',
+  styleUrls: ['./forgot.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class ForgotComponent implements OnInit {
   error = '';
-  registerForm: FormGroup;
+  forgotForm: FormGroup;
 
   constructor(private auth: AuthService,
     private formBuilder: FormBuilder,
     private toastr: ToastsManager,
     private router: Router) {
-      this.registerForm = formBuilder.group({
+      this.forgotForm = formBuilder.group({
         'email' : ['', Validators.compose([Validators.required, Validators.email])],
-        'password': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ],
-        'confirmpwd': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ],
-      }, { validator: this.checkIfMatchingPasswords('password', 'confirmpwd')});
+      });
      }
 
   ngOnInit() {
   }
 
-  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
-    return (group: FormGroup) => {
-      const pwd = group.controls[passwordKey];
-      const conf = group.controls[passwordConfirmationKey];
-      if (pwd.value !== conf.value) {
-        return conf.setErrors({notEquivalent: true});
-      } else {
-          return conf.setErrors(null);
-      }
-    };
-  }
-
-  register() {
-    if (!this.registerForm.valid) {
+  forgot() {
+    if (!this.forgotForm.valid) {
       this.toastr.error('Veuillez compléter les informations saisies !');
     } else {
-      this.auth.register({ user: this.registerForm.value }).subscribe(
+      this.auth.register({ user: this.forgotForm.value }).subscribe(
         res => this.router.navigate(['/']),
         err => {
           if (err.status === 500) {
@@ -61,7 +47,7 @@ export class RegisterComponent implements OnInit {
             const data = err.json().errors;
             const fields = Object.keys(data || {});
             fields.forEach((field) => {
-              const control = this.registerForm.controls[field];
+              const control = this.forgotForm.controls[field];
               if (control) {
                 control.setErrors({ 'remote': data[field] });
               }

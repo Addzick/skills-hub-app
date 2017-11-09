@@ -5,33 +5,18 @@ import { CommonModule } from '@angular/common';
 // Http components
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 
-// Core components
-import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './menu/menu.component';
-import { FooterComponent } from './footer/footer.component';
-
 // Core services
-import { UserService } from './services/user.service';
-import { AuthService } from './services/auth.service';
-import { AuthGuardLogin } from './services/auth-guard-login.service';
+import { UserService } from './user.service';
+import { AuthService } from './auth.service';
+import { AuthGuardLogin } from './auth-guard-login.service';
 
 // Core factories
 import { httpFactory } from './http.factory';
 
-// Core routing
-
 @NgModule({
   imports: [],
-  declarations: [
-    HeaderComponent,
-    MenuComponent,
-    FooterComponent,
-  ],
-  exports: [
-    HeaderComponent,
-    MenuComponent,
-    FooterComponent,
-  ],
+  declarations: [],
+  exports: [],
   providers: []
 })
 export class CoreModule {

@@ -1,27 +1,20 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'extended-input',
-  template: `
-<div class="form-group" [class.has-error]="hasError()">
-  <label class="control-label">{{text}}</label>
-  <ng-content></ng-content>
-  <span class="help-block" *ngIf="hasError()">
-    {{error}}
-  </span>                        
-</div>
-  `
+  selector: 'app-input',
+  templateUrl: './extend-input.component.html',
 })
-export class ExtendInput implements OnChanges {
-  @Input() public text:string = '';
-  @Input() public defs:any;
-  @Input() public errors:any;
-  error:string = '';
+export class ExtendInputComponent implements OnChanges {
+  @Input() public text: String = '';
+  @Input() public addonClass: String = '';
+  @Input() public defs: any;
+  @Input() public errors: any;
+  error: String = '';
 
   constructor() { }
 
-  ngOnChanges(changes:any):void {
-    var err:any = changes.errors.currentValue;
+  ngOnChanges(changes: any): void {
+    const err: any = changes.errors.currentValue;
     this.error = '';
     if (err) {
       Object.keys(this.defs).some(key => {

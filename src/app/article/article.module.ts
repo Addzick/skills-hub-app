@@ -13,6 +13,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ArticleEditComponent } from './article-edit/article-edit.component';
 import { ArticleService } from './article.service';
+import { ArticleResolver } from './article-resolver.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ArticleService } from './article.service';
     ArticleEditComponent,
   ],
   providers: [
-    ArticleService
+    ArticleService,
+    ArticleResolver,
   ],
   exports: [
     ArticleListComponent,

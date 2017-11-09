@@ -10,10 +10,12 @@ import { HomeComponent } from './home.component';
 import { SignComponent } from './sign/sign.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotComponent } from './forgot/forgot.component';
 
 // Routing
 import { routes } from './home-routing';
 
+// Module instanciation
 @NgModule({
   imports: [
     SharedModule,
@@ -24,12 +26,14 @@ import { routes } from './home-routing';
     SignComponent,
     LoginComponent,
     RegisterComponent,
+    ForgotComponent,
   ],
   exports: [
     HomeComponent,
     SignComponent,
     LoginComponent,
     RegisterComponent,
+    ForgotComponent,
   ]
 })
 export class HomeModule { }

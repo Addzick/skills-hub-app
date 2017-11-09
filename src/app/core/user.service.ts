@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
-import '../../shared/rxjs-extensions';
+import './rxjs-extensions';
 
 @Injectable()
 export class UserService {

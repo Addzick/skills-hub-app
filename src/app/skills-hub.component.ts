@@ -5,7 +5,7 @@ import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Core services
-import { AuthService } from './core/services/auth.service';
+import { AuthService } from './core/auth.service';
 
 @Component({
   selector: 'app-root',

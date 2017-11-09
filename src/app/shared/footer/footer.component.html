@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<aside class="ms-footbar hidden-sm hidden-xs">
+<aside class="ms-footbar" *ngIf="this.layout.footerIsVisible">
     <div class="container">
         <div class="row">
             <div class="col-md-9 ms-footer-col">
@@ -57,7 +57,7 @@
     </div>
 </aside>
 
-<footer class="ms-footer">
+<footer class="ms-footer" *ngIf="this.layout.footerIsVisible">
     <div class="container">
         <p class="text-left">Copyright &copy; SkillsHub {{ today | date: 'yyyy' }}</p>
     </div>

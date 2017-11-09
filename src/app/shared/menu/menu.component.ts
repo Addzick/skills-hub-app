@@ -2,18 +2,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-// Core service
-import { AuthService } from '../services/auth.service';
+// Skills-hub services
+import { AuthService } from '../../core/auth.service';
+import { LayoutService } from '../layout.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.scss']
 })
-export class HeaderComponent implements OnInit {
-
+export class MenuComponent implements OnInit {
   constructor(
     public auth: AuthService,
+    public layout: LayoutService,
     private router: Router) { }
 
   ngOnInit() {

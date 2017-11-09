@@ -1,65 +1,36 @@
-<div class="text-center">
-        <h3>Login with</h3>
-        <a href="javascript:void(0)" class="wave-effect-light btn btn-raised btn-facebook">
-          <i class="zmdi zmdi-facebook"></i> Facebook</a>
-        <a href="javascript:void(0)" class="wave-effect-light btn btn-raised btn-twitter">
-          <i class="zmdi zmdi-twitter"></i> Twitter</a>
-        <a href="javascript:void(0)" class="wave-effect-light btn btn-raised btn-google">
-          <i class="zmdi zmdi-google"></i> Google</a>
-      </div>
-      
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="card card-block">
-            <h2 class="text-center">Connectez-vous</h2>
-            <div class="row mt-4 mb-2 text-center">
-                <a routerLink="/facebook" class="btn-circle btn-circle-raised btn-facebook mr-6">
-                    <i class="zmdi zmdi-facebook"></i>
-                </a>
-                <a routerLink="/twitter" class="btn-circle btn-circle-raised btn-twitter mr-6">
-                    <i class="zmdi zmdi-twitter"></i>
-                </a>
-                <a routerLink="/google" class="btn-circle btn-circle-raised btn-google">
-                    <i class="zmdi zmdi-google"></i>
-                </a>
-            </div>
-            <form [formGroup]="loginForm" (submit)="login()">
-                <extended-input  
-                [text]="'Adresse e-mail'" 
-                [errors]="loginForm.controls.email.errors"
-                [defs]="{ 
-                    required: 'Adresse e-mail requise',
-                    email: 'Adresse e-mail invalide',
-                    remote: 'Adresse e-mail incorrecte'}">
-                    <input type="email" formControlName="email" name="email" class="form-control">
-                </extended-input>
-                <extended-input  
-                [text]="'Mot de passe'" 
-                [errors]="loginForm.controls.password.errors"
-                [defs]="{ 
-                    required: 'Mot de passe requis',
-                    remote: 'Mot de passe incorrect'}">
-                    <input type="password" formControlName="password" name="password" class="form-control">
-                </extended-input> 
-                <div class="row pr-2 pl-2 mt-4">
-                    <div class="col-md-6">
-                        <a routerLink="/register" class="btn btn-link btn-sm">
-                            Je n'ai pas encore de compte
-                            <i class="zmdi zmdi-account-add mr-1"></i>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-raised btn-royal btn-block">
-                            Je me connecte
-                            <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+<!DOCTYPE html>
+<form [formGroup]="loginForm" (submit)="login()">
+    <fieldset>
+        <app-input 
+            [text]="'Adresse e-mail'"
+            [addonClass]="'zmdi zmdi-account'" 
+            [errors]="loginForm.controls.email.errors"
+            [defs]="{ 
+                required: 'Adresse e-mail requise',
+                email: 'Adresse e-mail invalide',
+                remote: 'Adresse e-mail incorrecte'}">
+            <input type="email" formControlName="email" name="email" class="form-control">
+        </app-input>
+        <app-input  
+            [text]="'Mot de passe'"
+            [addonClass]="'zmdi zmdi-lock'"
+            [errors]="loginForm.controls.password.errors"
+            [defs]="{ 
+                required: 'Mot de passe requis',
+                remote: 'Mot de passe incorrect'}">
+            <input type="password" formControlName="password" name="password" class="form-control">
+        </app-input>
+        <button class="btn btn-block btn-raised btn-primary" type="submit">Je me connecte</button>
+    </fieldset>
+</form>
+<div class="text-center mt-1 mb-1">
+    <a routerLink="/external/facebook" class="btn-circle btn-facebook">
+        <i class="zmdi zmdi-facebook"></i>
+    </a>
+    <a routerLink="/external/twitter" class="btn-circle btn-twitter">
+        <i class="zmdi zmdi-twitter"></i>
+    </a>
+    <a routerLink="/external/google" class="btn-circle btn-google">
+        <i class="zmdi zmdi-google"></i>
+    </a>
 </div>
-
-
-
-

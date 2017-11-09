@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Skills-hub services
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../core/auth.service';
 import { ArticleService } from '../article.service';
 
 @Component({
@@ -17,10 +17,12 @@ import { ArticleService } from '../article.service';
 export class ArticleListComponent implements OnInit {
   articles: Array<any> = [];
   error: any = {};
-  loading = true;
+
   // Constructor
   constructor(
-    private service: ArticleService) { }
+    private service: ArticleService,
+    private auth: AuthService,
+    private toastr: ToastsManager) { }
 
   ngOnInit() {
     // On récupére la liste des articles
@@ -31,7 +33,5 @@ export class ArticleListComponent implements OnInit {
       },
       error => this.error = error.json().error
     );
-    // On masque le spinner
-    this.loading = false;
   }
 }

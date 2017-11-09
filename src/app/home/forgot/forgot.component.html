@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<form [formGroup]="forgotForm" (submit)="forgot()">
+    <fieldset>
+        <app-input  
+            [text]="'Adresse e-mail'"
+            [addonClass] = "'zmdi zmdi-account'"
+            [errors]="forgotForm.controls.email.errors"
+            [defs]="{
+                required: 'Adresse e-mail requise',
+                email: 'Adresse e-mail invalide',
+                remote: 'Adresse e-mail incorrecte'}">
+            <input type="email" formControlName="email" name="email" class="form-control">
+        </app-input>
+        <button class="btn btn-block btn-raised btn-primary" type="submit">Envoyer</button>
+    </fieldset>
+</form>

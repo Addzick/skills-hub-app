@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<div class="form-group label-floating" [class.has-error]="hasError()">
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i [class]="this.addonClass"></i>
+    </span>
+    <label class="control-label">{{text}}</label>
+    <ng-content></ng-content>
+    <span class="help-block" *ngIf="hasError()">
+        {{error}}
+    </span>
+  </div>
+</div>

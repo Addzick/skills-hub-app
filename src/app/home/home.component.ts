@@ -1,4 +1,8 @@
+// Angular stuff
 import { Component, OnInit } from '@angular/core';
+
+// Skills-hub services
+import { LayoutService } from '../shared/layout.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private layout: LayoutService) { }
 
   ngOnInit() {
+    this.layout.showHeader();
+    this.layout.showFooter();
+    this.layout.showMenu();
   }
 
 }

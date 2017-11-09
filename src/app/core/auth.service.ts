@@ -9,13 +9,13 @@ import * as io from 'socket.io-client';
 // 3rd parties
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Observable } from 'rxjs/Observable';
-import '../../shared/rxjs-extensions';
+import './rxjs-extensions';
 
 // Skills-Hub services
-import { UserService } from '../services/user.service';
+import { UserService } from './user.service';
 
 // Config
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService implements OnInit, OnDestroy {

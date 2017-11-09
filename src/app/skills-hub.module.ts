@@ -9,11 +9,14 @@ import { RouterModule } from '@angular/router';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 // Skills-Hub Core module
-import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { HomeModule } from './home/home.module';
 
-// Skills hub main component
+// Skills hub preloads components component
 import { SkillsHubComponent } from './skills-hub.component';
+
+// Routings
 import { routes } from './skills-hub.routing';
 
 // Module instanciation
@@ -27,8 +30,9 @@ import { routes } from './skills-hub.routing';
     HttpModule,
     RouterModule.forRoot(routes),
     ToastModule.forRoot(),
-    SharedModule,
     CoreModule.forRoot(),
+    SharedModule,
+    HomeModule,
   ],
   providers: [ ],
   exports: [ ],

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <div class="ms-site-container">
     <!-- Modal -->
-    <div class="modal modal-primary" id="ms-account-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal modal-dark" id="ms-account-modal" tabindex="-1" role="dialog" aria-labelledby="Connexion">
         <div class="modal-dialog animated zoomIn animated-3x" role="document">
             <div class="modal-content">
                 <div class="modal-header d-block shadow-2dp no-pb">
-                    <button type="button" class="close d-inline pull-right mt-2" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close d-inline pull-right mt-2" data-dismiss="modal" aria-label="Fermer">
                         <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
                     </button>
                     <div class="modal-title text-center">
@@ -13,19 +13,19 @@
                         <h3 class="no-m ms-site-title">Skills<span>Hub</span></h3>
                     </div>
                     <div class="modal-header-tabs">
-                        <ul class="nav nav-tabs nav-tabs-full nav-tabs-3 nav-tabs-primary" role="tablist">
+                        <ul class="nav nav-tabs nav-tabs-full nav-tabs-3 nav-tabs-dark" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a href="#ms-login-tab" aria-controls="ms-login-tab" role="tab" data-toggle="tab" class="nav-link active withoutripple">
+                                <a href="#ms-login-tab-modal" aria-controls="ms-login-tab-modal" role="tab" data-toggle="tab" class="nav-link active withoutripple">
                                     <i class="zmdi zmdi-account"></i> Se connecter
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
+                                <a href="#ms-register-tab-modal" aria-controls="ms-register-tab-modal" role="tab" data-toggle="tab" class="nav-link withoutripple">
                                     <i class="zmdi zmdi-account-add"></i> S'inscrire
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="#ms-recovery-tab" aria-controls="ms-recovery-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
+                                <a href="#ms-recovery-tab-modal" aria-controls="ms-recovery-tab-modal" role="tab" data-toggle="tab" class="nav-link withoutripple">
                                     <i class="zmdi zmdi-key"></i> Mot de passe oublié
                                 </a>
                             </li>
@@ -34,13 +34,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab">
+                        <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab-modal">
                             <app-login></app-login>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
+                        <div role="tabpanel" class="tab-pane fade" id="ms-register-tab-modal">
                             <app-register></app-register>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="ms-recovery-tab">
+                        <div role="tabpanel" class="tab-pane fade" id="ms-recovery-tab-modal">
                             <app-forgot></app-forgot>
                         </div>
                     </div>
