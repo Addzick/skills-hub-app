@@ -8,6 +8,9 @@ import { RouterModule } from '@angular/router';
 // 3rd parties modules
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
+// Socket IO
+import * as io from 'socket.io-client';
+
 // Skills-Hub Core module
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
