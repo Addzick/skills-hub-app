@@ -21,9 +21,6 @@ import { routes } from './skills-hub.routing';
 
 // Module instanciation
 @NgModule({
-  declarations: [
-    SkillsHubComponent
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -33,6 +30,9 @@ import { routes } from './skills-hub.routing';
     CoreModule.forRoot(),
     SharedModule,
     HomeModule,
+  ],
+  declarations: [
+    SkillsHubComponent
   ],
   providers: [ ],
   exports: [ ],

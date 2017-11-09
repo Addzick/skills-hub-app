@@ -32,11 +32,12 @@ export class AuthService implements OnInit, OnDestroy {
     private userService: UserService,
     private toastr: ToastsManager,
     private router: Router) {
-      // On initialise la chaine de diffusion des evenements
-      this.initChannel();
+
   }
 
   ngOnInit() {
+    // On initialise la chaine de diffusion des evenements
+    this.initChannel();
     // On récupére le token depuis les cookie
     const token = localStorage.getItem('token');
     // On contrôle la présence du token

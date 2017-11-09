@@ -26,16 +26,16 @@ export class SkillsHubComponent implements OnInit, OnDestroy {
 
    ngOnInit() {
      // On s'abonne au nouveau evenements
-     this.connection = this.auth.channel.subscribe((event) => {
+     /* this.connection = this.auth.channel.subscribe((event) => {
       const email = event.user.email;
       const type = event.type;
       const createdAt = new Date(event.createdAt).toLocaleTimeString();
       this.toastr.info(`${ email } has emitted an event of type '${ type }' at ${ createdAt }`);
-     });
+     }); */
    }
 
    ngOnDestroy() {
-     this.connection.unsubscribe();
+     //this.connection.unsubscribe();
     }
 
 }
