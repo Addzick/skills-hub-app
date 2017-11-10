@@ -7,8 +7,7 @@
             [errors]="registerForm.controls.email.errors"
             [defs]="{
                 required: 'Adresse e-mail requise',
-                email: 'Adresse e-mail invalide',
-                remote: 'Adresse e-mail incorrecte'}">
+                email: 'Adresse e-mail invalide'}">
             <input type="email" formControlName="email" name="email" class="form-control">
         </app-input>
         <app-input
@@ -16,8 +15,7 @@
             [addonClass]="'zmdi zmdi-lock'" 
             [errors]="registerForm.controls.password.errors"
             [defs]="{ 
-            required: 'Mot de passe requis',
-            remote: 'Mot de passe incorrect'}">
+            required: 'Mot de passe requis'}">
             <input type="password" formControlName="password" name="password" class="form-control">
         </app-input>
         <app-input
@@ -29,7 +27,7 @@
                 notEquivalent: 'Confirmation mot de passe incorrecte'}">
             <input type="password" formControlName="confirmpwd" name="confirmpwd" class="form-control">
         </app-input> 
-        <button class="btn btn-block btn-raised btn-primary" type="submit">Je m'inscris</button>
+        <button class="btn btn-block btn-raised btn-primary mt-3" type="submit">Je m'inscris</button>
     </fieldset>
 </form>
 

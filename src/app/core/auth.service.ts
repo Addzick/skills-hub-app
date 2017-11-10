@@ -3,11 +3,8 @@ import { Injectable, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
-// Config
-import { environment } from '../../environments/environment';
-
 // Socket IO
-import io from 'socket.io-client/dist/socket.io.js';
+import { Socket } from 'ng-socket-io';
 
 // 3rd parties
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -23,12 +20,11 @@ export class AuthService implements OnInit, OnDestroy {
 
   private jwtHelper: JwtHelper = new JwtHelper();
   private currentUser = { _id: '', username: '' };
-  private socket;
-
   public loggedIn = false;
   public channel: Observable<any>;
 
   constructor(
+    private socket: Socket,
     private userService: UserService,
     private toastr: ToastsManager,
     private router: Router) {
@@ -58,12 +54,8 @@ export class AuthService implements OnInit, OnDestroy {
   }
 
   initChannel() {
-    // On crée une socket
-    this.socket = io.connect(environment.socketUrl);
-    this.channel = new Observable(observer => {
-      this.socket.on('new event', event => observer.next(event));
-      return () => { this.socket.off('new event'); };
-    });
+    // On crée une channel
+    this.channel = this.socket.fromEvent<any>('new event').map(data => data);
   }
 
   login(user) {
@@ -120,6 +112,10 @@ export class AuthService implements OnInit, OnDestroy {
     localStorage.removeItem('token');
     // On demande au serveur de supprimé l'id de la socket
     this.socket.emit('unset socket', this.currentUser.username);
+  }
+
+  getCurrentUserEmail(): String {
+    return (this.loggedIn && this.currentUser) ? this.currentUser.username : '';
   }
 
 }

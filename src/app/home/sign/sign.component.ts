@@ -2,6 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+// Skills-hub components
+import { ExtendInputComponent } from '../../shared/extend-input/extend-input.component';
+
 // Skills-hub services
 import { LayoutService } from '../../shared/layout.service';
 

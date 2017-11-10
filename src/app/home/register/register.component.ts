@@ -1,6 +1,6 @@
 // Angular stuff
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 // 3rd parties
@@ -18,13 +18,16 @@ import { ExtendInputComponent } from '../../shared/extend-input/extend-input.com
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  error = '';
   registerForm: FormGroup;
+  loading = false;
+  returnUrl: string;
 
-  constructor(private auth: AuthService,
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private auth: AuthService,
     private formBuilder: FormBuilder,
-    private toastr: ToastsManager,
-    private router: Router) {
+    private toastr: ToastsManager) {
       this.registerForm = formBuilder.group({
         'email' : ['', Validators.compose([Validators.required, Validators.email])],
         'password': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ],
@@ -49,24 +52,20 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (!this.registerForm.valid) {
-      this.toastr.error('Veuillez compléter les informations saisies !');
+      this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
-      this.auth.register({ user: this.registerForm.value }).subscribe(
-        res => this.router.navigate(['/']),
+      // On change l'état de la fenêtre
+      this.loading = true;
+      // On lance la procédure d'authentification
+      this.auth.login({ user: this.registerForm.value })
+      .subscribe(
+        res => {
+          this.loading = true;
+          this.router.navigateByUrl(this.returnUrl);
+        },
         err => {
-          if (err.status === 500) {
-            const message = err.json().message;
-            this.toastr.error(message);
-          } else {
-            const data = err.json().errors;
-            const fields = Object.keys(data || {});
-            fields.forEach((field) => {
-              const control = this.registerForm.controls[field];
-              if (control) {
-                control.setErrors({ 'remote': data[field] });
-              }
-            });
-          }
+          this.loading = false;
+          this.toastr.error('Impossible de s\'inscrire. Merci de réessayer ultérieurement.');
         }
       );
     }

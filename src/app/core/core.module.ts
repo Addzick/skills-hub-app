@@ -1,6 +1,5 @@
 // Angular modules
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 // Http components
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
@@ -13,8 +12,17 @@ import { AuthGuardLogin } from './auth-guard-login.service';
 // Core factories
 import { httpFactory } from './http.factory';
 
+// Environment variables
+import { environment } from '../../environments/environment';
+// Socket IO
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+// Socket IO configuration
+const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
+
 @NgModule({
-  imports: [],
+  imports: [
+    SocketIoModule.forRoot(config),
+  ],
   declarations: [],
   exports: [],
   providers: []

@@ -1,6 +1,6 @@
 // Angular stuff
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 // 3rd parties
@@ -18,42 +18,46 @@ import { ExtendInputComponent } from '../../shared/extend-input/extend-input.com
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  error = '';
   loginForm: FormGroup;
+  loading = false;
+  returnUrl: string;
 
-  constructor(private auth: AuthService,
-              private formBuilder: FormBuilder,
-              private toastr: ToastsManager,
-              private router: Router) {
-                this.loginForm = this.formBuilder.group({
-                  'email' : ['', Validators.compose([Validators.required, Validators.email])],
-                  'password': ['', Validators.required ]
-                });
-               }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private auth: AuthService,
+    private formBuilder: FormBuilder,
+    private toastr: ToastsManager) {
+      this.loginForm = this.formBuilder.group({
+        'email' : ['', Validators.compose([Validators.required, Validators.email])],
+        'password': ['', Validators.required ]
+      });
+    }
 
   ngOnInit() {
+    // Reset login status
+    this.auth.logout();
+
+    // On récupére l'url de retour
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
     if (!this.loginForm.valid) {
-      this.toastr.error('Veuillez compléter les informations saisies !');
+      this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
-      this.auth.login({ user: this.loginForm.value }).subscribe(
-        res => this.router.navigate(['/']),
+      // On change l'état de la fenêtre
+      this.loading = true;
+      // On lance la procédure d'authentification
+      this.auth.login({ user: this.loginForm.value })
+      .subscribe(
+        res => {
+          this.loading = true;
+          this.router.navigateByUrl(this.returnUrl);
+        },
         err => {
-          if (err.status === 500) {
-            const message = err.json().message;
-            this.toastr.error(message);
-          } else {
-            const data = err.json().errors;
-            const fields = Object.keys(data || {});
-            fields.forEach((field) => {
-              const control = this.loginForm.controls[field];
-              if (control) {
-                control.setErrors({ 'remote': data[field] });
-              }
-            });
-          }
+          this.loading = false;
+          this.toastr.error('Impossible de se connecter. Merci de réessayer ultérieurement.');
         }
       );
     }

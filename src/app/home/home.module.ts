@@ -11,6 +11,8 @@ import { SignComponent } from './sign/sign.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 // Routing
 import { routes } from './home-routing';
@@ -27,6 +29,8 @@ import { routes } from './home-routing';
     LoginComponent,
     RegisterComponent,
     ForgotComponent,
+    AboutComponent,
+    ContactComponent,
   ],
   exports: [
     HomeComponent,
@@ -34,6 +38,8 @@ import { routes } from './home-routing';
     LoginComponent,
     RegisterComponent,
     ForgotComponent,
+    AboutComponent,
+    ContactComponent,
   ]
 })
 export class HomeModule { }

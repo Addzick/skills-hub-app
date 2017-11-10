@@ -18,5 +18,4 @@ export class HomeComponent implements OnInit {
     this.layout.showFooter();
     this.layout.showMenu();
   }
-
 }

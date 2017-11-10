@@ -17,7 +17,7 @@ export class SkillsHubComponent implements OnInit, OnDestroy {
   title = 'Skills Hub';
   connection;
   socketUrl = environment.socketUrl;
-  
+
   constructor(
     private auth: AuthService,
     private toastr: ToastsManager,

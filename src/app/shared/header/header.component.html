@@ -30,7 +30,7 @@
                     <i class="zmdi zmdi-share"></i>
                 </a>
             </div>
-            <a class="btn-circle btn-circle-primary no-focus" data-toggle="modal" data-target="#ms-account-modal" *ngIf="!this.auth.loggedIn">
+            <a routerLink="/sign" class="btn-circle btn-circle-primary no-focus" *ngIf="!this.auth.loggedIn">
                 <i class="zmdi zmdi-account"></i>
             </a>
             <form class="search-form" (submit)="search()">
