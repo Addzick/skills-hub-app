@@ -6,7 +6,7 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../core/rxjs-extensions';
 
-import { ArticleService } from './article.service';
+import { ArticleService } from '../shared/article.service';
 
 @Injectable()
 export class ArticleResolver implements Resolve<any> {

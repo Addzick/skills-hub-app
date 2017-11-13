@@ -41,3 +41,35 @@ textarea {
   background-position: center center;
   background-size: cover;
 }
+
+.two-cols {
+  overflow: hidden;
+  width: 100%;
+}
+
+.two-cols li {
+  float: left;
+  width: 50%;
+}
+
+.two-cols li a {
+  display: block;
+  overflow: hidden;
+  padding: 2px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.two-cols li a i {
+  color: #26c6da;
+  margin-right: 10px;
+  text-align: center;
+  width: 15px;
+}
+
+.two-cols li a:hover i {
+  -webkit-transform: rotateY(360deg);
+  color: #ffa726;
+  transform: rotateY(360deg);
+  transition: all ease .5s;
+}

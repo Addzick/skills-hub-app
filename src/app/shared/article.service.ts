@@ -1,6 +1,6 @@
 // Angular modules
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptionsArgs } from '@angular/http';
 
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
@@ -11,11 +11,20 @@ export class ArticleService {
 
   constructor(private http: Http) { }
 
-  getAll(): Observable<any> {
-    return this.http.get('/articles');
+  getAll(query: {
+    title: String,
+    categories: Array<String>,
+    tags: Array<String>,
+    page: Number,
+    size: Number }): Observable<any> {
+      return this.http.get('/articles', { search: query });
   }
 
-  getFeed(): Observable<any> {
+  getFeed(query: {
+    title: String,
+    tags: Array<String>,
+    page: Number,
+    size: Number }): Observable<any> {
     return this.http.get('/articles/feed');
   }
 

@@ -6,7 +6,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Skills-hub services
 import { AuthService } from '../../core/auth.service';
-import { ArticleService } from '../article.service';
+import { ArticleService } from '../../shared/article.service';
 
 
 @Component({

@@ -64,7 +64,7 @@ export class HttpInterceptor extends Http {
     if (options == null) { options = new RequestOptions(); }
     if (options.headers == null) { options.headers = new Headers(); }
     // Set request content type
-    options.headers.set('Content-type', 'application/json');
+    options.headers.set('Content-type', 'application/json;charset=UTF-8');
     // Define authorization token
     const token = localStorage.getItem('token');
     if (token) { options.headers.set('Authorization', `Bearer ${token}`); }

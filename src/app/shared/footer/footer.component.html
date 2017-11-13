@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <aside class="ms-footbar" *ngIf="this.layout.footerIsVisible">
     <div class="container">
-        <div class="row">
-            <div class="col-md-9 ms-footer-col">
-                <div class="ms-footbar-block">
-                    <div class="ms-footbar-title">
-                        <span class="ms-logo ms-logo-white ms-logo-sm mr-1">Z</span>
-                        <h3 class="no-m ms-site-title">
-                            Skills
-                            <span>Hub</span>
-                        </h3>
-                    </div>
-                    <ul class="list-unstyled ms-icon-list three_cols">
-                        <li>
-                            <a routerLink="/"><i class="zmdi zmdi-home"></i> Accueil</a>
-                        </li>
-                        <li>
-                            <a routerLink="/search"><i class="zmdi zmdi-search"></i> Foire aux questions</a>
-                        </li>
-                        <li>
-                            <a routerLink="/help"><i class="zmdi zmdi-help"></i> Besoin d'aide</a>
-                        </li>
-                        <li>
-                            <a routerLink="/contact"><i class="zmdi zmdi-email"></i> Nous contacter</a>
-                        </li>
-
-                        <li>
-                            <a routerLink="/about"><i class="zmdi zmdi-favorite"></i> A propos de nous</a>
-                        </li>
-                        <li>
-                            <a routerLink="/cga"><i class="zmdi zmdi-lock"></i> Conditions générales</a>
-                        </li>
-                    </ul>
-                </div>
-
+      <div class="row">
+        <div class="col-lg-9 col-md-7 ms-footer-col ms-footer-alt-color">
+          <div class="ms-footbar-block">
+            <ul class="list-unstyled ms-icon-list two-cols">
+                <li>
+                    <a routerLink="/"><i class="zmdi zmdi-home"></i> Accueil</a>
+                </li>
+                <li>
+                    <a routerLink="/search"><i class="zmdi zmdi-search"></i>Rechercher</a>
+                </li>
+                <li *ngIf="!this.auth.loggedIn">
+                    <a routerLink="/sign"><i class="zmdi zmdi-lock"></i> Se connecter</a>
+                </li>
+                <li *ngIf="this.auth.loggedIn">
+                    <a routerLink="/account" *ngIf="this.auth.loggedIn"><i class="zmdi zmdi-account"></i> Mon compte</a>
+                </li>
+                <li *ngIf="this.auth.loggedIn">
+                    <a routerLink="/dashboard" *ngIf="this.auth.loggedIn"><i class="zmdi zmdi-view-dashboard"></i> Tableau de bord</a>
+                </li>
+                <li>
+                    <a routerLink="/articles" *ngIf="!this.auth.loggedIn"><i class="zmdi zmdi-collection-text"></i> Fil d'actualité</a>
+                </li>
+                
+                <li>
+                    <a routerLink="/help"><i class="zmdi zmdi-help"></i> FAQ</a>
+                </li>
+                <li>
+                    <a routerLink="#contact"><i class="zmdi zmdi-email"></i> Nous contacter</a>
+                </li>
+            </ul>
+          </div>
+        </div>        
+        <div class="col-lg-3 col-md-5 ms-footer-col ms-footer-text-right">
+          <div class="ms-footbar-block">
+            <div class="ms-footbar-title">
+              <span class="ms-logo ms-logo-white ms-logo-sm mr-1">SH</span>
+              <h3 class="no-m ms-site-title">Skills
+                <span>Hub</span>
+              </h3>
+            </div>            
+          </div>
+          <div class="ms-footbar-block">
+            <div class="ms-footbar-social">
+              <a href="javascript:void(0)" class="btn-circle btn-facebook">
+                <i class="zmdi zmdi-facebook"></i>
+              </a>
+              <a href="javascript:void(0)" class="btn-circle btn-twitter">
+                <i class="zmdi zmdi-twitter"></i>
+              </a>
+              <a href="javascript:void(0)" class="btn-circle btn-google">
+                <i class="zmdi zmdi-google"></i>
+              </a>
             </div>
-            <div class="col-md-3 ms-footer-col ms-footer-text-right">     
-                <div class="ms-footbar-title">
-                    <h4>Retrouvez nous sur</h4>
-                </div>           
-                <div class="ms-footbar-block">
-                    <div class="ms-footbar-social">
-                        <a href="javascript:void(0)" class="btn-circle btn-facebook">
-                            <i class="zmdi zmdi-facebook"></i>
-                        </a>
-                        <a href="javascript:void(0)" class="btn-circle btn-twitter">
-                            <i class="zmdi zmdi-twitter"></i>
-                        </a>
-                        <a href="javascript:void(0)" class="btn-circle btn-google">
-                            <i class="zmdi zmdi-google"></i>
-                        </a>
-                    </div>
-                </div>                
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</aside>
+  </aside>
 
 <footer class="ms-footer" *ngIf="this.layout.footerIsVisible">
     <div class="container">

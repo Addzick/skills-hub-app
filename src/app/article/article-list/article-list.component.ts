@@ -6,7 +6,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Skills-hub services
 import { AuthService } from '../../core/auth.service';
-import { ArticleService } from '../article.service';
+import { ArticleService } from '../../shared/article.service';
 
 @Component({
   selector: 'app-article-list',
@@ -26,7 +26,12 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     // On récupére la liste des articles
-    this.service.getAll().subscribe(
+    this.service.getAll({
+      title: '',
+      categories: [],
+      tags: [],
+      page: 1,
+      size: 20 }).subscribe(
       res => {
         const result = res.json();
         if (result) { this.articles = result.articles; }
