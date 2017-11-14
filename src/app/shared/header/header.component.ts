@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 // Skills-hub services
 import { AuthService } from '../../core/auth.service';
-import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +14,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    public layout: LayoutService,
     private router: Router) { }
 
   ngOnInit() {

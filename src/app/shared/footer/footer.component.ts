@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 
 // Skills-hub services
 import { AuthService } from '../../core/auth.service';
-import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-footer',
@@ -14,9 +13,7 @@ export class FooterComponent implements OnInit {
 
   public today = Date.now();
 
-  constructor(
-    public auth: AuthService,
-    public layout: LayoutService) { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
   }

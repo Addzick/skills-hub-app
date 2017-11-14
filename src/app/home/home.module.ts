@@ -16,6 +16,10 @@ import { ContactComponent } from './contact/contact.component';
 
 // Routing
 import { routes } from './home-routing';
+import { RatingsComponent } from './ratings/ratings.component';
+import { PropositionsComponent } from './propositions/propositions.component';
+import { TendersComponent } from './tenders/tenders.component';
+import { ArticlesComponent } from './articles/articles.component';
 
 // Module instanciation
 @NgModule({
@@ -31,6 +35,10 @@ import { routes } from './home-routing';
     ForgotComponent,
     AboutComponent,
     ContactComponent,
+    RatingsComponent,
+    PropositionsComponent,
+    TendersComponent,
+    ArticlesComponent,
   ],
   exports: [
     HomeComponent,
@@ -40,6 +48,10 @@ import { routes } from './home-routing';
     ForgotComponent,
     AboutComponent,
     ContactComponent,
+    RatingsComponent,
+    PropositionsComponent,
+    TendersComponent,
+    ArticlesComponent,
   ]
 })
 export class HomeModule { }

@@ -14,7 +14,6 @@ import { FooterComponent } from './footer/footer.component';
 
 // Shared controls
 import { ExtendInputComponent } from './extend-input/extend-input.component';
-import { LayoutService } from './layout.service';
 import { ArticleService } from './article.service';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { ArticleService } from './article.service';
     ExtendInputComponent,
   ],
   providers: [
-    LayoutService,
     ArticleService
   ]
 })

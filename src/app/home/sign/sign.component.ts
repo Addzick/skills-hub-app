@@ -1,12 +1,10 @@
 // Angular stuff
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 // Skills-hub components
 import { ExtendInputComponent } from '../../shared/extend-input/extend-input.component';
 
-// Skills-hub services
-import { LayoutService } from '../../shared/layout.service';
 
 @Component({
   selector: 'app-sign',
@@ -14,20 +12,9 @@ import { LayoutService } from '../../shared/layout.service';
   styleUrls: ['./sign.component.scss']
 })
 export class SignComponent implements OnInit {
-  public activeTab: String = 'ms-login-tab';
-
   constructor(
-    private layout: LayoutService,
-    private route: ActivatedRoute,
-    private router: Router) {
-      const tab = this.route.snapshot.data['activeTab'];
-      if (tab) { this.activeTab = tab; }
-     }
+    private router: Router) {}
 
-     ngOnInit() {
-      this.layout.hideHeader();
-      this.layout.hideFooter();
-      this.layout.hideMenu();
-    }
+     ngOnInit() {}
 
 }

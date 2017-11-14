@@ -1,55 +1,8 @@
 <!DOCTYPE html>
-<header class="ms-header ms-header-dark" *ngIf="this.layout.headerIsVisible">
-    <div class="container container-full">
-        <div class="ms-title">
-            <a routerLink="'/'">
-                <span class="ms-logo">SH</span>
-                <h1>Skills<span>Hub</span></h1>
-            </a>
-        </div>
-        <div class="header-right">
-            <div class="share-menu">
-                <ul class="share-menu-list">
-                    <li class="animated fadeInRight animation-delay-3">
-                        <a routerLink="/share/google" class="btn-circle btn-google">
-                            <i class="zmdi zmdi-google"></i>
-                        </a>
-                    </li>
-                    <li class="animated fadeInRight animation-delay-2">
-                        <a routerLink="/share/facebook" class="btn-circle btn-facebook">
-                            <i class="zmdi zmdi-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="animated fadeInRight animation-delay-1">
-                        <a routerLink="/share/twitter" class="btn-circle btn-twitter">
-                            <i class="zmdi zmdi-twitter"></i>
-                        </a>
-                    </li>
-                </ul>
-                <a class="btn-circle btn-circle-primary">
-                    <i class="zmdi zmdi-share"></i>
-                </a>
-            </div>
-            <a routerLink="/sign" class="btn-circle btn-circle-primary no-focus" *ngIf="!this.auth.loggedIn">
-                <i class="zmdi zmdi-account"></i>
-            </a>
-            <form class="search-form" (submit)="search()">
-                <input id="search-box" type="text" class="search-input" placeholder="Rechercher ..." name="search" />
-                <label for="search-box">
-                    <i class="zmdi zmdi-search"></i>
-                </label>
-            </form>
-            <a class="btn-ms-menu btn-circle btn-circle-primary ms-toggle-left">
-                <i class="zmdi zmdi-menu"></i>
-            </a>
-        </div>
-    </div>
-</header>
-
-<nav class="navbar navbar-expand-md navbar-static ms-navbar ms-navbar-dark" *ngIf="this.layout.headerIsVisible">
+<nav class="navbar navbar-expand-md navbar-fixed ms-lead-navbar navbar-mode navbar-mode mb-0">
     <div class="container container-full">
         <div class="navbar-header">
-            <a class="navbar-brand" routerLink="/">
+            <a class="navbar-brand" href="/">
                 <span class="ms-logo ms-logo-sm">SH</span>
                 <span class="ms-title">
                   <strong>Skills</strong>
@@ -60,11 +13,23 @@
 
         <div class="collapse navbar-collapse" id="ms-navbar">
             <ul class="nav navbar-nav">
-                <li class="nav-item" routerLinkActive="active">
-                    <a routerLink="/" class="nav-link ">Accueil</a>
+                <li class="nav-item">
+                    <a href="/" class="nav-link ">Accueil</a>
                 </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a routerLink="/articles" class="nav-link ">Actualités</a>
+                <li class="nav-item">
+                    <a href="/search" class="nav-link ">Rechercher</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/articles" class="nav-link ">Fil d'actualité</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/tenders" class="nav-link ">Appels d'offres</a>
+                </li>
+                <li class="nav-item" *ngIf="this.auth.loggedIn">
+                    <a href="/account" class="nav-link ">Mon compte</a>
+                </li>
+                <li class="nav-item" *ngIf="!this.auth.loggedIn">
+                    <a href="/sign" class="nav-link ">Se connecter</a>
                 </li>
             </ul>
         </div>

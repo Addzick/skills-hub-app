@@ -1,100 +1,95 @@
 <!DOCTYPE html>
+<div id="home" class="intro-fixed ms-hero-img-electrician ms-hero-bg-dark color-white">
+    <div class="intro-fixed-content index-1">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span class="ms-logo ms-logo-lg ms-logo-white center-block mb-2 mt-2 animated zoomInDown animation-delay-5">SH</span>
+                <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Skills
+                    <span>Hub</span>
+                </h1>
+                <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
+                    Trouvez le 
+                    <span class="color-warning">meilleur prestataire</span> pour réaliser tous vos projets.
+                </p>
+            </div>
+            <div class="text-center mb-4 mt-4">
+                <a href="javascript:void(0)" class="btn btn-raised btn-warning">Publier un appel d'offres</a>
+                <a href="javascript:void(0)" class="btn btn-raised btn-primary">Répondre à un appel d'offres</a>
+            </div>
+            <div class="text-center mb-2">
+                <a id="go-intro-fixed-next" href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-white animated zoomInUp animation-delay-12">
+                    <i class="zmdi zmdi-long-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="btn-back-top">
+    <a href="#" data-scroll id="back-top" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised ">
+        <i class="zmdi zmdi-long-arrow-up"></i>
+    </a>
+</div>
+<div class="bg-light index-1 intro-fixed-next pt-6" id="intro-next">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-7">
+                <p class="lead lead-lgwow fadeInUp animation-delay-2">
+                    Vous avez une idée, une envie, un projet ?<br>
+                    Déposer dès maintenant un appel d'offres en quelques clics.
+                </p>
+                <h2 class="color-success wow fadeInUp animation-delay-5">C'est simple, efficace et gratuit.</h2>
+                <p class="lead lead-sm wow fadeInUp animation-delay-7">
+                    Chaque jour de plus d'internautes nous font confiance pour trouver le prestataire qui leur convient.
+                    Notre système d'évaluation vous permettra de sélectionner efficacement le meilleur profil.
+                    Consultez les avis et commentaires laissés par nos internautes et bénéficiez de leurs expériences.
+                </p>
+                <p class="lead lead-sm wow fadeInUp animation-delay-9">
+                    Vous recherchez un coach, un traducteur, un informaticien, ou encore un cuisinier à domicile, un photographe ... <br>
+                    Découvrez les profils de nos membres et leurs talents. Quelque soit votre objectif, vous trouverez le prestataire à même de vous accompagner pour l'atteindre.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="card card-block card-light-inverse wow fadeInUp animation-delay-12">
+                    <h2 class="text-center">Inscrivez vous</h2>
+                    <app-register></app-register>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="tenders" class="mt-6">
+        <div class="wrap ms-hero-bg-warning ms-bg-fixed">
+            <app-tenders></app-tenders>
+        </div>
+    </section>
+    <section id="propositions">
+        <div  class="wrap ms-hero-bg-dark ms-hero-img-palissade ms-bg-fixed">
+            <app-propositions></app-propositions>
+        </div>
+    </section>
+    <section id="ratings">
+        <div class="wrap ms-hero-bg-white ms-bg-fixed">
+            <app-ratings></app-ratings>
+        </div>
+    </section>
+    <section id="articles">
+        <div class="wrap ms-hero-bg-primary ms-bg-fixed">
+            <app-articles></app-articles>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="wrap ms-hero-bg-white ms-bg-fixed">
+            <app-contact></app-contact>
+        </div>
+    </section>
+    
+    <!--Footer-->
+    <app-footer></app-footer>
 
-<section id="home" class="ms-hero-page ms-hero-img-electrician ms-hero-bg-dark color-white" >
-    <div class="container">
-        <div class="text-center mb-4">
-            <span class="ms-logo ms-logo-lg ms-logo-white center-block mb-2 mt-2 animated zoomInDown animation-delay-5">SH</span>
-            <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Skills
-                <span>Hub</span>
-            </h1>
-            <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
-                Trouvez le 
-                <span class="color-warning">meilleur prestataire</span> pour réaliser tous vos projets.
-            </p>
-        </div>
-        <div class="text-center mb-4 mt-4">
-            <a href="javascript:void(0)" class="btn btn-raised btn-warning">Poster un besoin</a>
-            <a href="javascript:void(0)" class="btn btn-raised btn-primary">Répondre à un besoin</a>
-        </div>
+    <!-- Bouton de renvoi en Haut de page -->
+    <div class="btn-back-top">
+        <a href="#" data-scroll id="back-top" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised">
+            <i class="zmdi zmdi-long-arrow-up"></i>
+        </a>
     </div>
-</section>
-<section id="intro">
-    <div class="wrap ms-hero-bg-white ms-bg-fixed">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3 class="color-primary wow fadeInUp animation-delay-2">Rejoignez nous dès maintenant</h3>
-                    <p class="wow fadeInUp animation-delay-2">
-                        Vous avez une idée de projet, une envie, un projet de travaux ?<br>                        
-                    </p>
-                    <p class="wow fadeInUp animation-delay-5">
-                        Grâce à SkillsHub, déposer un appel d'offres dès maintenant en quelques clics.
-                        C'est facile, rapide et totalement gratuit.                         
-                    </p>
-                    <p class="wow fadeInUp animation-delay-7">
-                        Ne passez plus de temps à chercher et comparer les prestataires.
-                        Sélectionez le prestataire qui vous correspond selon vos critères.
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card card-block card-light-inverse">
-                        <h2 class="text-center">Inscrivez vous</h2>
-                        <app-register></app-register>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="recents">
-    <div class="wrap ms-hero-bg-dark ms-hero-img-glasses ms-bg-fixed">
-        <div class="container">
-            <h1 class="text-center mb-4 wow fadeInUp animation-delay-2">Ils ont publié</h1>
-            <div class="row">
-                <div class="col-lg-12">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="top-categories">
-    <div class="wrap ms-hero-bg-white ms-bg-fixed">
-        <div class="container container-fluid">
-            <h1 class="text-center mb-4 wow fadeInUp animation-delay-2">Parcourir les categories</h1>
-            <div class="row">
-                <div class="col-lg-12">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <div class="wrap ms-hero-bg-dark ms-hero-img-keyboard ms-bg-fixed">
-        <div class="container container-fluid">
-            <h1 class="text-center mb-4 wow fadeInUp animation-delay-2">Nous contacter</h1>
-            <div class="row">
-                <div class="col-lg-12">
-                    <app-contact></app-contact>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="about">
-    <div class="wrap ms-hero-bg-white ms-bg-fixed">
-        <div class="container">
-            <h1 class="right-line mb-4 wow fadeInUp animation-delay-2">A propos de nous</h1>
-            <div class="row">
-                <div class="col-lg-12">
-                    <app-about></app-about>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-           
-          
+</div>
 

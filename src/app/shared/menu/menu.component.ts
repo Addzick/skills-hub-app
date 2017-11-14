@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 // Skills-hub services
 import { AuthService } from '../../core/auth.service';
-import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +13,6 @@ import { LayoutService } from '../layout.service';
 export class MenuComponent implements OnInit {
   constructor(
     public auth: AuthService,
-    public layout: LayoutService,
     private router: Router) { }
 
   ngOnInit() {
