@@ -5,6 +5,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 
 // Core services
+import { ApiService } from './api.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { AuthGuardLogin } from './auth-guard-login.service';
@@ -14,8 +15,10 @@ import { httpFactory } from './http.factory';
 
 // Environment variables
 import { environment } from '../../environments/environment';
+
 // Socket IO
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
 // Socket IO configuration
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
@@ -37,6 +40,7 @@ export class CoreModule {
           useFactory: httpFactory,
           deps: [XHRBackend, RequestOptions]
         },
+        ApiService,
         UserService,
         AuthService,
         AuthGuardLogin,

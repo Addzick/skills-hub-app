@@ -29,7 +29,6 @@ import { routes } from './skills-hub.routing';
     ToastModule.forRoot(),
     CoreModule.forRoot(),
     SharedModule,
-    HomeModule,
   ],
   declarations: [
     SkillsHubComponent

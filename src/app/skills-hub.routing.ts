@@ -4,10 +4,14 @@ import { HomeComponent } from './home/home.component';
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    loadChildren: './home/home.module#HomeModule'
   },
   {
-    path: 'articles',
-    loadChildren: './article/article.module#ArticleModule'
+    path: 'wall',
+    loadChildren: './wall/wall.module#WallModule'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
   },
 ];

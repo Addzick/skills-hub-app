@@ -25,37 +25,27 @@ export class HttpInterceptor extends Http {
 
   // Intercepts a GET request
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    url = this.updateUrl(url);
     return super.get(url, this.getRequestOptionArgs(options));
   }
 
   // Intercepts a POST request
   post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    url = this.updateUrl(url);
     return super.post(url, JSON.stringify(body) , this.getRequestOptionArgs(options));
   }
 
   // Intercepts a PUT request
   put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    url = this.updateUrl(url);
     return super.put(url, JSON.stringify(body), this.getRequestOptionArgs(options));
   }
 
   // Intercepts a PATCH request
   patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    url = this.updateUrl(url);
     return super.patch(url, JSON.stringify(body), this.getRequestOptionArgs(options));
   }
 
   // Intercepts a DELETE request
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    url = this.updateUrl(url);
     return super.delete(url, this.getRequestOptionArgs(options));
-  }
-
-  // Adds api server URL
-  private updateUrl(req: string) {
-    return  environment.apiUrl + req;
   }
 
   // Defines request options arguments

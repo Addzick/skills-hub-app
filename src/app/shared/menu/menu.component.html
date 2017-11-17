@@ -5,7 +5,7 @@
       <a (click)="logout()" *ngIf="this.auth.loggedIn"  class="withripple">
         <i class="zmdi zmdi-close-circle"></i> Se déconnecter
       </a>
-      <a href="/sign" *ngIf="!auth.loggedIn"  class="withripple">
+      <a [routerLink]="['/sign']" *ngIf="!auth.loggedIn"  class="withripple">
         <i class="zmdi zmdi-account"></i> Se connecter
       </a>
     </div>
@@ -17,13 +17,10 @@
     </div>
   </header>
   <ul class="ms-slidebar-menu" id="slidebar-menu" role="tablist" aria-multiselectable="true">
-    <li><a href="/" class="link"><i class="zmdi zmdi-home"></i> Accueil</a></li>
-    <li><a href="/articles" class="link"><i class="zmdi zmdi-collection-text"></i> Fil d'actualité</a></li>
-    <li><a href="/articles" class="link"><i class="zmdi zmdi-roller"></i> Appels d'offres</a></li>
-    <li *ngIf="this.auth.loggedIn"><a href="/dashboard" class="link"><i class="zmdi zmdi-view-dashboard"></i> Tableau de bord</a></li>
-    <li *ngIf="this.auth.loggedIn"><a href="/gallery" class="link"><i class="zmdi zmdi-picture-gallery"></i> Galerie</a></li>
-    <li><a href="/search" class="link"><i class="zmdi zmdi-search"></i> Rechercher</a></li>
-    <li><a href="/help" class="link"><i class="zmdi zmdi-help"></i> FAQ</a></li>
-    <li><a href="/contact" class="link"><i class="zmdi zmdi-email"></i> Nous contacter</a></li>
+    <li><a [routerLink]="['/']" class="link"><i class="zmdi zmdi-home"></i> Accueil</a></li>
+    <li><a [routerLink]="['/search']" class="link"><i class="zmdi zmdi-search"></i> Rechercher</a></li>
+    <li><a [routerLink]="['/wall']" class="link"><i class="zmdi zmdi-collection-text"></i> Fil d'actualité</a></li>
+    <li *ngIf="this.auth.loggedIn"><a [routerLink]="['/dashboard']" class="link"><i class="zmdi zmdi-view-dashboard"></i> Mon tableau de bord</a></li>
+    <li *ngIf="this.auth.loggedIn"><a [routerLink]="['/gallery']" class="link"><i class="zmdi zmdi-picture-gallery"></i> Ma galerie</a></li>
   </ul>
 </div>

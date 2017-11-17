@@ -4,9 +4,9 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
-import '../core/rxjs-extensions';
+import '../../core/rxjs-extensions';
 
-import { ArticleService } from '../shared/article.service';
+import { ArticleService } from './article.service';
 
 @Injectable()
 export class ArticleResolver implements Resolve<any> {
@@ -21,7 +21,7 @@ export class ArticleResolver implements Resolve<any> {
   ): Observable<any> {
 
     return this.articleService.getById(route.params['article'])
-           .catch((err) => this.router.navigate(['/articles']));
+           .catch((err) => this.router.navigate(['/']) );
 
   }
 }

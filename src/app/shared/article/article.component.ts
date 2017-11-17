@@ -6,15 +6,15 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Skills-hub services
 import { AuthService } from '../../core/auth.service';
-import { ArticleService } from '../../shared/article.service';
+import { ArticleService } from '../services/article.service';
 
-
+// Component initialization
 @Component({
-  selector: 'app-article-detail',
-  templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.scss'],
+  selector: 'app-article',
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.scss'],
 })
-export class ArticleDetailComponent implements OnInit {
+export class ArticleComponent implements OnInit {
   public article: any = {};
   public error: any = {};
   private sub: any;
@@ -29,7 +29,7 @@ export class ArticleDetailComponent implements OnInit {
      }
 
   ngOnInit() {
-    // Retreive the prefetched article
+    // Retrieve the prefetched article
     this.route.data.subscribe(
       data => {
         this.article = data.article.json().article;

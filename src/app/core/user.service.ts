@@ -6,20 +6,25 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import './rxjs-extensions';
 
-@Injectable()
-export class UserService {
+// Core service
+import { ApiService } from './api.service';
 
-  constructor(private http: Http) { }
+@Injectable()
+export class UserService extends ApiService {
+
+  constructor(protected http: Http) {
+    super(http);
+  }
 
   register(user): Observable<any> {
-    return this.http.post('/register', user);
+    return this.post('/register', user);
   }
 
   login(user): Observable<any> {
-    return this.http.post('/login', user);
+    return this.post('/login', user);
   }
 
   logout(username): Observable<any> {
-    return this.http.delete(`/${ username }`);
+    return this.delete(`/${ username }`);
   }
 }

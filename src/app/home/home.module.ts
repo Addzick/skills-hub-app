@@ -13,13 +13,13 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-
-// Routing
-import { routes } from './home-routing';
 import { RatingsComponent } from './ratings/ratings.component';
 import { PropositionsComponent } from './propositions/propositions.component';
 import { TendersComponent } from './tenders/tenders.component';
 import { ArticlesComponent } from './articles/articles.component';
+
+// Routing
+import { routes } from './home-routing';
 
 // Module instanciation
 @NgModule({
