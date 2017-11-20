@@ -13,10 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import { RatingsComponent } from './ratings/ratings.component';
-import { PropositionsComponent } from './propositions/propositions.component';
-import { TendersComponent } from './tenders/tenders.component';
-import { ArticlesComponent } from './articles/articles.component';
 
 // Routing
 import { routes } from './home-routing';
@@ -35,10 +31,6 @@ import { routes } from './home-routing';
     ForgotComponent,
     AboutComponent,
     ContactComponent,
-    RatingsComponent,
-    PropositionsComponent,
-    TendersComponent,
-    ArticlesComponent,
   ],
   exports: [
     HomeComponent,
@@ -48,10 +40,6 @@ import { routes } from './home-routing';
     ForgotComponent,
     AboutComponent,
     ContactComponent,
-    RatingsComponent,
-    PropositionsComponent,
-    TendersComponent,
-    ArticlesComponent,
   ]
 })
 export class HomeModule { }

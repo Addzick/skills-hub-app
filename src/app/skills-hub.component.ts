@@ -56,14 +56,10 @@ export class SkillsHubComponent implements OnInit, OnDestroy {
     }
 
     initScripts() {
-      $.getScript('/assets/js/plugins.min.js"');
-      $.getScript('/assets/js/app.min.js');
-      $.getScript('/assets/js/lead.js');
       this.router.events
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
       .subscribe((event) => {
-        $.getScript('/assets/js/plugins.min.js"');
         $.getScript('/assets/js/app.min.js');
         $.getScript('/assets/js/lead.js');
        });

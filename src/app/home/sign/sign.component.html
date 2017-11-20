@@ -8,29 +8,35 @@
         <ul class="nav nav-tabs nav-tabs-full nav-tabs-3 nav-tabs-transparent indicator-primary" role="tablist">
           <li class="nav-item" role="presentation">
             <a href="#ms-login-tab" aria-controls="ms-login-tab" role="tab" data-toggle="tab" class="nav-link active withoutripple">
-              <i class="zmdi zmdi-account"></i> Connecter
+              <i class="zmdi zmdi-account"></i>
+              <span class="d-none d-md-inline"> Connecter</span>
             </a>
           </li>
           <li class="nav-item" role="presentation">
             <a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
-              <i class="zmdi zmdi-account-add"></i> S'inscrire
+              <i class="zmdi zmdi-account-add"></i>
+              <span class="d-none d-md-inline"> S'inscrire</span>
             </a>
           </li>
           <li class="nav-item" role="presentation">
             <a href="#ms-recovery-tab" aria-controls="ms-recovery-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
-              <i class="zmdi zmdi-key"></i> Mot de passe oublié
+              <i class="zmdi zmdi-key"></i>
+              <span class="d-none d-md-inline"> Mot de passe oublié</span>
             </a>
           </li>
         </ul>
         <div class="card-block no-pt">
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab">
+              <h3 class="text-center mt-4 color-primary d-block d-md-none"> Se connecter</h3>
               <app-login></app-login>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
-                <app-register></app-register>
+              <h3 class="text-center mt-4 color-primary d-block d-md-none"> S'inscrire</h3>
+              <app-register></app-register>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="ms-recovery-tab">
+              <h3 class="text-center mt-4 color-primary d-block d-md-none"> Mot de passe oublié</h3>
               <app-forgot></app-forgot>
             </div>
           </div>

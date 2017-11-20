@@ -35,9 +35,6 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
-    // Reset login status
-    this.auth.logout();
-
     // On récupére l'url de retour
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }

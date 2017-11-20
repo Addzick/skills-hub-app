@@ -20,6 +20,7 @@ export class ArticleService extends ApiService {
     title: String,
     categories: Array<String>,
     tags: Array<String>,
+    sort: {},
     page: Number,
     size: Number }): Observable<any> {
       return this.get('/articles', { search: query });
@@ -28,6 +29,7 @@ export class ArticleService extends ApiService {
   getFeed(query: {
     title: String,
     tags: Array<String>,
+    sort: {},
     page: Number,
     size: Number }): Observable<any> {
     return this.get('/articles/feed');

@@ -77,5 +77,18 @@ textarea {
 .wrap {
   padding: 40px;
   padding: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ms-footbar::before {
+  background-color: none;
+  content: '';
+  display: block;
+  height: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 
