@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tender',
@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tender.component.scss']
 })
 export class TenderComponent implements OnInit {
-
+  @Input() tender:any;
+  @Input() mode: string;
+  
   constructor() { }
 
   ngOnInit() {

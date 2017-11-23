@@ -27,42 +27,36 @@ import { ArticleEditComponent } from './article/article-edit.component';
 export const routes: Routes = [
     {
         path: ':article',
-        component: ArticleComponent,
         resolve: {
             article: ArticleResolver
         }
     },
     {
         path: ':proposition',
-        component: PropositionComponent,
         resolve: {
             article: PropositionResolver
         }
     },
     {
         path: ':rating',
-        component: RatingComponent,
         resolve: {
             article: RatingResolver
         }
     },
     {
         path: ':task',
-        component: TaskComponent,
         resolve: {
             article: TaskResolver
         }
     },
     {
         path: ':tender',
-        component: TenderComponent,
         resolve: {
             article: TenderResolver
         }
     },
     {
         path: ':event',
-        component: EventComponent,
         resolve: {
             article: EventResolver
         }

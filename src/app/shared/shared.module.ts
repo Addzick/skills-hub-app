@@ -19,6 +19,9 @@ import { TenderComponent } from './tender/tender.component';
 import { TaskComponent } from './task/task.component';
 import { RatingComponent } from './rating/rating.component';
 import { PropositionComponent } from './proposition/proposition.component';
+import { EventComponent } from './event/event.component';
+import { CommentComponent } from './comment/comment.component';
+import { LikeComponent } from './like/like.component';
 
 // Shared edit components
 import { ArticleEditComponent } from './article/article-edit.component';
@@ -39,7 +42,6 @@ import { RatingResolver } from './resolvers/rating-resolver.service';
 import { TaskResolver } from './resolvers/task-resolver.service';
 import { TenderResolver } from './resolvers/tender-resolver.service';
 import { EventService } from './services/event.service';
-import { EventComponent } from './event/event.component';
 
 // Module initialization
 @NgModule({
@@ -60,8 +62,11 @@ import { EventComponent } from './event/event.component';
     TaskComponent,
     RatingComponent,
     PropositionComponent,
-    ArticleEditComponent,
     EventComponent,
+    CommentComponent,
+    LikeComponent,
+    ArticleEditComponent,
+    
   ],
   exports: [
     CommonModule,
@@ -77,6 +82,9 @@ import { EventComponent } from './event/event.component';
     TaskComponent,
     RatingComponent,
     PropositionComponent,
+    EventComponent,
+    CommentComponent,
+    LikeComponent,
     ArticleEditComponent,
   ],
   providers: [

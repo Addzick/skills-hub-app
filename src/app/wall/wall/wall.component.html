@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<div class="card">
-  <div class="media pt-2 pb-1 pl-1 pr-1">
-    <div class="media-left media-middle">
-      <span class="ms-icon ms-icon-circle ms-icon-xlg"><i class="fa fa-book"></i></span>
-    </div>
-    <div class="media-body">
-      <h4 class="fw-400">Fil d'actualité</h4>
+<div class="ms-hero-page ms-hero-img-glasses ms-hero-bg-dark ms-bg-fixed mb-4">
+  <div class="container mt-6 mb-6 pt-6 pb-6">
+    <div class="text-center">
+      <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Fil d'actualité</h1>
+      <p class="lead lead-lg color-light text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
+        Quelles sont les dernieres actualités ?
+        <br>Découvrez et partager vos expériences.</p>
+     <a href="javascript:void(0)" class="btn btn-warning">
+        <i class="zmdi zmdi-desktop-mac"></i> View Projects</a>
+      <a href="javascript:void(0)" class="btn btn-info">
+        <i class="zmdi zmdi-accounts"></i> Publier un article</a>
     </div>
   </div>
-  <div class="card-block">
-    <ul class="ms-timeline">
-      <li class="ms-timeline-item" *ngFor="let event of events">
-        <div class="ms-timeline-date">
-          <time class="timeline-time" datetime="{{ event.updatedAt }}">
-            {{ event.updatedAt | amCalendar }}
-          </time>
-          <i class="ms-timeline-point"></i>
-          <app-event [event]="event"></app-event>
-        </div>
-      </li>
-    </ul>
+</div>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-block card-block-big">
+        <ul class="ms-timeline">
+            <li class="ms-timeline-item" *ngFor="let event of events">
+              <div class="ms-timeline-date">
+                <i class="ms-timeline-point"></i>
+                <app-event [event]="event"></app-event>
+              </div>
+            </li>
+          </ul>
+    </div>
   </div>
 </div>
 
