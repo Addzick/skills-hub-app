@@ -5,7 +5,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 
 // Core services
-import { ApiService } from './api.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { AuthGuardLogin } from './auth-guard-login.service';
@@ -40,7 +39,6 @@ export class CoreModule {
           useFactory: httpFactory,
           deps: [XHRBackend, RequestOptions]
         },
-        ApiService,
         UserService,
         AuthService,
         AuthGuardLogin,

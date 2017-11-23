@@ -81,7 +81,7 @@ export class AuthService implements OnInit, OnDestroy {
   }
 
   logout() {
-    return this.userService.logout(this.currentUser.username).map(res => res.json()).map(res => {
+    return this.userService.logout().map(res => {
       localStorage.removeItem('token');
       this.deleteCurrentUser();
       return !this.loggedIn;

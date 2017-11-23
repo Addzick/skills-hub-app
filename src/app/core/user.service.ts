@@ -9,6 +9,24 @@ import './rxjs-extensions';
 // Core service
 import { ApiService } from './api.service';
 
+// Query interface
+export interface UserQuery {
+  lastname: string;
+  firstname: string;
+  abos: Array<string>;
+  categories: Array<string>;
+  startStars: number;
+  endStars: number;
+  localisation: {
+    longitude: number,
+    latitude: number,
+    distance: number
+  };
+  sort: {};
+  page: number;
+  size: number;
+}
+
 @Injectable()
 export class UserService extends ApiService {
 
@@ -24,7 +42,27 @@ export class UserService extends ApiService {
     return this.post('/login', user);
   }
 
-  logout(username): Observable<any> {
-    return this.delete(`/${ username }`);
+  logout(): Observable<any> {
+    return this.delete('/logout');
+  }
+
+  getUser(): Observable<any> {
+    return this.get('/account');
+  }
+
+  setAccount(user): Observable<any> {
+    return this.post('/account', user);
+  }
+
+  setAddress(address): Observable<any> {
+    return this.put('/account', address);
+  }
+
+  findAll(query: UserQuery): Observable<any> {
+      return this.get('/users', { search: query });
+  }
+
+  findOne(username): Observable<any> {
+    return this.get(`/users/${ username }`);
   }
 }

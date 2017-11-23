@@ -1,0 +1,34 @@
+<div class="card card-default">
+    <div class="card-header">
+        <div class="media">
+            <div class="media-left media-middle">
+                <img class="media-object media-object-circle" src="/assets/img/no-picture.jpg" alt=" {{ event.author.displayName }}">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><span class="fw-400">{{ event.author.displayName }} </span><small>{{ event.type }}</small></h4>
+                <div class="media-footer">
+                    <span>
+                        <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=1"></i>
+                        <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=2"></i>
+                        <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=3"></i>
+                        <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=4"></i>
+                        <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=5"></i>
+                    </span>
+                    <span><i class="zmdi zmdi-time color-info-light"></i> {{ event.updatedAt | amCalendar }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-block" *ngIf="event.source !== 'undefined' && event.source.item !== 'undefined'">
+        <app-article *ngIf="event.source.kind === 'article'"></app-article>
+        <app-proposition *ngIf="event.source.kind === 'proposition'"></app-proposition>
+        <app-rating *ngIf="event.source.kind === 'rating'"></app-rating>
+        <app-task *ngIf="event.source.kind === 'task'"></app-task>
+        <app-tender *ngIf="event.source.kind === 'tender'"></app-tender>
+        <app-comment *ngIf="event.source.kind === 'comment'"></app-comment>
+        <app-like *ngIf="event.source.kind === 'like'"></app-like>
+    </div>
+
+</div>
+

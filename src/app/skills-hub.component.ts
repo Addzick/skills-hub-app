@@ -11,7 +11,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Core services
 import { AuthService } from './core/auth.service';
-import { environment } from '../environments/environment.prod';
 
 declare var $: any;
 
@@ -22,38 +21,18 @@ declare var $: any;
 })
 export class SkillsHubComponent implements OnInit, OnDestroy {
   title = 'Skills Hub';
-  connection;
-  socketUrl = environment.socketUrl;
+
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private auth: AuthService,
-    private toastr: ToastsManager,
-    private vcr: ViewContainerRef) {
-      // On définit le conteneur pour ng2-toastr
-      this.toastr.setRootViewContainerRef(vcr);
-   }
+    private activatedRoute: ActivatedRoute) {}
 
    ngOnInit() {
     // On initialise les scripts externes
     this.initScripts();
-    // On s'abonne au nouveau evenements
-     this.initEvents();
    }
 
-   ngOnDestroy() {
-     this.connection.unsubscribe();
-    }
-
-    initEvents() {
-      this.connection = this.auth.channel.subscribe((event) => {
-        const email = event.user.email;
-        const type = event.type;
-        const createdAt = new Date(event.createdAt).toLocaleTimeString();
-        this.toastr.info(`${ email } has emitted an event of type '${ type }' at ${ createdAt }`);
-       });
-    }
+   ngOnDestroy() {}
 
     initScripts() {
       this.router.events

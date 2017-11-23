@@ -10,7 +10,7 @@ import './rxjs-extensions';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class ApiService {
+export abstract class ApiService {
 
     constructor(protected http: Http) { }
 

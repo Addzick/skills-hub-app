@@ -11,13 +11,35 @@ import { MomentModule } from 'angular2-moment';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
+import { ExtendInputComponent } from './extend-input/extend-input.component';
+
+// Shared detail components
 import { ArticleComponent } from './article/article.component';
+import { TenderComponent } from './tender/tender.component';
+import { TaskComponent } from './task/task.component';
+import { RatingComponent } from './rating/rating.component';
+import { PropositionComponent } from './proposition/proposition.component';
+
+// Shared edit components
 import { ArticleEditComponent } from './article/article-edit.component';
 
-// Shared controls
-import { ExtendInputComponent } from './extend-input/extend-input.component';
+// Shared services
 import { ArticleService } from './services/article.service';
-import { ArticleResolver } from './services/article-resolver.service';
+import { TenderService } from './services/tender.service';
+import { TaskService } from './services/task.service';
+import { RatingService } from './services/rating.service';
+import { PropositionService } from './services/proposition.service';
+import { CategoryService } from './services/category.service';
+
+// Shared resolvers
+import { ArticleResolver } from './resolvers/article-resolver.service';
+import { CategoryResolver } from './resolvers/category-resolver.service';
+import { PropositionResolver } from './resolvers/proposition-resolver.service';
+import { RatingResolver } from './resolvers/rating-resolver.service';
+import { TaskResolver } from './resolvers/task-resolver.service';
+import { TenderResolver } from './resolvers/tender-resolver.service';
+import { EventService } from './services/event.service';
+import { EventComponent } from './event/event.component';
 
 // Module initialization
 @NgModule({
@@ -34,7 +56,12 @@ import { ArticleResolver } from './services/article-resolver.service';
     FooterComponent,
     ExtendInputComponent,
     ArticleComponent,
+    TenderComponent,
+    TaskComponent,
+    RatingComponent,
+    PropositionComponent,
     ArticleEditComponent,
+    EventComponent,
   ],
   exports: [
     CommonModule,
@@ -46,11 +73,26 @@ import { ArticleResolver } from './services/article-resolver.service';
     FooterComponent,
     ExtendInputComponent,
     ArticleComponent,
+    TenderComponent,
+    TaskComponent,
+    RatingComponent,
+    PropositionComponent,
     ArticleEditComponent,
   ],
   providers: [
     ArticleService,
-    ArticleResolver
+    TenderService,
+    TaskService,
+    RatingService,
+    PropositionService,
+    CategoryService,
+    ArticleResolver,
+    CategoryResolver,
+    PropositionResolver,
+    RatingResolver,
+    TaskResolver,
+    TenderResolver,
+    EventService,
   ]
 })
 export class SharedModule { }

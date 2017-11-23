@@ -6,12 +6,12 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../core/rxjs-extensions';
 
-import { ArticleService } from './article.service';
+import { PropositionService } from '../services/proposition.service';
 
 @Injectable()
-export class ArticleResolver implements Resolve<any> {
+export class PropositionResolver implements Resolve<any> {
   constructor(
-    private articleService: ArticleService,
+    private propositionService: PropositionService,
     private router: Router
   ) {}
 
@@ -20,8 +20,8 @@ export class ArticleResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.articleService.getById(route.params['article'])
-           .catch((err) => this.router.navigate(['/']) );
+    return this.propositionService.findOne(route.params['proposition'], route.queryParams['childs'])
+           .catch((err) => this.router.navigate(['/']));
 
   }
 }

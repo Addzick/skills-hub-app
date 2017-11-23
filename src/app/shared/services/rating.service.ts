@@ -10,24 +10,20 @@ import '../../core/rxjs-extensions';
 import { PublicationService, PublicationQuery } from './publication.service';
 
 // Query interface
-export interface ArticleQuery extends PublicationQuery {
-  categories?: Array<string>;
-  tags?: Array<string>;
+export interface RatingQuery extends PublicationQuery {
+  target?: string;
+  concern?: string;
 }
 
 @Injectable()
-export class ArticleService extends PublicationService {
+export class RatingService extends PublicationService {
 
   constructor(protected http: Http) {
     super(http);
-    this.apiname = 'articles';
+    this.apiname = 'ratings';
    }
 
-   getTags(): Observable<any> {
-     return this.get('/articles/tags');
-   }
-
-   findAll(query: ArticleQuery) {
-    return this.get('/articles', { search: query });
+   findAll(query: RatingQuery) {
+    return this.get('/ratings', { search: query });
   }
 }

@@ -13,14 +13,15 @@ import { AuthService } from '../../core/auth.service';
 export class MenuComponent implements OnInit {
   constructor(
     public auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+  ) { }
 
   ngOnInit() {
   }
 
   logout() {
     this.auth.logout().subscribe(res => {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/', { replaceUrl: true });
     });
   }
 }
