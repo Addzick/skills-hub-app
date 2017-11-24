@@ -1,6 +1,6 @@
 // Angular modules
 import { Injectable } from '@angular/core';
-import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
+import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers, URLSearchParams } from '@angular/http';
 
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
@@ -53,6 +53,7 @@ export class HttpInterceptor extends Http {
     // Create request options and header objects
     if (options == null) { options = new RequestOptions(); }
     if (options.headers == null) { options.headers = new Headers(); }
+
     // Set request content type
     options.headers.set('Content-type', 'application/json;charset=UTF-8');
     // Define authorization token

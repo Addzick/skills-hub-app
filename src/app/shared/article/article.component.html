@@ -7,7 +7,7 @@
             </div>
             <div class="media-body">
                 <a class="media-title" href="#">{{ article.author.displayName }}</a><br>
-                <span class="color-medium-dark">{{ article.updatedAt | amCalendar }}</span>
+                <span class="color-medium-dark">{{ article.updatedAt | amCalendar }}"</span>
             </div>
         </div>
         <div class="card-block">
@@ -16,7 +16,7 @@
         </div>    
     </div>
     <div class="card-light-inverse" *ngSwitchCase="'mini'">
-        <h2 class="color-primary">{{ article.title }}</h2>
+        <h4><em>{{ article.title }}</em></h4>
         <p class="lead">{{ article.description }}</p>
     </div> 
 </div>

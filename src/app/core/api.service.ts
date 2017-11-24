@@ -19,22 +19,22 @@ export abstract class ApiService {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.get(this.updateUrl(url));
+        return this.http.get(this.updateUrl(url), options);
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.post(this.updateUrl(url), body);
+        return this.http.post(this.updateUrl(url), body, options);
     }
 
     put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.put(this.updateUrl(url), body);
+        return this.http.put(this.updateUrl(url), body, options);
     }
 
     patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.patch(this.updateUrl(url), body);
+        return this.http.patch(this.updateUrl(url), body, options);
     }
 
     delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.delete(this.updateUrl(url));
+        return this.http.delete(this.updateUrl(url), options);
     }
 }

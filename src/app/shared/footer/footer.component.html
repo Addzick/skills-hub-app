@@ -5,31 +5,12 @@
         <div class="col-lg-9 col-md-7 ms-footer-col ms-footer-alt-color">
           <div class="ms-footbar-block">
             <ul class="list-unstyled ms-icon-list two-cols">
-                <li>
-                    <a href="/"><i class="zmdi zmdi-home"></i> Accueil</a>
-                </li>
-                <li>
-                    <a href="/search"><i class="zmdi zmdi-search"></i>Rechercher</a>
-                </li>
-                <li *ngIf="!this.auth.loggedIn">
-                    <a href="/sign"><i class="zmdi zmdi-lock"></i> Se connecter</a>
-                </li>
-                <li *ngIf="this.auth.loggedIn">
-                    <a href="/account" *ngIf="this.auth.loggedIn"><i class="zmdi zmdi-account"></i> Mon compte</a>
-                </li>
-                <li *ngIf="this.auth.loggedIn">
-                    <a href="/dashboard" *ngIf="this.auth.loggedIn"><i class="zmdi zmdi-view-dashboard"></i> Tableau de bord</a>
-                </li>
-                <li>
-                    <a href="/articles" *ngIf="!this.auth.loggedIn"><i class="zmdi zmdi-collection-text"></i> Fil d'actualité</a>
-                </li>
-                
-                <li>
-                    <a href="/help"><i class="zmdi zmdi-help"></i> FAQ</a>
-                </li>
-                <li>
-                    <a href="#contact"><i class="zmdi zmdi-email"></i> Nous contacter</a>
-                </li>
+                <li><a href="/"><i class="zmdi zmdi-home"></i> Accueil</a></li>
+                <li><a href="/search"><i class="zmdi zmdi-search"></i>Rechercher</a></li>                
+                <li><a href="/help"><i class="zmdi zmdi-help"></i> FAQ</a></li>
+                <li><a href="/contact"><i class="zmdi zmdi-email"></i> Nous contacter</a></li>
+                <li><a href="/about"><i class="zmdi zmdi-favorite"></i> Qui sommes-nous</a></li>
+                <li><a href="/cga"><i class="zmdi zmdi-lock"></i> Conditions générales</a></li>
             </ul>
           </div>
         </div>        
@@ -37,9 +18,8 @@
           <div class="ms-footbar-block">
             <div class="ms-footbar-title">
               <span class="ms-logo ms-logo-white ms-logo-sm mr-1">SH</span>
-              <h3 class="no-m ms-site-title">Skills
-                <span>Hub</span>
-              </h3>
+              <h3 class="no-m ms-site-title">Skills<span>Hub</span></h3>
+              <p class="handwriting">Retrouvez-nous sur ...</p>
             </div>            
           </div>
           <div class="ms-footbar-block">

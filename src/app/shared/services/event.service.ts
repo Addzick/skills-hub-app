@@ -1,6 +1,6 @@
 // Angular modules
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams } from '@angular/http';
 
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
@@ -20,6 +20,9 @@ export interface EventQuery {
     latitude: number,
     distance: number
   };
+  sort?: {};
+  page?: number;
+  size?: number;
 }
 
 @Injectable()

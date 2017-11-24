@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AuthGuardLogin } from './core/auth-guard-login.service';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,12 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
+    loadChildren: './dashboard/dashboard.module#DashboardModule',
+    canActivate: [AuthGuardLogin]
+  },
+  {
+    path: 'account',
+    loadChildren: './account/account.module#AccountModule',
+    canActivate: [AuthGuardLogin]
   },
 ];

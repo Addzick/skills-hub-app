@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="card card-light">
     <div class="card-header media">        
         <div class="media-left media-object">
@@ -9,11 +10,11 @@
             </a><br>
             <div class="media-footer">
                 <span>
-                    <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=1"></i>
-                    <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=2"></i>
-                    <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=3"></i>
-                    <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=4"></i>
-                    <i class="zmdi zmdi-star" [class.color-warning-light]="event.author.nbStars>=5"></i>
+                    <i class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=1"></i>
+                    <i class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=2"></i>
+                    <i class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=3"></i>
+                    <i class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=4"></i>
+                    <i class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=5"></i>
                 </span>
             </div>
             <span class="color-medium-dark">{{ event.updatedAt | amCalendar }}</span>

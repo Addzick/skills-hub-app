@@ -26,7 +26,28 @@ export class WallComponent implements OnInit, OnDestroy {
   private connection;
   private socketUrl = environment.socketUrl;
   public events: Array<any>;
-  public query: EventQuery = {};
+  public query: EventQuery = {
+    types: [
+      'article_published',
+      'article_commented',
+      'article_liked',
+      'tender_published',
+      'tender_closed',
+      'tender_commented',
+      'tender_liked',
+      'proposition_published',
+      'proposition_accepted',
+      'proposition_rejected',
+      'proposition_commented',
+      'proposition_liked',
+      'rating_published',
+      'rating_commented',
+      'rating_liked'
+    ],
+    sort: { updatedAt: 'desc'},
+    page: 1,
+    size: 10
+  };
 
   constructor(
     private auth: AuthService,
@@ -46,32 +67,19 @@ export class WallComponent implements OnInit, OnDestroy {
    }
 
   initEvents() {
+    this.getEvents();
+    this.connection = this.auth.channel.subscribe((event) => {
+      this.toastr.info('Nouveaux événements');
+      this.getEvents();
+     });
+  }
+  getEvents() {
     this.eventService.findAll(this.query).subscribe(
       res => {
         const result = res.json();
-        if (result) { 
-          this.events = result.events;
-          this.events.sort(this.sortEvent); 
-        }
+        if (result) { this.events = result.events; }
       },
       error => console.error(error.json().error)
     );
-    
-    this.connection = this.auth.channel.subscribe((event) => {
-      this.toastr.info('Nouveaux événements');
-      this.events.push(event);
-      this.events.sort(this.sortEvent);
-     });
   }
-
-  sortEvent(event1, event2){
-    if ( event1.updatedAt > event2.updatedAt ){
-      return -1;
-    }else if( event1.updatedAt < event2.updatedAt ){
-        return 1;
-    }else{
-      return 0;	
-    }
-  }
-
 }
