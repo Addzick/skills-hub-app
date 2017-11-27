@@ -11,9 +11,12 @@ import { UserService, UserQuery } from '../../core/user.service';
   providers: [UserService]
 })
 export class AccountComponent implements OnInit {
+  user: any;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    
+    this.user = this.userService.getUser()
+    .map((res)=> res.json().user);
   }
 }

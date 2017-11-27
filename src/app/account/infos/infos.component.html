@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div class="card animated fadeInUp animation-delay-5">
+<div class="card animated fadeInUp animation-delay-5" *ngIf="this.user">
     <div class="ms-hero-img-coffee ms-hero-bg-dark-light">
         <h2 class="color-white index-1 text-center no-m pt-4 fw-400">{{ user.displayName }}</h2>
         
@@ -37,17 +37,16 @@
         
         <div class="card card-light-inverse card-block text-justify">            
             <div class="row">
-                <div class="col-md-3 hidden-sm hidden-xs"><span><i class="fa fa-envelope mr-1 color-danger"></i>Email</span></div>
-                <div class="col-md-9">{{ user.email }}</div>
+                <div class="col-md-4 hidden-sm hidden-xs"><span><i class="fa fa-envelope mr-1 color-danger"></i>Email</span></div>
+                <div class="col-md-8">{{ user.email }}</div>
             </div>
             <div class="row">
-                <div class="col-md-3 hidden-sm hidden-xs"><span><i class="fa fa-map mr-1 color-warning"></i>Adresse</span></div>
-                <div class="col-md-9">{{ user.Address }}</div>
-
+                <div class="col-md-4 hidden-sm hidden-xs"><span><i class="fa fa-map mr-1 color-warning"></i>Adresse</span></div>
+                <div class="col-md-8">{{ user.address }}</div>
             </div>            
             <div class="row">
-                <div class="col-md-3 hidden-sm hidden-xs"><span><i class="zmdi zmdi-calendar mr-1 color-success"></i>Inscrit le</span></div>
-                <div class="col-md-9">{{ user.createdAt | amLocale:'fr' | amCalendar }}</div>
+                <div class="col-md-4 hidden-sm hidden-xs"><span><i class="zmdi zmdi-calendar mr-1 color-success"></i>Inscrit le</span></div>
+                <div class="col-md-8">{{ user.createdAt | amLocale:'fr' | amCalendar }}</div>
             </div>
         </div>
 

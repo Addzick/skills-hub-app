@@ -1,8 +1,6 @@
 // Angular stuff
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-// Core services
-import { UserService, UserQuery } from '../../core/user.service';
 
 @Component({
   selector: 'app-infos',
@@ -10,15 +8,12 @@ import { UserService, UserQuery } from '../../core/user.service';
   styleUrls: ['./infos.component.scss']
 })
 export class InfosComponent implements OnInit {
-  user: any;
-  errorMessage: any;
+  @Input() user: any;
 
-  constructor(private userService: UserService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(
-    res => this.user = res.json().user,
-    error => this.errorMessage = <any>error);
+ 
   }
 
 }

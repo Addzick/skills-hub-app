@@ -1,8 +1,5 @@
 // Angular stuff
-import { Component, OnInit } from '@angular/core';
-
-// Core services
-import { UserService, UserQuery } from '../../core/user.service';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-favorites',
@@ -10,14 +7,11 @@ import { UserService, UserQuery } from '../../core/user.service';
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
-  user: any;
+  @Input() user: any;
 
-  constructor(private userService: UserService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe((res) => {
-      this.user = res.json().user;
-    });
   }
 
 }

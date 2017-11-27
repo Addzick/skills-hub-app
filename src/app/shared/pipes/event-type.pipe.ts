@@ -39,8 +39,8 @@ export class EventTypePipe implements PipeTransform {
             case 'tender_liked' 			: return `a aimé cet appel d'offres`;
             case 'user_registered'        	: return `a rejoint la communauté`;
             case 'user_updated'           	: return `a mis à jour son profil`;
-            case 'user_login'             	: return `s'est connecté`;
-            case 'user_logout'            	: return `s'est déconnecté`;
+            case 'user_connected'           : return `s'est connecté`;
+            case 'user_disconnected'       	: return `s'est déconnecté`;
             default	                        : return value;
         }
     }

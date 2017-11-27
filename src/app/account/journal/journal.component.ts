@@ -1,4 +1,8 @@
+// Angular stuff
 import { Component, OnInit, Input } from '@angular/core';
+
+// Shared services
+import {EventService, EventQuery } from '../../shared/services/event.service';
 
 @Component({
   selector: 'app-journal',
@@ -7,10 +11,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class JournalComponent implements OnInit {
   @Input() user: any;
-
-  constructor() { }
+  events: Array<any>;
+  query: EventQuery = {
+    page: 1,
+    size: 10
+  };
+  constructor(private eventService: EventService) { }
 
   ngOnInit() {
+    if (this.user) {
+      this.query.authors = [this.user._id]      
+      this.eventService.findAll(this.query).subscribe(
+        res => {
+          this.events = res.json().events;
+        },
+        error => console.error(error.json().error)
+      );
+    }
   }
 
 }

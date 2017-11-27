@@ -14,7 +14,10 @@ export class ExtendInputComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: any): void {
-    const err: any = changes.errors.currentValue;
+    const err: any = 
+    typeof changes !== 'undefined' && typeof changes.errors !== 'undefined' 
+    ? changes.errors.currentValue
+    : '';
     this.error = '';
     if (err) {
       Object.keys(this.defs).some(key => {
