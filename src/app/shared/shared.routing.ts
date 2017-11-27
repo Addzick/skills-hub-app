@@ -14,15 +14,15 @@ import { TenderResolver } from './resolvers/tender-resolver.service';
 import { EventResolver } from './resolvers/event-resolver.service';
 
 // Detail Components
-import { ArticleComponent } from './article/article.component';
-import { PropositionComponent } from './proposition/proposition.component';
-import { RatingComponent } from './rating/rating.component';
-import { TaskComponent } from './task/task.component';
-import { TenderComponent } from './tender/tender.component';
-import { EventComponent } from './event/event.component';
+import { ArticleComponent } from './components/article/article.component';
+import { PropositionComponent } from './components/proposition/proposition.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { TaskComponent } from './components/task/task.component';
+import { TenderComponent } from './components/tender/tender.component';
+import { EventComponent } from './components/event/event.component';
 
 // Edit components
-import { ArticleEditComponent } from './article/article-edit.component';
+import { ArticleEditComponent } from './components/article/article-edit.component';
 
 export const routes: Routes = [
     {

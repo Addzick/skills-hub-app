@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <app-infos [user]="user"></app-infos>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card card-block animated zoomInDown animation-delay-5">
+                <form [formGroup]="editAccountForm" (submit)="editAccount()">
+                    <fieldset>
+                        <legend>Modifier mes données personnelles</legend>
+                        
+                        <app-input [text]="'Nom'" [errors]="editAccountForm.controls.lastname.errors" [defs]="{ required: 'Le nom de famille est requis'}">
+                          <input type="text" formControlName="lastname" name="lastname" class="form-control" placeholder="Votre nom de famille">
+                        </app-input>
+                        
+                        <app-input [text]="'Prénom'">
+                          <input type="text" formControlName="firstname" name="firstname" class="form-control" placeholder="Votre prénom">
+                        </app-input>
+
+                        <app-input [text]="'Bio'">
+                          <textarea formControlName="bio" class="form-control" rows="5" placeholder="Votre texte de présentation"></textarea>  
+                        </app-input>
+                    </fieldset>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-raised btn-royal">
+                            Enregistrer
+                            <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+
+            <div class="card card-block animated zoomInDown animation-delay-5">
+                <form [formGroup]="editAddressForm" (submit)="editAddress()">
+                {
+                    <fieldset>
+                        <legend>Modifier mon adresse</legend>
+                        <app-input [text]="'Rue'" [errors]="editAccountForm.controls.street.errors" [defs]="{ required: 'La rue est requise'}">
+                          <input type="text" formControlName="street" name="street" class="form-control" placeholder="Rue">
+                        </app-input>
+                        <app-input [text]="'Complément'">
+                          <input type="text" formControlName="complement" name="complement" class="form-control" placeholder="Complément d'adresse">
+                        </app-input>
+                        <app-input [text]="'Code postal'" [errors]="editAccountForm.controls.zip.errors" [defs]="{ required: 'Le code postal est requis'}">
+                          <input type="text" formControlName="street" name="street" class="form-control" placeholder="Rue">
+                        </app-input>
+                        <app-input [text]="'Localité'" [errors]="editAccountForm.controls.city.errors" [defs]="{ required: 'La localité est requise'}">
+                          <input type="text" formControlName="street" name="street" class="form-control" placeholder="Rue">
+                        </app-input>
+                    </fieldset>
+            
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-raised btn-royal">
+                            Enregistrer
+                            <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

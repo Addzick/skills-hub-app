@@ -92,3 +92,26 @@ textarea {
   z-index: 2;
 }
 
+.text-ellipsis {
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  text-align: justify;
+}
+
+@media(max-width:767px) {
+  .rating-list span.rating-list-item {
+      font-size: 12px;
+  }
+}
+
+@media(min-width:768px) {
+  .rating-list span.rating-list-item {
+      font-size: 16px;
+  }
+}
+
+.upload-picture:hover {
+  cursor: pointer;
+}

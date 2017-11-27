@@ -8,23 +8,23 @@ import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
 // Shared components
-import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './menu/menu.component';
-import { FooterComponent } from './footer/footer.component';
-import { ExtendInputComponent } from './extend-input/extend-input.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ExtendInputComponent } from './components/extend-input/extend-input.component';
 
 // Shared detail components
-import { ArticleComponent } from './article/article.component';
-import { TenderComponent } from './tender/tender.component';
-import { TaskComponent } from './task/task.component';
-import { RatingComponent } from './rating/rating.component';
-import { PropositionComponent } from './proposition/proposition.component';
-import { EventComponent } from './event/event.component';
-import { CommentComponent } from './comment/comment.component';
-import { LikeComponent } from './like/like.component';
+import { ArticleComponent } from './components/article/article.component';
+import { TenderComponent } from './components/tender/tender.component';
+import { TaskComponent } from './components/task/task.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { PropositionComponent } from './components/proposition/proposition.component';
+import { EventComponent } from './components/event/event.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { LikeComponent } from './components/like/like.component';
 
 // Shared edit components
-import { ArticleEditComponent } from './article/article-edit.component';
+import { ArticleEditComponent } from './components/article/article-edit.component';
 
 // Shared services
 import { ArticleService } from './services/article.service';
@@ -42,6 +42,10 @@ import { RatingResolver } from './resolvers/rating-resolver.service';
 import { TaskResolver } from './resolvers/task-resolver.service';
 import { TenderResolver } from './resolvers/tender-resolver.service';
 import { EventService } from './services/event.service';
+import { UserComponent } from './components/user/user.component';
+
+// Shared pipes
+import { EventTypePipe } from './pipes/event-type.pipe';
 
 // Module initialization
 @NgModule({
@@ -66,7 +70,8 @@ import { EventService } from './services/event.service';
     CommentComponent,
     LikeComponent,
     ArticleEditComponent,
-    
+    UserComponent,
+    EventTypePipe,
   ],
   exports: [
     CommonModule,
@@ -86,6 +91,7 @@ import { EventService } from './services/event.service';
     CommentComponent,
     LikeComponent,
     ArticleEditComponent,
+    EventTypePipe,
   ],
   providers: [
     ArticleService,

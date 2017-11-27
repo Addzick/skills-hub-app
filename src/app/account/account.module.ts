@@ -7,9 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 
 // Account components
 import { AccountComponent } from './account/account.component';
+import { InfosComponent } from './infos/infos.component';
+import { JournalComponent } from './journal/journal.component';
+import { EditComponent } from './edit/edit.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 // Routing
 import { routes } from './account.routing';
+
 
 @NgModule({
   imports: [
@@ -18,11 +23,19 @@ import { routes } from './account.routing';
   ],
   declarations: [
     AccountComponent,
+    InfosComponent,
+    JournalComponent,
+    EditComponent,
+    FavoritesComponent,
   ],
   providers: [
   ],
   exports: [
     AccountComponent,
+    InfosComponent,
+    JournalComponent,
+    EditComponent,
+    FavoritesComponent,
   ]
 })
 export class AccountModule { }

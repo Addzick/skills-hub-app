@@ -1,5 +1,5 @@
 // Angular modules
-import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 // RxJs stuff
@@ -28,11 +28,12 @@ export class WallComponent implements OnInit, OnDestroy {
   public events: Array<any>;
   public query: EventQuery = {
     types: [
+      'user_registered',
+      'user_updated',
       'article_published',
       'article_commented',
       'article_liked',
       'tender_published',
-      'tender_closed',
       'tender_commented',
       'tender_liked',
       'proposition_published',
@@ -52,10 +53,7 @@ export class WallComponent implements OnInit, OnDestroy {
   constructor(
     private auth: AuthService,
     private eventService: EventService,
-    private toastr: ToastsManager,
-    private vcr: ViewContainerRef) {
-      // On définit le conteneur pour ng2-toastr
-      this.toastr.setRootViewContainerRef(vcr);
+    private toastr: ToastsManager) {
      }
 
   ngOnInit() {

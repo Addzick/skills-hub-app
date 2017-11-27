@@ -9,7 +9,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthService } from '../../core/auth.service';
 
 // Skills-hub components
-import { ExtendInputComponent } from '../../shared/extend-input/extend-input.component';
+import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
 
 @Component({
   selector: 'app-contact',

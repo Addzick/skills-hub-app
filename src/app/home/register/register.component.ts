@@ -10,7 +10,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthService } from '../../core/auth.service';
 
 // Skills-hub components
-import { ExtendInputComponent } from '../../shared/extend-input/extend-input.component';
+import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +19,6 @@ import { ExtendInputComponent } from '../../shared/extend-input/extend-input.com
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  loading = false;
   returnUrl: string;
 
   constructor(
@@ -54,18 +53,13 @@ export class RegisterComponent implements OnInit {
     if (!this.registerForm.valid) {
       this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
-      // On change l'état de la fenêtre
-      this.loading = true;
-      // On lance la procédure d'authentification
       this.auth.login({ user: this.registerForm.value })
       .subscribe(
         res => {
-          this.loading = true;
           this.router.navigateByUrl(this.returnUrl);
         },
         err => {
-          this.loading = false;
-          this.toastr.error('Impossible de s\'inscrire. Merci de réessayer ultérieurement.');
+          this.toastr.error('Veuillez contrôler les informations saisies !');
         }
       );
     }

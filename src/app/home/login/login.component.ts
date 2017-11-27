@@ -10,7 +10,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthService } from '../../core/auth.service';
 
 // Skills-hub components
-import { ExtendInputComponent } from '../../shared/extend-input/extend-input.component';
+import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,6 @@ import { ExtendInputComponent } from '../../shared/extend-input/extend-input.com
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  loading = false;
   returnUrl: string;
 
   constructor(
@@ -43,18 +42,14 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
-      // On change l'état de la fenêtre
-      this.loading = true;
       // On lance la procédure d'authentification
       this.auth.login({ user: this.loginForm.value })
       .subscribe(
         res => {
-          this.loading = true;
           this.router.navigateByUrl(this.returnUrl);
         },
         err => {
-          this.loading = false;
-          this.toastr.error('Impossible de se connecter. Merci de réessayer ultérieurement.');
+          this.toastr.error('Impossible de se connecter. L\'adresse e-mail et/ou le mot de passe sont invalides.');
         }
       );
     }

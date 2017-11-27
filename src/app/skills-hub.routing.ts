@@ -9,7 +9,8 @@ export const routes: Routes = [
   },
   {
     path: 'wall',
-    loadChildren: './wall/wall.module#WallModule'
+    loadChildren: './wall/wall.module#WallModule',
+    canActivate: [AuthGuardLogin]
   },
   {
     path: 'dashboard',

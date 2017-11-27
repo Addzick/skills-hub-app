@@ -25,7 +25,12 @@ export class SkillsHubComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastsManager,
+    private vcr: ViewContainerRef) {
+      // On définit le conteneur pour ng2-toastr
+      this.toastr.setRootViewContainerRef(vcr);
+    }
 
    ngOnInit() {
     // On initialise les scripts externes
