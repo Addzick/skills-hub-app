@@ -1,13 +1,12 @@
 // Angular stuff
 import { Component, OnInit, Input } from '@angular/core';
 
-
 @Component({
-  selector: 'app-infos',
-  templateUrl: './infos.component.html',
-  styleUrls: ['./infos.component.scss']
+  selector: 'app-stats',
+  templateUrl: './stats.component.html',
+  styleUrls: ['./stats.component.scss']
 })
-export class InfosComponent implements OnInit {
+export class StatsComponent implements OnInit {
   @Input() user: any;
 
   constructor() { }

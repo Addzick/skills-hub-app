@@ -12,7 +12,6 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
-
 // Skills hub preloads components component
 import { SkillsHubComponent } from './skills-hub.component';
 

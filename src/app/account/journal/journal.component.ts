@@ -13,6 +13,10 @@ export class JournalComponent implements OnInit {
   @Input() user: any;
   events: Array<any>;
   query: EventQuery = {
+    excludes: [
+      'user_connected',
+      'user_disconnected'
+    ],
     page: 1,
     size: 10
   };
@@ -20,7 +24,7 @@ export class JournalComponent implements OnInit {
 
   ngOnInit() {
     if (this.user) {
-      this.query.authors = [this.user._id]      
+      this.query.authors = [ this.user._id ];
       this.eventService.findAll(this.query).subscribe(
         res => {
           this.events = res.json().events;

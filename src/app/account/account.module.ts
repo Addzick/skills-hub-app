@@ -14,6 +14,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 
 // Routing
 import { routes } from './account.routing';
+import { StatsComponent } from './stats/stats.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { routes } from './account.routing';
     JournalComponent,
     EditComponent,
     FavoritesComponent,
+    StatsComponent,
   ],
   providers: [
   ],

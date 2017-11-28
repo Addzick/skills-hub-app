@@ -9,4 +9,5 @@ export const environment = {
   // URL du serveur API
   apiUrl: 'https://skills-hub-server.herokuapp.com/api',
   socketUrl: 'https://skills-hub-server.herokuapp.com/',
+  googleApiKey: 'AIzaSyCUIyVpdzlc86HJEPEQCRdBtm2IUhnfPWo'
 };

@@ -9,4 +9,5 @@ export const environment = {
   // URL du serveur API
   apiUrl: 'http://localhost:3000/api',
   socketUrl: 'http://localhost:3000',
+  googleApiKey: 'AIzaSyCUIyVpdzlc86HJEPEQCRdBtm2IUhnfPWo'
 };

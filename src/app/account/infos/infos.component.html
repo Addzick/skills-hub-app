@@ -1,59 +1,31 @@
 <!DOCTYPE html>
-<div class="card animated fadeInUp animation-delay-5" *ngIf="this.user">
-    <div class="ms-hero-img-coffee ms-hero-bg-dark-light">
-        <h2 class="color-white index-1 text-center no-m pt-4 fw-400">{{ user.displayName }}</h2>
-        
-        <a class="upload-picture">
-            <img class="img-avatar-circle" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}">
-        </a>        
+<div class="card card-light">
+    <div class="card-header bg-primary-dark">
+        <h3 class="card-title color-white">
+            <i class="zmdi zmdi-account-circle"></i> Données personnelles
+        </h3>
     </div>
-
-    <div class="card-block text-center">
-        <div class="rating-list pt-4 pb-1">
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
-        </div>       
-
-        <div class="mb-2 hidden-xs">
-            <a href="javascript:void(0)" class="btn-circle btn-facebook" *ngIf="user.facebook && user.facebook !== 'undefined'">
-                <i class="zmdi zmdi-facebook"></i>
-            </a>
-            <a href="javascript:void(0)" class="btn-circle btn-twitter" *ngIf="user.twitter && user.twitter !== 'undefined'">
-                <i class="zmdi zmdi-twitter"></i>
-            </a>
-            <a href="javascript:void(0)" class="btn-circle btn-google" *ngIf="user.google && user.google !== 'undefined'">
-                <i class="zmdi zmdi-google-plus"></i>
-            </a>
-            <a href="javascript:void(0)" class="btn-circle btn-instagram" *ngIf="user.instagram && user.instagram !== 'undefined'">
-                <i class="zmdi zmdi-instagram"></i>
-            </a>
-            <a href="javascript:void(0)" class="btn-circle btn-linkedin" *ngIf="user.linkedin && user.linkedin !== 'undefined'">
-                <i class="zmdi zmdi-linkedin"></i>
-            </a>
-        </div>
-        
-        <div class="card card-light-inverse card-block text-justify">            
-            <div class="row">
-                <div class="col-md-4 hidden-sm hidden-xs"><span><i class="fa fa-envelope mr-1 color-danger"></i>Email</span></div>
-                <div class="col-md-8">{{ user.email }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 hidden-sm hidden-xs"><span><i class="fa fa-map mr-1 color-warning"></i>Adresse</span></div>
-                <div class="col-md-8">{{ user.address }}</div>
-            </div>            
-            <div class="row">
-                <div class="col-md-4 hidden-sm hidden-xs"><span><i class="zmdi zmdi-calendar mr-1 color-success"></i>Inscrit le</span></div>
-                <div class="col-md-8">{{ user.createdAt | amLocale:'fr' | amCalendar }}</div>
-            </div>
-        </div>
-
-        <blockquote class="blockquote-color-bg text-small text-justify mb-2" *ngIf="user.bio !== ''">
-            {{ user.bio }}
-        </blockquote>
-        
+    <div class="card-block">
+        <table class="table table-no-border table-striped">
+            <tr>
+                <th><i class="zmdi zmdi-email mr-1"></i> Email</th>
+                <td><a href="#">{{ user.email }}</a></td>
+            </tr>
+            <tr>
+                <th>
+                <i class="zmdi zmdi-face mr-1"></i> Nom</th>
+                <td>{{ user.displayName }}</td>
+            </tr>        
+            <tr>
+                <th><i class="zmdi zmdi-calendar mr-1"></i> Membre depuis le</th>
+                <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
+            </tr>
+            <tr *ngIf="user.address">
+                <th><i class="zmdi zmdi-pin mr-1"></i> Adresse</th>
+                <td>{{ user.address.long }}</td>
+            </tr>
+        </table>
     </div>
 </div>
+
 

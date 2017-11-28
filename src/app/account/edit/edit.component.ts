@@ -1,10 +1,17 @@
 // Angular stuff
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, NgZone, ViewChild  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 // 3rd parties
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps';
+
+// RxJs stuff
+import { Observable } from 'rxjs/Observable';
+import '../../core/rxjs-extensions';
+
 
 // Skills-hub services
 import { UserService } from '../../core/user.service';
@@ -16,51 +23,45 @@ import { ExtendInputComponent } from '../../shared/components/extend-input/exten
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
-  providers:[UserService]
+  providers: [UserService]
 })
 export class EditComponent implements OnInit {
-  user: any;
+  public user: any;
+  public address: any;
+  public editAccountForm: FormGroup;
+  public editAddressForm: FormGroup;
+  public zoom: number;
 
-  editAccountForm: FormGroup;
-  editAddressForm: FormGroup;
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private toastr: ToastsManager) {
+    private toastr: ToastsManager,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) {
       // Création du formulaire pour l'édition des données du profil
-    this.editAccountForm = this.formBuilder.group({
-      'firstname' : ['', Validators.required],
-      'lastname' : ['', Validators.required],
-      'bio': [''],
-    });
+      this.editAccountForm = this.formBuilder.group({
+        'firstname' : ['', Validators.required],
+        'lastname' : ['', Validators.required],
+        'bio': ['']
+      });
 
-    // Création du formulaire pour l'édition de l'adresse du profil
-    this.editAddressForm = this.formBuilder.group({
-      'street' : ['', Validators.required],
-      'complement' : [''],
-      'zip' : ['', Validators.required],
-      'city' : ['', Validators.required],
-    });
-     }
+      // Création du contrôle pour la saisie d'une adresse
+      this.editAddressForm = this.formBuilder.group({
+        'search' : ['', Validators.required]
+      });
+  }
 
   ngOnInit() {
-    this.userService.getUser()
-    .subscribe((res) => {
-      this.user = res.json().user;
-      this.editAccountForm.setValue({
-        firstname : this.user.firstname || '',
-        lastname : this.user.lastname || '',
-        bio: this.user.bio || '',
-      });
-      this.editAddressForm.setValue({
-        street : this.user.address.street || '',
-        complement : this.user.address.complement || '',
-        zip : this.user.address.zip || '',
-        city : this.user.address.city || '',
-      });
-    });
+    this.user = this.userService.getUser()
+    .map((res) => res.json())
+    .subscribe(
+      res => this.setAccount(res.user),
+      error => console.error(error.json().error)
+    );
   }
 
   editAccount() {
@@ -80,10 +81,10 @@ export class EditComponent implements OnInit {
   }
 
   editAddress() {
-    if (!this.editAccountForm.valid) {
+    if (!this.editAddressForm.valid) {
       this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
-      this.userService.setAddress({ address: this.editAddressForm.value })
+      this.userService.setAddress({ address: this.address })
       .subscribe(
         res => {
           this.router.navigate(['/account']);
@@ -95,4 +96,45 @@ export class EditComponent implements OnInit {
     }
   }
 
+  private setAccount(user) {
+    if (user) {
+      this.user = user;
+      this.editAccountForm.setValue({
+        firstname : this.user.firstname || '',
+        lastname : this.user.lastname || '',
+        bio: this.user.bio || ''
+      });
+      if (this.user.address) {
+        this.address = this.user.address;
+        this.zoom = 12;
+        this.editAddressForm.setValue({
+          search : this.user.address.long || ''
+        });
+      }
+    }
+  }
+
+  private loadAutoComplete() {
+    // load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          // get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          // verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          // Set address
+
+          // Set zoom
+          this.zoom = 12;
+        });
+      });
+    });
+  }
 }

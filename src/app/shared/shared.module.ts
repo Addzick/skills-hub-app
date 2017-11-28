@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 // 3rd parties
 import { MomentModule } from 'angular2-moment';
+import { AgmCoreModule } from '@agm/core';
 
 // Shared components
 import { HeaderComponent } from './components/header/header.component';
@@ -47,6 +48,9 @@ import { UserComponent } from './components/user/user.component';
 // Shared pipes
 import { EventTypePipe } from './pipes/event-type.pipe';
 
+// Skills-hub environment config
+import { environment } from '../../environments/environment';
+
 // Module initialization
 @NgModule({
   imports: [
@@ -55,6 +59,10 @@ import { EventTypePipe } from './pipes/event-type.pipe';
     ReactiveFormsModule,
     MomentModule,
     RouterModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleApiKey,
+      libraries: ['places']
+    }),
   ],
   declarations: [
     HeaderComponent,
@@ -78,6 +86,7 @@ import { EventTypePipe } from './pipes/event-type.pipe';
     FormsModule,
     ReactiveFormsModule,
     MomentModule,
+    AgmCoreModule,
     HeaderComponent,
     MenuComponent,
     FooterComponent,

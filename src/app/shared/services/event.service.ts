@@ -12,6 +12,7 @@ import { ApiService } from '../../core/api.service';
 // Query interface
 export interface EventQuery {
   types?: Array<string>;
+  excludes?: Array<string>;
   startDate?: Date;
   endDate?: Date;
   authors?: Array<string>;

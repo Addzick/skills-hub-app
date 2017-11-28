@@ -1,63 +1,77 @@
 <!DOCTYPE html>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-            <app-infos [user]="user"></app-infos>
+<div class="ms-hero-page ms-hero-img-keyboard ms-hero-bg-dark ms-bg-fixed mb-4">
+    <div class="container mt-6 mb-6 pt-6 pb-6">
+        <div class="text-center">
+            <img class="ms-avatar-hero" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}"/>
+            <h1 class="color-white mt-4">{{ user.displayName }}</h1>        
+            <div class="rating-list mb-4">
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
+            </div>
+            <blockquote class="blockquote color-medium">{{ user.bio }}</blockquote>
         </div>
-
-        <div class="col-md-8">
-            <div class="card card-block animated zoomInDown animation-delay-5">
+    </div>
+</div>
+    
+<div class="container-fluid container-full">
+    <div class="card card-hero">
+        <div class="card-header-100 bg-stats">
+            <app-stats [user]="user"></app-stats>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-5 col-12">
+            <div class="card card-block">
                 <form [formGroup]="editAccountForm" (submit)="editAccount()">
                     <fieldset>
-                        <legend>Modifier mes données personnelles</legend>
+                        <legend>Données personnelles</legend>
                         
                         <app-input [text]="'Nom'" [errors]="editAccountForm.controls.lastname.errors" [defs]="{ required: 'Le nom de famille est requis'}">
-                          <input type="text" formControlName="lastname" name="lastname" class="form-control">
+                            <input type="text" formControlName="lastname" name="lastname" class="form-control">
                         </app-input>
                         
                         <app-input [text]="'Prénom'" [errors]="editAccountForm.controls.firstname.errors" [defs]="{ required: 'Le prénom est requis'}">
-                          <input type="text" formControlName="firstname" name="firstname" class="form-control">
+                            <input type="text" formControlName="firstname" name="firstname" class="form-control">
                         </app-input>
-
+        
                         <app-input [text]="'Bio'">
-                          <textarea formControlName="bio" name="bio" class="form-control" rows="5"></textarea>  
+                            <textarea formControlName="bio" name="bio" class="form-control" rows="10"></textarea>  
                         </app-input>
+        
                     </fieldset>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-raised btn-royal">
-                            Enregistrer
+                        <button type="submit" class="btn btn-raised btn-primary">
+                            Enregister
                             <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
                         </button>
                     </div>
                 </form>
             </div>
-            
-
-            <div class="card card-block animated zoomInDown animation-delay-5">
+        </div>
+        <div class="col-xl-7 col-12">
+            <div class="card card-block">
                 <form [formGroup]="editAddressForm" (submit)="editAddress()">
                     <fieldset>
-                        <legend>Modifier mon adresse</legend>
-                        <app-input [text]="'Rue'" [errors]="editAddressForm.controls.street.errors" [defs]="{ required: 'La rue est requise'}">
-                          <input type="text" formControlName="street" name="street" class="form-control">
-                        </app-input>
-                        <app-input [text]="'Complément'">
-                          <input type="text" formControlName="complement" name="complement" class="form-control">
-                        </app-input>
-                        <app-input [text]="'Code postal'" [errors]="editAddressForm.controls.zip.errors" [defs]="{ required: 'Le code postal est requis'}">
-                          <input type="text" formControlName="zip" name="zip" class="form-control">
-                        </app-input>
-                        <app-input [text]="'Localité'" [errors]="editAddressForm.controls.city.errors" [defs]="{ required: 'La localité est requise'}">
-                          <input type="text" formControlName="city" name="city" class="form-control">
-                        </app-input>
+                        <div class="form-group">
+                            <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" id="search" formControlName="search">
+                        </div>                                  
+                        <div *ngIf="address">
+                            <agm-map [latitude]="address.latitude" [longitude]="address.longitude" [scrollwheel]="false" [zoom]="zoom">
+                                <agm-marker [latitude]="address.latitude" [longitude]="address.longitude"></agm-marker>
+                            </agm-map>
+                        </div>
                     </fieldset>
-            
                     <div class="text-right">
-                        <button type="submit" class="btn btn-raised btn-royal">
-                            Enregistrer
+                        <button type="submit" class="btn btn-raised btn-primary">
+                            Enregister
                             <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
                         </button>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
