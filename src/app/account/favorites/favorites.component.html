@@ -1,50 +1,27 @@
 <!DOCTYPE html>
-<div class="card">
-    <div class="card-header bg-favorite">
-        <h3 class="card-title color-white">
-        <i class="zmdi zmdi-favorite"></i> Favoris
-      </h3>
-  </div>
-  <div class="card-block">
-      <div class="container-fluid">
-            <form class="form-horizontal container-fluid" role="form">
-                <h4 class="ml-2 mt-2 no-mb">Ajouter une catégorie favorie</h4>
-                <fieldset class="ml-4 mr-4">
-                    <div class="form-group row justify-content-end">
-                        <label for="categories-list" class="col-lg-2 control-label">Catégories</label>
-                        <div class="col-lg-10">
-                            <span>
-                                <select id="categories-list" class="form-control selectpicker" data-dropup-auto="false">
-                                    <option *ngFor="let category of categories" value="{{ category._id }}">{{ category.title }}</option>
-                                </select>
-                                <a href="" class="btn-circle btn-circle-raised btn-circle-primary ml-1"><i class="zmdi zmdi-plus"></i></a>
-                            </span>
+<div class="card-block">
+    <h2 class="color-primary no-mb">Favoris</h2>
+    <a (click)="setEdit()" class="btn-circle btn-circle-success btn-circle-raised btn-card-float right wow zoomInDown">
+        <i class="zmdi zmdi-plus"></i>
+    </a>
+    <ul class="list-group" *ngIf="favorites">
+            <li class="list-group-item" *ngFor="let favorite of favorites">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <img class="media-object media-object-circle" src="/assets/img/categories/{{ favorite.photo }}" alt="{{ favorite.name }}"/>
+                    </div>
+                    <div class="media-body">
+                        <div class="media-middle">
+                            <h4 class="media-heading">{{ favorite.title }}</h4>
                         </div>
                     </div>
-                  </fieldset>
-                  <div class="text-right mb-2 mr-1">
-                    
+                    <div class="media-right media-middle">
+                        <a class="btn-circle btn-circle-danger" (click)="unfavorite(favorite._id)">
+                            <i class="zmdi zmdi-delete"></i>
+                        </a>
+                    </div>
                 </div>
-            </form>
-            <ul class="list-group" *ngIf="user.favorites">
-                <li class="list-group-item" *ngFor="let favorite of user.favorites">
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <img class="media-object media-object-circle" src="/assets/img/categories/{{ favorite.photo }}" alt="{{ favorite.name }}"/>
-                        </div>
-                        <div class="media-body">
-                            <div class="media-middle">
-                                <h4 class="media-heading">{{ favorite.title }}</h4>
-                            </div>
-                        </div>
-                        <div class="media-right media-middle">
-                            <a class="btn-circle btn-circle-danger" (click)="unfavorite(favorite._id)">
-                                <i class="zmdi zmdi-delete"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-      </div>
-  </div>
+            </li>
+        </ul>
 </div>
+

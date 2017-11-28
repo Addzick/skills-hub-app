@@ -11,7 +11,7 @@ import { CategoryService } from '../../shared/services/category.service';
   providers: [CategoryService]
 })
 export class FavoritesComponent implements OnInit {
-  @Input() user: any;
+  @Input() favorites: any;
   public categories: Array<any>;
 
   constructor(private categoryService: CategoryService) { }
@@ -26,4 +26,8 @@ export class FavoritesComponent implements OnInit {
   }
 
   favorite() {}
+
+  setEdit() {
+    
+  }
 }

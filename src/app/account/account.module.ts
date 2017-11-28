@@ -8,14 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 // Account components
 import { AccountComponent } from './account/account.component';
 import { InfosComponent } from './infos/infos.component';
+import { AddressComponent } from './address/address.component';
 import { JournalComponent } from './journal/journal.component';
-import { EditComponent } from './edit/edit.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { StatsComponent } from './stats/stats.component';
 
 // Routing
 import { routes } from './account.routing';
-import { StatsComponent } from './stats/stats.component';
-
 
 @NgModule({
   imports: [
@@ -26,7 +25,7 @@ import { StatsComponent } from './stats/stats.component';
     AccountComponent,
     InfosComponent,
     JournalComponent,
-    EditComponent,
+    AddressComponent,
     FavoritesComponent,
     StatsComponent,
   ],
@@ -35,9 +34,10 @@ import { StatsComponent } from './stats/stats.component';
   exports: [
     AccountComponent,
     InfosComponent,
+    AddressComponent,
     JournalComponent,
-    EditComponent,
     FavoritesComponent,
+    StatsComponent,
   ]
 })
 export class AccountModule { }

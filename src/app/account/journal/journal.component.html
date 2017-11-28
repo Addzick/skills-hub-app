@@ -1,19 +1,12 @@
 <!DOCTYPE html>
-<div class="card">
-    <div class="card-header bg-primary-dark">
-        <h3 class="card-title color-white">
-          <i class="zmdi zmdi-book"></i> Journal d'activités
-      </h3>
-  </div>
-  <div class="card-block card-block-big">
-      <ul class="ms-timeline">
-          <li class="ms-timeline-item" *ngFor="let event of events">
-            <div class="ms-timeline-date">
-              <time class="timeline-time">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</time>
-              <i class="ms-timeline-point"></i>
-            </div>
-            <app-event [event]="event"></app-event>
-          </li>
-        </ul>
-  </div>
-</div>
+
+
+<ul class="ms-timeline">
+    <li class="ms-timeline-item" *ngFor="let event of events">
+      <div class="ms-timeline-date">
+        <time class="timeline-time">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</time>
+        <i class="ms-timeline-point"></i>
+      </div>
+      <app-event [event]="event"></app-event>
+    </li>
+  </ul>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<div class="card-block">
+    <h2>
+        <span class="color-primary">Mon adresse</span>
+        <a (click)="setEdit()" class="btn-circle btn-circle-primary pull-right" *ngIf="!isEdit">
+            <i class="zmdi zmdi-edit mr-1"></i>
+        </a>
+    </h2>
+    <table class="table table-no-border table-striped" *ngIf="!isEdit">
+        <tr>
+            <td><a href="#">{{ address?.street }}</a></td>
+        </tr>
+        <tr>
+            <td>{{ address?.complement }}</td>
+        </tr>        
+        <tr>
+            <td>{{ address?.zip }}</td>
+            <td>{{ address?.city }}</td>
+        </tr>
+    </table>
+    
+    <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit">
+        <fieldset>
+            <div class="form-group">
+                <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" id="search" formControlName="search">
+            </div>                                  
+            <div *ngIf="address">
+                <agm-map [latitude]="address?.latitude" [longitude]="address?.longitude" [scrollwheel]="false" [zoom]="zoom">
+                    <agm-marker [latitude]="address?.latitude" [longitude]="address?.longitude"></agm-marker>
+                </agm-map>
+            </div>
+        </fieldset>
+        <div class="text-right">
+            <button type="submit" class="btn btn-raised btn-primary">
+                Enregister
+                <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+

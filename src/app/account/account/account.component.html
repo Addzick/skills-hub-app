@@ -15,21 +15,25 @@
       </div>
     </div>
   </div>
-<div class="container-fluid container-full">
-    <div class="card card-hero">
-        <div class="card-header-100 bg-stats">
+<div class="container">
+    <div class="card card-hero animated fadeInUp animation-delay-7">
+        <div class="card-header-100 bg-dark">
             <app-stats [user]="user"></app-stats>
+        </div> 
+        <div class="row">
+            <div class="col-xl-6 col-12">
+                <app-infos [user]="user"></app-infos>
+            </div>
+            <div class="col-xl-6 col-12">
+                <app-address [address]="user.address"></app-address>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-4 col-12">
-            <app-infos [user]="user"></app-infos>
-            <a [routerLink]="['/account/edit']" class="btn btn-block btn-raised btn-royal mt-2">
-                Modifier
-            </a>
-        </div>
-        <div class="col-xl-8 col-12">
-            <app-favorites [user]="user"></app-favorites>
+</div>
+<div class="container">
+    <h1 class="color-primary text-center mb-4">Activités récentes</h1>
+    <div class="card">
+        <div class="card-block card-block-big">
             <app-journal [user]="user"></app-journal>
         </div>
     </div>

@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<div class="card card-light">
-    <div class="card-header bg-primary-dark">
-        <h3 class="card-title color-white">
-            <i class="zmdi zmdi-account-circle"></i> Données personnelles
-        </h3>
-    </div>
-    <div class="card-block">
-        <table class="table table-no-border table-striped">
-            <tr>
-                <th><i class="zmdi zmdi-email mr-1"></i> Email</th>
-                <td><a href="#">{{ user.email }}</a></td>
-            </tr>
-            <tr>
-                <th>
-                <i class="zmdi zmdi-face mr-1"></i> Nom</th>
-                <td>{{ user.displayName }}</td>
-            </tr>        
-            <tr>
-                <th><i class="zmdi zmdi-calendar mr-1"></i> Membre depuis le</th>
-                <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
-            </tr>
-            <tr *ngIf="user.address">
-                <th><i class="zmdi zmdi-pin mr-1"></i> Adresse</th>
-                <td>{{ user.address.long }}</td>
-            </tr>
-        </table>
-    </div>
+<div class="card-block">
+    <h2>
+        <span class="color-primary">Mes infos</span>
+        <span class="pull-right">
+            <a (click)="setEdit()" class="btn-circle btn-circle-primary" *ngIf="!isEdit">
+                <i class="zmdi zmdi-edit mr-1"></i>
+            </a>
+        </span>        
+    </h2> 
+    <table class="table table-no-border table-striped" *ngIf="!isEdit">
+        <tr>
+            <td><a href="#">{{ user.email }}</a></td>
+        </tr>
+        <tr>
+            <td>{{ user.displayName }}</td>
+        </tr>        
+        <tr>
+            <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
+        </tr>
+        <tr *ngIf="user.address">
+            <th><i class="zmdi zmdi-pin mr-1"></i> Adresse</th>
+            <td>{{ user.address.long }}</td>
+        </tr>
+    </table> 
+    <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit">
+        <fieldset>
+            <app-input [text]="'Nom'" [errors]="editForm.controls.lastname.errors" [defs]="{ required: 'Le nom de famille est requis'}">
+                <input type="text" formControlName="lastname" name="lastname" class="form-control">
+            </app-input>                
+            <app-input [text]="'Prénom'" [errors]="editForm.controls.firstname.errors" [defs]="{ required: 'Le prénom est requis'}">
+                <input type="text" formControlName="firstname" name="firstname" class="form-control">
+            </app-input>
+            <app-input [text]="'Bio'">
+                <textarea formControlName="bio" name="bio" class="form-control" rows="10"></textarea>  
+            </app-input>
+        </fieldset>
+        <div class="text-right">
+            <button type="submit" class="btn btn-raised btn-primary">
+                Enregister
+                <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+            </button>
+        </div>
+    </form>        
 </div>
+
 
 
