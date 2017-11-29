@@ -23,8 +23,10 @@ import { EventService, EventQuery } from '../../shared/services/event.service';
   providers: [EventService]
 })
 export class WallComponent implements OnInit, OnDestroy {
-  private connection;
+  private channel: any;
+  private subscription: any;
   private socketUrl = environment.socketUrl;
+
   public events: Array<any>;
   public query: EventQuery = {
     types: [
@@ -61,23 +63,27 @@ export class WallComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.connection.unsubscribe();
+    this.channel.unsubscribe();
+    this.subscription.unsubscribe();
    }
 
   initEvents() {
-    this.getEvents();
-    this.connection = this.auth.channel.subscribe((event) => {
+    this.subscription = this.getEvents().subscribe();
+    this.channel = this.auth.channel.subscribe((event) => {
       this.toastr.info('Nouveaux événements');
-      this.getEvents();
+      this.subscription.unsubscribe();
+      this.subscription = this.getEvents().subscribe();
      });
   }
   getEvents() {
-    this.eventService.findAll(this.query).subscribe(
-      res => {
-        const result = res.json();
-        if (result) { this.events = result.events; }
-      },
-      error => console.error(error.json().error)
-    );
+    return this.eventService
+    .findAll(this.query)
+    .map(
+      (res) => {
+        this.events = res.events;
+      })
+     .catch((error) => {
+        throw error;
+      });
   }
 }

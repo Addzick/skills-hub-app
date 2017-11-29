@@ -35,6 +35,8 @@ export class RegisterComponent implements OnInit {
      }
 
   ngOnInit() {
+    // On récupére l'url de retour
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {

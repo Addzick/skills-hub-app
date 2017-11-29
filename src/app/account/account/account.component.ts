@@ -1,8 +1,9 @@
 // Angular stuff
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Core services
 import { UserService, UserQuery } from '../../core/user.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-account',
@@ -10,14 +11,19 @@ import { UserService, UserQuery } from '../../core/user.service';
   styleUrls: ['./account.component.scss'],
   providers: [UserService]
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
   public user: any;
-
+  private connection: any;
+  
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-    this.getUser().subscribe();
+    this.connection = this.getUser().subscribe();
+  }
+
+  ngOnDestroy() {
+    this.connection.unsubscribe();
   }
 
   getUser() {
@@ -30,5 +36,10 @@ export class AccountComponent implements OnInit {
      .catch((error) => {
         throw error;
       });
+  }
+
+  onNotify(user: any):void {
+    this.connection.unsubscribe();
+    this.connection = this.getUser().subscribe();
   }
 }

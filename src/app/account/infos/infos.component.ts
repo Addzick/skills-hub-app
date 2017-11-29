@@ -1,5 +1,5 @@
 // Angular stuff
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
@@ -18,6 +18,8 @@ import { ExtendInputComponent } from '../../shared/components/extend-input/exten
 })
 export class InfosComponent implements OnInit {
   @Input() user: any;
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+
   public editForm: FormGroup;
   public isEdit = false;
 
@@ -51,6 +53,7 @@ export class InfosComponent implements OnInit {
         res => {
           this.isEdit = false;
           this.user = res.user;
+          this.notify.emit(this.user);
         },
         err => {
           this.toastr.error('Veuillez contrôler les informations saisies !');
