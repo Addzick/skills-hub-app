@@ -19,7 +19,7 @@ import { ExtendInputComponent } from '../../shared/components/extend-input/exten
 export class InfosComponent implements OnInit {
   @Input() user: any;
   public editForm: FormGroup;
-  public isEdit: boolean = false;
+  public isEdit = false;
 
   constructor(
     private userService: UserService,
@@ -50,6 +50,7 @@ export class InfosComponent implements OnInit {
       .subscribe(
         res => {
           this.isEdit = false;
+          this.user = res.user;
         },
         err => {
           this.toastr.error('Veuillez contrôler les informations saisies !');
@@ -58,7 +59,7 @@ export class InfosComponent implements OnInit {
     }
   }
 
-  setEdit(){
+  setEdit() {
     this.isEdit = !this.isEdit;
   }
 

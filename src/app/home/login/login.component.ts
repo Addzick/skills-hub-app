@@ -43,15 +43,10 @@ export class LoginComponent implements OnInit {
       this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
       // On lance la procédure d'authentification
-      this.auth.login({ user: this.loginForm.value })
-      .subscribe(
-        res => {
-          this.router.navigateByUrl(this.returnUrl);
-        },
-        err => {
-          this.toastr.error('Impossible de se connecter. L\'adresse e-mail et/ou le mot de passe sont invalides.');
-        }
-      );
+      this.auth.login(
+        { user: this.loginForm.value },
+        () => this.router.navigateByUrl(this.returnUrl),
+        (err) => this.toastr.error('Veuillez contrôler les informations saisies !'));
     }
   }
 }

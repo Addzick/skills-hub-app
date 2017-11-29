@@ -20,40 +20,31 @@ import { ExtendInputComponent } from '../../shared/components/extend-input/exten
 })
 export class AddressComponent implements OnInit {
   @Input() address: any;
-  public editForm: FormGroup;
-  public isEdit: boolean = false;
-  public zoom: number;
-  
+  public isEdit = false;
+  public searchControl: FormControl;
+
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder,
     private toastr: ToastsManager,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
-      this.editForm = this.formBuilder.group({
-        'search' : ['', Validators.required]
-      });
      }
 
   ngOnInit() {
-    if (this.address) {
-      this.editForm.setValue({
-        search : this.address.long
-      });
-    }
   }
 
   submit() {
-    if (!this.editForm.valid) {
+    if (!this.address) {
       this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
       this.userService.setAddress({ address: this.address })
       .subscribe(
         res => {
           this.isEdit = false;
+          this.address = res.address;
         },
         err => {
           this.toastr.error('Veuillez contrôler les informations saisies !');
@@ -62,29 +53,47 @@ export class AddressComponent implements OnInit {
     }
   }
 
-  setEdit(){
+  setEdit() {
     this.isEdit = !this.isEdit;
+    if (this.isEdit) { this.loadAutoComplete(); }
   }
 
   private loadAutoComplete() {
-    // load Places Autocomplete
+    // Initialisation du controle de recherche
+    this.searchControl = new FormControl();
+    if (this.address) {
+      this.searchControl.setValue(this.address.long);
+    }
+
+    // Chargement de l'API Google
     this.mapsAPILoader.load().then(() => {
-      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ['address']
-      });
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, { types: ['address'] });
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
-          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          // Set address
 
-          
-          this.zoom = 12;
+          // On récupére l'adresse depuis Google
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) { return; }
+
+          // On définit les composantes de l'adresse
+          const street = place.address_components.find((component) => component.types.indexOf('route') !== -1);
+          const number = place.address_components.find((component) => component.types.indexOf('street_number') !== -1);
+          const zip = place.address_components.find((component) => component.types.indexOf('postal_code') !== -1);
+          const city = place.address_components.find((component) => component.types.indexOf('locality') !== -1);
+          this.address = {
+            street: street.long_name || '',
+            number: number.long_name || '',
+            zip: zip.long_name || '',
+            city: city.long_name || ''
+          };
+
+          // On définit la localisation
+          this.address.loc = {
+            type: 'Point',
+            coordinates: [ place.geometry.location.lng(), place.geometry.location.lat() ],
+          };
         });
       });
     });
   }
-
 }

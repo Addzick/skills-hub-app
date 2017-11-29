@@ -20,8 +20,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout().subscribe(res => {
-      this.router.navigateByUrl('/');
-    });
+    this.auth.logout(
+      this.router.navigateByUrl('/'),
+      console.error);
   }
 }

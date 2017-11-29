@@ -1,42 +1,63 @@
 <!DOCTYPE html>
-<div class="card-block">
-    <h2>
-        <span class="color-primary">Mon adresse</span>
-        <a (click)="setEdit()" class="btn-circle btn-circle-primary pull-right" *ngIf="!isEdit">
-            <i class="zmdi zmdi-edit mr-1"></i>
-        </a>
-    </h2>
-    <table class="table table-no-border table-striped" *ngIf="!isEdit">
-        <tr>
-            <td><a href="#">{{ address?.street }}</a></td>
-        </tr>
-        <tr>
-            <td>{{ address?.complement }}</td>
-        </tr>        
-        <tr>
-            <td>{{ address?.zip }}</td>
-            <td>{{ address?.city }}</td>
-        </tr>
-    </table>
-    
-    <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit">
-        <fieldset>
-            <div class="form-group">
-                <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" id="search" formControlName="search">
-            </div>                                  
-            <div *ngIf="address">
-                <agm-map [latitude]="address?.latitude" [longitude]="address?.longitude" [scrollwheel]="false" [zoom]="zoom">
-                    <agm-marker [latitude]="address?.latitude" [longitude]="address?.longitude"></agm-marker>
+<div class="card card-primary p-1 animated fadeInUp animation-delay-9">
+    <h2 class="color-primary p-2">Mon adresse</h2>
+    <blockquote class="blockquote" *ngIf="!isEdit && !address">
+        Vous n'avez pas encore saisi d'adresse !
+    </blockquote>
+    <div *ngIf="!isEdit && address">
+        <div class="row">
+            <div class="col-xl-6 col-12">
+                <table class="table table-no-border table-striped">
+                    <tr>
+                        <th><i class="zmdi zmdi-map mr-1 color-danger"></i> Rue</th>
+                        <td><a href="#">{{ address.street + ', ' + address.number }}</a></td>
+                    </tr>
+                    <tr *ngIf="address.complement">
+                        <th><i class="zmdi zmdi-pin mr-1 color-info"></i> Complément</th>
+                        <td>{{ address.complement }}</td>
+                    </tr>        
+                    <tr>
+                        <th><i class="zmdi zmdi-city mr-1 color-royal"></i> Localité</th>
+                        <td>{{ address.zip + ' ' + address.city }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xl-6 col-12">
+                <agm-map [latitude]="address.loc.coordinates[1]" [longitude]="address.loc.coordinates[0]">
+                    <agm-marker [latitude]="address.loc.coordinates[1]" [longitude]="address.loc.coordinates[0]"></agm-marker>
                 </agm-map>
             </div>
-        </fieldset>
+        </div>
+    </div>
+    <div class="text-right" *ngIf="!isEdit">
+        <a (click)="setEdit()" class="btn btn-raised btn-primary">
+            <i class="zmdi zmdi-edit"></i>
+            Editer
+        </a>
+    </div>
+    <div *ngIf="isEdit" class="m-4">
+        <div class="form-group">
+            <input
+                #search
+                [formControl]="searchControl"
+                type="text" 
+                class="form-control" 
+                autocorrect="off" 
+                autocapitalize="off" 
+                spellcheck="off" 
+                placeholder="Saisissez votre adresse ...">
+        </div>
         <div class="text-right">
-            <button type="submit" class="btn btn-raised btn-primary">
+            <button type="button" class="btn btn-primary" (click)="setEdit()">
+                <i class="zmdi zmdi-long-arrow-left no-ml mr-1"></i>
+                Annuler
+            </button>
+            <button type="button" class="btn btn-raised btn-primary" (click)="submit()">
                 Enregister
                 <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
             </button>
         </div>
-    </form>
+    </div>
 </div>
 
 

@@ -23,15 +23,20 @@ export class JournalComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    if (this.user) {
-      this.query.authors = [ this.user._id ];
-      this.eventService.findAll(this.query).subscribe(
-        res => {
-          this.events = res.json().events;
-        },
-        error => console.error(error.json().error)
-      );
-    }
+    this.getEvents().subscribe();
+  }
+
+  getEvents() {
+    this.query.authors = [ this.user ? this.user._id : 'none' ];
+    return this.eventService
+    .findAll(this.query)
+    .map(
+      (res) => {
+        this.events = res.events;
+      })
+     .catch((error) => {
+        throw error;
+      });
   }
 
 }

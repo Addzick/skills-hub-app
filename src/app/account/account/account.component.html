@@ -1,40 +1,29 @@
 <!DOCTYPE html>
-<div class="ms-hero-page ms-hero-img-keyboard ms-hero-bg-dark ms-bg-fixed mb-4">
-    <div class="container mt-6 mb-6 pt-6 pb-6">
-      <div class="text-center">
-        <img class="ms-avatar-hero" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}"/>
-        <h1 class="color-white mt-4">{{ user.displayName }}</h1>        
-        <div class="rating-list mb-4">
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
-        </div>
-        <blockquote class="blockquote color-medium">{{ user.bio }}</blockquote>
-      </div>
-    </div>
-  </div>
-<div class="container">
-    <div class="card card-hero animated fadeInUp animation-delay-7">
-        <div class="card-header-100 bg-dark">
-            <app-stats [user]="user"></app-stats>
-        </div> 
-        <div class="row">
-            <div class="col-xl-6 col-12">
-                <app-infos [user]="user"></app-infos>
+<div *ngIf="user">
+    <div class="ms-hero-page ms-hero-img-keyboard ms-hero-bg-dark ms-bg-fixed mb-4">
+        <div class="container mt-6 mb-6 pt-6 pb-6">
+            <div class="text-center">
+            <img class="ms-avatar-hero" src="{{ this.user.image || '/assets/img/no-picture.jpg'}}" alt="{{ this.user.displayName }}"/>
+            <h1 class="color-white mt-4">{{ this.user.displayName }}</h1>        
+            <div class="rating-list mb-4">
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
+                <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
             </div>
-            <div class="col-xl-6 col-12">
-                <app-address [address]="user.address"></app-address>
+            <blockquote class="blockquote color-medium handwriting">{{ this.user.bio }}</blockquote>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <h1 class="color-primary text-center mb-4">Activités récentes</h1>
-    <div class="card">
-        <div class="card-block card-block-big">
-            <app-journal [user]="user"></app-journal>
         </div>
+    <div class="container">
+        <app-stats [user]="this.user"></app-stats>
+        <app-infos [user]="this.user"></app-infos>
+        <app-address [address]="this.user.address"></app-address>
+    </div>
+    <div class="container">
+        <h1 class="color-primary text-center mt-4 mb-4">Activités récentes</h1>
+        <app-journal [user]="this.user"></app-journal>
     </div>
 </div>
+

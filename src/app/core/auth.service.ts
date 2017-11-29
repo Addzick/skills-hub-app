@@ -58,34 +58,39 @@ export class AuthService implements OnInit, OnDestroy {
     this.channel = this.socket.fromEvent<any>('new event').map(data => data);
   }
 
-  login(user) {
+  login(user, next, err) {
     // On execute la méthode login du service et on mappe le résultat
-    return this.userService.login(user).map(res => res.json()).map(
+    this.userService.login(user).subscribe(
       res => {
         localStorage.setItem('token', res.token);
         this.setCurrentUser(this.decodeUserFromToken(res.token));
-        return this.loggedIn;
-      }
+        next();
+      },
+      error => err(error)
     );
   }
 
-  register(user) {
-    return this.userService.register(user).map(res => res.json()).map(
+  register(user, next, err) {
+    this.userService.register(user).subscribe(
       res => {
         localStorage.setItem('token', res.token);
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
-        return this.loggedIn;
-      }
+        next();
+      },
+      error => err(error)
     );
   }
 
-  logout() {
-    return this.userService.logout().map(res => {
-      localStorage.removeItem('token');
-      this.deleteCurrentUser();
-      return !this.loggedIn;
-    });
+  logout(next, err) {
+    this.userService.logout().subscribe(
+      res => {
+        localStorage.removeItem('token');
+        this.deleteCurrentUser();
+        next();
+      },
+      error => err(error)
+    );
   }
 
   decodeUserFromToken(token) {

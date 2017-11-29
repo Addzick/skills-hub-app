@@ -36,26 +36,7 @@ export class ForgotComponent implements OnInit {
   forgot() {
     if (!this.forgotForm.valid) {
       this.toastr.error('Veuillez compléter les informations saisies !');
-    } else {
-      this.auth.register({ user: this.forgotForm.value }).subscribe(
-        res => this.router.navigate(['/']),
-        err => {
-          if (err.status === 500) {
-            const message = err.json().message;
-            this.toastr.error(message);
-          } else {
-            const data = err.json().errors;
-            const fields = Object.keys(data || {});
-            fields.forEach((field) => {
-              const control = this.forgotForm.controls[field];
-              if (control) {
-                control.setErrors({ 'remote': data[field] });
-              }
-            });
-          }
-        }
-      );
-    }
+    } else {}
   }
 
 }

@@ -18,23 +18,47 @@ export abstract class ApiService {
         return environment.apiUrl + req;
     }
 
-    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.get(this.updateUrl(url), options);
+    get(url: string, options?: RequestOptionsArgs): Observable<any> {
+        return this.http
+        .get(this.updateUrl(url), options)
+        .map((res: Response) => {
+            return res.json();
+        })
+        .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.post(this.updateUrl(url), body, options);
+    post(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+        return this.http
+        .post(this.updateUrl(url), body, options)
+        .map((res: Response) => {
+            return res.json();
+        })
+        .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.put(this.updateUrl(url), body, options);
+    put(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+        return this.http
+        .put(this.updateUrl(url), body, options)
+        .map((res: Response) => {
+            return res.json();
+        })
+        .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.patch(this.updateUrl(url), body, options);
+    patch(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+        return this.http
+        .patch(this.updateUrl(url), body, options)
+        .map((res: Response) => {
+            return res.json();
+        })
+        .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.http.delete(this.updateUrl(url), options);
+    delete(url: string, options?: RequestOptionsArgs): Observable<any> {
+        return this.http.delete(this.updateUrl(url), options)
+        .map((res: Response) => {
+            return res.json();
+        })
+        .catch((err: Response) => Observable.throw(err.statusText));
     }
 }

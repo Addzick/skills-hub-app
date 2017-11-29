@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-
-
-<ul class="ms-timeline">
-    <li class="ms-timeline-item" *ngFor="let event of events">
-      <div class="ms-timeline-date">
-        <time class="timeline-time">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</time>
-        <i class="ms-timeline-point"></i>
-      </div>
-      <app-event [event]="event"></app-event>
-    </li>
-  </ul>
+<div class="card card-block card-block-big animated fadeInUp animation-delay-9">
+    <ul class="ms-timeline">
+      <li class="ms-timeline-item" *ngFor="let event of events">
+        <div class="ms-timeline-date">
+          <time class="timeline-time">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</time>
+          <i class="ms-timeline-point"></i>
+        </div>
+        <app-event [event]="event"></app-event>
+      </li>
+    </ul>
+</div>

@@ -17,11 +17,18 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.userService.getUser()
-    .map((res) => res.json())
-    .subscribe(
-      res => this.user = res.user,
-      error => console.error(error.json().error)
-    );
+    this.getUser().subscribe();
+  }
+
+  getUser() {
+    return this.userService
+    .getUser()
+    .map(
+      (res) => {
+        this.user = res.user;
+      })
+     .catch((error) => {
+        throw error;
+      });
   }
 }

@@ -53,15 +53,10 @@ export class RegisterComponent implements OnInit {
     if (!this.registerForm.valid) {
       this.toastr.error('Veuillez contrôler les informations saisies !');
     } else {
-      this.auth.login({ user: this.registerForm.value })
-      .subscribe(
-        res => {
-          this.router.navigateByUrl(this.returnUrl);
-        },
-        err => {
-          this.toastr.error('Veuillez contrôler les informations saisies !');
-        }
-      );
+      this.auth.register(
+        { user: this.registerForm.value },
+        () => this.router.navigateByUrl(this.returnUrl),
+        (err) => this.toastr.error('Veuillez contrôler les informations saisies !'));
     }
   }
 

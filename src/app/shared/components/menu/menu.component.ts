@@ -20,8 +20,8 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout().subscribe(res => {
-      this.router.navigateByUrl('/', { replaceUrl: true });
-    });
+    this.auth.logout(
+      this.router.navigateByUrl('/'),
+      console.error);
   }
 }
