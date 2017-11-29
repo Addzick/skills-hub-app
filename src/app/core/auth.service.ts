@@ -20,7 +20,6 @@ export class AuthService implements OnInit, OnDestroy {
 
   private jwtHelper: JwtHelper = new JwtHelper();
   private currentUser = { _id: '', username: '' };
-  public loggedIn = false;
   public channel: Observable<any>;
 
   constructor(
@@ -89,7 +88,11 @@ export class AuthService implements OnInit, OnDestroy {
         this.deleteCurrentUser();
         next();
       },
-      error => err(error)
+      error => {
+        localStorage.removeItem('token');
+        this.deleteCurrentUser();
+        err(error);
+      }
     );
   }
 
@@ -101,8 +104,6 @@ export class AuthService implements OnInit, OnDestroy {
     if (decodedUser) {
       // On initialise l'utilisateur courant
       this.currentUser = { _id: decodedUser._id, username: decodedUser.username };
-      // On met à jour le flag
-      this.loggedIn = true;
       // On demande au serveur de mettre à jour l'id de la socket
       this.socket.emit('set socket', this.currentUser.username);
     }
@@ -111,8 +112,6 @@ export class AuthService implements OnInit, OnDestroy {
   deleteCurrentUser() {
     // On vide l'objet
     this.currentUser = { _id: '', username: ''};
-    // On change le flag
-    this.loggedIn = false;
     // On supprime le token
     localStorage.removeItem('token');
     // On demande au serveur de supprimé l'id de la socket
@@ -120,7 +119,15 @@ export class AuthService implements OnInit, OnDestroy {
   }
 
   getCurrentUserEmail(): String {
-    return (this.loggedIn && this.currentUser) ? this.currentUser.username : '';
+    return (this.isLoggedIn() && this.currentUser) ? this.currentUser.username : '';
+  }
+
+  isLoggedIn() {
+    if(localStorage.getItem('token')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

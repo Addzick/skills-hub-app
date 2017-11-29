@@ -1,9 +1,11 @@
 // Angular stuff
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
+// Rxjs stuff
+import { Observable } from 'rxjs/Observable';
 // Core services
 import { UserService, UserQuery } from '../../core/user.service';
-import { Observable } from 'rxjs/Observable';
+//Shared services
+import {EventService, EventQuery } from '../../shared/services/event.service';
 
 @Component({
   selector: 'app-account',
@@ -13,17 +15,44 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AccountComponent implements OnInit, OnDestroy {
   public user: any;
-  private connection: any;
+  public events: Array<any>;
+
+  public query: EventQuery = {
+    excludes: [
+      'user_connected',
+      'user_disconnected'
+    ],
+    page: 1,
+    size: 10
+  };
+
+  private userSub: any;
+  private eventSub: any;
   
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private eventService: EventService) {
   }
 
   ngOnInit() {
-    this.connection = this.getUser().subscribe();
+    this.userSub = this.getUser().subscribe();
+    this.eventSub = this.getEvents().subscribe();
   }
 
   ngOnDestroy() {
-    this.connection.unsubscribe();
+    this.userSub.unsubscribe();
+    this.eventSub.unsubscribe();
+  } 
+
+  onNotify(user: any):void {
+    this.refresh();
+  }
+
+  refresh() {
+    this.userSub.unsubscribe();
+    this.eventSub.unsubscribe();
+    this.userSub = this.getUser().subscribe();
+    this.eventSub = this.getEvents().subscribe();
   }
 
   getUser() {
@@ -38,8 +67,16 @@ export class AccountComponent implements OnInit, OnDestroy {
       });
   }
 
-  onNotify(user: any):void {
-    this.connection.unsubscribe();
-    this.connection = this.getUser().subscribe();
+  getEvents() {
+    this.query.authors = [ this.user ? this.user._id : 'none' ];
+    return this.eventService
+    .findAll(this.query)
+    .map(
+      (res) => {
+        this.events = res.events;
+      })
+     .catch((error) => {
+        throw error;
+      });
   }
 }

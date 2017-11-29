@@ -63,6 +63,21 @@
         <div class="wrap">
             <div class="container">
                 <h2 class="text-center mb-4 wow fadeInDown animation-delay-2">Découvrez nos catégories</h2>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6" *ngFor="let category of categories">
+                        <div class="card width-auto">
+                            <figure class="ms-thumbnail ms-thumbnail-horizontal">
+                                <img src="/assets/img/categories/{{ category.photo }}" alt="{{ category.name }}" class="img-fluid">
+                                <figcaption class="ms-thumbnail-caption text-center">
+                                    <div class="ms-thumbnail-caption-content">
+                                        <h3 class="ms-thumbnail-caption-title mb-3">{{ category.title }}</h3>
+                                        <a href="javascript:void(0)" class="btn btn-raised btn-royal">Découvrir</a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                      </div>
+                </div>
             </div>
         </div>
     </section>

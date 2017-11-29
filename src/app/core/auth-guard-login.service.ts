@@ -14,7 +14,7 @@ export class AuthGuardLogin implements CanActivate {
     route: ActivatedRouteSnapshot,
     current: RouterStateSnapshot) {
     // Un utilisateur est connecté, on renvoie OK
-    if (this.auth.loggedIn) { return true; }
+    if (this.auth.isLoggedIn()) { return true; }
 
     // On redirige vers la page de login en stockant l'url de retour
     this.router.navigate(['/sign'], { queryParams: { returnUrl: current.url } });

@@ -12,7 +12,7 @@
                 <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
                 <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
             </div>
-            <blockquote class="blockquote color-medium handwriting">{{ user.bio }}</blockquote>
+            <blockquote class="blockquote color-medium">{{ user.bio }}</blockquote>
             </div>
         </div>
         </div>
@@ -21,9 +21,9 @@
         <app-infos [user]="user" (notify)="onNotify($event)"></app-infos>
         <app-address [address]="user.address"></app-address>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="events">
         <h1 class="color-primary text-center mt-4 mb-4">Activités récentes</h1>
-        <app-journal [user]="user"></app-journal>
+        <app-journal [events]="events"></app-journal>
     </div>
 </div>
 

@@ -23,7 +23,7 @@
                 </table>
             </div>
             <div class="col-xl-6 col-12">
-                <agm-map [latitude]="address.loc.coordinates[1]" [longitude]="address.loc.coordinates[0]">
+                <agm-map [latitude]="address.loc.coordinates[1]" [longitude]="address.loc.coordinates[0]" [zoom]="14">
                     <agm-marker [latitude]="address.loc.coordinates[1]" [longitude]="address.loc.coordinates[0]"></agm-marker>
                 </agm-map>
             </div>
