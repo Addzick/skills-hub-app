@@ -24,7 +24,7 @@ export class ContactComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastsManager) {
       this.contactForm = formBuilder.group({
-        'email' : [this.auth.getCurrentUserEmail(), Validators.compose([Validators.required, Validators.email])],
+        'email' : [this.auth.getCurrentUserName(), Validators.compose([Validators.required, Validators.email])],
         'subject': [''],
         'message': [''],
       });

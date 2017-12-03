@@ -5,43 +5,45 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'eventType'
 })
 export class EventTypePipe implements PipeTransform {
-    transform(value: string, args: string[]): any {
-        if (!value) { return value; }
-
-        switch (value) {
-            case 'article_created'        	: return `a crée un article`;
-            case 'article_published'      	: return `a publié un article`;
-            case 'article_commented'      	: return `a commenté cet article`;
-            case 'article_liked'          	: return `a aimé cet article`;
-            case 'proposition_created'		: return `a crée une proposition`;
-            case 'proposition_published'	: return `a publié une proposition`;
-            case 'proposition_accepted' 	: return `a accepté une proposition`;
-            case 'proposition_rejected' 	: return `a rejeté une proposition`;
-            case 'proposition_canceled' 	: return `a annulé une proposition`;
-            case 'proposition_commented' 	: return `a commenté cette proposition`;
-            case 'proposition_liked' 		: return `a aimé cette proposition`;
-            case 'rating_created'        	: return `a crée une évaluation`;
-            case 'rating_published'      	: return `a publié une évaluation`;
-            case 'rating_commented'      	: return `a commenté cette évaluation`;
-            case 'rating_liked'          	: return `a aimé cette évaluation`;
-            case 'task_created'				: return `a crée une prestation`;
-            case 'task_published'			: return `a publié une prestation`;
-            case 'task_confirmed' 			: return `a confirmé une prestation`;
-            case 'task_paid' 				: return `a payé une prestation`;
-            case 'task_canceled' 			: return `a annulé une prestation`;
-            case 'task_commented' 			: return `a commenté cette prestation`;
-            case 'task_liked' 				: return `a aimé cette prestation`;
-            case 'tender_created' 			: return `a crée un appel d'offres`;
-            case 'tender_published'			: return `a publié un appel d'offres`;
-            case 'tender_canceled' 			: return `a annulé un appel d'offres`;
-            case 'tender_closed' 			: return `a cloturé un appel d'offres`;
-            case 'tender_commented' 		: return `a commenté cet appel d'offres`;
-            case 'tender_liked' 			: return `a aimé cet appel d'offres`;
-            case 'user_registered'        	: return `a rejoint la communauté`;
-            case 'user_updated'           	: return `a mis à jour son profil`;
-            case 'user_connected'           : return `s'est connecté`;
-            case 'user_disconnected'       	: return `s'est déconnecté`;
-            default	                        : return value;
+    transform(type: string, isFromCurrentUser: boolean, author: string): any {
+        if (!type) { return type; }
+        let result = isFromCurrentUser ? 'vous avez ' : `${ author } a `
+        switch (type) {
+            case 'article_created'        	: result +=  `crée un article`;break;
+            case 'article_published'      	: result +=  `publié un article`;break;
+            case 'article_commented'      	: result +=  `commenté cet article`;break;
+            case 'article_liked'          	: result +=  `aimé cet article`;break;
+            case 'proposition_created'		: result +=  `crée une proposition`;break;
+            case 'proposition_published'	: result +=  `publié une proposition`;break;
+            case 'proposition_accepted' 	: result +=  `accepté une proposition`;break;
+            case 'proposition_rejected' 	: result +=  `rejeté une proposition`;break;
+            case 'proposition_canceled' 	: result +=  `annulé une proposition`;break;
+            case 'proposition_commented' 	: result +=  `commenté cette proposition`;break;
+            case 'proposition_liked' 		: result +=  `aimé cette proposition`;break;
+            case 'rating_created'        	: result +=  `crée une évaluation`;break;
+            case 'rating_published'      	: result +=  `publié une évaluation`;break;
+            case 'rating_commented'      	: result +=  `commenté cette évaluation`;break;
+            case 'rating_liked'          	: result +=  `aimé cette évaluation`;break;
+            case 'task_created'				: result +=  `crée une prestation`;break;
+            case 'task_published'			: result +=  `publié une prestation`;break;
+            case 'task_confirmed' 			: result +=  `confirmé une prestation`;break;
+            case 'task_paid' 				: result +=  `payé une prestation`;break;
+            case 'task_canceled' 			: result +=  `annulé une prestation`;break;
+            case 'task_commented' 			: result +=  `commenté cette prestation`;break;
+            case 'task_liked' 				: result +=  `aimé cette prestation`;break;
+            case 'tender_created' 			: result +=  `crée un appel d'offres`;break;
+            case 'tender_published'			: result +=  `publié un appel d'offres`;break;
+            case 'tender_canceled' 			: result +=  `annulé un appel d'offres`;break;
+            case 'tender_closed' 			: result +=  `cloturé un appel d'offres`;break;
+            case 'tender_commented' 		: result +=  `commenté cet appel d'offres`;break;
+            case 'tender_liked' 			: result +=  `aimé cet appel d'offres`;break;
+            case 'user_registered'        	: result +=  `rejoint la communauté`;break;
+            case 'user_updated'           	: result +=  `mis à jour ${ isFromCurrentUser ? 'votre' : 'son' } profil`;break;
+            case 'user_connected'           : result +=  isFromCurrentUser ? `s'est connecté` : 'vous êtes connecté' ;break;
+            case 'user_disconnected'       	: result +=  isFromCurrentUser ? `s'est déconnecté` : 'vous êtes déconnecté' ;break;
+            default	                        : result +=  type;
         }
+
+        return result;
     }
 }

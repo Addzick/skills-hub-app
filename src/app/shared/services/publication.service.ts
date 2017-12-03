@@ -18,12 +18,6 @@ export interface PublicationQuery {
   sort?: {};
   page?: number;
   size?: number;
-  childs?: {
-    path: string,
-    page: number,
-    size: number,
-    sort: {}
-  };
 }
 
 @Injectable()
@@ -36,56 +30,27 @@ export abstract class PublicationService extends ApiService {
       super(http);
     }
 
-    findOne(
-      id: string,
-      query: {
-        childs?: {
-          path: string,
-          page: number,
-          size: number,
-          sort: {}
-        }
-      }) {
-      return this.get(`/${ this.apiname }/${ id }`, { search : query });
+    findOne(id: string) {
+      return this.get(`/${ this.apiname }/${ id }`);
     }
 
     findAll(query: PublicationQuery) {
       return this.get(`/${ this.apiname }`, { search: query });
     }
 
-    count(query: {}) {
-      return this.get(`/${ this.apiname }/count`, { search: query });
-    }
-
     create(body: string) {
-      return this.post(`/${ this.apiname }/create`, body);
+      return this.post(`/${ this.apiname }`, body);
     }
 
     edit(id: string, body: string) {
-      return this.post(`/${ this.apiname }/${ id }/edit`, body);
+      return this.put(`/${ this.apiname }/${ id }`, body);
     }
 
     publish(id: string) {
-      return this.post(`/${ this.apiname }/${ id }/publish`, '');
+      return this.patch(`/${ this.apiname }/${ id }`, '');
     }
 
     remove(id: string) {
-      return this.post(`/${ this.apiname }/${ id }/delete`, '');
-    }
-
-    comment(id: string, body: string) {
-      return this.post(`/${ this.apiname }/${ id }/comment`, body);
-    }
-
-    uncomment(idPub: string, idComment: string) {
-      return this.delete(`/${ this.apiname }/${ idPub }/${ idComment }`);
-    }
-
-    like(id: string, body: string) {
-      return this.post(`/${ this.apiname }/${ id }/like`, body);
-    }
-
-    unlike(idPub: string, idLike: string) {
-      return this.delete(`/${ this.apiname }/${ idPub }/${ idLike }`);
+      return this.delete(`/${ this.apiname }/${ id }`, '');
     }
 }

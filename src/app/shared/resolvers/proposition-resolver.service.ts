@@ -20,7 +20,7 @@ export class PropositionResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.propositionService.findOne(route.params['proposition'], route.queryParams['childs'])
+    return this.propositionService.findOne(route.params['proposition'])
            .catch((err) => this.router.navigate(['/']));
 
   }

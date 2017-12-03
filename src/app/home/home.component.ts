@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public categories: Array<any> = [];
   public events: Array<any> = [];
   public ratings: Array<any> = [];
+  
   public eventQuery: EventQuery = {
     sort: { updatedAt : 'desc'},
     page: 1,

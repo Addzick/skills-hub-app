@@ -20,7 +20,7 @@ export class TaskResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.taskService.findOne(route.params['task'], route.queryParams['childs'])
+    return this.taskService.findOne(route.params['task'])
            .catch((err) => this.router.navigate(['/']));
 
   }

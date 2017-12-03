@@ -6,12 +6,12 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../core/rxjs-extensions';
 
-import { RatingService } from '../services/rating.service';
+import { CommentService } from '../services/comment.service';
 
 @Injectable()
-export class RatingResolver implements Resolve<any> {
+export class CommentResolver implements Resolve<any> {
   constructor(
-    private ratingService: RatingService,
+    private commentService: CommentService,
     private router: Router
   ) {}
 
@@ -20,7 +20,7 @@ export class RatingResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.ratingService.findOne(route.params['rating'])
+    return this.commentService.findOne(route.params['comment'])
            .catch((err) => this.router.navigate(['/']));
 
   }

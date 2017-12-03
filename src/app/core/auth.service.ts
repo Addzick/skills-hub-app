@@ -27,24 +27,11 @@ export class AuthService implements OnInit, OnDestroy {
     private userService: UserService,
     private toastr: ToastsManager,
     private router: Router) {
-      // On initialise la chaine de diffusion des evenements
-      this.initChannel();
+      // On crée une channel
+    this.channel = this.socket.fromEvent<any>('new event').map(data => data);
   }
 
   ngOnInit() {
-    // On récupére le token depuis les cookie
-    const token = localStorage.getItem('token');
-    // On contrôle la présence du token
-    if (token) {
-      // Le token est-il expiré ?
-      if (this.jwtHelper.isTokenExpired(token)) {
-        // On execute la méthode de déconnexion
-        this.deleteCurrentUser();
-      } else {
-        // On renseigne l'utilisateur courant a partir du token
-        this.setCurrentUser(this.decodeUserFromToken(token));
-      }
-    }
   }
 
   ngOnDestroy() {
@@ -52,17 +39,12 @@ export class AuthService implements OnInit, OnDestroy {
     this.socket.disconnect();
   }
 
-  initChannel() {
-    // On crée une channel
-    this.channel = this.socket.fromEvent<any>('new event').map(data => data);
-  }
-
   login(user, next, err) {
     // On execute la méthode login du service et on mappe le résultat
     this.userService.login(user).subscribe(
       res => {
         localStorage.setItem('token', res.token);
-        this.setCurrentUser(this.decodeUserFromToken(res.token));
+        this.setCurrentUser();
         next();
       },
       error => err(error)
@@ -73,8 +55,7 @@ export class AuthService implements OnInit, OnDestroy {
     this.userService.register(user).subscribe(
       res => {
         localStorage.setItem('token', res.token);
-        const decodedUser = this.decodeUserFromToken(res.token);
-        this.setCurrentUser(decodedUser);
+        this.setCurrentUser();
         next();
       },
       error => err(error)
@@ -96,11 +77,8 @@ export class AuthService implements OnInit, OnDestroy {
     );
   }
 
-  decodeUserFromToken(token) {
-    return this.jwtHelper.decodeToken(token);
-  }
-
-  setCurrentUser(decodedUser) {
+  setCurrentUser() {
+    const decodedUser = this.jwtHelper.decodeToken(localStorage.getItem('token'));
     if (decodedUser) {
       // On initialise l'utilisateur courant
       this.currentUser = { _id: decodedUser._id, username: decodedUser.username };
@@ -118,16 +96,15 @@ export class AuthService implements OnInit, OnDestroy {
     this.socket.emit('unset socket', this.currentUser.username);
   }
 
-  getCurrentUserEmail(): String {
-    return (this.isLoggedIn() && this.currentUser) ? this.currentUser.username : '';
+  getCurrentUserName() {
+    return this.currentUser.username;
   }
 
   isLoggedIn() {
-    if(localStorage.getItem('token')) {
-      return true;
-    } else {
-      return false;
-    }
+    const token = localStorage.getItem('token');
+    const hastoken = token && !this.jwtHelper.isTokenExpired(token);
+    if(hastoken && this.currentUser._id == '') { this.setCurrentUser(); }
+    return hastoken;
   }
 
 }

@@ -93,10 +93,12 @@ textarea {
 }
 
 .text-ellipsis {
-  -webkit-box-orient: vertical;
+  display: block;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
+  max-height: 5.4em;
+  line-height: 1.8em;
   text-align: justify;
 }
 
@@ -131,3 +133,70 @@ textarea {
 agm-map {
   height: 200px;
 }
+
+.ms-timeline .ms-timeline-item .alert {
+  margin-bottom: 5px;
+  border-top:1px solid #eee;
+  border-right:1px solid #eee;
+  border-left:1px solid #eee;
+  border-radius:2px;   
+  background-color:rgba(156, 39, 176,.01);   
+}
+
+@media(min-width:768px) {
+  .ms-timeline .ms-timeline-item .alert:after {
+      display: block;
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 15px;
+      left: -35px;
+      border-right: solid 15px #00838f;
+      border-left: solid 20px transparent;
+      border-top: solid 13px transparent;
+      border-bottom: solid 13px transparent;
+  }
+
+  .ms-timeline .ms-timeline-item:hover .alert {
+              box-shadow: 0 0 0 0 #006064,0 1px 10px 0 #006064,0 2px 4px -1px #006064;
+          }
+
+  .ms-timeline .ms-timeline-item:hover .alert:after {
+              border-right: solid 15px #006064
+          }
+
+  .ms-timeline .ms-timeline-item:hover .card {
+              box-shadow: none;
+          }
+}
+
+@media(min-width:768px) {
+  .ms-timeline .ms-timeline-item .alert {
+      margin-left: 20px;
+  }
+}
+
+.profile-rating {
+  font-size: 11px;
+  text-align: left;
+  margin: 0px;
+}
+
+.card.card-event {
+  border-right:1px solid #eee;
+  border-left:1px solid #eee;
+  border-bottom:1px solid #eee;
+  color: #424242 !important;
+  background-color:rgba(156, 39, 176,.01);  
+  margin-top:0px  
+}
+
+  .card.card-event a.link {
+      color: #fff;
+  }
+
+      .card.card-event a.link:hover, .card.card-event a.link:focus {
+          border-bottom: solid 1px #fff;
+      }
+

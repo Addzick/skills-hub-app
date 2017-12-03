@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<div class="animated fadeInUp animation-delay-5">
-    <blockquote class="blockquote withripple text-ellipsis">
-        {{ user.bio }}
-    </blockquote>
-    <a class="btn btn-sm btn-raised btn-primary pull-right mt-2" [routerLink]="['/user',user._id]">Découvrir son profil ...</a>
-</div>
-
+<div class="card-block">
+    <h3 class="color-warning">{{ user.displayName }}</h3>
+    <p class="lead text-ellipsis">{{ user.bio }}</p>
+    <div class="row">
+      <div class="col">
+        <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-facebook">
+          <i class="zmdi zmdi-facebook"></i>
+        </a>
+        <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-twitter">
+          <i class="zmdi zmdi-twitter"></i>
+        </a>
+        <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-instagram">
+          <i class="zmdi zmdi-instagram"></i>
+        </a>
+      </div>
+      <div class="col text-right">
+          <a class="btn btn-raised btn-sm btn-primary" [routerLink]="['/user',user._id]">Découvrir</a>
+      </div>
+    </div>
+  </div>
 
 

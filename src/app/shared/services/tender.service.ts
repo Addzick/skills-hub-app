@@ -28,7 +28,7 @@ export class TenderService extends PublicationService {
 
   constructor(protected http: Http) {
     super(http);
-    this.apiname = 'tasks';
+    this.apiname = 'tenders';
    }
 
    close(id: string) { return this.post(`/tenders/${ id }/close`, ''); }

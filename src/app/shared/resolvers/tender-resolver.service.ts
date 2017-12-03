@@ -20,7 +20,7 @@ export class TenderResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.tenderService.findOne(route.params['tender'], route.queryParams['childs'])
+    return this.tenderService.findOne(route.params['tender'])
            .catch((err) => this.router.navigate(['/']));
 
   }

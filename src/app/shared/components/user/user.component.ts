@@ -1,3 +1,4 @@
+// Angular stuff
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   @Input() user: any;
-  @Input() mode: string;
 
   constructor() { }
 

@@ -20,7 +20,7 @@ export class ArticleResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.articleService.findOne(route.params['article'], route.queryParams['childs'])
+    return this.articleService.findOne(route.params['article'])
            .catch((err) => this.router.navigate(['/']));
 
   }
