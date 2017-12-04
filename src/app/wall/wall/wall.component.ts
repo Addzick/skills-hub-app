@@ -31,7 +31,6 @@ export class WallComponent implements OnInit, OnDestroy {
   public query: EventQuery = {
     types: [
       'user_registered',
-      'user_updated',
       'article_published',
       'article_commented',
       'article_liked',

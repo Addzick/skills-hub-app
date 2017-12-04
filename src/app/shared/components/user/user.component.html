@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<div class="card-block">
-    <h3 class="color-warning">{{ user.displayName }}</h3>
-    <p class="lead text-ellipsis">{{ user.bio }}</p>
-    <div class="row">
-      <div class="col">
-        <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-facebook">
-          <i class="zmdi zmdi-facebook"></i>
-        </a>
-        <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-twitter">
-          <i class="zmdi zmdi-twitter"></i>
-        </a>
-        <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-instagram">
-          <i class="zmdi zmdi-instagram"></i>
-        </a>
-      </div>
-      <div class="col text-right">
-          <a class="btn btn-raised btn-sm btn-primary" [routerLink]="['/user',user._id]">Découvrir</a>
-      </div>
+<div class="ms-hero-bg-dark ms-hero-img-palissade">
+  <img src="{{ user.image || '/assets/img/no-picture.jpg' }}" alt="{{ user.displayName }}" class="img-avatar-circle"> 
+</div>
+<div class="card-block pt-4">
+  <h3 class="color-warning m-4 text-center">{{ user.displayName }}</h3>
+  <p class="text-ellipsis m-4">{{ user.bio }}</p>
+  <div class="row m-4">
+    <div class="col">
+      <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-facebook">
+        <i class="zmdi zmdi-facebook"></i>
+      </a>
+      <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-twitter">
+        <i class="zmdi zmdi-twitter"></i>
+      </a>
+      <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-instagram">
+        <i class="zmdi zmdi-instagram"></i>
+      </a>
+    </div>
+    <div class="col text-right">
+        <a class="btn btn-raised btn-sm btn-primary" [routerLink]="['user', user._id ]">Découvrir</a>
     </div>
   </div>
+</div>
 
 

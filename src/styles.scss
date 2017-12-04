@@ -93,13 +93,30 @@ textarea {
 }
 
 .text-ellipsis {
-  display: block;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
   overflow: hidden;
-  max-height: 5.4em;
-  line-height: 1.8em;
-  text-align: justify;
+  position: relative; 
+  line-height: 1.2em;
+  max-height: 3.6em; 
+  text-align: justify;  
+  margin-right: -1em;
+  padding-right: 1em;
+}
+
+.text-ellipsis:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.text-ellipsis:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
 }
 
 @media(max-width:767px) {
@@ -134,17 +151,36 @@ agm-map {
   height: 200px;
 }
 
-.ms-timeline .ms-timeline-item .alert {
-  margin-bottom: 5px;
-  border-top:1px solid #eee;
+.ms-timeline .ms-timeline-item .card.card-event {
+  padding: 0px;
+  border:none;
+}
+
+.ms-timeline .ms-timeline-item .card.card-item {
   border-right:1px solid #eee;
   border-left:1px solid #eee;
-  border-radius:2px;   
-  background-color:rgba(156, 39, 176,.01);   
+  border-bottom:1px solid #eee;
+  color: #424242 !important;
+  background-color:rgba(0, 97, 100, 0.01);
+  margin:0px;
+  box-shadow: none;
+}
+ .ms-timeline .ms-timeline-item .card.card-item a.link {
+      color: #fff;
+  }
+  .ms-timeline .ms-timeline-item .card.card-item a.link:hover, .card.card-item a.link:focus {
+        border-bottom: solid 1px #fff;
+    }
+
+.ms-timeline .ms-timeline-item .alert {
+  border:1px solid #eee;
+  margin: 0px;
+  background-color:rgba(0, 97, 100,.01);
+  box-shadow: none;
 }
 
 @media(min-width:768px) {
-  .ms-timeline .ms-timeline-item .alert:after {
+  .ms-timeline .ms-timeline-item .card.card-event:after {
       display: block;
       content: "";
       width: 0;
@@ -152,28 +188,22 @@ agm-map {
       position: absolute;
       top: 15px;
       left: -35px;
-      border-right: solid 15px #00838f;
+      border-right: solid 15px rgba(0, 131, 143, 0.6);
       border-left: solid 20px transparent;
       border-top: solid 13px transparent;
       border-bottom: solid 13px transparent;
   }
+  
+  .ms-timeline .ms-timeline-item:hover .card.card-event {
+      box-shadow: 0 4px 5px 0 rgba(0, 97, 100, 0.3),0 1px 10px 0 rgba(0, 97, 100,.3),0 2px 4px -1px rgba(0, 97, 100,.4);
+  }
 
-  .ms-timeline .ms-timeline-item:hover .alert {
-              box-shadow: 0 0 0 0 #006064,0 1px 10px 0 #006064,0 2px 4px -1px #006064;
-          }
+  .ms-timeline .ms-timeline-item:hover .card.card-event:after {
+      border-right: solid 15px rgb(0, 97, 100);
+  }
 
-  .ms-timeline .ms-timeline-item:hover .alert:after {
-              border-right: solid 15px #006064
-          }
-
-  .ms-timeline .ms-timeline-item:hover .card {
-              box-shadow: none;
-          }
-}
-
-@media(min-width:768px) {
-  .ms-timeline .ms-timeline-item .alert {
-      margin-left: 20px;
+  .ms-timeline .ms-timeline-item:hover .card.card-item {
+      box-shadow: none;
   }
 }
 
@@ -182,21 +212,4 @@ agm-map {
   text-align: left;
   margin: 0px;
 }
-
-.card.card-event {
-  border-right:1px solid #eee;
-  border-left:1px solid #eee;
-  border-bottom:1px solid #eee;
-  color: #424242 !important;
-  background-color:rgba(156, 39, 176,.01);  
-  margin-top:0px  
-}
-
-  .card.card-event a.link {
-      color: #fff;
-  }
-
-      .card.card-event a.link:hover, .card.card-event a.link:focus {
-          border-bottom: solid 1px #fff;
-      }
 

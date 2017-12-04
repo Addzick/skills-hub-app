@@ -1,38 +1,14 @@
 <!DOCTYPE html>
-<li class="ms-timeline-item ms-media-list wow materialUp">
+<li class="ms-timeline-item ms-media-list">
     <div class="ms-timeline-date">
         <time class="timeline-time">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</time>
         <i class="ms-timeline-point"></i>
-    </div>  
-
-    <div class="alert alert-default">
-        <em>{{ event.type | eventType:isEventFromCurrentUser():event.author.displayName }}</em>
-    </div>
-    
-    <article class="card card-event" *ngIf="event.source.kind !== 'user' || !isEventFromCurrentUser()">
-        <div class="media pl-2 pr-2 pt-2 no-pb" *ngIf="!isEventFromCurrentUser()">
-            <div class="media-left media-middle">
-                <img class="media-object media-object-small media-object-circle"
-                src="{{ event.author.image || '/assets/img/no-picture.jpg'}}"
-                alt="{{ event.author.displayName }}">
-            </div>
-            <div class="media-body media-middle">
-                <h4 class="media-heading">{{ event.author.displayName }}</h4>
-                <div class="profile-rating">
-                    <span class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=1"></span>
-                    <span class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=1"></span>
-                    <span class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=1"></span>
-                    <span class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=1"></span>
-                    <span class="zmdi zmdi-star" [class.color-warning]="event.author.nbStars>=1"></span>
-                </div>
-                <div class="media-bottom">
-                    <i class="zmdi zmdi-time no-mr"></i>
-                    <small>{{ event.updatedAt | amLocale:'fr' | amTimeAgo }}</small>
-                </div>
-            </div>
-    
-        </div>
-        <div class="card-block">
+    </div> 
+    <div class="card card-event no-p wow materialUp">
+        <div class="alert alert-default">
+            <em>{{ event.type | eventType:isEventFromCurrentUser():event.author.displayName }}</em>
+        </div>    
+        <div class="card card-item" *ngIf="event.source.kind !== 'user' || !isEventFromCurrentUser()">
             <app-user *ngIf="event.source.kind === 'user' && !isEventFromCurrentUser()" [user]="event.source.item"></app-user>
             <app-article *ngIf="event.source.kind === 'article'" [article]="event.source.item"></app-article>
             <app-proposition *ngIf="event.source.kind === 'proposition'" [proposition]="event.source.item"></app-proposition>
@@ -42,7 +18,7 @@
             <app-comment *ngIf="event.source.kind === 'comment'" [comment]="event.source.item"></app-comment>
             <app-like *ngIf="event.source.kind === 'like'" [like]="event.source.item"></app-like>
         </div>
-    </article>
+    </div>
 </li>
 
 

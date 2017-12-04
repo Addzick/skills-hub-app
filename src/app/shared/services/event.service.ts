@@ -15,7 +15,7 @@ export interface EventQuery {
   excludes?: Array<string>;
   startDate?: Date;
   endDate?: Date;
-  authors?: Array<string>;
+  author?: string;
   localisation?: {
     longitude: number,
     latitude: number,

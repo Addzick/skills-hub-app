@@ -29,12 +29,13 @@ import { TenderResolver } from './resolvers/tender-resolver.service';
 import { EventResolver } from './resolvers/event-resolver.service';
 import { CommentResolver } from './resolvers/comment-resolver.service';
 import { LikeResolver } from './resolvers/like-resolver.service';
+import { UserResolver } from './resolvers/user-resolver.service';
 
 // Shared pipes
 import { EventTypePipe } from './pipes/event-type.pipe';
 
 // Shared components
-import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ExtendInputComponent } from './components/extend-input/extend-input.component';
@@ -77,7 +78,7 @@ import { environment } from '../../environments/environment';
   ],
   declarations: [
     EventTypePipe,
-    HeaderComponent,
+    NavbarComponent,
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,
@@ -107,7 +108,7 @@ import { environment } from '../../environments/environment';
     MomentModule,
     AgmCoreModule,
     EventTypePipe,
-    HeaderComponent,
+    NavbarComponent,
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,
@@ -149,6 +150,7 @@ import { environment } from '../../environments/environment';
     EventResolver,
     CommentResolver,
     LikeResolver,
+    UserResolver,
   ]
 })
 export class SharedModule { }

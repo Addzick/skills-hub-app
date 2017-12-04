@@ -18,6 +18,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   public events: Array<any>;
 
   public query: EventQuery = {
+    author: '',
     excludes: [
       'user_connected',
       'user_disconnected'
@@ -26,8 +27,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     size: 10
   };
 
-  private userSub: any;
-  private eventSub: any;
+  private subscription: any;
   
   constructor(
     private userService: UserService,
@@ -35,13 +35,12 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userSub = this.getUser().subscribe();
-    this.eventSub = this.getEvents().subscribe();
+    this.subscription = this.getUser().subscribe();
+    ;
   }
 
   ngOnDestroy() {
-    this.userSub.unsubscribe();
-    this.eventSub.unsubscribe();
+    this.subscription.unsubscribe();
   } 
 
   onNotify(user: any):void {
@@ -49,34 +48,30 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   refresh() {
-    this.userSub.unsubscribe();
-    this.eventSub.unsubscribe();
-    this.userSub = this.getUser().subscribe();
-    this.eventSub = this.getEvents().subscribe();
+    this.subscription.unsubscribe();
+    this.subscription = this.getUser().subscribe();
   }
 
   getUser() {
     return this.userService
     .getUser()
-    .map(
+    .flatMap(
       (res) => {
         this.user = res.user;
+        this.query.author = this.user._id;
+        return this.eventService
+        .findAll(this.query)
+        .map(
+          (res) => {
+            this.events = res.events;
+          })
+         .catch((error) => {
+            throw error;
+          });
       })
      .catch((error) => {
         throw error;
       });
   }
 
-  getEvents() {
-    this.query.authors = [ this.user ? this.user._id : 'none' ];
-    return this.eventService
-    .findAll(this.query)
-    .map(
-      (res) => {
-        this.events = res.events;
-      })
-     .catch((error) => {
-        throw error;
-      });
-  }
 }

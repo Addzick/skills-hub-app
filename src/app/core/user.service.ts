@@ -62,7 +62,7 @@ export class UserService extends ApiService {
       return this.get('/users', { search: query });
   }
 
-  findOne(username): Observable<any> {
-    return this.get(`/users/${ username }`);
+  findOne(id): Observable<any> {
+    return this.get(`/users/${ id }`);
   }
 }

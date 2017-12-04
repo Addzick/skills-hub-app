@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<div class="card-light-inverse">
-    <h4><em>{{ article.title }}</em></h4>
-    <p class="lead">{{ article.description }}</p>
-</div> 
+<article class="card-block">
+    <h4 class="mt-2"><a [routerLink]="['article', article._id]">{{ article.title }}</a></h4>
+    <div class="card-text">{{ article.description }}</div>
+    <div class="row mt-2 ml-1">
+        <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
+    </div>
+</article>
 
