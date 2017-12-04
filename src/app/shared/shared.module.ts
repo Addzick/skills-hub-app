@@ -36,6 +36,7 @@ import { EventTypePipe } from './pipes/event-type.pipe';
 
 // Shared components
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ExtendInputComponent } from './components/extend-input/extend-input.component';
@@ -79,6 +80,7 @@ import { environment } from '../../environments/environment';
   declarations: [
     EventTypePipe,
     NavbarComponent,
+    HeaderComponent,
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,
@@ -109,6 +111,7 @@ import { environment } from '../../environments/environment';
     AgmCoreModule,
     EventTypePipe,
     NavbarComponent,
+    HeaderComponent,
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,

@@ -42,6 +42,30 @@ textarea {
   background-size: cover;
 }
 
+.ms-hero-img-painter {
+  background-image: url('/assets/img/painter.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+.ms-hero-img-cook {
+  background-image: url('/assets/img/cuisinier.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+.ms-hero-img-hairstyling {
+  background-image: url('/assets/img/coiffure.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+.ms-hero-img-room {
+  background-image: url('/assets/img/room.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
 .two-cols {
   overflow: hidden;
   width: 100%;
@@ -211,5 +235,14 @@ agm-map {
   font-size: 11px;
   text-align: left;
   margin: 0px;
+}
+
+.img-avatar-circle-sm {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: solid 1px #fff;
+  margin: 0 auto;
+  display: block;
 }
 

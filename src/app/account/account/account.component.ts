@@ -21,7 +21,8 @@ export class AccountComponent implements OnInit, OnDestroy {
     author: '',
     excludes: [
       'user_connected',
-      'user_disconnected'
+      'user_disconnected',
+      'user_updated',
     ],
     page: 1,
     size: 10

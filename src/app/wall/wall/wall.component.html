@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<div class="ms-hero-page ms-hero-img-photograph ms-hero-bg-dark ms-bg-fixed mb-4">
-  <div class="container mt-6 mb-6 pt-6 pb-6">
-    <div class="text-center">
-      <h1 class="no-m ms-site-title color-warning center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5 text-uppercase">Fil d'actualité</h1>
-      <p class="lead lead-lg color-light text-center center-block mt-2 mb-4 mw-800 fw-300 animated fadeInUp animation-delay-7">
-        Découvrez, vivez et partagez<br>
-        vos expériences avec les autres membres de la communauté.
-      </p>
-     <a href="javascript:void(0)" class="btn btn-warning">
-        <i class="zmdi zmdi-roller"></i> Publier un besoin</a>
-      <a href="javascript:void(0)" class="btn btn-info">
-        <i class="zmdi zmdi-collection-text"></i> Publier un article</a>
-    </div>
-  </div>
-</div>
+<app-header [image]="'photograph'" [bgcolor]="'primary'">
+    <h1 class="no-m ms-site-title color-warning center-block ms-site-title-lg mt-4 animated zoomInDown animation-delay-5 text-uppercase">Fil d'actualité</h1>
+    <p class="lead lead-lg color-light text-center center-block mt-4 mb-4 mw-800 fw-300 animated fadeInUp animation-delay-7">
+      Découvrez, vivez et partagez<br>
+      vos expériences avec les autres membres de la communauté.
+    </p>
+</app-header>
 
-<div class="container-fluid container-full">
-  <div class="card card-block card-block-big m-4">
-    <ul class="ms-timeline">
-      <li class="ms-timeline-item wow materialUp" *ngFor="let event of events">
-        <div class="ms-timeline-date">
-          <time class="timeline-time">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</time>
-          <i class="ms-timeline-point"></i>
-        </div>
-        <app-event [event]="event"></app-event>
-      </li>
-    </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <article class="card wow fadeInLeft animation-delay-5 mb-4" *ngFor="let event of events">
+          <div class="media p-3 bg-dark color-medium-dark">
+              <div class="media-left media-object media-middle">
+                  <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
+              </div>
+              <div class="media-body media-middle">
+                <a class="media-title" href="#">{{ event.author.displayName }}</a>
+                <small>{{ event.type | eventType:isEventFromCurrentUser(event):event.author.displayName }}</small>
+              </div>
+              <div class="media-footer media-bottom">
+                <small class="color-medium-dark">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
+              </div>
+          </div>
+        <app-event [event]="event"></app-event>  
+      </article>
+    </div>
   </div>
 </div>
 

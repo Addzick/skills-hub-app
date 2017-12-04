@@ -64,7 +64,7 @@ export class WallComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.channel.unsubscribe();
     this.subscription.unsubscribe();
-   }
+  }
 
   initEvents() {
     this.subscription = this.getEvents().subscribe();
@@ -74,6 +74,7 @@ export class WallComponent implements OnInit, OnDestroy {
       this.subscription = this.getEvents().subscribe();
      });
   }
+
   getEvents() {
     return this.eventService
     .findAll(this.query)
@@ -84,5 +85,9 @@ export class WallComponent implements OnInit, OnDestroy {
      .catch((error) => {
         throw error;
       });
+  }
+
+  isEventFromCurrentUser(event) {
+    return event.author.getCurrentUserName == this.auth.getCurrentUserName();
   }
 }

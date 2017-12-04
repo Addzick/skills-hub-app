@@ -1,9 +1,6 @@
 // Angular stuff
 import { Component, OnInit, Input } from '@angular/core';
 
-// Core services
-import { AuthService } from '../../../core/auth.service'
-
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
@@ -12,12 +9,9 @@ import { AuthService } from '../../../core/auth.service'
 export class EventComponent implements OnInit {
   @Input() event: any;
 
-  constructor(private auth: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  isEventFromCurrentUser() {
-    return this.auth.isLoggedIn() && this.event.author.email == this.auth.getCurrentUserName();
-  }
 }

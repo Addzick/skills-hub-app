@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <div *ngIf="user">
-    <div class="ms-hero-page ms-hero-img-keyboard ms-hero-bg-dark ms-bg-fixed mb-4">
-        <div class="container mt-6 mb-6 pt-6 pb-6">
-            <div class="text-center">
-                <img class="ms-avatar-hero" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}"/>
-                <h1 class="color-white mt-4">{{ user.displayName }}</h1>        
-                <div class="rating-list mb-4">
-                    <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
-                    <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
-                    <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
-                    <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
-                    <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
-                </div>
-                <blockquote class="blockquote color-medium">{{ user.bio }}</blockquote>
-            </div>
+    <app-header [image]="'keyboard'" [bgcolor]="'dark'">
+        <img class="ms-avatar-hero" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}"/>
+        <h1 class="color-white mt-4">{{ user.displayName }}</h1>        
+        <div class="rating-list mb-4">
+            <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
         </div>
-        </div>
+        <blockquote class="blockquote color-medium">{{ user.bio }}</blockquote>
+    </app-header>
     <div class="container">
         <app-stats [user]="user"></app-stats>
         <app-infos [user]="user" (notify)="onNotify($event)"></app-infos>
         <app-address [address]="user.address"></app-address>
     </div>
     <div class="container" *ngIf="events">
-        <h1 class="color-primary text-center mt-4 mb-4">Activités récentes</h1>
         <app-journal [events]="events"></app-journal>
     </div>
 </div>

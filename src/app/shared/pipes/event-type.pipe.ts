@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class EventTypePipe implements PipeTransform {
     transform(type: string, isFromCurrentUser: boolean, author: string): any {
         if (!type) { return type; }
-        let result = isFromCurrentUser ? 'vous avez ' : `${ author } a `
+        let result = isFromCurrentUser ? 'avez ' : ` a `
         switch (type) {
             case 'article_created'        	: result +=  `crée un article`;break;
             case 'article_published'      	: result +=  `publié un article`;break;
