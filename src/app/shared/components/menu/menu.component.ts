@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 // Skills-hub services
 import { AuthService } from '../../../core/auth.service';
-import { ElementRef } from '@angular/core/src/linker/element_ref';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +12,7 @@ import { ElementRef } from '@angular/core/src/linker/element_ref';
 })
 export class MenuComponent implements OnInit {
 
-  @ViewChild('sidebar') sidebar;
+  public isOpen = false;
 
   constructor(
     public auth: AuthService,
@@ -25,7 +24,7 @@ export class MenuComponent implements OnInit {
 
   logout() {
     this.auth.logout(
-      () => { this.sidebar.close(); this.router.navigateByUrl('/'); },
+      () => this.router.navigateByUrl('/'),
       (err) => console.error('Une erreur s\'est produite lors de la tentative de déconnexion'));
   }
 }

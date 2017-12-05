@@ -1,40 +1,77 @@
 <!DOCTYPE html>
-<h1 class="text-center mb-4 wow fadeInUp animation-delay-5">Faites nous part de vos suggestions</h1>
-<div class="card card-block animated zoomInUp animation-delay-7">
-  <div class="row">
-    <div class="col-lg-5">
-        <iframe width="100%" height="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48342.06480344582!2d-73.980069429762!3d40.775680208459505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2589a018531e3%3A0xb9df1f7387a94119!2sCentral+Park!5e0!3m2!1sen!2sus!4v1491233314840"></iframe>
-    </div>
-    <div class="col-lg-7">
-      <form [formGroup]="contactForm" (submit)="send()">
-        <fieldset>
-          <div class="form-group row">
-            <label for="email" class="col-lg-2 control-label">E-mail</label>
-            <div class="col-lg-9">
-              <input formControlName="email" type="email" name="email" class="form-control">
-            </div>      
-          </div>
-          <div class="form-group row">
-              <label for="subject" class="col-lg-2 control-label">Sujet</label>
-              <div class="col-lg-9">
-                <input formControlName="subject" type="text" name="subject" class="form-control">
-              </div>      
-            </div>
-            <div class="form-group row">
-              <label for="message" class="col-lg-2 control-label">Message</label>
-              <div class="col-lg-9">
-                <textarea formControlName="message" class="form-control" rows="3"></textarea>
+<app-header [image]="'team'">
+  <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Contactez-nous</h1>
+  <p class="lead lead-lg color-light text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
+    Des suggestions, remarques ou questions ?
+    <br>Aidez-nous à améliorer notre service.
+  </p>
+</app-header>
+
+<div class="container">
+  <div class="card card-hero animated fadeInUp animation-delay-7">
+    <div class="card-block">
+        <form [formGroup]="contactForm" (submit)="send()">
+            <fieldset>
+              <div class="form-group row">
+                <label for="email" class="col-lg-2 control-label">E-mail</label>
+                <div class="col-lg-9">
+                  <input formControlName="email" type="email" name="email" class="form-control">
+                </div>      
               </div>
-            </div>
-            <div class="form-group row justify-content-end">
-                <div class="col-lg-10">
-                  <button type="submit" class="btn btn-raised btn-primary">Envoyer</button>
-                  <button type="reset" class="btn btn-link btn-danger">Annuler</button>
+              <div class="form-group row">
+                  <label for="subject" class="col-lg-2 control-label">Sujet</label>
+                  <div class="col-lg-9">
+                    <input formControlName="subject" type="text" name="subject" class="form-control">
+                  </div>      
+              </div>
+              <div class="form-group row">
+                <label for="message" class="col-lg-2 control-label">Message</label>
+                <div class="col-lg-9">
+                  <textarea formControlName="message" class="form-control" rows="3"></textarea>
                 </div>
-            </div>      
-          </fieldset>
-        </form>        
+              </div>
+              <div class="form-group row justify-content-end">
+                  <div class="col-lg-10">
+                    <button type="submit" class="btn btn-raised btn-primary">Envoyer</button>
+                    <button type="reset" class="btn btn-link btn-danger">Annuler</button>
+                  </div>
+              </div>      
+            </fieldset>
+          </form>        
+      </div>
+  </div>
+  <div class="card card-primary">
+    <div class="row">
+      <div class="col-xl-3 col-lg-4 col-md-5">
+        <div class="card-block wow fadeInUp">
+          <div class="mb-2">
+            <span class="ms-logo ms-logo-sm mr-1">SH</span>
+            <h3 class="no-m ms-site-title">Skills
+              <span>Hub</span>
+            </h3>
+          </div>
+          <address class="no-mb">
+            <p>
+              <i class="color-danger-light zmdi zmdi-pin mr-1"></i> 795 Folsom Ave, Suite 600</p>
+            <p>
+              <i class="color-warning-light zmdi zmdi-map mr-1"></i> San Francisco, CA 94107</p>
+            <p>
+              <i class="color-info-light zmdi zmdi-email mr-1"></i>
+              <a href="mailto:joe@example.com">contact@skills-hub.com</a>
+            </p>
+            <p>
+              <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+34 123 456 7890 </p>
+            <p>
+              <i class="color-success-light fa fa-fax mr-1"></i>+34 123 456 7890 </p>
+          </address>
+        </div>
+      </div>
+      <div class="col-xl-9 col-lg-8 col-md-7">
+        <iframe width="100%" height="340" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48342.06480344582!2d-73.980069429762!3d40.775680208459505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2589a018531e3%3A0xb9df1f7387a94119!2sCentral+Park!5e0!3m2!1sen!2sus!4v1491233314840"></iframe>
+      </div>
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>
 

@@ -7,10 +7,10 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Skills-Hub services
-import { AuthService } from '../../core/auth.service';
+import { AuthService } from '../../../core/auth.service';
 
 // Skills-hub components
-import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
+import { ExtendInputComponent } from '../extend-input/extend-input.component';
 
 @Component({
   selector: 'app-login',

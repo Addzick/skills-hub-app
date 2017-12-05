@@ -33,17 +33,18 @@
     <section id="register">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-6">
                     <h2 class="wow fadeInUp animation-delay-2">Vous recherchez un prestataire ?</h2>                    
                     <ol class="service-list list-unstyled mt-4 mb-4">
                         <li class="wow fadeInUp animation-delay-5">Déposez dès maintenant un appel d'offres en quelques clics</li>
-                        <li class="wow fadeInUp animation-delay-7">Recevez des offres compétitives</li>
-                        <li class="wow fadeInUp animation-delay-9">Choisissez le prestataire qui vous correspond</li>
+                        <li class="wow fadeInUp animation-delay-7">Recevez des offres compétitives de nos prestataires inscrits</li>
+                        <li class="wow fadeInUp animation-delay-9">Choisissez le profil qui vous correspond</li>
+                        <li class="wow fadeInUp animation-delay-12">Et attribuez lui la prestation</li>
                     </ol>                    
                     <h2 class="wow fadeInUp animation-delay-12">C'est simple, efficace et gratuit.</h2>
                 </div>
-                <div class="col-lg-5">
-                    <div class="card card-block card-dark-inverse wow fadeInUp animation-delay-12">
+                <div class="col-lg-6">
+                    <div class="card card-block card-primary wow fadeInUp animation-delay-12">
                         <h2 class="text-center">Rejoignez nous</h2>
                         <app-register></app-register>
                     </div>
@@ -94,6 +95,25 @@
         <div class="wrap">
             <div class="container">
                 <h2 class="text-center mb-4 wow fadeInDown animation-delay-2">Quelques actualités récentes</h2>
+                <div class="row masonry-container">
+                    <div class="col-lg-6 masonry-item wow fadeInUp animation-delay-2" *ngFor="let event of events">
+                        <article class="card">
+                            <div class="media p-3 bg-dark color-medium-dark">
+                                <div class="media-left media-object media-middle">
+                                    <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
+                                </div>
+                                <div class="media-body media-middle">
+                                    <a class="media-title" href="#">{{ event.author.displayName }}</a>
+                                    <small>{{ event.type | eventType:isEventFromCurrentUser(event):event.author.displayName }}</small>
+                                </div>
+                                <div class="media-footer media-bottom">
+                                    <small class="color-medium-dark">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
+                                </div>
+                            </div>
+                            <app-event [event]="event"></app-event>  
+                        </article>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

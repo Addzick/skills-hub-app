@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 // Dashboard components
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 
 // Routing
 import { routes } from './dashboard.routing';

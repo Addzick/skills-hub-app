@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+  styleUrls: ['./user-detail.component.scss'],
 })
 export class UserDetailComponent implements OnInit {
   public user: any = {};
@@ -20,7 +20,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       data => {
-        this.user = data.user;
+        this.user = data.user.user;
       }
     );
   }

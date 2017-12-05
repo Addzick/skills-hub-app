@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 // Account components
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './account.component';
+import { SignComponent } from './sign/sign.component';
+
 import { InfosComponent } from './infos/infos.component';
-import { AddressComponent } from './address/address.component';
 import { JournalComponent } from './journal/journal.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { StatsComponent } from './stats/stats.component';
@@ -25,7 +26,7 @@ import { routes } from './account.routing';
     AccountComponent,
     InfosComponent,
     JournalComponent,
-    AddressComponent,
+    SignComponent,
     FavoritesComponent,
     StatsComponent,
   ],
@@ -34,7 +35,7 @@ import { routes } from './account.routing';
   exports: [
     AccountComponent,
     InfosComponent,
-    AddressComponent,
+    SignComponent,
     JournalComponent,
     FavoritesComponent,
     StatsComponent,

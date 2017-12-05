@@ -7,12 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 
 // Module components
 import { HomeComponent } from './home.component';
-import { SignComponent } from './sign/sign.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ForgotComponent } from './forgot/forgot.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { SearchComponent } from './search/search.component';
+import { HelpComponent } from './help/help.component';
 
 // Routing
 import { routes } from './home-routing';
@@ -25,21 +23,17 @@ import { routes } from './home-routing';
   ],
   declarations: [
     HomeComponent,
-    SignComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotComponent,
     AboutComponent,
     ContactComponent,
+    SearchComponent,
+    HelpComponent,
   ],
   exports: [
     HomeComponent,
-    SignComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotComponent,
     AboutComponent,
     ContactComponent,
+    SearchComponent,
+    HelpComponent,
   ]
 })
 export class HomeModule { }

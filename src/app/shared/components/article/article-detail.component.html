@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<app-header [image]="'glasses'" [bgcolor]="'info'">
-    <h1 class="color-white mt-4">{{ article.title }}</h1>
-    <blockquote class="blockquote mt-2">
-        <footer class="text-right">
-            <a class="btn-link" [routerLink]="['/user', article.author._id ]">{{ article.author.displayName }}</a>
-            <cite class="color-medium ml-2">{{ article.updatedAt | amLocale:'fr' | amCalendar }}</cite>
-        </footer>
-    </blockquote>
+<app-header [image]="'glasses'">
 </app-header>
 <div class="container">
-    <div class="card card-hero card-block card-block-big animated fadeInLeftTiny animation-delay-5" [innerHtml]="article.body">
+    <div class="card card-hero animated fadeInLeftTiny animation-delay-5">
+        <blockquote class="blockquote">
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.description }}</p>
+            <footer>
+                <a class="btn-link" [routerLink]="['/user', article.author._id ]">{{ article.author.displayName }}</a>
+                <cite class="color-medium ml-2">{{ article.updatedAt | amLocale:'fr' | amCalendar }}</cite>
+            </footer>
+        </blockquote>
+        <div class="card-block card-block-big" [innerHtml]="article.body"></div>
     </div>
 </div>

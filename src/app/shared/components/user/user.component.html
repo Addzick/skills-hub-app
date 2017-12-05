@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div class="ms-hero-bg-dark ms-hero-img-palissade">
+<div class="ms-hero-bg-dark">
   <img src="{{ user.image || '/assets/img/no-picture.jpg' }}" alt="{{ user.displayName }}" class="img-avatar-circle"> 
 </div>
 <div class="card-block pt-4">
@@ -18,7 +18,7 @@
       </a>
     </div>
     <div class="col text-right">
-        <a class="btn btn-raised btn-sm btn-primary" [routerLink]="['user', user._id ]">Découvrir</a>
+        <a class="btn btn-raised btn-sm btn-primary" [routerLink]="['/user', user._id ]">Découvrir</a>
     </div>
   </div>
 </div>

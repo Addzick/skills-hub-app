@@ -3,15 +3,15 @@ import { Component, OnInit, Input, ElementRef, NgZone, ViewChild  } from '@angul
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
-import '../../core/rxjs-extensions';
+import '../../../core/rxjs-extensions';
 // 3rd parties
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 // Skills-hub services
-import { UserService } from '../../core/user.service';
+import { UserService } from '../../../core/user.service';
 // Skills-hub components
-import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
+import { ExtendInputComponent } from '../extend-input/extend-input.component';
 
 @Component({
   selector: 'app-address',

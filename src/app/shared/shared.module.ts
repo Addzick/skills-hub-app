@@ -41,6 +41,11 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ExtendInputComponent } from './components/extend-input/extend-input.component';
 
+import { AddressComponent } from './components/address/address.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ForgotComponent } from './components/forgot/forgot.component';
+
 import { ArticleComponent } from './components/article/article.component';
 import { TenderComponent } from './components/tender/tender.component';
 import { TaskComponent } from './components/task/task.component';
@@ -84,6 +89,10 @@ import { environment } from '../../environments/environment';
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,
+    AddressComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotComponent,
     ArticleComponent,
     TenderComponent,
     TaskComponent,
@@ -115,6 +124,10 @@ import { environment } from '../../environments/environment';
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,
+    AddressComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotComponent,
     ArticleComponent,
     TenderComponent,
     TaskComponent,

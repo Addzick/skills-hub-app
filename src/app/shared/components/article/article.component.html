@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <article class="card-block">
-    <h4 class="mt-2"><a [routerLink]="['article', article._id]">{{ article.title }}</a></h4>
-    <div class="card-text">{{ article.description }}</div>
+    <h3 class="mt-2">{{ article.title }}</h3>
+    <div class="card-text">
+        <p class="text-ellipsis">{{ article.description }}</p>
+        <div class="text-right">
+            <a class="btn btn-raised btn-primary" [routerLink]="['/article', article._id]">Lire l'article</a>
+        </div>
+    </div>
     <div class="row mt-2 ml-1">
         <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
     </div>

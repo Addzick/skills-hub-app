@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     page: 1,
     size: 5,
     types: [
+      'user_registered',
       'article_published',
       'article_commented',
       'article_liked',
@@ -101,5 +102,9 @@ export class HomeComponent implements OnInit, OnDestroy {
      .catch((error) => {
         throw error;
       });
+  }
+
+  isEventFromCurrentUser(event) {
+    return event.author.getCurrentUserName == this.auth.getCurrentUserName();
   }
 }

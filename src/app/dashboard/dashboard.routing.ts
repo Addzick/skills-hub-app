@@ -7,7 +7,7 @@ import { AuthGuardLogin } from '../core/auth-guard-login.service';
 import { ArticleResolver } from '../shared/resolvers/article-resolver.service';
 
 // Dashboard components
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 
 
 // Routes definition
@@ -15,6 +15,7 @@ export const routes: Routes = [
     {
         path: '',
         component: DashboardComponent,
+        canActivate: [AuthGuardLogin]
     },
     
 ];
