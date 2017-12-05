@@ -5,7 +5,7 @@ import { Routes } from '@angular/router';
 import { AuthGuardLogin } from '../core/auth-guard-login.service';
 
 // Wall components
-import { WallComponent } from './wall/wall.component';
+import { WallComponent } from './wall.component';
 
 // Shared Resolvers
 import { ArticleResolver } from '../shared/resolvers/article-resolver.service';

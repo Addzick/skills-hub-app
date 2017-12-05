@@ -4,17 +4,17 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
-import '../../core/rxjs-extensions';
+import '../core/rxjs-extensions';
 
 // 3rd parties
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Core services
-import { AuthService } from '../../core/auth.service';
-import { environment } from '../../../environments/environment';
+import { AuthService } from '../core/auth.service';
+import { environment } from '../../environments/environment';
 
 // Shared services
-import { EventService, EventQuery } from '../../shared/services/event.service';
+import { EventService, EventQuery } from '../shared/services/event.service';
 
 @Component({
   selector: 'app-wall',

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 // Wall components
-import { WallComponent } from './wall/wall.component';
+import { WallComponent } from './wall.component';
 
 // Routing
 import { routes } from './wall.routing';
