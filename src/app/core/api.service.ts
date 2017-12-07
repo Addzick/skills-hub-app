@@ -18,7 +18,7 @@ export abstract class ApiService {
         return environment.apiUrl + req;
     }
 
-    get(url: string, options?: RequestOptionsArgs): Observable<any> {
+    protected get(url: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http
         .get(this.updateUrl(url), options)
         .map((res: Response) => {
@@ -27,7 +27,7 @@ export abstract class ApiService {
         .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    post(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+    protected post(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http
         .post(this.updateUrl(url), body, options)
         .map((res: Response) => {
@@ -36,7 +36,7 @@ export abstract class ApiService {
         .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    put(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+    protected put(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http
         .put(this.updateUrl(url), body, options)
         .map((res: Response) => {
@@ -45,7 +45,7 @@ export abstract class ApiService {
         .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    patch(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+    protected patch(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http
         .patch(this.updateUrl(url), body, options)
         .map((res: Response) => {
@@ -54,7 +54,7 @@ export abstract class ApiService {
         .catch((err: Response) => Observable.throw(err.statusText));
     }
 
-    delete(url: string, options?: RequestOptionsArgs): Observable<any> {
+    protected delete(url: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http.delete(this.updateUrl(url), options)
         .map((res: Response) => {
             return res.json();

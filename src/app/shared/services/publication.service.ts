@@ -38,11 +38,11 @@ export abstract class PublicationService extends ApiService {
       return this.get(`/${ this.apiname }`, { search: query });
     }
 
-    create(body: string) {
+    create(body) {
       return this.post(`/${ this.apiname }`, body);
     }
 
-    edit(id: string, body: string) {
+    edit(id: string, body) {
       return this.put(`/${ this.apiname }/${ id }`, body);
     }
 

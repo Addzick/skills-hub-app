@@ -1,3 +1,11 @@
-<p>
-  comment works!
-</p>
+<!DOCTYPE html>
+<app-article *ngIf="comment.source.kind === 'article'" [article]="comment.source.item"></app-article>
+<app-proposition *ngIf="comment.source.kind === 'proposition'" [proposition]="comment.source.item"></app-proposition>
+<app-rating *ngIf="comment.source.kind === 'rating'" [rating]="comment.source.item"></app-rating>
+<app-task *ngIf="comment.source.kind === 'task'" [task]="comment.source.item"></app-task>
+<app-tender *ngIf="comment.source.kind === 'tender'" [tender]="comment.source.item"></app-tender>
+<app-comment *ngIf="comment.source.kind === 'comment'" [comment]="comment.source.item"></app-comment>
+<app-like *ngIf="comment.source.kind === 'like'" [like]="comment.source.item"></app-like>
+<div class="card card-dark-inverse card-block">
+    <p class="card-text">{{ comment.body }}</p>
+</div>

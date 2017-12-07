@@ -10,6 +10,7 @@ import { CategoryService } from '../shared/services/category.service';
 import { EventService, EventQuery } from '../shared/services/event.service';
 import { RatingService, RatingQuery } from '../shared/services/rating.service';
 
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -26,20 +27,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     page: 1,
     size: 5,
     types: [
-      'user_registered',
       'article_published',
-      'article_commented',
-      'article_liked',
-      'tender_published',
-      'tender_commented',
-      'tender_liked',
-      'proposition_published',
-      'proposition_accepted',
-      'proposition_commented',
-      'proposition_liked'
+      'proposition_accepted'
     ]
   };
   public ratingQuery: RatingQuery = {
+    startValue: 4,
+    endValue: 5,
     sort: { updatedAt : 'desc'},
     page: 1,
     size: 5
@@ -50,15 +44,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   private ratingSub: any;
 
   constructor(
-    private auth: AuthService,
     private categoryService : CategoryService,
     private eventService: EventService,
     private ratingService: RatingService
   ) { }
 
   ngOnInit() {
+    $.getScript('/assets/js/lead.js');
     this.categorySub = this.getTopCategories().subscribe();
-    this.eventSub = this.getLastEvents().subscribe();
+    this.eventSub = this.getLastAcceptedPropositions().subscribe();
     this.ratingSub = this.getLastRatings().subscribe();
   }
 
@@ -92,7 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  getLastEvents() {
+  getLastAcceptedPropositions() {
     return this.eventService
     .findAll(this.eventQuery)
     .map(
@@ -102,9 +96,5 @@ export class HomeComponent implements OnInit, OnDestroy {
      .catch((error) => {
         throw error;
       });
-  }
-
-  isEventFromCurrentUser(event) {
-    return event.author.getCurrentUserName == this.auth.getCurrentUserName();
   }
 }

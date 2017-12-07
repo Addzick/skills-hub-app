@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<app-user *ngIf="event.source.kind === 'user'" [user]="event.source.item"></app-user>
-<app-article *ngIf="event.source.kind === 'article'" [article]="event.source.item"></app-article>
-<app-proposition *ngIf="event.source.kind === 'proposition'" [proposition]="event.source.item"></app-proposition>
-<app-rating *ngIf="event.source.kind === 'rating'" [rating]="event.source.item"></app-rating>
-<app-task *ngIf="event.source.kind === 'task'" [task]="event.source.item"></app-task>
-<app-tender *ngIf="event.source.kind === 'tender'" [tender]="even.source.item"></app-tender>
-<app-comment *ngIf="event.source.kind === 'comment'" [comment]="event.source.item"></app-comment>
-<app-like *ngIf="event.source.kind === 'like'" [like]="event.source.item"></app-like>
+<article class="card wow fadeInUp animation-delay-2">
+    <div class="card-header media bg-white">
+        <div class="media-left media-object media-middle">
+            <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
+        </div>
+        <div class="media-body media-middle">
+            <a class="media-title" [routerLink]="['/user', event.author._id]">{{ event.author.displayName }}</a><br>
+            <small><em>{{ event.type | eventType:isEventFromCurrentUser(event):event.author.displayName }}</em></small>
+        </div>
+        <div class="media-footer media-bottom pull-right">
+            <i class="zmdi zmdi-time no-mr"></i>
+            <small class="color-medium-dark">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
+        </div>
+    </div>
+    <div class="card-block">
+        <app-user *ngIf="event.source.kind === 'user'" [user]="event.source.item"></app-user>
+        <app-article *ngIf="event.source.kind === 'article'" [article]="event.source.item"></app-article>
+        <app-proposition *ngIf="event.source.kind === 'proposition'" [proposition]="event.source.item"></app-proposition>
+        <app-rating *ngIf="event.source.kind === 'rating'" [rating]="event.source.item"></app-rating>
+        <app-task *ngIf="event.source.kind === 'task'" [task]="event.source.item"></app-task>
+        <app-tender *ngIf="event.source.kind === 'tender'" [tender]="event.source.item"></app-tender>
+        <app-comment *ngIf="event.source.kind === 'comment'" [comment]="event.source.item"></app-comment>
+        <app-like *ngIf="event.source.kind === 'like'" [like]="event.source.item"></app-like> 
+    </div>
+    <div class="card-footer bg-light" *ngIf="event.source.kind !== 'user'">
+        <div class="form-group">
+            <textarea name="comment" class="form-control" [(ngModel)]="text" placeholder="Votre commentaire ..."></textarea>
+            <div class="pull-right">
+                <a class="btn btn-sm btn-primary btn-raised" (click)="comment()">
+                    Commenter
+                </a>
+            </div>
+        </div>
+    </div>
+</article>
+
+
 
 
 

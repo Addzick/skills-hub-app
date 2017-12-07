@@ -13,6 +13,8 @@ import { PublicationService, PublicationQuery } from './publication.service';
 export interface RatingQuery extends PublicationQuery {
   target?: string;
   concern?: string;
+  startValue?: number;
+  endValue?: number;
 }
 
 @Injectable()

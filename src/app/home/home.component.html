@@ -31,7 +31,7 @@
 </div>
 <div class="bg-light index-1 intro-fixed-next pt-4 pb-4" id="intro-next">
     <section id="register">
-        <div class="container">
+        <div class="wrap">
             <div class="row">
                 <div class="col-lg-6">
                     <h2 class="wow fadeInUp animation-delay-2">Vous recherchez un prestataire ?</h2>                    
@@ -93,27 +93,17 @@
 
     <section id="recents">
         <div class="wrap">
-            <div class="container">
+            <div class="container-fluid">
                 <h2 class="text-center mb-4 wow fadeInDown animation-delay-2">Quelques actualités récentes</h2>
-                <div class="row masonry-container">
-                    <div class="col-lg-6 masonry-item wow fadeInUp animation-delay-2" *ngFor="let event of events">
-                        <article class="card">
-                            <div class="media p-3 bg-dark color-medium-dark">
-                                <div class="media-left media-object media-middle">
-                                    <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
-                                </div>
-                                <div class="media-body media-middle">
-                                    <a class="media-title" href="#">{{ event.author.displayName }}</a>
-                                    <small>{{ event.type | eventType:isEventFromCurrentUser(event):event.author.displayName }}</small>
-                                </div>
-                                <div class="media-footer media-bottom">
-                                    <small class="color-medium-dark">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
-                                </div>
-                            </div>
-                            <app-event [event]="event"></app-event>  
-                        </article>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <ul class="list-unstyled">
+                            <li *ngFor="let event of events">
+                                <app-event [event]="event"></app-event>  
+                            </li>
+                        </ul> 
                     </div>
-                </div>
+                </div>         
             </div>
         </div>
     </section>

@@ -8,24 +8,14 @@
 </app-header>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-8">
-      <article class="card wow fadeInLeft animation-delay-5 mb-4" *ngFor="let event of events">
-          <div class="media p-3 bg-dark color-medium-dark">
-              <div class="media-left media-object media-middle">
-                  <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
-              </div>
-              <div class="media-body media-middle">
-                <a class="media-title" href="#">{{ event.author.displayName }}</a>
-                <small>{{ event.type | eventType:isEventFromCurrentUser(event):event.author.displayName }}</small>
-              </div>
-              <div class="media-footer media-bottom">
-                <small class="color-medium-dark">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
-              </div>
-          </div>
-        <app-event [event]="event"></app-event>  
-      </article>
+    <div class="row">
+        <div class="col-lg-8">
+            <ul class="list-unstyled">
+                <li *ngFor="let event of events">
+                    <app-event [event]="event"></app-event>  
+                </li>
+            </ul> 
+        </div>
     </div>
-  </div>
 </div>
 

@@ -33,11 +33,11 @@ export class CommentService extends ApiService {
     return this.get(`/comments/${ id }`);
   }
 
-  comment(body: string) {
+  comment(body) {
     return this.post('/comments', body);
   }
 
-  uncomment(id: string) {
+  uncomment(id) {
     return this.delete(`/comments/${ id }`);
   }
 }

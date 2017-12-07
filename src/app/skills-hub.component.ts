@@ -1,5 +1,5 @@
 // Angular modules
-import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 // RxJs stuff
@@ -27,7 +27,8 @@ export class SkillsHubComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastsManager,
-    private vcr: ViewContainerRef) {
+    private vcr: ViewContainerRef,
+    private renderer: Renderer2) {
       // On définit le conteneur pour ng2-toastr
       this.toastr.setRootViewContainerRef(vcr);
     }
@@ -44,8 +45,7 @@ export class SkillsHubComponent implements OnInit, OnDestroy {
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
       .subscribe((event) => {
-        $.getScript('/assets/js/app.min.js');
-        $.getScript('/assets/js/lead.js');
+        this.renderer.removeClass(document.getElementById('ms-slidebar'), 'open');
        });
     }
 

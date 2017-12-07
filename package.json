@@ -15,6 +15,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "*",
     "@angular/animations": "^5.0.3",
     "@angular/cdk": "*",
     "@angular/cli": "^1.5.4",
@@ -30,6 +31,7 @@
     "@angular/platform-browser": "^5.0.3",
     "@angular/platform-browser-dynamic": "^5.0.3",
     "@angular/router": "^5.0.3",
+    "@types/googlemaps": "*",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.8.2",
     "@types/jasminewd2": "*",
@@ -43,9 +45,7 @@
     "ng2-toastr": "*",
     "rxjs": "*",
     "typescript": "^2.6.2",
-    "zone.js": "*",
-    "@agm/core": "*",
-    "@types/googlemaps": "*"
+    "zone.js": "*"
   },
   "devDependencies": {
     "codelyzer": "^4.0.1",
