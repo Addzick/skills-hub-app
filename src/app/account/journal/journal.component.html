@@ -9,7 +9,7 @@
             </div> 
             <div class="card card-event no-p wow materialUp">
                 <a class="alert alert-default" [routerLink]="['/', event.source.kind, event.source.item._id ]">
-                    <em>vous {{ event.type | eventType:true:event.author.displayName }}</em>
+                    <em>vous {{ event.type | eventType:true }}</em>
                 </a>
                 <div class="card card-item d-none d-md-block" *ngIf="event.source.kind !== 'user'">
                     <app-article *ngIf="event.source.kind === 'article'" [article]="event.source.item"></app-article>

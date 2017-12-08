@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'eventType'
 })
 export class EventTypePipe implements PipeTransform {
-    transform(type: string, isFromCurrentUser: boolean, author: string): any {
+    transform(type: string, isFromCurrentUser: boolean): any {
         if (!type) { return type; }
         let result = isFromCurrentUser ? 'avez ' : ` a `
         switch (type) {

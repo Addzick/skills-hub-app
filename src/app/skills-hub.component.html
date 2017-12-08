@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<div id="ms-preload" class="ms-preload" *ngIf="loading">
+    <div id="status">
+        <div class="spinner">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+        </div>
+    </div>
+</div>
 <div class="ms-site-container ms-nav-fixed">
     <!-- Header -->
     <app-navbar ></app-navbar>

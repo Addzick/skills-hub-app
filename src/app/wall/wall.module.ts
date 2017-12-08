@@ -7,6 +7,9 @@ import { SharedModule } from '../shared/shared.module';
 
 // Wall components
 import { WallComponent } from './wall.component';
+import { EventsComponent } from './events/events.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { TendersComponent } from './tenders/tenders.component';
 
 // Routing
 import { routes } from './wall.routing';
@@ -18,11 +21,17 @@ import { routes } from './wall.routing';
   ],
   declarations: [
     WallComponent,
+    EventsComponent,
+    ArticlesComponent,
+    TendersComponent,
   ],
   providers: [
   ],
   exports: [
     WallComponent,
+    EventsComponent,
+    ArticlesComponent,
+    TendersComponent,
   ]
 })
 export class WallModule { }

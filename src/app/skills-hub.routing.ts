@@ -44,6 +44,10 @@ export const routes: Routes = [
     loadChildren: './account/account.module#AccountModule'
   },
   {
+    path: 'portfolio',
+    loadChildren: './portfolio/portfolio.module#PortfolioModule'
+  },
+  {
       path: 'article/:article',
       component: ArticleDetailComponent,
       resolve: {

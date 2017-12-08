@@ -6,7 +6,7 @@
         </div>
         <div class="media-body media-middle">
             <a class="media-title" [routerLink]="['/user', event.author._id]">{{ event.author.displayName }}</a><br>
-            <small><em>{{ event.type | eventType:isEventFromCurrentUser(event):event.author.displayName }}</em></small>
+            <small><em>{{ event.type | eventType:isEventFromCurrentUser(event) }}</em></small>
         </div>
         <div class="media-footer media-bottom color-dark pull-right">
             <i class="zmdi zmdi-time no-mr"></i>

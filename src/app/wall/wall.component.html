@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<app-header [image]="'photograph'">
+<app-header [image]="'palissade'">
     <h1 class="no-m ms-site-title color-warning center-block ms-site-title-lg mt-4 animated zoomInDown animation-delay-5 text-uppercase">Fil d'actualité</h1>
     <p class="lead lead-lg color-light text-center center-block mt-4 mb-4 mw-800 fw-300 animated fadeInUp animation-delay-7">
       Découvrez, vivez et partagez<br>
@@ -34,18 +34,14 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            <ul class="list-unstyled">
-                <li *ngFor="let event of events">
-                    <app-event [event]="event"></app-event>  
-                </li>
-            </ul> 
+            <app-events></app-events>
         </div>
         <div class="col-lg-4">
-            <div class="card">
-                
+            <div class="card card-info card-block">
+                <app-articles></app-articles>
             </div>
-            <div class="card">
-                
+            <div class="card card-warning card-block">
+                <app-tenders></app-tenders>
             </div>
         </div>
     </div>
