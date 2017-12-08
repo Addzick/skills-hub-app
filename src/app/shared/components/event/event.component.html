@@ -8,7 +8,7 @@
             <a class="media-title" [routerLink]="['/user', event.author._id]">{{ event.author.displayName }}</a><br>
             <small><em>{{ event.type | eventType:isEventFromCurrentUser(event) }}</em></small>
         </div>
-        <div class="media-footer media-bottom color-dark pull-right">
+        <div class="media-footer media-bottom text-right">
             <i class="zmdi zmdi-time no-mr"></i>
             <small>{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
         </div>
@@ -24,21 +24,21 @@
     <div class="card-block no-mt no-pt no-pb no-mb">
         <div class="row justify-content-center">
             <div class="col-4">
-                <a (click)="like()" class="btn btn-royal btn-block btn-raised btn-sm no-mt" *ngIf="event.source.kind !== 'user'">
-                    <i class="zmdi zmdi-favorite"></i>
-                    J'aime
+                <a (click)="like()" class="btn btn-info btn-block btn-raised btn-sm no-mt" *ngIf="event.source.kind !== 'user'">
+                    <i class="zmdi zmdi-favorite no-mr"></i>
+                    <span class="d-none d-md-inline-block ml-1">J'aime</span>
                 </a>
             </div>
             <div class="col-4">
-                <a (click)="setCommentFormVisibility()" class="btn btn-info btn-raised btn-block btn-sm no-mt" *ngIf="event.source.kind !== 'user'">
-                    <i class="zmdi zmdi-comment"></i>
-                    Commenter
+                <a (click)="setCommentFormVisibility()" class="btn btn-warning btn-raised btn-block btn-sm no-mt" *ngIf="event.source.kind !== 'user'">
+                    <i class="zmdi zmdi-comments no-mr"></i>
+                    <span class="d-none d-md-inline-block ml-1">Commenter</span>
                 </a>
             </div>
             <div class="col-4">
                 <a [routerLink]="['/', event.source.kind, event.source.item._id]" class="btn btn-primary btn-block btn-raised btn-sm no-mt">
-                    <i class="zmdi zmdi-more"></i>
-                    Plus
+                    <i class="zmdi zmdi-more no-mr"></i>
+                    <span class="d-none d-md-inline-block ml-1">Plus</span>
                 </a>
             </div>
         </div>

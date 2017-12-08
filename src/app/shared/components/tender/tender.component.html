@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <div class="card-block">
-    <a [routerLink]="['/tender', tender._id]">
-        <h3 class="no-mt">{{ tender.title }}</h3>
-    </a>
-    <dl class="dl-horizontal">
-        <dt><i class="zmdi zmdi-pin mr-1 color-warning"></i> Categorie</dt>
-        <dd>{{ tender.category.title }}</dd>
-        <dt><i class="zmdi zmdi-pin mr-1 color-royal"></i> Localité</dt>
-        <dd>{{ tender.address.short }}</dd>
-        <dt><i class="zmdi zmdi-calendar mr-1 color-info"></i> Date</dt>
-        <dd>{{ tender.workDate | amLocale:'fr' | amCalendar }}</dd>
-        <dt><i class="zmdi zmdi-notifications mr-1 color-danger"></i> Echéance</dt>
-        <dd>{{ tender.validityEnd | amLocale:'fr' | amCalendar }}</dd>
-    </dl>
+    <a [routerLink]="['/tender', tender._id]" class="pub-title">{{ tender.title }}</a>
+    <table class="table table-no-border table-striped">
+        <tr>
+            <th><i class="zmdi zmdi-bookmark mr-1 color-warning"></i> <span class="d-none d-md-inline-block">Catégorie</span></th>
+            <td>{{ tender.category.title }}</td>
+        </tr>
+        <tr>
+            <th><i class="zmdi zmdi-map mr-1 color-success"></i> <span class="d-none d-md-inline-block">Localite</span></th>
+            <td>{{ tender.address.short }}</td>
+        </tr>        
+        <tr>
+            <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> <span class="d-none d-md-inline-block">Date</span></th>
+            <td>{{ tender.workDate  | amLocale: 'fr' | amCalendar }}</td>
+        </tr>
+        <tr>
+            <th><i class="zmdi zmdi-notifications-active mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Echéance</span></th>
+            <td>{{ tender.validityEnd  | amLocale: 'fr' | amCalendar }}</td>
+        </tr>
+    </table>
+    <div class="mt-2">
+        <span class="ms-icon ms-icon-inverse color-info" *ngIf="tender.nbLikes">
+            <i class="zmdi zmdi-favorite"></i>
+            {{ tender.nbLikes }}
+        </span>
+        <span class="ms-icon ms-icon-inverse color-warning" *ngIf="tender.nbComments">
+            <i class="zmdi zmdi-comments"></i>
+            {{ tender.nbComments }}
+        </span>
+    </div>
 </div>
 
 

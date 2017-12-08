@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<ul class="list-unstyled">
-    <li class="media" *ngFor="let event of events">
+<div class="list-group">
+    <a class="list-group-item media" *ngFor="let event of events" [routerLink]="['/', event.source.kind, event.source.item._id]">
         <div class="media-left media-object media-middle">
             <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
         </div>
         <div class="media-body media-middle">
-            <a class="media-title" [routerLink]="['/user', event.author._id]">{{ event.author.displayName }}</a><br>
-            <small><em>{{ event.type | eventType:isEventFromCurrentUser(event) }}</em></small>
+            <h5 class="media-title">{{ event.author.displayName }}</h5>
             <p>{{ event.source.item.title }}</p>
         </div>
-        <div class="media-footer media-bottom color-dark pull-right">
+        <div class="media-footer media-bottom text-right">
             <i class="zmdi zmdi-time no-mr"></i>
             <small>{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
         </div>
-    </li>
-</ul> 
+    </a>
+</div> 

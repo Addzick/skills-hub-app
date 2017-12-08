@@ -218,4 +218,27 @@ agm-map {
   margin: 0 auto;
   display: block;
 }
+.pub-title {
+  font-size: 20px;
+  font-weight: 300;
+  color: rgb(0, 97, 100);
+  margin: 0px;
+  padding: 0px;
+}
+@media(max-width:767px) {
+  .card .card-header,.card .card-block {
+    padding: 10px;
+  } 
+  .media-body.media-middle .media-title {
+    font-size: 13px;
+  }
+  .media-footer.media-bottom small,.media-body.media-middle small  {
+    font-size:10px;
+  }
+}
 
+.ms-icon {
+  width: auto;
+  padding: 8px;
+  line-height: 1.4;
+}
