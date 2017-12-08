@@ -115,7 +115,6 @@ textarea {
   }
 }
 
-
 .ms-footbar::before {
   background-color: none;
   content: '';
@@ -125,33 +124,6 @@ textarea {
   top: 0;
   width: 100%;
   z-index: 2;
-}
-
-.text-ellipsis {
-  overflow: hidden;
-  position: relative; 
-  line-height: 1.2em;
-  max-height: 3.6em; 
-  text-align: justify;  
-  margin-right: -1em;
-  padding-right: 1em;
-}
-
-.text-ellipsis:before {
-  content: '...';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.text-ellipsis:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  background: white;
 }
 
 @media(max-width:767px) {
@@ -188,7 +160,6 @@ agm-map {
   color: #424242 !important;
   background-color:rgba(0, 97, 100, 0.01);
   margin:0px;
-  padding: 0px;
   box-shadow: none;
 }
  .ms-timeline .ms-timeline-item .card.card-item a.link {
@@ -228,8 +199,8 @@ agm-map {
       border-right: solid 15px rgb(0, 97, 100);
   }
 
-  .ms-timeline .ms-timeline-item:hover .card.card-item .card {
-    box-shadow: 0 4px 5px 0 rgba(0, 97, 100, 0.3),0 1px 10px 0 rgba(0, 97, 100,.3),0 2px 4px -1px rgba(0, 97, 100,.4);
+  .ms-timeline .ms-timeline-item:hover .card.card-item {
+    box-shadow: none;
   }
 }
 

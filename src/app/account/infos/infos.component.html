@@ -4,15 +4,15 @@
     <div *ngIf="!isEdit">
         <table class="table table-no-border table-striped">
             <tr>
-                <th><i class="zmdi zmdi-email mr-1 color-primary"></i> Email</th>
+                <th><i class="zmdi zmdi-email mr-1 color-primary"></i> <span class="d-none d-md-inline-block">Email</span></th>
                 <td><a href="#">{{ user.email }}</a></td>
             </tr>
             <tr>
-                <th><i class="zmdi zmdi-face mr-1 color-success"></i> Nom</th>
+                <th><i class="zmdi zmdi-face mr-1 color-success"></i> <span class="d-none d-md-inline-block">Nom</span></th>
                 <td>{{ user.displayName }}</td>
             </tr>        
             <tr>
-                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> Inscrit depuis le</th>
+                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> <span class="d-none d-md-inline-block">Inscription</span></th>
                 <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
             </tr>
         </table>

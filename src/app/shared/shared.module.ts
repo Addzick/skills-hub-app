@@ -33,6 +33,7 @@ import { UserResolver } from './resolvers/user-resolver.service';
 
 // Shared pipes
 import { EventTypePipe } from './pipes/event-type.pipe';
+import { TextTruncatePipe } from './pipes/text-truncate.pipe';
 
 // Shared components
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -83,6 +84,7 @@ import { environment } from '../../environments/environment';
   ],
   declarations: [
     EventTypePipe,
+    TextTruncatePipe,
     NavbarComponent,
     HeaderComponent,
     MenuComponent,
@@ -117,6 +119,7 @@ import { environment } from '../../environments/environment';
     MomentModule,
     AgmCoreModule,
     EventTypePipe,
+    TextTruncatePipe,
     NavbarComponent,
     HeaderComponent,
     MenuComponent,

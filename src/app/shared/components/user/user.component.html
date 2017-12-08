@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<div class="card card-royal card-block">
-    <p class="text-ellipsis">
-        <a [routerLink]="['/user', user._id]">
-            {{ user.bio }}
-        </a>
-    </p>
+<div class="card-block">
+    <a [routerLink]="['/user', user._id]">
+        <h3 class="color-warning">{{ user.displayName }}</h3> 
+    </a>
+    <p class="mt-2">{{ user.bio | truncate }}</p>
 </div>
 
 

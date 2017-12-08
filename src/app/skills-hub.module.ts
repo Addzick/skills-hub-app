@@ -6,7 +6,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 // 3rd parties modules
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
+
+// ToastR options
+import { CustomToastOption } from './toastr-options';
 
 // Skills-Hub Core module
 import { CoreModule } from './core/core.module';
@@ -32,7 +35,12 @@ import { routes } from './skills-hub.routing';
   declarations: [
     SkillsHubComponent
   ],
-  providers: [ ],
+  providers: [ 
+    { 
+      provide: ToastOptions, 
+      useClass: CustomToastOption
+    },
+  ],
   exports: [ ],
   bootstrap: [SkillsHubComponent]
 })

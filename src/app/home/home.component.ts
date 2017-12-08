@@ -17,7 +17,7 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   public categories: Array<any> = [];
   public events: Array<any> = [];
   public ratings: Array<any> = [];
@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     page: 1,
     size: 5,
     types: [
-      'article_published',
       'proposition_accepted'
     ]
   };
@@ -39,10 +38,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     size: 5
   };
 
-  private categorySub: any;
-  private eventSub: any;
-  private ratingSub: any;
-
   constructor(
     private categoryService : CategoryService,
     private eventService: EventService,
@@ -50,51 +45,32 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    $.getScript('/assets/js/lead.js');
-    this.categorySub = this.getTopCategories().subscribe();
-    this.eventSub = this.getLastAcceptedPropositions().subscribe();
-    this.ratingSub = this.getLastRatings().subscribe();
+    this.getTopCategories()
+    this.getLastAcceptedPropositions()
+    this.getLastRatings()
   }
-
-  ngOnDestroy() {
-    this.categorySub.unsubscribe();
-    this.eventSub.unsubscribe();
-    this.ratingSub.unsubscribe();
-  } 
 
   getTopCategories(){
     return this.categoryService
     .findAll()
-    .map(
-      (res) => {
-        this.categories = res.categories;
-      })
-     .catch((error) => {
-        throw error;
-      });
+    .subscribe(
+      res => this.categories = res.categories,
+      err => console.error(err));
   }
 
   getLastRatings() {
     return this.ratingService
     .findAll(this.ratingQuery)
-    .map(
-      (res) => {
-        this.ratings = res.ratings;
-      })
-     .catch((error) => {
-        throw error;
-      });
+    .subscribe(
+      res => this.ratings = res.ratings,
+      err => console.error(err));
   }
 
   getLastAcceptedPropositions() {
     return this.eventService
     .findAll(this.eventQuery)
-    .map(
-      (res) => {
-        this.events = res.events;
-      })
-     .catch((error) => {
-        throw error;
-      });
+    .subscribe(
+      res => this.events = res.events,
+      err => console.error(err));
   }
 }

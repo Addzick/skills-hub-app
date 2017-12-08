@@ -22,7 +22,8 @@ import { ExtendInputComponent } from '../extend-input/extend-input.component';
 export class EventComponent implements OnInit {
   @Input() event: any;
   text: string;
-  
+  isCommentFormVisible = false;
+
   constructor(
     private auth: AuthService,
     private commentService: CommentService,
@@ -39,11 +40,12 @@ export class EventComponent implements OnInit {
     if(this.text){
       this.commentService.comment({
         comment: this.text,
-        source: this.event.source
+        source: this.getEventSource()
       })
       .subscribe(
         res => {
           this.text = '';
+          this.isCommentFormVisible = false;
         }
       );
     }
@@ -51,12 +53,24 @@ export class EventComponent implements OnInit {
 
   like(){
     this.likeService.like({
-      source: this.event.source
+      source: this.getEventSource()
     })
     .subscribe(
       res => {
         this.text = '';
       }
     );
+  }
+
+  setCommentFormVisibility(){
+    this.isCommentFormVisible = !this.isCommentFormVisible;
+  }
+
+  private getEventSource(){
+    switch(this.event.source.kind){
+      case 'comment': 
+      case 'like': return this.event.source.item.source;
+      default: return this.event.source;
+    }
   }
 }

@@ -22,7 +22,7 @@ import { EventService, EventQuery } from '../shared/services/event.service';
   styleUrls: ['./wall.component.scss'],
   providers: [EventService]
 })
-export class WallComponent implements OnInit, OnDestroy {
+export class WallComponent implements OnInit {
   private channel: any;
   private subscription: any;
   private socketUrl = environment.socketUrl;
@@ -58,33 +58,20 @@ export class WallComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
-    this.initEvents();
-  }
+    // Récupération des événements
+    this.eventService.findAll(this.query).subscribe(
+      res => this.events = res.events,
+      err => console.error(err));
 
-  ngOnDestroy() {
-    this.channel.unsubscribe();
-    this.subscription.unsubscribe();
-  }
-
-  initEvents() {
-    this.subscription = this.getEvents().subscribe();
-    this.channel = this.auth.channel.subscribe((event) => {
-      this.toastr.info('Nouveaux événements');
-      this.subscription.unsubscribe();
-      this.subscription = this.getEvents().subscribe();
-     });
-  }
-
-  getEvents() {
-    return this.eventService
-    .findAll(this.query)
-    .map(
-      (res) => {
-        this.events = res.events;
-      })
-     .catch((error) => {
-        throw error;
-      });
+    // Souscription aux nouveaux evenements
+    this.channel = this.auth.channel.subscribe(
+      (event) => {
+        if(this.query.types.indexOf(event.type) !== -1) {
+          this.toastr.info('Nouvelle(s) actualités');
+          this.events.unshift(event);
+        }
+     },
+     err => console.error(err));
   }
 
   isEventFromCurrentUser(event) {

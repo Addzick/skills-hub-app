@@ -7,7 +7,31 @@
     </p>
 </app-header>
 
-<div class="container">
+<div class="container-fluid">
+    <div class="card card-hero card-dark animated fadeInUp animation-delay-2">
+        <div class="card-header bg-dark">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <a [routerLink]="['/search']" class="btn btn-default btn-block btn-raised">
+                        <i class="zmdi zmdi-search"></i>
+                        <span class="d-none d-md-inline-block">Rechercher</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a [routerLink]="['/search']" class="btn btn-warning btn-block btn-raised">
+                        <i class="zmdi zmdi-roller"></i>
+                        <span class="d-none d-md-inline-block">Publier un appel d'offres</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a [routerLink]="['/search']" class="btn btn-primary btn-raised btn-block">
+                        <i class="zmdi zmdi-collection-text"></i>
+                        <span class="d-none d-md-inline-block">Publier un article</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-8">
             <ul class="list-unstyled">
@@ -15,6 +39,14 @@
                     <app-event [event]="event"></app-event>  
                 </li>
             </ul> 
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                
+            </div>
+            <div class="card">
+                
+            </div>
         </div>
     </div>
 </div>

@@ -9,15 +9,15 @@
             <div class="col-xl-6 col-12">
                 <table class="table table-no-border table-striped">
                     <tr>
-                        <th><i class="zmdi zmdi-map mr-1 color-danger"></i> Rue</th>
+                        <th><i class="zmdi zmdi-map mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Rue</span></th>
                         <td><a href="#">{{ address.street + ', ' + address.number }}</a></td>
                     </tr>
                     <tr *ngIf="address.complement">
-                        <th><i class="zmdi zmdi-pin mr-1 color-info"></i> Complément</th>
+                        <th><i class="zmdi zmdi-pin mr-1 color-info"></i> <span class="d-none d-md-inline-block">Complément</span></th>
                         <td>{{ address.complement }}</td>
                     </tr>        
                     <tr>
-                        <th><i class="zmdi zmdi-city mr-1 color-royal"></i> Localité</th>
+                        <th><i class="zmdi zmdi-city mr-1 color-royal"></i> <span class="d-none d-md-inline-block">Localité</span></th>
                         <td>{{ address.zip + ' ' + address.city }}</td>
                     </tr>
                 </table>

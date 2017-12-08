@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<div class="card card-warning card-block">
+<div class="card-block">
     <a [routerLink]="['/tender', tender._id]">
-        <h3>{{ tender.title }}</h3>
+        <h3 class="no-mt">{{ tender.title }}</h3>
     </a>
-    <div class="row">
-        <div class="col-sm-3"><i class="zmdi zmdi-pin mr-1 color-warning"></i> Categorie</div>
-        <div class="col-sm-9">{{ tender.category.title }}</div>
-        <div class="col-sm-3"><i class="zmdi zmdi-pin mr-1 color-royal"></i> Localité</div>
-        <div class="col-sm-9">{{ tender.address.short }}</div>
-        <div class="col-sm-3"><i class="zmdi zmdi-calendar mr-1 color-info"></i> A faire le</div>
-        <div class="col-sm-9">{{ tender.workDate | amLocale:'fr' | amCalendar }}</div>
-        <div class="col-sm-3"><i class="zmdi zmdi-notifications mr-1 color-danger"></i> Répondre avant le</div>
-        <div class="col-sm-9">{{ tender.validityEnd | amLocale:'fr' | amCalendar }}</div>
-    </div>
+    <dl class="dl-horizontal">
+        <dt><i class="zmdi zmdi-pin mr-1 color-warning"></i> Categorie</dt>
+        <dd>{{ tender.category.title }}</dd>
+        <dt><i class="zmdi zmdi-pin mr-1 color-royal"></i> Localité</dt>
+        <dd>{{ tender.address.short }}</dd>
+        <dt><i class="zmdi zmdi-calendar mr-1 color-info"></i> Date</dt>
+        <dd>{{ tender.workDate | amLocale:'fr' | amCalendar }}</dd>
+        <dt><i class="zmdi zmdi-notifications mr-1 color-danger"></i> Echéance</dt>
+        <dd>{{ tender.validityEnd | amLocale:'fr' | amCalendar }}</dd>
+    </dl>
 </div>
 
 

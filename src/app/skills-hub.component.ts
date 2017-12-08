@@ -19,7 +19,7 @@ declare var $: any;
   templateUrl: './skills-hub.component.html',
   styleUrls: ['./skills-hub.component.scss']
 })
-export class SkillsHubComponent implements OnInit, OnDestroy {
+export class SkillsHubComponent implements OnInit {
   title = 'Skills Hub';
 
 
@@ -31,22 +31,21 @@ export class SkillsHubComponent implements OnInit, OnDestroy {
     private renderer: Renderer2) {
       // On définit le conteneur pour ng2-toastr
       this.toastr.setRootViewContainerRef(vcr);
+      this.toastr.onClickToast().subscribe( toast => {            
+        window.scrollTo(0,0);
+      });
     }
 
    ngOnInit() {
-    // On initialise les scripts externes
-    this.initScripts();
+    this.router.events
+    .filter(event => event instanceof NavigationEnd)
+    .map(() => this.activatedRoute)
+    .subscribe((event) => {
+      this.renderer.removeClass(document.getElementById('ms-slidebar'), 'open');
+     });
    }
 
-   ngOnDestroy() {}
-
-    initScripts() {
-      this.router.events
-      .filter(event => event instanceof NavigationEnd)
-      .map(() => this.activatedRoute)
-      .subscribe((event) => {
-        this.renderer.removeClass(document.getElementById('ms-slidebar'), 'open');
-       });
-    }
-
+  scrollToTop() {
+    window.scrollTo(0,0);
+  }
 }
