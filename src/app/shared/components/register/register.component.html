@@ -2,8 +2,7 @@
 <form [formGroup]="registerForm" (submit)="register()">
     <fieldset>
         <app-input
-            [text]="'Adresse e-mail'"
-            [addonClass] = "'zmdi zmdi-account'"
+            [label]="'Adresse e-mail'"
             [errors]="registerForm.controls.email.errors"
             [defs]="{
                 required: 'Adresse e-mail requise',
@@ -11,23 +10,25 @@
             <input type="email" formControlName="email" name="email" class="form-control">
         </app-input>
         <app-input
-            [text]="'Mot de passe'"
-            [addonClass]="'zmdi zmdi-lock'" 
+            [label]="'Mot de passe'"
             [errors]="registerForm.controls.password.errors"
             [defs]="{ 
             required: 'Mot de passe requis'}">
             <input type="password" formControlName="password" name="password" class="form-control">
         </app-input>
         <app-input
-            [text]="'Confirmer mot de passe'"
-            [addonClass]="'zmdi zmdi-lock'"
+            [label]="'Confirmation'"
             [errors]="registerForm.controls.confirmpwd.errors"
             [defs]="{ 
                 required: 'Cofirmation mot de passe requis',
                 notEquivalent: 'Confirmation mot de passe incorrecte'}">
             <input type="password" formControlName="confirmpwd" name="confirmpwd" class="form-control">
         </app-input> 
-        <button class="btn btn-block btn-raised btn-primary mt-3" type="submit">Je m'inscris</button>
+        <div class="form-group row">
+            <div class="offset-md-2 col-md-10">
+                <button class="btn btn-raised btn-primary mt-3" type="submit">Je m'inscris</button>
+            </div>      
+        </div>   
     </fieldset>
 </form>
 

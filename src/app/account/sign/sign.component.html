@@ -1,50 +1,53 @@
 <!DOCTYPE html>
-<div class="bg-full-page ms-hero-bg-primary ms-hero-img-coffee back-fixed">
-    <div class="mw-800 absolute-center">
-      <div class="card color-dark shadow-6dp">
-        <div class="ms-hero-bg-primary ms-hero-img-team">
-          <h1 class="text-center no-m pt-4 pb-4 color-white index-1">Bienvenue</h1>
-        </div>        
-        <ul class="nav nav-tabs nav-tabs-full nav-tabs-3 nav-tabs-transparent indicator-primary" role="tablist">
-          <li class="nav-item" role="presentation">
-            <a href="#ms-login-tab" aria-controls="ms-login-tab" role="tab" data-toggle="tab" class="nav-link active withoutripple">
-              <i class="zmdi zmdi-account"></i>
-              <span class="d-none d-md-inline"> Connecter</span>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
-              <i class="zmdi zmdi-account-add"></i>
-              <span class="d-none d-md-inline"> S'inscrire</span>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#ms-recovery-tab" aria-controls="ms-recovery-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
-              <i class="zmdi zmdi-key"></i>
-              <span class="d-none d-md-inline"> Mot de passe oublié</span>
-            </a>
-          </li>
-        </ul>
-        <div class="card-block no-pt">
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab">
-              <h3 class="text-center mt-4 color-primary d-block d-md-none"> Se connecter</h3>
-              <app-login></app-login>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
-              <h3 class="text-center mt-4 color-primary d-block d-md-none"> S'inscrire</h3>
-              <app-register></app-register>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="ms-recovery-tab">
-              <h3 class="text-center mt-4 color-primary d-block d-md-none"> Mot de passe oublié</h3>
-              <app-forgot></app-forgot>
-            </div>
-          </div>
+<app-header [image]="'keyboard'">
+  <div class="mb-4">
+      <span class="ms-logo ms-logo-lg ms-logo-white center-block mb-2 mt-2 animated zoomInDown animation-delay-5">SH</span>
+      <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Skills
+          <span>Hub</span>
+      </h1>
+      <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
+          Rejoignez nous dès maintenant et bénéficiez de  
+          <span class="color-warning">6 mois</span> gratuit sur tous nos abonnements.
+      </p>
+  </div>
+</app-header>
+<div class="container">
+  <div class="card card-hero animated fadeInUp animation-delay-7">
+    <ul class="nav nav-tabs nav-tabs-full nav-tabs-3 nav-tabs-transparent indicator-primary bg-dark color-white" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a href="#ms-login-tab" aria-controls="ms-login-tab" role="tab" data-toggle="tab" class="nav-link active withoutripple">
+          <i class="zmdi zmdi-account"></i>
+          <span class="d-none d-md-inline"> Connecter</span>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
+          <i class="zmdi zmdi-account-add"></i>
+          <span class="d-none d-md-inline"> S'inscrire</span>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a href="#ms-recovery-tab" aria-controls="ms-recovery-tab" role="tab" data-toggle="tab" class="nav-link withoutripple">
+          <i class="zmdi zmdi-key"></i>
+          <span class="d-none d-md-inline"> Mot de passe oublié</span>
+        </a>
+      </li>
+    </ul>
+    <div class="card-block no-pt">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab">
+          <h3 class="text-center mt-4 color-primary d-block d-md-none"> Se connecter</h3>
+          <app-login></app-login>
         </div>
-      </div>
-      <div class="text-center">
-        <a [routerLink]="['/']" class="btn btn-white">
-          <i class="zmdi zmdi-home"></i> Accueil</a>
+        <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
+          <h3 class="text-center mt-4 color-primary d-block d-md-none"> S'inscrire</h3>
+          <app-register></app-register>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="ms-recovery-tab">
+          <h3 class="text-center mt-4 color-primary d-block d-md-none"> Mot de passe oublié</h3>
+          <app-forgot></app-forgot>
+        </div>
       </div>
     </div>
   </div>
+</div>

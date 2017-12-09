@@ -25,13 +25,13 @@
     </div>
     <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit" class="m-4">
         <fieldset>
-            <app-input [text]="'Nom'" [errors]="editForm.controls.lastname.errors" [defs]="{ required: 'Le nom de famille est requis'}">
+            <app-input [label]="'Nom'" [errors]="editForm.controls.lastname.errors" [defs]="{ required: 'Le nom de famille est requis'}">
                 <input type="text" formControlName="lastname" name="lastname" class="form-control">
             </app-input>                
-            <app-input [text]="'Prénom'" [errors]="editForm.controls.firstname.errors" [defs]="{ required: 'Le prénom est requis'}">
+            <app-input [label]="'Prénom'" [errors]="editForm.controls.firstname.errors" [defs]="{ required: 'Le prénom est requis'}">
                 <input type="text" formControlName="firstname" name="firstname" class="form-control">
             </app-input>
-            <app-input [text]="'Bio'">
+            <app-input [label]="'Bio'">
                 <textarea formControlName="bio" name="bio" class="form-control" rows="3"></textarea>  
             </app-input>
         </fieldset>

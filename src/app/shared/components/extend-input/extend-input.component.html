@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<div class="form-group" [class.has-error]="hasError()">
-  <label class="control-label" *ngIf="this.text">{{ text }}</label>
-  <div class="input-group">
-    <span class="input-group-addon" *ngIf="this.addonClass"><i [class]="this.addonClass"></i></span>
+<div class="form-group row" [class.has-error]="hasError()">
+  <label for="email" class="col-md-2 control-label">{{ label }}</label>
+  <div class="col-md-10">
     <ng-content></ng-content>
-  </div>
-  <span class="help-block" *ngIf="hasError()">{{ error }}</span>
+    <span class="help-block" *ngIf="hasError()">{{ error }}</span>
+  </div>      
 </div>

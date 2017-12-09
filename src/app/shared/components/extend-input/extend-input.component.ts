@@ -5,8 +5,7 @@ import { Component, Input, OnChanges } from '@angular/core';
   templateUrl: './extend-input.component.html',
 })
 export class ExtendInputComponent implements OnChanges {
-  @Input() public text: String = '';
-  @Input() public addonClass: String = '';
+  @Input() public label: String = '';
   @Input() public defs: any;
   @Input() public errors: any;
   error: String = '';
