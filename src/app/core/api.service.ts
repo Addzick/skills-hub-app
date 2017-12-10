@@ -23,8 +23,7 @@ export abstract class ApiService {
         .get(this.updateUrl(url), options)
         .map((res: Response) => {
             return res.json();
-        })
-        .catch((err: Response) => Observable.throw(err.statusText));
+        });
     }
 
     protected post(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
@@ -32,8 +31,7 @@ export abstract class ApiService {
         .post(this.updateUrl(url), body, options)
         .map((res: Response) => {
             return res.json();
-        })
-        .catch((err: Response) => Observable.throw(err.statusText));
+        });
     }
 
     protected put(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
@@ -41,8 +39,7 @@ export abstract class ApiService {
         .put(this.updateUrl(url), body, options)
         .map((res: Response) => {
             return res.json();
-        })
-        .catch((err: Response) => Observable.throw(err.statusText));
+        });
     }
 
     protected patch(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
@@ -50,15 +47,13 @@ export abstract class ApiService {
         .patch(this.updateUrl(url), body, options)
         .map((res: Response) => {
             return res.json();
-        })
-        .catch((err: Response) => Observable.throw(err.statusText));
+        });
     }
 
     protected delete(url: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http.delete(this.updateUrl(url), options)
         .map((res: Response) => {
             return res.json();
-        })
-        .catch((err: Response) => Observable.throw(err.statusText));
+        });
     }
 }

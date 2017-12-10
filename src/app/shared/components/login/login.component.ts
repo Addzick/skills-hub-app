@@ -1,13 +1,11 @@
 // Angular stuff
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
-// 3rd parties
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Skills-Hub services
 import { AuthService } from '../../../core/auth.service';
+import { FormService } from '../../services/form.service';
 
 // Skills-hub components
 import { ExtendInputComponent } from '../extend-input/extend-input.component';
@@ -25,28 +23,22 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private formBuilder: FormBuilder,
-    private toastr: ToastsManager) {
-      this.loginForm = this.formBuilder.group({
+    private formService: FormService) {
+      this.loginForm = this.formService.createFormGroup({
         'email' : ['', Validators.compose([Validators.required, Validators.email])],
-        'password': ['', Validators.required ]
+        'password': ['']
       });
     }
 
   ngOnInit() {
-    // On récupére l'url de retour
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 
   login() {
-    if (!this.loginForm.valid) {
-      this.toastr.error('Veuillez contrôler les informations saisies !');
-    } else {
-      // On lance la procédure d'authentification
-      this.auth.login(
-        { user: this.loginForm.value },
-        () => this.router.navigateByUrl(this.returnUrl),
-        (err) => this.toastr.error('Veuillez contrôler les informations saisies !'));
+    if (this.loginForm.valid) {
+      this.auth.login({ user: this.loginForm.value },
+        res => this.router.navigateByUrl(this.returnUrl),
+        err => this.formService.setFormGroupErrors(this.loginForm, err));
     }
   }
 }

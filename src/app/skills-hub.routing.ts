@@ -48,6 +48,14 @@ export const routes: Routes = [
     loadChildren: './portfolio/portfolio.module#PortfolioModule'
   },
   {
+    path: 'article',
+    canActivate: [AuthGuardLogin],
+    component: ArticleDetailComponent,
+    resolve: {
+        article: ArticleResolver
+    }
+  },
+  {
       path: 'article/:article',
       component: ArticleDetailComponent,
       resolve: {

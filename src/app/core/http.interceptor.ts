@@ -1,19 +1,23 @@
 // Angular modules
 import { Injectable } from '@angular/core';
 import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers, URLSearchParams } from '@angular/http';
-
+import { Router } from '@angular/router';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
 import './rxjs-extensions';
 
 // Environment variables
-import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class HttpInterceptor extends Http {
 
   // Class contruction
-  constructor(backend: XHRBackend, options: RequestOptions) {
+  constructor(
+    backend: XHRBackend, 
+    options: RequestOptions,
+    private router: Router,
+    private auth: AuthService) {
     super(backend, options);
   }
 
@@ -65,9 +69,27 @@ export class HttpInterceptor extends Http {
 
   // Handles response errors
   private handleError = (error: Response) => {
-    // TODO : Handles errors properly
-    // console.error(error);
-    // Rethrow the error
-    return Observable.throw(error);
+     
+    switch(error.status){
+      // Erreur interne au serveur
+      case 500 : {
+        this.router.navigate(['/error', '500']);
+        return Observable.empty();
+      }
+      // Utilisateur non authentifié
+      case 401: {
+        this.auth.deleteCurrentUser();
+        this.router.navigate(['/account', 'sign']);
+        return Observable.empty();
+      }
+      // Action non autorisée
+      case 403 : {
+        this.router.navigate(['/error', '403']);
+        return Observable.empty();
+      }
+      default : 
+        // On renvoie l'erreur dans tous les autres cas
+        return Observable.throw(error);
+    }
   }
 }

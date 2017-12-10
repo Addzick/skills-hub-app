@@ -1,27 +1,34 @@
-import { Component, Input, OnChanges } from '@angular/core';
+// Angular modules
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   templateUrl: './extend-input.component.html',
 })
-export class ExtendInputComponent implements OnChanges {
-  @Input() public label: String = '';
-  @Input() public defs: any;
+export class ExtendInputComponent implements OnChanges, OnInit {
+  @Input() public label: string = '';
   @Input() public errors: any;
-  error: String = '';
-
+  @Input() public handle: AbstractControl
+  
+  public error: string = '';
   constructor() { }
 
+
+  ngOnInit() {
+  }
+  
   ngOnChanges(changes: any): void {
     const err: any = 
-    typeof changes !== 'undefined' && typeof changes.errors !== 'undefined' 
-    ? changes.errors.currentValue
-    : '';
-    this.error = '';
+      typeof changes !== 'undefined' && typeof changes.errors !== 'undefined' 
+      ? changes.errors.currentValue 
+      : '';
+    
+    this.error = ''; 
     if (err) {
-      Object.keys(this.defs).some(key => {
-        if (err[key]) {
-          this.error = this.defs[key];
+      Object.keys(err || {}).some(key => {
+        if(err[key]) {
+          this.error = this.errors[key];
           return true;
         }
       });
@@ -29,7 +36,6 @@ export class ExtendInputComponent implements OnChanges {
   }
 
   hasError() {
-    return this.error !== '';
+    return this.handle.touched && this.handle.invalid && this.error !== '';
   }
-
 }

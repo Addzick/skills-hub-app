@@ -7,8 +7,10 @@ import { RouterModule } from '@angular/router';
 // 3rd parties
 import { MomentModule } from 'angular2-moment';
 import { AgmCoreModule } from '@agm/core';
+import { NgxEditorModule } from 'ngx-editor';
 
 // Shared services
+import { FormService } from './services/form.service';
 import { ArticleService } from './services/article.service';
 import { TenderService } from './services/tender.service';
 import { TaskService } from './services/task.service';
@@ -81,6 +83,7 @@ import { environment } from '../../environments/environment';
       apiKey: environment.googleApiKey,
       libraries: ['places']
     }),
+    NgxEditorModule
   ],
   declarations: [
     EventTypePipe,
@@ -118,6 +121,7 @@ import { environment } from '../../environments/environment';
     ReactiveFormsModule,
     MomentModule,
     AgmCoreModule,
+    NgxEditorModule,
     EventTypePipe,
     TextTruncatePipe,
     NavbarComponent,
@@ -148,6 +152,7 @@ import { environment } from '../../environments/environment';
     UserDetailComponent,
   ],
   providers: [
+    FormService,
     ArticleService,
     CategoryService,
     EventService,

@@ -1,13 +1,11 @@
 // Angular stuff
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
-// 3rd parties
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Skills-hub services
 import { AuthService } from '../../../core/auth.service';
+import { FormService } from '../../services/form.service';
 
 // Skills-hub components
 import { ExtendInputComponent } from '../extend-input/extend-input.component';
@@ -25,10 +23,11 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private formBuilder: FormBuilder,
-    private toastr: ToastsManager) {
-      this.registerForm = formBuilder.group({
+    private formService: FormService) {
+      this.registerForm = this.formService.createFormGroup({
         'email' : ['', Validators.compose([Validators.required, Validators.email])],
+        'firstname': [''],
+        'lastname' : [''],
         'password': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ],
         'confirmpwd': ['', Validators.compose([Validators.required, Validators.minLength(6)]), ],
       }, { validator: this.checkIfMatchingPasswords('password', 'confirmpwd')});
@@ -36,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     // On récupére l'url de retour
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/account';
   }
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
@@ -52,13 +51,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if (!this.registerForm.valid) {
-      this.toastr.error('Veuillez contrôler les informations saisies !');
-    } else {
+    if (this.registerForm.valid) {
       this.auth.register(
         { user: this.registerForm.value },
-        () => this.router.navigateByUrl(this.returnUrl),
-        (err) => this.toastr.error('Veuillez contrôler les informations saisies !'));
+        res => this.router.navigateByUrl(this.returnUrl),
+        err => this.formService.setFormGroupErrors(this.registerForm, err));
     }
   }
 

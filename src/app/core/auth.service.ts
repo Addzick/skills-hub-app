@@ -106,5 +106,4 @@ export class AuthService implements OnInit, OnDestroy {
     if(hastoken && this.currentUser._id == '') { this.setCurrentUser(); }
     return hastoken;
   }
-
 }

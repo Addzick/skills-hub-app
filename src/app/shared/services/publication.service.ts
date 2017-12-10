@@ -45,11 +45,7 @@ export abstract class PublicationService extends ApiService {
     edit(id: string, body) {
       return this.put(`/${ this.apiname }/${ id }`, body);
     }
-
-    publish(id: string) {
-      return this.patch(`/${ this.apiname }/${ id }`, '');
-    }
-
+    
     remove(id: string) {
       return this.delete(`/${ this.apiname }/${ id }`, '');
     }

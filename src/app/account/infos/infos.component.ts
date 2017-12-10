@@ -1,13 +1,12 @@
 // Angular stuff
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
 import '../../core/rxjs-extensions';
-// 3rd parties
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // Skills-hub services
 import { UserService } from '../../core/user.service';
+import { FormService } from '../../shared/services/form.service';
 // Skills-hub components
 import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
 
@@ -25,9 +24,8 @@ export class InfosComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder,
-    private toastr: ToastsManager) {
-      this.editForm = this.formBuilder.group({
+    private formService: FormService) {
+      this.editForm = this.formService.createFormGroup({
         'firstname' : ['', Validators.required],
         'lastname' : ['', Validators.required],
         'bio': ['']
@@ -35,19 +33,11 @@ export class InfosComponent implements OnInit {
      }
 
   ngOnInit() {
-    if (this.user) {
-      this.editForm.setValue({
-        firstname : this.user.firstname || '',
-        lastname : this.user.lastname || '',
-        bio: this.user.bio || ''
-      });
-    }
+    this.formService.setFormGroupValues(this.editForm, this.user);
   }
 
   submit() {
-    if (!this.editForm.valid) {
-      this.toastr.error('Veuillez contrôler les informations saisies !');
-    } else {
+    if (this.editForm.valid) {
       this.userService.setAccount({ user: this.editForm.value })
       .subscribe(
         res => {
@@ -55,9 +45,7 @@ export class InfosComponent implements OnInit {
           this.user = res.user;
           this.notify.emit(this.user);
         },
-        err => {
-          this.toastr.error('Veuillez contrôler les informations saisies !');
-        }
+        err => this.formService.setFormGroupErrors(this.editForm, err)
       );
     }
   }

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 // Core services
 import { UserService, UserQuery } from '../core/user.service';
 //Shared services
-import {EventService, EventQuery } from '../shared/services/event.service';
+import { EventService, EventQuery } from '../shared/services/event.service';
 
 @Component({
   selector: 'app-account',
@@ -37,7 +37,6 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.getUser().subscribe();
-    ;
   }
 
   ngOnDestroy() {

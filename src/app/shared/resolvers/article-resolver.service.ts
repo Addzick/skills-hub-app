@@ -19,9 +19,10 @@ export class ArticleResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-
-    return this.articleService.findOne(route.params['article'])
-           .catch((err) => this.router.navigate(['/']));
-
+    const id = route.params['article'];
+    if(id !== undefined && id !== '') {
+      return this.articleService.findOne(id)
+      .catch((err) => this.router.navigate(['/']));
+    }
   }
 }

@@ -43,6 +43,7 @@
     "hammerjs": "*",
     "ng-socket-io": "^0.2.0",
     "ng2-toastr": "*",
+    "ngx-editor": "^3.1.2",
     "rxjs": "*",
     "typescript": "^2.6.2",
     "zone.js": "*"
