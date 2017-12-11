@@ -42,6 +42,9 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   private commentsSub: any;
   private likesSub: any;
 
+  public text: string;
+  public isCommentFormVisible = false;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -109,5 +112,35 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   }
 
   sanitize(body: string){
+  }
+
+  comment(){
+    if(this.text){
+      this.commentService.comment({
+        comment: this.text,
+        source: { item: this.article, kind: 'article' }
+      })
+      .subscribe(
+        res => {
+          this.text = '';
+          this.isCommentFormVisible = false;
+        }
+      );
+    }
+  }
+
+  like(){
+    this.likeService.like({
+      source: { item: this.article, kind: 'article' }
+    })
+    .subscribe(
+      res => {
+        this.text = '';
+      }
+    );
+  }
+
+  setCommentFormVisibility(){
+    this.isCommentFormVisible = !this.isCommentFormVisible;
   }
 }
