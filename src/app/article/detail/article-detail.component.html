@@ -8,10 +8,17 @@
             <cite class="color-medium ml-2">{{ article.createdAt | amLocale:'fr' | amCalendar }}</cite>
         </footer>
         <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
-                               
-    </blockquote>
-    <div class="card-block card-block-big">
+        <div class="text-right mt-2" *ngIf="article.canEdit">
+            <a [routerLink]="['/article', article._id, 'edit' ]" class="btn btn-raised btn-primary">
+                <i class="zmdi zmdi-edit mr-05"></i>
+                Editer
+            </a>
+        </div>
+    </blockquote>    
+    <div class="card-block">
         <div [innerHtml]="article.body"></div>
+    </div>
+    <div class="card-block">
         <a class="ms-icon color-royal" [class.ms-icon-inverse]="fragment != 'likes'" (click)="setFragment('likes')">
             <i class="zmdi zmdi-favorite"></i>
             {{ article.nbLikes || 0}} 
@@ -19,12 +26,12 @@
         <a class="ms-icon color-info" [class.ms-icon-inverse]="fragment != 'comments'" (click)="setFragment('comments')">
             <i class="zmdi zmdi-comments"></i>
             {{ article.nbComments || 0}} 
-        </a> 
+        </a>
     </div>
-    <div *ngIf="fragment == 'likes'">
+    <div *ngIf="fragment == 'likes'" class="animated fadeIn animation-delay-2">
         <app-likes [kind]="'article'" [item]="article" [mylike]="article.myLike" (notify)="onNotify()"></app-likes>
     </div>
-    <div *ngIf="fragment == 'comments'">
+    <div *ngIf="fragment == 'comments'" class="animated fadeIn animation-delay-2">
         <app-comments [kind]="'article'" [item]="article" (notify)="onNotify()"></app-comments>
     </div>
 </div>

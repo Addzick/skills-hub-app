@@ -23,8 +23,6 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout(
-      () => this.router.navigateByUrl('/'),
-      (err) => console.error('Une erreur s\'est produite lors de la tentative de déconnexion'));
+    this.auth.logout();
   }
 }

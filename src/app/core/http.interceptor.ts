@@ -79,7 +79,7 @@ export class HttpInterceptor extends Http {
       // Utilisateur non authentifié
       case 401: {
         this.auth.deleteCurrentUser();
-        this.router.navigate(['/account', 'sign']);
+        this.router.navigate(['/account/login'], { queryParams: { returnUrl: this.router.url } });
         return Observable.empty();
       }
       // Action non autorisée

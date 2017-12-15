@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
 import '../../../core/rxjs-extensions';
-// Shared services and components
+// Shared services
 import { LikeService } from '../../services/like.service';
 
 @Component({

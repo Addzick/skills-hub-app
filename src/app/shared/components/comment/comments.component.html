@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<div class="list-group" *ngIf="comments && comments.length > 0">
-    <div class="list-group-item media" *ngFor="let comment of comments">
+<div class="list-group">
+    <div class="list-group-item media animated wow fadeInRight" *ngFor="let comment of comments">
         <div class="media-left media-object media-middle">
             <img src="{{ comment.author.image || '/assets/img/no-picture.jpg'}}" alt="" class="img-avatar-circle-sm mr-1">
         </div>
@@ -18,6 +18,16 @@
             </a>
         </div>
     </div>
+</div>
+<div class="text-center">
+    <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page - 1)" *ngIf="query.page > 1">
+        <i class="zmdi zmdi-arrow-left mr-1"></i>
+        Prec
+    </a>
+    <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page + 1)" *ngIf="query.page * query.size < total">
+        Suiv
+        <i class="zmdi zmdi-arrow-right ml-1"></i> 
+    </a>
 </div>
 <div class="card-block bg-light text-center" *ngIf="!comments || comments.length <= 0">
     <h2 class="card-text">Soyez le premier à commenter ...</h2>

@@ -56,8 +56,4 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   }
   sanitize(body: string){
   }
-
-  reset() {
-    this.editForm.reset();
-  }
 }

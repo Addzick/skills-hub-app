@@ -5,7 +5,7 @@
             <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
         </div>
         <div class="media-body media-middle">
-            <a class="media-title" [routerLink]="[ '/account', event.author._id, 'detail' ]">{{ event.isMine ? 'vous' : event.author.displayName }}</a><br>
+            <a class="btn-link" [routerLink]="[ '/account', event.author._id, 'detail' ]">{{ event.isMine ? 'vous' : event.author.displayName }}</a><br>
             <small><em>{{ event.type | eventType:event.isMine}}</em></small>
         </div>
         <div class="media-footer media-bottom text-right">
@@ -27,38 +27,37 @@
                 <div class="col">
                     <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
                     fragment="likes"
-                    class="btn btn-raised btn-block btn-sm no-mt" 
-                    [class.btn-royal]="canLike"
-                    [class.btn-white]="!canLike"
-                    [class.color-royal]="!canLike"
+                    class="btn btn-white color-royal btn-raised btn-block btn-sm no-mt"
                     *ngIf="isPublication">
                         <i class="zmdi no-mr"
                         [class.zmdi-favorite-outline]="canLike"
                         [class.zmdi-favorite]="!canLike"></i>
-                        <span class="d-none d-md-inline-block ml-1">J'aime</span>
+                        <span class="d-none d-md-inline-block ml-1">
+                            {{ canLike ? 'J\'aime' : 'Je n\'aime plus' }}
+                        </span>
                     </a>
                 </div>
                 <div class="col">
                     <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
                     fragment="comments" 
-                    class="btn btn-info btn-raised btn-block btn-sm no-mt" 
+                    class="btn btn-white color-info btn-raised btn-block btn-sm no-mt" 
                     *ngIf="isPublication">
                         <i class="zmdi zmdi-comments no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Commenter</span>
                     </a>
                 </div>
                 <div class="col">
-                    <a [routerLink]="['/', event.source.kind , source.item._id, 'detail' ]" 
-                    class="btn btn-primary btn-block btn-raised btn-sm no-mt"
+                    <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
+                    class="btn btn-white color-primary btn-block btn-raised btn-sm no-mt"
                     *ngIf="isPublication">
                         <i class="zmdi zmdi-more no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Plus</span>
                     </a>
                     <a [routerLink]="['/account', source.item._id, 'detail' ]" 
-                    class="btn btn-primary btn-block btn-raised btn-sm no-mt"
+                    class="btn btn-white color-primary btn-block btn-raised btn-sm no-mt"
                     *ngIf="!isPublication">
                         <i class="zmdi zmdi-eye no-mr"></i>
-                        <span class="d-none d-md-inline-block ml-1">Découvrir</span>
+                        <span class="d-none d-md-inline-block ml-1">Decouvrir</span>
                     </a>
                 </div>
             </div>

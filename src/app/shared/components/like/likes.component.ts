@@ -19,6 +19,7 @@ export class LikesComponent implements OnInit, OnDestroy {
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   
   public likes: Array<any>;
+  public total: number;
   public query: LikeQuery = {
     source: '',
     sortBy: 'updatedAt',
@@ -50,7 +51,13 @@ export class LikesComponent implements OnInit, OnDestroy {
       this.query.source = this.item._id;
       return this.likeService
       .findAll(this.query)
-      .map(res => this.likes = res.likes)
+      .map(res => { 
+        this.likes = res.likes;
+        this.total = res.count;
+        while(this.query.page * this.query.size > this.total){
+          this.query.page --;
+        }
+      })
       .catch((error) => { throw error; });
     }
   }
@@ -68,4 +75,10 @@ export class LikesComponent implements OnInit, OnDestroy {
       res => { this.mylike = undefined; this.refresh(); },
       err => console.error(err));
   } 
+
+  navigate(page){
+    this.query.page = page;
+    if(this.likesSub) { this.likesSub.unsubscribe(); }
+    this.likesSub = this.getLikes().subscribe();
+  }
 }

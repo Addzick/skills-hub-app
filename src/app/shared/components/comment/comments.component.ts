@@ -19,6 +19,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   public text: string;
   public comments: Array<any>;
+  public total: number;
   public query: CommentQuery = {
     source: '',
     sortBy: 'updatedAt',
@@ -53,18 +54,9 @@ export class CommentsComponent implements OnInit, OnDestroy {
       .findAll(this.query)
       .map(res => {
         this.comments = res.comments;
-        if(this.comments && this.comments.length > 0) {
-          this.comments.sort(function(a, b) {
-            if(a.updatedAt < b.updatedAt){
-                return -1;
-            }
-            else if( a.updatedAt > b.updatedAt){
-                return 1;
-            }
-            else{
-                return 0;
-            }
-          });
+        this.total = res.count;
+        while(this.query.page * this.query.size > this.total){
+          this.query.page --;
         }
       })
       .catch((error) => { throw error; });
@@ -89,4 +81,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
       res => this.refresh(),
       err => console.error(err));
   } 
+
+  navigate(page){
+    this.query.page = page;
+    if(this.commentsSub) { this.commentsSub.unsubscribe(); }
+    this.commentsSub = this.getComments().subscribe();
+  }
 }
