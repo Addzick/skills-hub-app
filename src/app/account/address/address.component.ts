@@ -14,11 +14,11 @@ import { UserService } from '../../core/user.service';
 import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
 
 @Component({
-  selector: 'app-address',
+  selector: 'app-account-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-export class AddressComponent implements OnInit {
+export class AccountAddressComponent implements OnInit {
   @Input() address: any;
   public isEdit = false;
   public searchControl: FormControl;

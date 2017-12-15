@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <div class="card-block">
-    <a [routerLink]="['/article', article._id]" class="pub-title">{{ article.title }}</a>
+    <a [routerLink]="['/article', article._id, 'detail']" class="btn-link pub-title">{{ article.title }}</a>
     <p>{{ article.description | truncate }}</p>
     <div class="mt-2">
         <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
-        <span class="ms-icon ms-icon-inverse color-info" *ngIf="article.nbLikes">
-            <i class="zmdi zmdi-favorite"></i>
-            {{ article.nbLikes }}
-        </span>
-        <span class="ms-icon ms-icon-inverse color-warning" *ngIf="article.nbComments">
-            <i class="zmdi zmdi-comments"></i>
-            {{ article.nbComments }}
-        </span>
+        <app-reactions [nbComments]="article.nbComments" [nbLikes]="article.nbLikes"></app-reactions>
     </div>
 </div>
-

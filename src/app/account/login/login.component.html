@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<app-header [image]="'keyboard'">
+    <div class="mb-4">
+        <span class="ms-logo ms-logo-lg ms-logo-white center-block mb-2 mt-2 animated zoomInDown animation-delay-5">SH</span>
+        <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Skills
+            <span>Hub</span>
+        </h1>
+        <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
+            Rejoignez nous dès maintenant et bénéficiez de  
+            <span class="color-warning">6 mois</span> gratuit sur tous nos abonnements.
+        </p>
+    </div>
+</app-header>
+<div class="container">
+    <div class="card card-hero card-block no-pt animated fadeInUp animation-delay-7">
+        <div class="text-center mt-1 mb-1">
+            <a routerLink="/external/facebook" class="btn-circle btn-facebook">
+                <i class="zmdi zmdi-facebook"></i>
+            </a>
+            <a routerLink="/external/twitter" class="btn-circle btn-twitter">
+                <i class="zmdi zmdi-twitter"></i>
+            </a>
+            <a routerLink="/external/google" class="btn-circle btn-google">
+                <i class="zmdi zmdi-google"></i>
+            </a>
+        </div>
+        <form [formGroup]="loginForm" (submit)="login()">
+            <fieldset>
+                <app-input 
+                    [handle]="loginForm.controls.username"
+                    [label]="'Nom d\'utilisateur'"
+                    [errors]="{ 
+                        required: 'Un nom d\'utilisateur est requis',
+                        pattern: 'Le nom d\'utilisateur est incorrect',
+                        remote: 'Le nom d\'utilisateur est incorrect'
+                    }">
+                    <input type="text" formControlName="username" name="username" class="form-control">
+                </app-input>
+                <app-input  
+                    [handle]="loginForm.controls.password"
+                    [label]="'Mot de passe'"
+                    [errors]="{ 
+                        required: 'Un mot de passe est requis',
+                        remote: 'Le mot de passe est incorrect'
+                    }">
+                    <input type="password" formControlName="password" name="password" class="form-control">
+                </app-input>
+                <div class="form-group row text-right">
+                    <div class="offset-md-2 col-md-10">
+                        <button class="btn btn-raised btn-primary mt-3" type="submit">Je me connecte</button>
+                    </div>      
+                </div>        
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+    

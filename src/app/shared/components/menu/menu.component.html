@@ -2,11 +2,14 @@
 <div class="ms-slidebar sb-slidebar sb-left sb-momentum-scrolling sb-style-overlay" id="ms-slidebar">
   <header class="ms-slidebar-header">
     <div class="ms-slidebar-login">
-      <a (click)="logout()" *ngIf="this.auth.isLoggedIn()"  class="withripple">
-        <i class="zmdi zmdi-close-circle"></i> Se déconnecter
+      <a (click)="logout()" class="withripple" *ngIf="this.auth.isLoggedIn()">
+        <i class="zmdi zmdi-close-circle"></i> Déconnexion
       </a>
-      <a [routerLink]="['/account', 'sign']" *ngIf="!auth.isLoggedIn()"  class="withripple">
-        <i class="zmdi zmdi-account"></i> Se connecter
+      <a [routerLink]="['/account/login']" class="withripple" *ngIf="!this.auth.isLoggedIn()">
+        <i class="zmdi zmdi-account"></i> Connexion
+      </a>
+      <a [routerLink]="['/account/register']" class="withripple"*ngIf="!this.auth.isLoggedIn()">
+        <i class="zmdi zmdi-account-add"></i> Inscription
       </a>
     </div>
     <div class="ms-slidebar-title">
@@ -18,7 +21,7 @@
   </header>
   <ul class="ms-slidebar-menu" id="slidebar-menu" role="tablist" aria-multiselectable="true">
     <li><a [routerLink]="['/']" class="link"><i class="zmdi zmdi-home"></i> Accueil</a></li>
-    <li *ngIf="this.auth.isLoggedIn()"><a [routerLink]="['/account']" class="link"><i class="zmdi zmdi-account"></i> Mon compte</a></li>
+    <li *ngIf="this.auth.isLoggedIn()"><a [routerLink]="['/account/profile']" class="link"><i class="zmdi zmdi-account"></i> Mon compte</a></li>
     <li *ngIf="this.auth.isLoggedIn()"><a [routerLink]="['/dashboard']" class="link"><i class="zmdi zmdi-view-dashboard"></i> Tableau de bord</a></li>
     <li *ngIf="this.auth.isLoggedIn()"><a [routerLink]="['/wall']" class="link"><i class="zmdi zmdi-collection-text"></i> Fil d'actualité</a></li>
     <li *ngIf="this.auth.isLoggedIn()"><a [routerLink]="['/portfolio']" class="link"><i class="zmdi zmdi-collection-folder-image"></i> Portfolio</a></li>

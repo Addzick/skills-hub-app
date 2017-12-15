@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<form [formGroup]="createForm" class="m-4">
+  <fieldset>
+      <app-input 
+          [handle]="createForm.controls.title"
+          [label]="'Titre'" 
+          [errors]="{ 
+              required: 'Un titre d\'article est requis',
+              remote: 'Le titre d\'article est incorrect'
+          }">
+          <input type="text" formControlName="title" name="title" class="form-control">
+      </app-input>                
+      <app-input 
+          [handle]="createForm.controls.description"
+          [label]="'Description'">
+          <textarea formControlName="description" name="description" class="form-control" rows="3"></textarea>  
+      </app-input>
+      <div class="form-group row">
+          <div class="offset-md-2 col-md-10">
+                <textarea formControlName="body" name="body" class="form-control" rows="10"></textarea>
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="offset-md-2 col-md-10 text-right">
+              <button (click)="reset()" class="btn btn-primary">
+                  Annuler
+                  <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+              </button>
+              <button (click)="submit()" class="btn btn-raised btn-primary">
+                  Valider
+                  <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+              </button>
+          </div>      
+      </div>
+  </fieldset>
+</form>  

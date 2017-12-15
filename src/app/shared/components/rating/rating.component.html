@@ -1,3 +1,46 @@
-<p>
-  rating works!
-</p>
+<!DOCTYPE html>
+<div class="card-block">
+    <div class="col-lg-6">
+        <div class="ms-thumbnail-container">
+            <figure class="ms-thumbnail">
+                <img class="img-sm"
+                src="{{ rating.target.image || '/assets/img/no-picture.jpg'}}"
+                alt="{{ rating.target.displayName }}">
+                <figcaption class="ms-thumbnail-caption text-center">
+                    <div class="ms-thumbnail-caption-content">
+                        <h3 class="ms-thumbnail-caption-title">{{ rating.target.displayName }}</h3>
+                        <a [routerLink]="['/rating', rating._id, 'detail']" class="btn btn-white btn-raised color-primary">
+                            <i class="zmdi zmdi-eye"></i> Découvrir
+                        </a>
+                    </div>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <h4>{{ rating.title}}</h4>
+        <div class="pt-4">
+            <span class="ms-icon ms-icon-circle ms-icon-inverse" [class.color-warning]="rating.value >= 1">
+                <i class="zmdi zmdi-star"></i>
+            </span>
+            <span class="ms-icon ms-icon-circle ms-icon-inverse" [class.color-warning]="rating.value >= 2">
+                <i class="zmdi zmdi-star"></i>
+            </span>   
+            <span class="ms-icon ms-icon-circle ms-icon-inverse" [class.color-warning]="rating.value >= 3">
+                <i class="zmdi zmdi-star"></i>
+            </span>   
+            <span class="ms-icon ms-icon-circle ms-icon-inverse" [class.color-warning]="rating.value >= 4">
+                <i class="zmdi zmdi-star"></i>
+            </span>   
+            <span class="ms-icon ms-icon-circle ms-icon-inverse" [class.color-warning]="rating.value >= 5">
+                <i class="zmdi zmdi-star"></i>
+            </span>            
+        </div>
+        <p>{{ rating.body }}</p>
+    </div>
+    <div class="mt-2">
+        <app-reactions [nbComments]="rating.nbComments" [nbLikes]="rating.nbLikes"></app-reactions>
+    </div>
+</div>
+
+

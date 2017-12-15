@@ -5,12 +5,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from '../../shared/services/category.service';
 
 @Component({
-  selector: 'app-favorites',
+  selector: 'app-account-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
   providers: [CategoryService]
 })
-export class FavoritesComponent implements OnInit {
+export class AccountFavoritesComponent implements OnInit {
   @Input() favorites: any;
   public categories: Array<any>;
 

@@ -21,7 +21,8 @@ export interface EventQuery {
     latitude: number,
     distance: number
   };
-  sort?: {};
+  sortBy?: string;
+  sortDir?: string;
   page?: number;
   size?: number;
 }

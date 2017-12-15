@@ -14,7 +14,7 @@
                 <li class="nav-item" *ngIf="!this.auth.isLoggedIn()"><a class="nav-link" [routerLink]="['/help']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">FAQ</a></li>
                 <li class="nav-item" *ngIf="!this.auth.isLoggedIn()"><a class="nav-link" [routerLink]="['/about']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">A propos</a></li>
                 
-                <li class="nav-item" *ngIf="this.auth.isLoggedIn()"><a class="nav-link" [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Mon compte</a></li>
+                <li class="nav-item" *ngIf="this.auth.isLoggedIn()"><a class="nav-link" [routerLink]="['/account/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Mon compte</a></li>
                 <li class="nav-item" *ngIf="this.auth.isLoggedIn()"><a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tableau de bord</a></li>
                 <li class="nav-item" *ngIf="this.auth.isLoggedIn()"><a class="nav-link" [routerLink]="['/wall']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Fil d'actualité</a></li>
                 <li class="nav-item" *ngIf="this.auth.isLoggedIn()"><a class="nav-link" [routerLink]="['/portfolio']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Portfolio</a></li>

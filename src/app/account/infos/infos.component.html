@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <div class="card card-primary p-1 animated fadeInUp animation-delay-9">
-    <h2 class="color-primary p-2">Mes infos</h2> 
     <div *ngIf="!isEdit">
         <table class="table table-no-border table-striped">
+            <tr>
+                <th><i class="zmdi zmdi-account mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Nom d'utilisateur</span></th>
+                <td><a href="#">{{ user.username }}</a></td>
+            </tr>
             <tr>
                 <th><i class="zmdi zmdi-email mr-1 color-primary"></i> <span class="d-none d-md-inline-block">Email</span></th>
                 <td><a href="#">{{ user.email }}</a></td>
@@ -26,10 +29,30 @@
     <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit" class="m-4">
         <fieldset>
             <app-input 
+                [handle]="editForm.controls.username"
+                [label]="'Nom d\'utilisateur'"
+                [errors]="{ 
+                    required: 'Un nom d\'utilisateur est requis',
+                    pattern: 'Le nom d\'utilisateur est incorrect',
+                    remote: 'Le nom d\'utilisateur est incorrect'
+                }">
+                <input type="text" formControlName="username" name="username" class="form-control">
+            </app-input>
+            <app-input
+                [handle]="editForm.controls.email"
+                [label]="'Adresse e-mail'"
+                [errors]="{
+                    required: 'Une adresse e-mail est requise',
+                    email: 'L\'adresse e-mail est invalide',
+                    remote: 'L\'adresse e-mail est déjà utilisée'
+                }">
+                <input type="email" formControlName="email" name="email" class="form-control">
+            </app-input>
+            <app-input
                 [handle]="editForm.controls.lastname"
                 [label]="'Nom'">
                 <input type="text" formControlName="lastname" name="lastname" class="form-control">
-            </app-input>                
+            </app-input>
             <app-input
                 [handle]="editForm.controls.firstname"
                 [label]="'Prénom'">

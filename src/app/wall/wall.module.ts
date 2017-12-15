@@ -27,11 +27,6 @@ import { routes } from './wall.routing';
   ],
   providers: [
   ],
-  exports: [
-    WallComponent,
-    EventsComponent,
-    ArticlesComponent,
-    TendersComponent,
-  ]
+  exports: []
 })
 export class WallModule { }

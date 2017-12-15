@@ -18,13 +18,13 @@
                     </a>
                 </div>
                 <div class="col-4">
-                    <a [routerLink]="['/tender']" class="btn btn-warning btn-block btn-raised">
+                    <a [routerLink]="['/tender/create']" class="btn btn-warning btn-block btn-raised">
                         <i class="zmdi zmdi-roller"></i>
                         <span class="d-none d-md-inline-block">Publier un appel d'offres</span>
                     </a>
                 </div>
                 <div class="col-4">
-                    <a [routerLink]="['/article']" class="btn btn-primary btn-raised btn-block">
+                    <a [routerLink]="['/article/create']" class="btn btn-primary btn-raised btn-block">
                         <i class="zmdi zmdi-collection-text"></i>
                         <span class="d-none d-md-inline-block">Publier un article</span>
                     </a>
@@ -37,12 +37,8 @@
             <app-events></app-events>
         </div>
         <div class="col-lg-4">
-            <div class="card card-info">
-                <app-articles></app-articles>
-            </div>
-            <div class="card card-warning">
-                <app-tenders></app-tenders>
-            </div>
+            <app-articles></app-articles>
+            <app-tenders></app-tenders>
         </div>
     </div>
 </div>

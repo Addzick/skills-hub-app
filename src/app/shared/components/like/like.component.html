@@ -1,23 +1,7 @@
 <!DOCTYPE html>
-<div class="card-block">
-    <div class="card no-mt no-mb">
-        <div class="card-header media bg-white color-dark">
-            <div class="media-left media-object media-middle">
-                <img src="{{ like.source.item.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ like.source.item.author.displayName }}" class="img-avatar-circle-sm mr-1">
-            </div>
-            <div class="media-body media-middle">
-                <a class="media-title" [routerLink]="['/user', like.source.item.author._id]">{{ like.source.item.author.displayName }}</a><br>
-            </div>
-            <div class="media-footer media-bottom pull-right">
-                <i class="zmdi zmdi-time no-mr"></i>
-                <small class="color-medium-dark">{{ like.source.item.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
-            </div>
-        </div>
-        <app-article *ngIf="like.source.kind === 'article'" [article]="like.source.item"></app-article>
-        <app-proposition *ngIf="like.source.kind === 'proposition'" [proposition]="like.source.item"></app-proposition>
-        <app-rating *ngIf="like.source.kind === 'rating'" [rating]="like.source.item"></app-rating>
-        <app-task *ngIf="like.source.kind === 'task'" [task]="like.source.item"></app-task>
-        <app-tender *ngIf="like.source.kind === 'tender'" [tender]="like.source.item"></app-tender>
-    </div>
-</div>
+<app-article *ngIf="like.source.kind === 'article'" [article]="like.source.item"></app-article>
+<app-proposition *ngIf="like.source.kind === 'proposition'" [proposition]="like.source.item"></app-proposition>
+<app-rating *ngIf="like.source.kind === 'rating'" [rating]="like.source.item"></app-rating>
+<app-task *ngIf="like.source.kind === 'task'" [task]="like.source.item"></app-task>
+<app-tender *ngIf="like.source.kind === 'tender'" [tender]="like.source.item"></app-tender>
 

@@ -11,11 +11,11 @@ import { FormService } from '../../shared/services/form.service';
 import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
 
 @Component({
-  selector: 'app-infos',
+  selector: 'app-account-infos',
   templateUrl: './infos.component.html',
   styleUrls: ['./infos.component.scss']
 })
-export class InfosComponent implements OnInit {
+export class AccountInfosComponent implements OnInit {
   @Input() user: any;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
@@ -26,6 +26,8 @@ export class InfosComponent implements OnInit {
     private userService: UserService,
     private formService: FormService) {
       this.editForm = this.formService.createFormGroup({
+        'username' : ['', Validators.compose([Validators.required, Validators.pattern(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/)])],
+        'email' : ['', Validators.compose([Validators.required, Validators.email])],
         'firstname' : ['', Validators.required],
         'lastname' : ['', Validators.required],
         'bio': ['']

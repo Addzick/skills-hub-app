@@ -36,7 +36,8 @@ export class EventsComponent implements OnInit {
       'rating_commented',
       'rating_liked'
     ],
-    sort: { updatedAt: 'desc'},
+    sortBy: 'updatedAt',
+    sortDir: 'desc',
     page: 1,
     size: 10
   };
@@ -55,7 +56,7 @@ export class EventsComponent implements OnInit {
     // Souscription aux nouveaux evenements
     this.auth.channel.subscribe(
       (event) => {
-        if(this.query.types.indexOf(event.type) !== -1) {
+        if(this.query.types.indexOf(event.type) !== -1 && !this.auth.isFromCurrentUser(event.author._id)) {
           this.toastr.info('Nouvelle(s) actualités');
           this.events.unshift(event);
         }

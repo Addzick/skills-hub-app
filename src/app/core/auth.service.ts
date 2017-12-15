@@ -19,7 +19,7 @@ import { UserService } from './user.service';
 export class AuthService implements OnInit, OnDestroy {
 
   private jwtHelper: JwtHelper = new JwtHelper();
-  private currentUser = { _id: '', username: '' };
+  private currentUser = { id: '', username: '' };
   public channel: Observable<any>;
 
   constructor(
@@ -81,7 +81,7 @@ export class AuthService implements OnInit, OnDestroy {
     const decodedUser = this.jwtHelper.decodeToken(localStorage.getItem('token'));
     if (decodedUser) {
       // On initialise l'utilisateur courant
-      this.currentUser = { _id: decodedUser._id, username: decodedUser.username };
+      this.currentUser = { id: decodedUser.id, username: decodedUser.username };
       // On demande au serveur de mettre à jour l'id de la socket
       this.socket.emit('set socket', this.currentUser.username);
     }
@@ -89,7 +89,7 @@ export class AuthService implements OnInit, OnDestroy {
 
   deleteCurrentUser() {
     // On vide l'objet
-    this.currentUser = { _id: '', username: ''};
+    this.currentUser = { id: '', username: ''};
     // On supprime le token
     localStorage.removeItem('token');
     // On demande au serveur de supprimé l'id de la socket
@@ -103,7 +103,11 @@ export class AuthService implements OnInit, OnDestroy {
   isLoggedIn() {
     const token = localStorage.getItem('token');
     const hastoken = token && !this.jwtHelper.isTokenExpired(token);
-    if(hastoken && this.currentUser._id == '') { this.setCurrentUser(); }
+    if(hastoken && this.currentUser.id == '') { this.setCurrentUser(); }
     return hastoken;
+  }
+
+  isFromCurrentUser(id){
+    return this.currentUser && this.currentUser.id.toString() == id.toString();
   }
 }

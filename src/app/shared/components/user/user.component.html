@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <div class="card-block">
-    <a [routerLink]="['/user', user._id]">
+    <a [routerLink]="['/account', user._id, 'detail']">
         <h3 class="color-warning">{{ user.displayName }}</h3> 
     </a>
     <p class="mt-2">{{ user.bio | truncate }}</p>

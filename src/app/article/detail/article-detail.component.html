@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<div *ngIf="article">
+    <blockquote class="blockquote">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <footer>
+            <a class="btn-link" [routerLink]="['/user', article.author._id ]">{{ article.author.displayName }}</a>
+            <cite class="color-medium ml-2">{{ article.createdAt | amLocale:'fr' | amCalendar }}</cite>
+        </footer>
+        <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
+                               
+    </blockquote>
+    <div class="card-block card-block-big">
+        <div [innerHtml]="article.body"></div>
+        <a class="ms-icon color-royal" [class.ms-icon-inverse]="fragment != 'likes'" (click)="setFragment('likes')">
+            <i class="zmdi zmdi-favorite"></i>
+            {{ article.nbLikes || 0}} 
+        </a>
+        <a class="ms-icon color-info" [class.ms-icon-inverse]="fragment != 'comments'" (click)="setFragment('comments')">
+            <i class="zmdi zmdi-comments"></i>
+            {{ article.nbComments || 0}} 
+        </a> 
+    </div>
+    <div *ngIf="fragment == 'likes'">
+        <app-likes [kind]="'article'" [item]="article" [mylike]="article.myLike" (notify)="onNotify()"></app-likes>
+    </div>
+    <div *ngIf="fragment == 'comments'">
+        <app-comments [kind]="'article'" [item]="article" (notify)="onNotify()"></app-comments>
+    </div>
+</div>
+

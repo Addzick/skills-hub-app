@@ -148,32 +148,27 @@ agm-map {
   height: 200px;
 }
 
-.ms-timeline .ms-timeline-item .card.card-event {
-  padding: 0px;
-  border:none;
-}
 
-.ms-timeline .ms-timeline-item .card.card-item {
-  border-right:1px solid #eee;
-  border-left:1px solid #eee;
-  border-bottom:1px solid #eee;
-  color: #424242 !important;
-  background-color:rgba(0, 97, 100, 0.01);
-  margin:0px;
-  box-shadow: none;
-}
- .ms-timeline .ms-timeline-item .card.card-item a.link {
-      color: #fff;
-  }
-  .ms-timeline .ms-timeline-item .card.card-item a.link:hover, .card.card-item a.link:focus {
-        border-bottom: solid 1px #fff;
-    }
 
-.ms-timeline .ms-timeline-item .alert {
-  border:1px solid #eee;
+.profile-rating {
+  font-size: 11px;
+  text-align: left;
   margin: 0px;
-  background-color:rgba(0, 97, 100,.01);
-  box-shadow: none;
+}
+
+.img-avatar-circle-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid 1px #fff;
+  margin: 0 auto;
+  display: block;
+}
+
+.pub-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(0, 97, 100);
 }
 
 @media(min-width:768px) {
@@ -190,41 +185,8 @@ agm-map {
       border-top: solid 13px transparent;
       border-bottom: solid 13px transparent;
   }
-  
-  .ms-timeline .ms-timeline-item:hover .card.card-event {
-      box-shadow: 0 4px 5px 0 rgba(0, 97, 100, 0.3),0 1px 10px 0 rgba(0, 97, 100,.3),0 2px 4px -1px rgba(0, 97, 100,.4);
-  }
-
-  .ms-timeline .ms-timeline-item:hover .card.card-event:after {
-      border-right: solid 15px rgb(0, 97, 100);
-  }
-
-  .ms-timeline .ms-timeline-item:hover .card.card-item {
-    box-shadow: none;
-  }
 }
 
-.profile-rating {
-  font-size: 11px;
-  text-align: left;
-  margin: 0px;
-}
-
-.img-avatar-circle-sm {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: solid 1px #fff;
-  margin: 0 auto;
-  display: block;
-}
-.pub-title {
-  font-size: 20px;
-  font-weight: 300;
-  color: rgb(0, 97, 100);
-  margin: 0px;
-  padding: 0px;
-}
 @media(max-width:767px) {
   .card .card-header,.card .card-block {
     padding: 10px;
@@ -241,4 +203,8 @@ agm-map {
   width: auto;
   padding: 8px;
   line-height: 1.4;
+}
+
+.bg-none{
+  background: none !important;
 }

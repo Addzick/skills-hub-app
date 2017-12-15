@@ -2,11 +2,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-stats',
+  selector: 'app-account-stats',
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss']
 })
-export class StatsComponent implements OnInit {
+export class AccountStatsComponent implements OnInit {
   @Input() user: any;
 
   constructor() { }

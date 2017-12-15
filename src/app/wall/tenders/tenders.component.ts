@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
 import '../../core/rxjs-extensions';
-// Core services
-import { AuthService } from '../../core/auth.service';
 // Shared services
 import { EventService, EventQuery } from '../../shared/services/event.service';
 
@@ -20,23 +18,17 @@ export class TendersComponent implements OnInit {
     types: [
       'tender_published'
     ],
-    sort: { updatedAt: 'desc'},
+    sortBy: 'updatedAt',
+    sortDir: 'desc',
     page: 1,
     size: 5
   };
-  constructor(
-    private auth: AuthService,
-    private eventService: EventService,
-  ) { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit() {
       // Récupération des événements
       this.eventService.findAll(this.query).subscribe(
         res => this.events = res.events,
         err => console.error(err));
-  }
-
-  isEventFromCurrentUser(event) {
-    return event.author.getCurrentUserName == this.auth.getCurrentUserName();
   }
 }

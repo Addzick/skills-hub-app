@@ -13,7 +13,8 @@ import { ApiService } from '../../core/api.service';
 export interface CommentQuery {
   author?: string;
   source?: string;
-  sort?: {};
+  sortBy?: string;
+  sortDir?: string;
   page?: number;
   size?: number;
 }

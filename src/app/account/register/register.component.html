@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<app-header [image]="'keyboard'">
+    <div class="mb-4">
+        <span class="ms-logo ms-logo-lg ms-logo-white center-block mb-2 mt-2 animated zoomInDown animation-delay-5">SH</span>
+        <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Skills
+            <span>Hub</span>
+        </h1>
+        <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
+            Rejoignez nous dès maintenant et bénéficiez de  
+            <span class="color-warning">6 mois</span> gratuit sur tous nos abonnements.
+        </p>
+    </div>
+</app-header>
+<div class="container">
+    <div class="card card-hero card-block no-pt animated fadeInUp animation-delay-7">
+        <form [formGroup]="registerForm" (submit)="register()">
+            <fieldset>
+                <app-input 
+                    [handle]="registerForm.controls.username"
+                    [label]="'Nom d\'utilisateur'"
+                    [errors]="{ 
+                        required: 'Un nom d\'utilisateur est requis',
+                        pattern: 'Le nom d\'utilisateur est incorrect',
+                        remote: 'Le nom d\'utilisateur est incorrect'
+                    }">
+                    <input type="text" formControlName="username" name="username" class="form-control">
+                </app-input>
+                <app-input
+                    [handle]="registerForm.controls.email"
+                    [label]="'Adresse e-mail'"
+                    [errors]="{
+                        required: 'Une adresse e-mail est requise',
+                        email: 'L\'adresse e-mail est invalide',
+                        remote: 'L\'adresse e-mail est déjà utilisée'
+                    }">
+                    <input type="email" formControlName="email" name="email" class="form-control">
+                </app-input>
+                <app-input
+                    [handle]="registerForm.controls.lastname"
+                    [label]="'Nom'">
+                    <input type="text" formControlName="lastname" name="lastname" class="form-control">
+                </app-input>
+                <app-input
+                    [handle]="registerForm.controls.firstname"
+                    [label]="'Prénom'">
+                    <input type="text" formControlName="firstname" name="firstname" class="form-control">
+                </app-input>
+                <app-input
+                    [handle]="registerForm.controls.password"
+                    [label]="'Mot de passe'"
+                    [errors]="{ 
+                        required: 'Un mot de passe est requis',
+                        remote: 'Le mot de passe est invalide'
+                    }">
+                    <input type="password" formControlName="password" name="password" class="form-control">
+                </app-input>
+                <app-input
+                    [handle]="registerForm.controls.confirmpwd"
+                    [label]="'Confirmation'"
+                    [errors]="{ 
+                        required: 'Veuillez confirmer votre mot de passe',
+                        notEquivalent: 'La confirmation ne correspond pas au mot de passe'
+                    }">
+                    <input type="password" formControlName="confirmpwd" name="confirmpwd" class="form-control">
+                </app-input> 
+                <div class="form-group row">
+                    <div class="offset-md-2 col-md-10 text-right">
+                        <button class="btn btn-raised btn-primary mt-3" type="submit">Je m'inscris</button>
+                    </div>      
+                </div>   
+            </fieldset>
+        </form>            
+    </div>
+</div>
+
+
+
+
+

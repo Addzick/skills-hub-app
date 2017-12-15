@@ -1,16 +1,15 @@
 // Angular stuff
 import { Component, OnInit, Input } from '@angular/core';
 
-// Shared services
-
+// Rxjs stuff
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-journal',
+  selector: 'app-account-journal',
   templateUrl: './journal.component.html',
   styleUrls: ['./journal.component.scss']
 })
-export class JournalComponent implements OnInit {
+export class AccountJournalComponent implements OnInit {
   @Input() events: Array<any>;
   
   constructor() { }

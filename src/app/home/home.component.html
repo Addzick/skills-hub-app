@@ -7,34 +7,26 @@
         </h1>
         <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">
             Trouvez le 
-            <span class="color-warning">meilleur prestataire</span> pour donner vie à toutes vos envies.
+            <span class="color-warning">meilleur prestataire</span> pour donner vie à toutes vos <span class="color-primary">envies</span>.
         </p>
     </div>
-    <div class="mb-4 mt-4">
-        <a href="javascript:void(0)" class="btn btn-raised btn-warning">Publier un appel d'offres</a>
-        <a href="javascript:void(0)" class="btn btn-raised btn-primary">Répondre à un appel d'offres</a>
+    <div class="mb-4 mt-4" *ngIf="!auth.isLoggedIn()">
+        <a [routerLink]="['/account/login']" class="btn btn-raised btn-warning">Je me connecte</a>
+        <a [routerLink]="['/account/register']" class="btn btn-raised btn-primary">Je m'inscris</a>
     </div>
 </app-header>
 
 <section id="register">
     <div class="wrap">
-        <div class="row container-fluid">
-            <div class="col-lg-5">
-                <h3 class="wow fadeInUp animation-delay-2">Vous recherchez un prestataire ?</h3>                    
-                <ol class="service-list list-unstyled mt-4 mb-4">
-                    <li class="wow fadeInUp animation-delay-5">Déposez dès maintenant un appel d'offres en quelques clics</li>
-                    <li class="wow fadeInUp animation-delay-7">Recevez des offres compétitives de nos prestataires inscrits</li>
-                    <li class="wow fadeInUp animation-delay-9">Choisissez le profil qui vous correspond</li>
-                    <li class="wow fadeInUp animation-delay-12">Et attribuez lui la prestation</li>
-                </ol>                    
-                <h3 class="wow fadeInUp animation-delay-12">C'est simple, efficace et gratuit.</h3>
-            </div>
-            <div class="col-lg-7">
-                <div class="card card-dark-inverse card-block wow fadeInUp animation-delay-12">
-                    <h3 class="text-center">Rejoignez nous</h3>
-                    <app-register></app-register>
-                </div>
-            </div>
+        <div class="container">
+            <h1 class="wow fadeInUp animation-delay-2">Vous recherchez un prestataire ?</h1>                    
+            <ol class="service-list list-unstyled mt-4 mb-4">
+                <li class="wow fadeInUp animation-delay-5">Déposez dès maintenant un appel d'offres en quelques clics</li>
+                <li class="wow fadeInUp animation-delay-7">Recevez des offres compétitives de nos prestataires inscrits</li>
+                <li class="wow fadeInUp animation-delay-9">Choisissez le profil qui vous correspond</li>
+                <li class="wow fadeInUp animation-delay-12">Et attribuez lui la prestation</li>
+            </ol>                    
+            <h1 class="wow fadeInUp animation-delay-12">C'est simple, efficace et gratuit.</h1>
         </div>
     </div>
 </section>
@@ -49,15 +41,15 @@
 <section id="categories">
     <div class="wrap">
         <div class="container">
-            <h2 class="text-center mb-4 wow fadeInDown animation-delay-2">Découvrez nos catégories</h2>
+            <h2 class="text-center mb-4 wow fadeInDown animation-delay-2">Rechercher par catégorie</h2>
             <div class="row">
-                <div class="col-lg-4 col-md-6" *ngFor="let category of categories">
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let category of categories">
                     <div class="card width-auto">
                         <figure class="ms-thumbnail ms-thumbnail-horizontal">
                             <img src="/assets/img/categories/{{ category.photo }}" alt="{{ category.name }}" class="img-fluid">
                             <figcaption class="ms-thumbnail-caption text-center">
                                 <div class="ms-thumbnail-caption-content">
-                                    <h3 class="ms-thumbnail-caption-title mb-3">{{ category.title }}</h3>
+                                    <h4 class="ms-thumbnail-caption-title">{{ category.title }}</h4>
                                     <a href="javascript:void(0)" class="btn btn-raised btn-royal">Découvrir</a>
                                 </div>
                             </figcaption>
@@ -79,7 +71,7 @@
 
 <section id="recents">
     <div class="wrap">
-        <div class="container-fluid">
+        <div class="container">
             <h2 class="text-center mb-4 wow fadeInDown animation-delay-2">Quelques actualités récentes</h2>
             <div class="row">
                 <div class="col-lg-8">

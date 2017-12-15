@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
   public ratings: Array<any> = [];
   
   public eventQuery: EventQuery = {
-    sort: { updatedAt : 'desc'},
+    sortBy: 'updatedAt',
+    sortDir: 'desc',
     page: 1,
     size: 5,
     types: [
@@ -33,12 +34,14 @@ export class HomeComponent implements OnInit {
   public ratingQuery: RatingQuery = {
     startValue: 4,
     endValue: 5,
-    sort: { updatedAt : 'desc'},
+    sortBy: 'updatedAt',
+    sortDir: 'desc',
     page: 1,
     size: 5
   };
 
   constructor(
+    public auth: AuthService,
     private categoryService : CategoryService,
     private eventService: EventService,
     private ratingService: RatingService

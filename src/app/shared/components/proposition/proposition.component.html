@@ -1,3 +1,13 @@
-<p>
-  proposition works!
-</p>
+<!DOCTYPE html>
+<div class="card-block">
+    <app-tender [tender]="proposition.source"></app-tender>
+    <div class="card-block no-mt no-mb bg-light">
+        <h4>{{ proposition.title }}</h4>
+        <p>{{ proposition.description }}</p>
+    </div>
+    <div class="mt-2">
+        <app-reactions [nbComments]="proposition.nbComments" [nbLikes]="proposition.nbLikes"></app-reactions>
+    </div>
+</div>
+
+

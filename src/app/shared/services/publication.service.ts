@@ -15,7 +15,8 @@ export interface PublicationQuery {
   title?: string;
   startDate?: Date;
   endDate?: Date;
-  sort?: {};
+  sortBy?: string;
+  sortDir?: string;
   page?: number;
   size?: number;
 }

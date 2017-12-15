@@ -1,26 +1,10 @@
 <!DOCTYPE html>
-<div class="card-block">
-    <div class="card no-mt no-mb">
-        <div class="card-header media bg-white color-dark">
-            <div class="media-left media-object media-middle">
-                <img src="{{ comment.source.item.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ comment.source.item.author.displayName }}" class="img-avatar-circle-sm mr-1">
-            </div>
-            <div class="media-body media-middle">
-                <a class="media-title" [routerLink]="['/user', comment.source.item.author._id]">{{ comment.source.item.author.displayName }}</a><br>
-            </div>
-            <div class="media-footer media-bottom pull-right">
-                <i class="zmdi zmdi-time no-mr"></i>
-                <small class="color-medium-dark">{{ comment.source.item.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
-            </div>
-        </div>
-        <app-article *ngIf="comment.source.kind === 'article'" [article]="comment.source.item"></app-article>
-        <app-proposition *ngIf="comment.source.kind === 'proposition'" [proposition]="comment.source.item"></app-proposition>
-        <app-rating *ngIf="comment.source.kind === 'rating'" [rating]="comment.source.item"></app-rating>
-        <app-task *ngIf="comment.source.kind === 'task'" [task]="comment.source.item"></app-task>
-        <app-tender *ngIf="comment.source.kind === 'tender'" [tender]="comment.source.item"></app-tender>
-    </div>
-    <div class="card card-light-inverse card-block no-mt no-mb" *ngIf="comment && comment.body">
-        <p><em>{{ comment.body  | truncate }}</em></p>
-    </div>
+<app-article *ngIf="comment.source.kind === 'article'" [article]="comment.source.item"></app-article>
+<app-proposition *ngIf="comment.source.kind === 'proposition'" [proposition]="comment.source.item"></app-proposition>
+<app-rating *ngIf="comment.source.kind === 'rating'" [rating]="comment.source.item"></app-rating>
+<app-task *ngIf="comment.source.kind === 'task'" [task]="comment.source.item"></app-task>
+<app-tender *ngIf="comment.source.kind === 'tender'" [tender]="comment.source.item"></app-tender>
+<div class="card-block no-mt no-mb bg-light" *ngIf="comment && comment.body">
+    <p><em>{{ comment.body  | truncate }}</em></p>
 </div>
 

@@ -53,7 +53,7 @@ export abstract class ApiService {
     protected delete(url: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http.delete(this.updateUrl(url), options)
         .map((res: Response) => {
-            return res.json();
+            return res;
         });
     }
 }

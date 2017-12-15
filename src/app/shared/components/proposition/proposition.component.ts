@@ -1,3 +1,4 @@
+// Angular stuff
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -12,5 +13,4 @@ export class PropositionComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

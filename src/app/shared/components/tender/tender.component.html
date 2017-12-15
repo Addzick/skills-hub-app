@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <div class="card-block">
-    <a [routerLink]="['/tender', tender._id]" class="pub-title">{{ tender.title }}</a>
-    <table class="table table-no-border table-striped">
-        <tr>
-            <th><i class="zmdi zmdi-bookmark mr-1 color-warning"></i> <span class="d-none d-md-inline-block">Catégorie</span></th>
-            <td>{{ tender.category.title }}</td>
-        </tr>
-        <tr>
-            <th><i class="zmdi zmdi-map mr-1 color-success"></i> <span class="d-none d-md-inline-block">Localite</span></th>
-            <td>{{ tender.address.short }}</td>
-        </tr>        
-        <tr>
-            <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> <span class="d-none d-md-inline-block">Date</span></th>
-            <td>{{ tender.workDate  | amLocale: 'fr' | amCalendar }}</td>
-        </tr>
-        <tr>
-            <th><i class="zmdi zmdi-notifications-active mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Echéance</span></th>
-            <td>{{ tender.validityEnd  | amLocale: 'fr' | amCalendar }}</td>
-        </tr>
-    </table>
+    <a [routerLink]="['/tender', tender._id, 'detail']" class="btn-link pub-title">{{ tender.title }}</a>
+    <div class="card mt-1">
+        <table class="table table-no-border table-striped table-condensed">
+            <tr>
+                <th><i class="zmdi zmdi-bookmark mr-1 color-warning"></i> <span class="d-none d-md-inline-block">Catégorie</span></th>
+                <td>{{ tender.category.title }}</td>
+            </tr>
+            <tr>
+                <th><i class="zmdi zmdi-map mr-1 color-success"></i> <span class="d-none d-md-inline-block">Localite</span></th>
+                <td>{{ tender.address.short }}</td>
+            </tr>        
+            <tr>
+                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> <span class="d-none d-md-inline-block">Date</span></th>
+                <td>{{ tender.workDate  | amLocale: 'fr' | amCalendar }}</td>
+            </tr>
+            <tr>
+                <th><i class="zmdi zmdi-notifications-active mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Echéance</span></th>
+                <td>{{ tender.validityEnd  | amLocale: 'fr' | amCalendar }}</td>
+            </tr>
+        </table>
+    </div>    
     <div class="mt-2">
-        <span class="ms-icon ms-icon-inverse color-info" *ngIf="tender.nbLikes">
-            <i class="zmdi zmdi-favorite"></i>
-            {{ tender.nbLikes }}
+        <span class="ms-icon ms-icon-inverse color-info">
+            <i class="zmdi zmdi-receipt"></i>
+            {{ tender.nbPropositions || 0}}
         </span>
-        <span class="ms-icon ms-icon-inverse color-warning" *ngIf="tender.nbComments">
-            <i class="zmdi zmdi-comments"></i>
-            {{ tender.nbComments }}
-        </span>
+        <app-reactions [nbComments]="tender.nbComments" [nbLikes]="tender.nbLikes"></app-reactions>
     </div>
 </div>
 

@@ -1,24 +1,7 @@
 <!DOCTYPE html>
-<div *ngIf="user">
-    <app-header [image]="'cook'">
-        <img class="ms-avatar-hero" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}"/>
-        <h1 class="color-white mt-4">{{ user.displayName }}</h1>        
-        <div class="rating-list mb-4">
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
-        </div>
-        <blockquote class="blockquote color-medium">{{ user.bio }}</blockquote>
-    </app-header>
-    <div class="container">
-        <app-stats [user]="user"></app-stats>
-        <app-infos [user]="user" (notify)="onNotify($event)"></app-infos>
-        <app-address [address]="user.address"></app-address>
-    </div>
-    <div class="container" *ngIf="events">
-        <app-journal [events]="events"></app-journal>
-    </div>
-</div>
+<router-outlet></router-outlet>
+
+
+
+
 

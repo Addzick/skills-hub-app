@@ -5,14 +5,21 @@ import { RouterModule } from '@angular/router';
 // Skills-hub modules
 import { SharedModule } from '../shared/shared.module';
 
+// Account resolver
+import { AccountResolver } from './account-resolver.service';
+
 // Account components
 import { AccountComponent } from './account.component';
-import { SignComponent } from './sign/sign.component';
-import { InfosComponent } from './infos/infos.component';
-import { AddressComponent } from './address/address.component';
-import { JournalComponent } from './journal/journal.component';
-import { FavoritesComponent } from './favorites/favorites.component';
-import { StatsComponent } from './stats/stats.component';
+import { AccountLoginComponent } from './login/login.component';
+import { AccountRegisterComponent } from './register/register.component';
+import { AccountForgotComponent } from './forgot/forgot.component';
+import { AccountInfosComponent } from './infos/infos.component';
+import { AccountAddressComponent } from './address/address.component';
+import { AccountFavoritesComponent } from './favorites/favorites.component';
+import { AccountJournalComponent } from './journal/journal.component';
+import { AccountStatsComponent } from './stats/stats.component';
+import { AccountProfileComponent } from './profile/profile.component';
+import { AccountDetailComponent } from './detail/detail.component';
 
 // Routing
 import { routes } from './account.routing';
@@ -24,23 +31,20 @@ import { routes } from './account.routing';
   ],
   declarations: [
     AccountComponent,
-    InfosComponent,
-    AddressComponent,
-    JournalComponent,
-    SignComponent,
-    FavoritesComponent,
-    StatsComponent,
+    AccountInfosComponent,
+    AccountAddressComponent,
+    AccountJournalComponent,
+    AccountLoginComponent,
+    AccountRegisterComponent,
+    AccountForgotComponent,
+    AccountFavoritesComponent,
+    AccountStatsComponent,
+    AccountProfileComponent,
+    AccountDetailComponent,
   ],
   providers: [
+    AccountResolver,
   ],
-  exports: [
-    AccountComponent,
-    InfosComponent,
-    AddressComponent,
-    SignComponent,
-    JournalComponent,
-    FavoritesComponent,
-    StatsComponent,
-  ]
+  exports: []
 })
 export class AccountModule { }
