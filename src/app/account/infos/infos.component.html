@@ -29,9 +29,9 @@
     <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit" class="m-4">
         <fieldset>
             <app-input 
-                [handle]="editForm.controls.username"
+                [errors]="editForm.controls.username"
                 [label]="'Nom d\'utilisateur'"
-                [errors]="{ 
+                [messages]="{ 
                     required: 'Un nom d\'utilisateur est requis',
                     pattern: 'Le nom d\'utilisateur est incorrect',
                     remote: 'Le nom d\'utilisateur est incorrect'
@@ -39,9 +39,9 @@
                 <input type="text" formControlName="username" name="username" class="form-control">
             </app-input>
             <app-input
-                [handle]="editForm.controls.email"
+                [errors]="editForm.controls.email"
                 [label]="'Adresse e-mail'"
-                [errors]="{
+                [messages]="{
                     required: 'Une adresse e-mail est requise',
                     email: 'L\'adresse e-mail est invalide',
                     remote: 'L\'adresse e-mail est déjà utilisée'
@@ -49,17 +49,17 @@
                 <input type="email" formControlName="email" name="email" class="form-control">
             </app-input>
             <app-input
-                [handle]="editForm.controls.lastname"
+                [errors]="editForm.controls.lastname"
                 [label]="'Nom'">
                 <input type="text" formControlName="lastname" name="lastname" class="form-control">
             </app-input>
             <app-input
-                [handle]="editForm.controls.firstname"
+                [errors]="editForm.controls.firstname"
                 [label]="'Prénom'">
                 <input type="text" formControlName="firstname" name="firstname" class="form-control">
             </app-input>
             <app-input 
-                [handle]="editForm.controls.bio"
+                [errors]="editForm.controls.bio"
                 [label]="'Bio'">
                 <textarea formControlName="bio" name="bio" class="form-control" rows="3"></textarea>  
             </app-input>

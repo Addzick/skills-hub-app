@@ -17,18 +17,18 @@ export class FormService {
         fields.forEach((field) => {
             const control = group.controls[field];
             if (control) { 
-                control.setValue(obj[field]); 
+                control.setValue(obj[field], { emitEvent: true });
             }
         });
     }
     
-    setFormGroupErrors(group: FormGroup, err: Response) {
+    setFormGroupErrors(group: FormGroup, err: Response) {        
         const errors = err.json().errors;
         const fields = Object.keys(errors || {});
         fields.forEach((field) => {
             const control = group.controls[field];
             if (control) {
-                control.setErrors({ 'remote': errors[field] });
+                control.setErrors({ 'remote': true }, { emitEvent: true });
             }
         });
     }

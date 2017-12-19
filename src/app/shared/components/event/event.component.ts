@@ -1,5 +1,5 @@
 // Angular stuff
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
 import '../../../core/rxjs-extensions';
@@ -13,9 +13,12 @@ import { LikeService } from '../../services/like.service';
 })
 export class EventComponent implements OnInit {
   @Input() event: any;
-  private source: any;
   public canLike = false;
   public isPublication = false;
+  
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+
+  private source: any;
 
   constructor(private likeService: LikeService) {}
   
@@ -35,5 +38,19 @@ export class EventComponent implements OnInit {
         this.isPublication = this.source && this.source.kind != 'user';
         this.canLike = this.isPublication && !this.source.item.myLike;
       }
-    }    
+    }
+
+    like(){
+      this.likeService.like({ source: this.source })
+      .subscribe(
+        res => this.notify.emit(),
+        err => console.error(err));
+    }
+  
+    unlike() {
+      this.likeService.unlike(this.source.item.myLike._id)
+      .subscribe(
+        res => this.notify.emit(),
+        err => console.error(err));
+    }
 }

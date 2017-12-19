@@ -16,9 +16,9 @@
         <form [formGroup]="registerForm" (submit)="register()">
             <fieldset>
                 <app-input 
-                    [handle]="registerForm.controls.username"
                     [label]="'Nom d\'utilisateur'"
-                    [errors]="{ 
+                    [errors]="registerForm.controls.username.errors"
+                    [messages]="{ 
                         required: 'Un nom d\'utilisateur est requis',
                         pattern: 'Le nom d\'utilisateur est incorrect',
                         remote: 'Le nom d\'utilisateur est incorrect'
@@ -26,38 +26,34 @@
                     <input type="text" formControlName="username" name="username" class="form-control">
                 </app-input>
                 <app-input
-                    [handle]="registerForm.controls.email"
                     [label]="'Adresse e-mail'"
-                    [errors]="{
+                    [errors]="registerForm.controls.email.errors"
+                    [messages]="{
                         required: 'Une adresse e-mail est requise',
                         email: 'L\'adresse e-mail est invalide',
                         remote: 'L\'adresse e-mail est déjà utilisée'
                     }">
                     <input type="email" formControlName="email" name="email" class="form-control">
                 </app-input>
-                <app-input
-                    [handle]="registerForm.controls.lastname"
-                    [label]="'Nom'">
+                <app-input [label]="'Nom'">
                     <input type="text" formControlName="lastname" name="lastname" class="form-control">
                 </app-input>
-                <app-input
-                    [handle]="registerForm.controls.firstname"
-                    [label]="'Prénom'">
+                <app-input [label]="'Prénom'">
                     <input type="text" formControlName="firstname" name="firstname" class="form-control">
                 </app-input>
                 <app-input
-                    [handle]="registerForm.controls.password"
                     [label]="'Mot de passe'"
-                    [errors]="{ 
+                    [errors]="registerForm.controls.password.errors"
+                    [messages]="{ 
                         required: 'Un mot de passe est requis',
                         remote: 'Le mot de passe est invalide'
                     }">
                     <input type="password" formControlName="password" name="password" class="form-control">
                 </app-input>
                 <app-input
-                    [handle]="registerForm.controls.confirmpwd"
                     [label]="'Confirmation'"
-                    [errors]="{ 
+                    [errors]="registerForm.controls.confirmpwd.errors"
+                    [messages]="{ 
                         required: 'Veuillez confirmer votre mot de passe',
                         notEquivalent: 'La confirmation ne correspond pas au mot de passe'
                     }">

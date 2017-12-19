@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<div class="card card-primary card-block card-block-big animated fadeInUp animation-delay-9">
-    <h1 class="color-primary text-center">Activités récentes</h1>
-    <ul class="ms-timeline mt-6">
-        <li class="ms-timeline-item" *ngFor="let event of events">
-            <div class="ms-timeline-date">
-                <time class="timeline-time">{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</time>
-                <i class="ms-timeline-point"></i>
-            </div> 
-            <app-event [event]="event"></app-event> 
-        </li>    
-    </ul>
-</div>
+<h1 class="color-primary text-center mt-4">Activités récentes</h1>
+<ul class="list-unstyled mt-4">
+    <li *ngFor="let event of events">
+        <app-event [event]="event" (notify)="onNotify($event)"></app-event>  
+    </li>
+</ul>

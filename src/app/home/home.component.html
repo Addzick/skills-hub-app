@@ -10,9 +10,13 @@
             <span class="color-warning">meilleur prestataire</span> pour donner vie à toutes vos <span class="color-primary">envies</span>.
         </p>
     </div>
-    <div class="mb-4 mt-4" *ngIf="!auth.isLoggedIn()">
-        <a [routerLink]="['/account/login']" class="btn btn-raised btn-warning">Je me connecte</a>
-        <a [routerLink]="['/account/register']" class="btn btn-raised btn-primary">Je m'inscris</a>
+    <div class="row justify-content-center mb-4 mt-4" *ngIf="!auth.isLoggedIn()">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a [routerLink]="['/account/login']" class="btn btn-raised btn-block btn-warning">Je me connecte</a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a [routerLink]="['/account/register']" class="btn btn-raised btn-block btn-primary">Je m'inscris</a>
+        </div>
     </div>
 </app-header>
 

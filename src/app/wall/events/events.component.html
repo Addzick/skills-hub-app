@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <ul class="list-unstyled">
     <li *ngFor="let event of events">
-        <app-event [event]="event"></app-event>  
+        <app-event [event]="event" (notify)="onNotify($event)"></app-event>  
     </li>
 </ul> 

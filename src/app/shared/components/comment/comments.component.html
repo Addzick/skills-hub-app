@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<div class="list-group">
-    <div class="list-group-item media animated wow fadeInRight" *ngFor="let comment of comments">
-        <div class="media-left media-object media-middle">
-            <img src="{{ comment.author.image || '/assets/img/no-picture.jpg'}}" alt="" class="img-avatar-circle-sm mr-1">
-        </div>
-        <div class="media-body media-middle">
-            <a [routerLink]="['/account', comment.author._id, 'detail' ]">{{ comment.author.displayName }}</a> 
-            <span class="ml-1 d-none d-sm-inline">
-                <i class="zmdi zmdi-time mr-05 color-info"></i>
-                <small class="color-medium-dark">{{ comment.createdAt | amLocale:'fr' | amTimeAgo}}</small>
-            </span>
-            <p><em>{{ comment.body }}</em></p>
-        </div>
-        <div class="media-right media-object media-middle" *ngIf="comment.canEdit">
-            <a class="btn-circle btn-circle-sm btn-circle-danger" (click)="uncomment(comment._id)">
-                <i class="zmdi zmdi-delete"></i>
-            </a>
+<div class="wow materialUp" *ngIf="hasComments">
+    <div class="list-group">
+        <div class="list-group-item media" *ngFor="let comment of comments">
+            <div class="media-left media-object media-middle">
+                <img src="{{ comment.author.image || '/assets/img/no-picture.jpg'}}" alt="" class="img-avatar-circle-sm mr-1">
+            </div>
+            <div class="media-body media-middle">
+                <a [routerLink]="['/account', comment.author._id, 'detail' ]">{{ comment.author.displayName }}</a> 
+                <span class="ml-1 d-none d-sm-inline">
+                    <i class="zmdi zmdi-time mr-05 color-info"></i>
+                    <small class="color-medium-dark">{{ comment.createdAt | amLocale:'fr' | amTimeAgo}}</small>
+                </span>
+                <p><em>{{ comment.body }}</em></p>
+            </div>
+            <div class="media-right media-object media-middle" *ngIf="comment.canEdit">
+                <a class="btn-circle btn-circle-sm btn-circle-primary color-danger" (click)="uncomment(comment._id)">
+                    <i class="zmdi zmdi-delete"></i>
+                </a>
+            </div>
         </div>
     </div>
+    <div class="text-center">
+        <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page - 1)" *ngIf="hasPrec">
+            <i class="zmdi zmdi-arrow-left mr-1"></i>
+            Prec
+        </a>
+        <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page + 1)" *ngIf="hasNext">
+            Suiv
+            <i class="zmdi zmdi-arrow-right ml-1"></i> 
+        </a>
+            </div>
 </div>
-<div class="text-center">
-    <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page - 1)" *ngIf="query.page > 1">
-        <i class="zmdi zmdi-arrow-left mr-1"></i>
-        Prec
-    </a>
-    <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page + 1)" *ngIf="query.page * query.size < total">
-        Suiv
-        <i class="zmdi zmdi-arrow-right ml-1"></i> 
-    </a>
-</div>
-<div class="card-block bg-light text-center" *ngIf="!comments || comments.length <= 0">
+
+<div class="card-block bg-light text-center wow materialUp" *ngIf="!hasComments">
     <h2 class="card-text">Soyez le premier à commenter ...</h2>
 </div>
+
 <div class="card-block bg-light">
     <form>
         <fieldset>

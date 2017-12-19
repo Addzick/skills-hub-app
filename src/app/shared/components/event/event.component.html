@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <article class="card card-event wow materialUp">
-    <div class="card-header media bg-white color-dark">
-        <div class="media-left media-object media-middle">
-            <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
+
+    <div class="card-header bg-white color-dark">
+        <div class="media">
+            <div class="media-left media-object media-middle">
+                <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
+            </div>
+            <div class="media-body media-middle">
+                <a class="btn-link" [routerLink]="[ '/account', event.author._id, 'detail' ]">{{ event.isMine ? 'vous' : event.author.displayName }}</a>
+                <small>{{ event.type | eventType:event.isMine}}</small><br>
+                <span>
+                    <i class="zmdi zmdi-time no-mr color-info"></i>
+                    <small>{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
+                </span>
+            </div>
         </div>
-        <div class="media-body media-middle">
-            <a class="btn-link" [routerLink]="[ '/account', event.author._id, 'detail' ]">{{ event.isMine ? 'vous' : event.author.displayName }}</a><br>
-            <small><em>{{ event.type | eventType:event.isMine}}</em></small>
-        </div>
-        <div class="media-footer media-bottom text-right">
-            <i class="zmdi zmdi-time no-mr"></i>
-            <small>{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
-        </div>
+        
     </div>
-    <div class="card card-item d-none d-md-block" *ngIf="event.source.item">
+
+    <div class="card card-item" *ngIf="event.source.item">
+
         <app-user *ngIf="event.source.kind === 'user'" [user]="event.source.item"></app-user>
         <app-article *ngIf="event.source.kind === 'article'" [article]="event.source.item"></app-article>
         <app-proposition *ngIf="event.source.kind === 'proposition'" [proposition]="event.source.item"></app-proposition>
@@ -22,12 +28,13 @@
         <app-tender *ngIf="event.source.kind === 'tender'" [tender]="event.source.item"></app-tender>
         <app-comment *ngIf="event.source.kind === 'comment'" [comment]="event.source.item"></app-comment>
         <app-like *ngIf="event.source.kind === 'like'" [like]="event.source.item"></app-like>
+
         <div class="card-footer bg-white">
             <div class="row justify-content-center">
                 <div class="col">
-                    <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
+                    <a (click)="canLike ? like() : unlike()" 
                     fragment="likes"
-                    class="btn btn-white color-royal btn-raised btn-block btn-sm no-mt"
+                    class="btn btn-royal color-white btn-raised btn-block btn-sm no-mt"
                     *ngIf="isPublication">
                         <i class="zmdi no-mr"
                         [class.zmdi-favorite-outline]="canLike"
@@ -40,7 +47,7 @@
                 <div class="col">
                     <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
                     fragment="comments" 
-                    class="btn btn-white color-info btn-raised btn-block btn-sm no-mt" 
+                    class="btn btn-info color-white btn-raised btn-block btn-sm no-mt" 
                     *ngIf="isPublication">
                         <i class="zmdi zmdi-comments no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Commenter</span>
@@ -48,13 +55,13 @@
                 </div>
                 <div class="col">
                     <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
-                    class="btn btn-white color-primary btn-block btn-raised btn-sm no-mt"
+                    class="btn btn-primary color-white btn-block btn-raised btn-sm no-mt"
                     *ngIf="isPublication">
                         <i class="zmdi zmdi-more no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Plus</span>
                     </a>
                     <a [routerLink]="['/account', source.item._id, 'detail' ]" 
-                    class="btn btn-white color-primary btn-block btn-raised btn-sm no-mt"
+                    class="btn btn-primary color-white btn-block btn-raised btn-sm no-mt"
                     *ngIf="!isPublication">
                         <i class="zmdi zmdi-eye no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Decouvrir</span>

@@ -9,7 +9,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthService } from '../../core/auth.service';
 // Shared services
 import { EventService, EventQuery } from '../../shared/services/event.service';
-
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -17,7 +16,7 @@ import { EventService, EventQuery } from '../../shared/services/event.service';
   providers: [EventService]
 })
 export class EventsComponent implements OnInit {
-  public events: Array<any>;
+  
   public query: EventQuery = {
     types: [
       'user_registered',
@@ -42,6 +41,9 @@ export class EventsComponent implements OnInit {
     size: 10
   };
 
+  public events: Array<any>;
+  private eventSub: any;
+
   constructor(
     private auth: AuthService,
     private eventService: EventService,
@@ -49,9 +51,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     // Récupération des événements
-    this.eventService.findAll(this.query).subscribe(
-      res => this.events = res.events,
-      err => console.error(err));
+    this.refresh();
 
     // Souscription aux nouveaux evenements
     this.auth.channel.subscribe(
@@ -63,8 +63,19 @@ export class EventsComponent implements OnInit {
      },
      err => console.error(err));
   }
+     
+  refresh(){
+    if(this.eventSub) { this.eventSub.unsubscribe(); }
+    this.eventSub = this.getEvents().subscribe();
+  }
 
-  isEventFromCurrentUser(event) {
-    return event.author.getCurrentUserName == this.auth.getCurrentUserName();
+  onNotify(event: any):void {
+    this.refresh();
+  }
+
+  getEvents() {
+    return this.eventService.findAll(this.query)
+    .map(res => this.events = res.events)
+    .catch(err => { throw err; });
   }
 }

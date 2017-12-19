@@ -2,29 +2,29 @@
 <app-header [image]="'cook'">
     <img class="ms-avatar-hero" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}"/>
     <h1 class="color-white mt-4">{{ user.displayName }}</h1>        
-    <div class="rating-list mb-4">
+    <div class="rating-list">
         <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
         <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
         <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
         <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
         <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
     </div>
-    <blockquote class="blockquote color-medium">{{ user.bio }}</blockquote>
+    <blockquote class="blockquote color-medium mt-4 d-none d-md-block">{{ user.bio }}</blockquote>
 </app-header>
 <div class="container">
     <app-account-stats [user]="user"></app-account-stats>
     <div class="card card-primary p-1 animated fadeInUp animation-delay-9">
         <table class="table table-no-border table-striped">
             <tr>
-                <th><i class="zmdi zmdi-account mr-1 color-danger"></i> Nom d'utilisateur</th>
+                <th><i class="zmdi zmdi-account mr-1 color-danger"></i>  <span class="d-none d-md-inline-block">Nom d'utilisateur</span></th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th><i class="zmdi zmdi-face mr-1 color-success"></i> Nom</th>
+                <th><i class="zmdi zmdi-face mr-1 color-success"></i>  <span class="d-none d-md-inline-block">Nom</span></th>
                 <td>{{ user.displayName }}</td>
             </tr>        
             <tr>
-                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> Inscrit depuis le</th>
+                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i>  <span class="d-none d-md-inline-block">Inscrit depuis le</span></th>
                 <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
             </tr>
         </table>

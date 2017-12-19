@@ -27,9 +27,9 @@
         <form [formGroup]="loginForm" (submit)="login()">
             <fieldset>
                 <app-input 
-                    [handle]="loginForm.controls.username"
                     [label]="'Nom d\'utilisateur'"
-                    [errors]="{ 
+                    [errors]="loginForm.controls.username.errors"
+                    [messages]="{ 
                         required: 'Un nom d\'utilisateur est requis',
                         pattern: 'Le nom d\'utilisateur est incorrect',
                         remote: 'Le nom d\'utilisateur est incorrect'
@@ -37,9 +37,9 @@
                     <input type="text" formControlName="username" name="username" class="form-control">
                 </app-input>
                 <app-input  
-                    [handle]="loginForm.controls.password"
                     [label]="'Mot de passe'"
-                    [errors]="{ 
+                    [errors]="loginForm.controls.password.errors"
+                    [messages]="{ 
                         required: 'Un mot de passe est requis',
                         remote: 'Le mot de passe est incorrect'
                     }">

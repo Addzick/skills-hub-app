@@ -27,7 +27,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
     page: 1,
     size: 5
   };
-  
+  public hasPrec = false;
+  public hasNext = false;
+  public hasComments = false;
+
   private commentsSub: any;
 
   constructor(private commentService: CommentService) { }
@@ -53,11 +56,12 @@ export class CommentsComponent implements OnInit, OnDestroy {
       return this.commentService
       .findAll(this.query)
       .map(res => {
+        console.log(res);
         this.comments = res.comments;
         this.total = res.count;
-        while(this.query.page * this.query.size > this.total){
-          this.query.page --;
-        }
+        this.hasComments = this.total > 0;
+        this.hasPrec = this.query.page > 1;
+        this.hasNext = this.query.page * this.query.size < this.total;
       })
       .catch((error) => { throw error; });
     }

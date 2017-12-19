@@ -5,33 +5,16 @@
       Découvrez, vivez et partagez<br>
       vos expériences avec les autres membres de la communauté.
     </p>
-</app-header>
-
-<div class="container-fluid">
-    <div class="card card-hero card-dark animated fadeInUp animation-delay-2">
-        <div class="card-header bg-dark">
-            <div class="row justify-content-center">
-                <div class="col-4">
-                    <a [routerLink]="['/search']" class="btn btn-default btn-block btn-raised">
-                        <i class="zmdi zmdi-search"></i>
-                        <span class="d-none d-md-inline-block">Rechercher</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a [routerLink]="['/tender/create']" class="btn btn-warning btn-block btn-raised">
-                        <i class="zmdi zmdi-roller"></i>
-                        <span class="d-none d-md-inline-block">Publier un appel d'offres</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a [routerLink]="['/article/create']" class="btn btn-primary btn-raised btn-block">
-                        <i class="zmdi zmdi-collection-text"></i>
-                        <span class="d-none d-md-inline-block">Publier un article</span>
-                    </a>
-                </div>
-            </div>
+    <div class="row justify-content-center mb-4 mt-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a [routerLink]="['/article/create']" class="btn btn-raised btn-block btn-primary">Publier un article</a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a [routerLink]="['/tender/create']" class="btn btn-raised btn-block btn-warning">Publier un appel d'offres</a>
         </div>
     </div>
+</app-header>
+<div class="card card-hero card-light-inverse card-block animated fadeInUp animation-delay-2">
     <div class="row">
         <div class="col-lg-8">
             <app-events></app-events>

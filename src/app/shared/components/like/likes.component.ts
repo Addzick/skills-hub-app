@@ -28,6 +28,10 @@ export class LikesComponent implements OnInit, OnDestroy {
     size: 5
   };
   
+  public hasNext = false;
+  public hasPrec = false;
+  public hasLikes= false;
+  
   private likesSub: any;
 
   constructor(private likeService: LikeService) { }
@@ -54,9 +58,10 @@ export class LikesComponent implements OnInit, OnDestroy {
       .map(res => { 
         this.likes = res.likes;
         this.total = res.count;
-        while(this.query.page * this.query.size > this.total){
-          this.query.page --;
-        }
+        
+        this.hasLikes = this.total > 0;
+        this.hasPrec = this.query.page > 1;
+        this.hasNext = this.query.page * this.query.size < this.total;
       })
       .catch((error) => { throw error; });
     }
