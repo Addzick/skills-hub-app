@@ -13,17 +13,7 @@
 </app-header>
 <div class="container">
     <div class="card card-hero card-block no-pt animated fadeInUp animation-delay-7">
-        <div class="text-center mt-1 mb-1">
-            <a routerLink="/external/facebook" class="btn-circle btn-facebook">
-                <i class="zmdi zmdi-facebook"></i>
-            </a>
-            <a routerLink="/external/twitter" class="btn-circle btn-twitter">
-                <i class="zmdi zmdi-twitter"></i>
-            </a>
-            <a routerLink="/external/google" class="btn-circle btn-google">
-                <i class="zmdi zmdi-google"></i>
-            </a>
-        </div>
+        <h1 class="color-primary text-center mt-6 text-uppercase">Se connecter</h1>
         <form [formGroup]="loginForm" (submit)="login()">
             <fieldset>
                 <app-input 
@@ -47,17 +37,34 @@
                 </app-input>
                 <div class="form-group row text-right">
                     <div class="offset-md-2 col-md-10">
-                        <button class="btn btn-raised btn-primary mt-3" type="submit">Je me connecte</button>
+                        <div class="row justify-content-end">
+                            <div class="col-4">
+                                <a [routerLink]="['/account/forgot']" class="btn btn-link btn-block color-dark">
+                                    <i class="zmdi zmdi-key"></i> J'ai oublié mon mot de passe ?
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a [routerLink]="['/account/register']" class="btn btn-link btn-block color-dark">
+                                    <i class="zmdi zmdi-account-add"></i> Je m'inscris
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-raised btn-block btn-primary" type="submit">Je me connecte</button>
+                            </div>
+                        </div>
                     </div>      
-                </div>        
+                </div> 
             </fieldset>
         </form>
-        <div class="text-center animated fadeInUp animation-delay-7">
-            <a [routerLink]="['/']" class="btn btn-white">
-                <i class="zmdi zmdi-home"></i> Accueil
+        <div class="text-center mt-2 mb-2">
+            <a routerLink="/external/facebook" class="btn-circle btn-facebook">
+                <i class="zmdi zmdi-facebook"></i>
             </a>
-            <a [routerLink]="['/account/forgot']" class="btn btn-white">
-                <i class="zmdi zmdi-key"></i> Mot de passe oublié ?
+            <a routerLink="/external/twitter" class="btn-circle btn-twitter">
+                <i class="zmdi zmdi-twitter"></i>
+            </a>
+            <a routerLink="/external/google" class="btn-circle btn-google">
+                <i class="zmdi zmdi-google"></i>
             </a>
         </div>
     </div>

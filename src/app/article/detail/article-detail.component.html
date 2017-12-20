@@ -11,7 +11,7 @@
                 <small>{{ article.createdAt | amLocale:'fr' | amCalendar }}</small>
             </span>                
         </div>
-        <div class="media-right media-object media-middle" *ngIf="article.canEdit">
+        <div class="align-self-center ml-3" *ngIf="article.canEdit">
             <a [routerLink]="['/article', article._id, 'edit' ]" class="btn-circle btn-circle-primary color-warning">
                 <i class="zmdi zmdi-edit ml-1"></i>
             </a>

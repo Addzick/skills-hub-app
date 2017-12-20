@@ -20,10 +20,8 @@ import { ExtendInputComponent } from '../../shared/components/extend-input/exten
 export class ArticleEditComponent implements OnInit, OnDestroy {
   public editForm: FormGroup;  
   public article: any = { title: '', description: '', body: '', tags:[''] };
-  public tags = [];
   
   private articleSub: any;
-  private tagsSub: any;
 
   public config: any = {
     "editable": true,
@@ -46,7 +44,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
         'title' : ['', Validators.required],
         'description' : [''],
         'body': [''],
-        'tags': ['']
+        'tags': [[]]
       });
     }
 
@@ -55,11 +53,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
     subscribe(
       res => { 
         this.article = res.article.article; 
-        this.formService.setFormGroupValues(this.editForm, this.article); 
-        this.tagsSub = this.articleService.getTags().subscribe(
-          res => this.tags = res.tags,
-          err => console.error(err)
-        );
+        this.formService.setFormGroupValues(this.editForm, this.article);
       },
       err => console.error(err)
     );
@@ -67,7 +61,6 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if(this.articleSub) { this.articleSub.unsubscribe(); }
-    if(this.tagsSub) { this.tagsSub.unsubscribe(); }
   }
 
   submit() {

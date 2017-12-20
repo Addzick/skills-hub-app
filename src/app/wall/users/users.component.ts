@@ -41,7 +41,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   autoSetCurrentUser(){
-    return Observable.interval(10000).subscribe(i => {
+    return Observable.interval(5000).subscribe(i => {
       if(this.users && this.users.length > 0) { 
         this.currentUser = this.users[this.next];
         this.next ++;

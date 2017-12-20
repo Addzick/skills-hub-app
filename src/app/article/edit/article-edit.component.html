@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<h1 class="color-primary text-center mt-6 text-uppercase">Modifier un article</h1>
 <form [formGroup]="editForm" class="m-4">
   <fieldset>
     <app-input 
@@ -16,12 +17,7 @@
         <textarea formControlName="description" name="description" class="form-control" rows="3"></textarea>  
     </app-input>
     <app-input [labelText]="'Tags'">
-        <rl-tag-input 
-        formControlName="tags"
-        name="tags" 
-        autocomplete="true" 
-        autocompleteMustMatch="false"
-        autocompleteSelectFirstItem="true"></rl-tag-input>
+        <rl-tag-input formControlName="tags" name="tags"></rl-tag-input>
     </app-input>
     <app-input [labelText]="'Contenu'">
         <app-ngx-editor [config]="config"  formControlName="body" name="body" (ngModelChange)="sanitize($event)"></app-ngx-editor>

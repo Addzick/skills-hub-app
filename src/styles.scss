@@ -157,8 +157,8 @@ agm-map {
 }
 
 .img-avatar-circle-sm {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: solid 1px #fff;
   margin: 0 auto;
@@ -191,10 +191,10 @@ agm-map {
   .card .card-header,.card .card-block {
     padding: 10px;
   } 
-  .media-body.media-middle .media-title {
+  .media-body .media-title {
     font-size: 13px;
   }
-  .media-footer.media-bottom small,.media-body.media-middle small  {
+  .media-footer.media-bottom small,.media-body small  {
     font-size:10px;
   }
 }
@@ -207,4 +207,10 @@ agm-map {
 
 .bg-none{
   background: none !important;
+}
+
+blockquote {
+  text-align: justify;
+  word-wrap: break-word;
+  white-space: pre-line;
 }

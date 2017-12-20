@@ -18,9 +18,6 @@ import { ArticleService } from '../../shared/services/article.service';
 export class ArticleCreateComponent implements OnInit, OnDestroy {
   public createForm: FormGroup;
   public article: any = { title: '', description: '', body: '', tags:[''] };
-  public tags = [];
-
-  private tagsSub: any;
 
   public config: any = {
     "editable": true,
@@ -42,24 +39,19 @@ export class ArticleCreateComponent implements OnInit, OnDestroy {
       'title' : ['', Validators.required],
       'description' : [''],
       'body': [''],
-      'tags': ['']
+      'tags': [[]]
     });
   }
 
   ngOnInit() {
-    this.tagsSub = this.articleService.getTags().subscribe(
-      res => this.tags = res.tags,
-      err => console.error(err)
-    );
   }
 
   ngOnDestroy() {
-    if(this.tagsSub) { this.tagsSub.unsubscribe(); }
   }
 
   submit() {
     if (this.createForm.valid) {
-      this.article = this.formService.getFormGroupValues(this.createForm,this.article);
+      this.formService.getFormGroupValues(this.createForm,this.article);
       this.articleService.create({ article: this.article }).subscribe(
         res => this.router.navigate(['/article', res.article._id, 'detail']),
         err => this.formService.setFormGroupErrors(this.createForm, err)
@@ -71,7 +63,7 @@ export class ArticleCreateComponent implements OnInit, OnDestroy {
   }
 
   reset() {
-    this.createForm.reset();
+    this.router.navigate(['/']);
   }
 
 }

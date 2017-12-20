@@ -45,11 +45,11 @@
                 <img src="{{ article.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ article.author.displayName }}" class="img-avatar-circle-sm mr-1">
             </div>
             <div class="media-body">
+              <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]">{{ article.author.displayName }}</a><br>
               <span>
                   <i class="zmdi zmdi-time no-mr color-info"></i>
                   <small>{{ article.createdAt | amLocale:'fr' | amTimeAgo}}</small>
               </span><br>
-              <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]">{{ article.author.displayName }}</a>
               <p>{{ article.title }}</p>
             </div>         
           </a>
@@ -65,11 +65,11 @@
                   <img src="{{ tender.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ tender.author.displayName }}" class="img-avatar-circle-sm mr-1">
               </div>
               <div class="media-body">
+                <a class="btn-link" [routerLink]="[ '/account', tender.author._id, 'detail' ]">{{ tender.author.displayName }}</a><br>
                 <span>
                     <i class="zmdi zmdi-time no-mr color-info"></i>
                     <small>{{ tender.createdAt | amLocale:'fr' | amTimeAgo}}</small>
                 </span><br>
-                <a class="btn-link" [routerLink]="[ '/account', tender.author._id, 'detail' ]">{{ tender.author.displayName }}</a>
                 <p>{{ tender.title }}</p>
               </div>         
             </a>

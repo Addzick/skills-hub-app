@@ -3,7 +3,7 @@
     <a [routerLink]="['/account', user._id, 'detail']">
         <h3 class="color-warning">{{ user.displayName }}</h3> 
     </a>
-    <p class="mt-2">{{ user.bio | truncate }}</p>
+    <blockquote>{{ user.bio | truncate }}</blockquote>
 </div>
 
 

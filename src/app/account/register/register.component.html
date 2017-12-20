@@ -13,6 +13,7 @@
 </app-header>
 <div class="container">
     <div class="card card-hero card-block no-pt animated fadeInUp animation-delay-7">
+        <h1 class="color-primary text-center mt-6 text-uppercase">S'inscrire</h1>
         <form [formGroup]="registerForm" (submit)="register()">
             <fieldset>
                 <app-input 
@@ -59,13 +60,38 @@
                     }">
                     <input type="password" formControlName="confirmpwd" name="confirmpwd" class="form-control">
                 </app-input> 
-                <div class="form-group row">
-                    <div class="offset-md-2 col-md-10 text-right">
-                        <button class="btn btn-raised btn-primary mt-3" type="submit">Je m'inscris</button>
+                <div class="form-group row text-right">
+                    <div class="offset-md-2 col-md-10">
+                        <div class="row justify-content-end">
+                            <div class="col-4">
+                                <a [routerLink]="['/account/forgot']" class="btn btn-link btn-block color-dark">
+                                    <i class="zmdi zmdi-key"></i> J'ai oublié mon mot de passe ?
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a [routerLink]="['/account/login']" class="btn btn-link btn-block color-dark">
+                                    <i class="zmdi zmdi-account"></i> J'ai déjà un compte
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-raised btn-block btn-primary" type="submit">Je m'inscris</button>
+                            </div>
+                        </div>
                     </div>      
                 </div>   
             </fieldset>
-        </form>            
+        </form>   
+        <div class="text-center mt-2 mb-2">
+            <a routerLink="/external/facebook" class="btn-circle btn-facebook">
+                <i class="zmdi zmdi-facebook"></i>
+            </a>
+            <a routerLink="/external/twitter" class="btn-circle btn-twitter">
+                <i class="zmdi zmdi-twitter"></i>
+            </a>
+            <a routerLink="/external/google" class="btn-circle btn-google">
+                <i class="zmdi zmdi-google"></i>
+            </a>
+        </div>         
     </div>
 </div>
 

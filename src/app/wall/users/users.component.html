@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div class="card animated fadeInUp animation-delay-7" *ngIf="currentUser">
+<div class="card animated wow materialUp" *ngIf="currentUser">
   <div class="ms-hero-bg-dark ms-hero-img-team">
     <div class="color-white index-1 text-center no-m pt-4">
         <h2>{{ currentUser.displayName }}</h2>
@@ -14,7 +14,7 @@
     <img src="{{ currentUser.image || 'assets/img/no-picture.jpg'}}" class="img-avatar-circle"> </div>
   <div class="card-block pt-4">
     <h3 class="color-primary text-center">Qui suis-je</h3>
-    <p class="text-justify">{{ currentUser.bio | truncate }}</p>
+    <blockquote>{{ currentUser.bio | truncate }}</blockquote>
     <div class="text-right">
         <a [routerLink]="['/account', currentUser._id, 'detail' ]" class="btn btn-primary color-white btn-raised btn-sm no-mt">
             <i class="zmdi zmdi-eye mr-05"></i>
