@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <form [formGroup]="createForm" class="m-4">
-  <fieldset>
-      <app-input 
-        [label]="'Titre'" 
-        [errors]="createForm.controls.title.errors"
-        [messages]="{ 
-              required: 'Un titre d\'article est requis',
-              remote: 'Le titre d\'article est incorrect'
-          }">
-          <input type="text" formControlName="title" name="title" class="form-control">
-      </app-input>                
-      <app-input [label]="'Description'">
-          <textarea formControlName="description" name="description" class="form-control" rows="3"></textarea>  
-      </app-input>
-      <app-input [label]="'Contenu'">
-            <textarea formControlName="body" name="body" class="form-control" rows="6"></textarea>
-      </app-input>
-      <div class="form-group">
-          <div class="text-right">
-              <button (click)="reset()" class="btn btn-primary">
-                  <i class="zmdi zmdi-long-arrow-left no-mr ml-1"></i>
-                  Annuler
-              </button>
-              <button (click)="submit()" class="btn btn-raised btn-primary">
-                  Valider
-                  <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
-              </button>
-          </div>      
-      </div>
-  </fieldset>
+    <fieldset>
+        <app-input 
+        [labelText]="'Titre'"
+        [inputErrors]="createForm.controls.title.errors"
+        [errorsDefs]="{ 
+            required: 'Un titre d\'article est requis',
+            remote: 'Le titre d\'article est incorrect'
+            }">
+            <input type="text" formControlName="title" name="title" class="form-control">
+        </app-input>
+        <app-input [labelText]="'Description'">
+            <textarea formControlName="description" name="description" class="form-control" rows="3"></textarea>
+        </app-input>
+        <app-input [labelText]="'Tags'">
+            <rl-tag-input 
+            formControlName="tags"
+            name="tags"
+            autocomplete="true" 
+            autocompleteMustMatch="false"
+            autocompleteSelectFirstItem="true"></rl-tag-input>
+        </app-input>
+        <app-input [labelText]="'Contenu'">
+            <app-ngx-editor [config]="config"  formControlName="body" name="body" (ngModelChange)="sanitize($event)"></app-ngx-editor>
+        </app-input>
+        <div class="form-group">
+            <div class="text-right">
+                <button (click)="reset()" class="btn btn-primary">
+                    <i class="zmdi zmdi-long-arrow-left no-mr ml-1"></i>
+                    Annuler
+                </button>
+                <button (click)="submit()" class="btn btn-raised btn-primary">
+                    Valider
+                    <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </fieldset>
 </form>  

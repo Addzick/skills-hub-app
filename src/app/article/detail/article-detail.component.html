@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <div *ngIf="article">
-    <blockquote class="blockquote">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.description }}</p>
-        <footer>
-            <a class="btn-link" [routerLink]="['/user', article.author._id ]">{{ article.author.displayName }}</a>
-            <cite class="color-medium ml-2">{{ article.createdAt | amLocale:'fr' | amCalendar }}</cite>
-        </footer>
-        <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
-        <div class="text-right mt-2" *ngIf="article.canEdit">
-            <a [routerLink]="['/article', article._id, 'edit' ]" class="btn btn-raised btn-primary">
-                <i class="zmdi zmdi-edit mr-05"></i>
-                Editer
+    <div class="card-header media bg-dark color-white">
+        <div class="align-self-center mr-3">
+            <img src="{{ article.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ article.author.displayName }}" class="img-avatar-circle-sm mr-1">
+        </div>
+        <div class="media-body">
+            <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]">{{ article.author.displayName }}</a><br>
+            <span>
+                <i class="zmdi zmdi-time no-mr color-info"></i>
+                <small>{{ article.createdAt | amLocale:'fr' | amCalendar }}</small>
+            </span>                
+        </div>
+        <div class="media-right media-object media-middle" *ngIf="article.canEdit">
+            <a [routerLink]="['/article', article._id, 'edit' ]" class="btn-circle btn-circle-primary color-warning">
+                <i class="zmdi zmdi-edit ml-1"></i>
             </a>
         </div>
-    </blockquote>    
+    </div>
     <div class="card-block">
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.description }}</p>
+        <a [routerLink]="['/search', 'tag', tag ]" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
+    </div>
+    <div class="card-block container-fluid">
         <div [innerHtml]="article.body"></div>
     </div>
     <div class="card-block">
@@ -33,6 +40,6 @@
     </div>
     <div *ngIf="fragment == 'comments'" class="animated fadeIn animation-delay-2">
         <app-comments [kind]="'article'" [item]="article" (notify)="onNotify()"></app-comments>
-    </div>
+    </div>  
 </div>
 

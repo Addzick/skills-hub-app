@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
 
   getTopCategories(){
     return this.categoryService
-    .findAll()
+    .findAll({})
     .subscribe(
       res => this.categories = res.categories,
       err => console.error(err));

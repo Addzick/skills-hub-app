@@ -17,7 +17,7 @@ export class AccountFavoritesComponent implements OnInit {
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
-    this.categoryService.findAll()
+    this.categoryService.findAll({})
     .map((res) => res.json())
     .subscribe(
       res => this.categories = res.categories,

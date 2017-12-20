@@ -2,6 +2,7 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/toPromise';
 
 // Observable operators

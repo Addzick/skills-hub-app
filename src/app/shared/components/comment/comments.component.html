@@ -2,10 +2,10 @@
 <div class="wow materialUp" *ngIf="hasComments">
     <div class="list-group">
         <div class="list-group-item media" *ngFor="let comment of comments">
-            <div class="media-left media-object media-middle">
+            <div class="align-self-center mr-3">
                 <img src="{{ comment.author.image || '/assets/img/no-picture.jpg'}}" alt="" class="img-avatar-circle-sm mr-1">
             </div>
-            <div class="media-body media-middle">
+            <div class="media-body">
                 <a [routerLink]="['/account', comment.author._id, 'detail' ]">{{ comment.author.displayName }}</a> 
                 <span class="ml-1 d-none d-sm-inline">
                     <i class="zmdi zmdi-time mr-05 color-info"></i>

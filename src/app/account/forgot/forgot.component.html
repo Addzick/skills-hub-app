@@ -16,9 +16,9 @@
         <form [formGroup]="forgotForm" (submit)="forgot()">
             <fieldset>
                 <app-input  
-                    [errors]="forgotForm.controls.email"
-                    [label]="'Adresse e-mail'"
-                    [messages]="{
+                    [inputErrors]="forgotForm.controls.email"
+                    [labelText]="'Adresse e-mail'"
+                    [errorsDefs]="{
                         required: 'Adresse e-mail requise',
                         email: 'Adresse e-mail invalide',
                         remote: 'Adresse e-mail incorrecte'}">

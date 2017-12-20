@@ -2,8 +2,10 @@
 <div class="card-block">
     <a [routerLink]="['/article', article._id, 'detail']" class="btn-link pub-title">{{ article.title }}</a>
     <p>{{ article.description | truncate }}</p>
-    <div class="mt-2">
-        <a href="#" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
+    <div class="mt-1">
+        <a [routerLink]="['/search', 'tag', tag ]" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
+    </div>
+    <div class="mt-1">
         <app-reactions [nbComments]="article.nbComments" [nbLikes]="article.nbLikes"></app-reactions>
     </div>
 </div>

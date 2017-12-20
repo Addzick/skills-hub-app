@@ -17,7 +17,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   public article: any = { title: '', description: '', body: '', author: { _id: '' } }; 
   private articleSub: any;
 
-  private fragment: string = 'comments';
+  private fragment: string;
   private fragmentSub: any;
 
   constructor(
@@ -29,7 +29,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.articleSub =  this.getArticle().subscribe();
-    this.fragmentSub = this.route.fragment.subscribe(fragment => { this.fragment = fragment || 'comments'; });
+    this.fragmentSub = this.route.fragment.subscribe(fragment => this.fragment = fragment);
   }
 
   ngOnDestroy() {

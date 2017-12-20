@@ -1,32 +1,27 @@
 // Angular modules
-import { Component, Input, OnChanges, OnInit,  } from '@angular/core';
+import { Component, Input, OnChanges  } from '@angular/core';
 @Component({
   selector: 'app-input',
   templateUrl: './extend-input.component.html',
 })
-export class ExtendInputComponent implements OnInit, OnChanges {
-  @Input() public label: string = '';
-  @Input() public errors: any;
-  @Input() public messages: any;
-  
-  public error: string = '';
-  constructor() { }
+export class ExtendInputComponent implements OnChanges {
+  @Input() labelText:string = '';
+  @Input() inputErrors:any;
+  @Input() errorsDefs:any;
 
-
-  ngOnInit() {
-  }
+  errorMessage:string = '';
   
-  ngOnChanges(changes: any): void {
-    const err: any = 
-      typeof changes !== 'undefined' && changes.errors && typeof changes.errors !== 'undefined' && changes.messages && typeof changes.messages !== 'undefined'
-      ? changes.errors.currentValue 
-      : '';
-    
-    this.error = ''; 
-    if (err) {
-      Object.keys(err || {}).some(key => {
-        if(err[key]) {
-          this.error = this.messages[key];
+  ngOnChanges(changes:any):void {
+    var errors = 
+    typeof changes !== 'undefined' && typeof changes.inputErrors !== 'undefined' && typeof this.errorsDefs !== 'undefined'
+    ? changes.inputErrors.currentValue
+    : undefined;
+
+    this.errorMessage = '';
+    if (errors) {
+      Object.keys(this.errorsDefs).some(key => {
+        if (errors[key]) {
+          this.errorMessage = this.errorsDefs[key];
           return true;
         }
       });

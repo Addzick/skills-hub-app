@@ -28,9 +28,9 @@ export const routes: Routes = [
             },
             {
                 path: ':article/edit',
-                resolve: { article: ArticleResolver },
                 component: ArticleEditComponent,
-                canActivate: [AuthGuardLogin]
+                canActivate: [AuthGuardLogin],
+                resolve: { article: ArticleResolver }
             }
         ]
     }

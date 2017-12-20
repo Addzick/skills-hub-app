@@ -56,7 +56,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
       return this.commentService
       .findAll(this.query)
       .map(res => {
-        console.log(res);
         this.comments = res.comments;
         this.total = res.count;
         this.hasComments = this.total > 0;

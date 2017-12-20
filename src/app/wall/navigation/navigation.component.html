@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<div class="card animated fadeInUp animation-delay-7">
+  <div class="card-tabs">
+    <ul class="nav nav-tabs nav-tabs-full nav-tabs-4 shadow-2dp" role="tablist">
+      <li class="nav-item">
+        <a href="#categories" aria-controls="categories" role="tab" data-toggle="tab" class="nav-link withoutripple active">
+          <i class="no-mr zmdi zmdi-folder"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#tags" aria-controls="tags" role="tab" data-toggle="tab" class="nav-link withoutripple">
+          <i class="no-mr zmdi zmdi-tag-more"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#articles" aria-controls="articles" role="tab" data-toggle="tab" class="nav-link withoutripple">
+          <i class="no-mr zmdi zmdi-collection-text"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#tenders" aria-controls="tenders" role="tab" data-toggle="tab" class="nav-link withoutripple">
+          <i class="no-mr zmdi zmdi-roller"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade active show" id="categories">
+      <div class="list-group">
+        <a [routerLink]="[ '/search', 'category', category._id ]" class="list-group-item list-group-item-action withripple" *ngFor="let category of categories">
+          <i class=" color-info zmdi zmdi-folder"></i>{{ category.title }}
+          <span class="ml-auto badge-pill badge-pill-info" *ngIf="category && category.count && category.count > 0">{{ category.count }}</span>
+        </a>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="tags">
+      <div class="card-block text-center">
+        <a *ngFor="let tag of tags" [routerLink]="['/search', 'tag', tag ]" class="ms-tag ms-tag-primary">{{ tag }}</a>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="articles">
+      <div class="list-group" *ngIf="articles && articles.length > 0">
+        <a class="list-group-item media" *ngFor="let article of articles" [routerLink]="[ '/article', article._id, 'detail' ]">
+            <div class="align-self-center mr-3">
+                <img src="{{ article.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ article.author.displayName }}" class="img-avatar-circle-sm mr-1">
+            </div>
+            <div class="media-body">
+              <span>
+                  <i class="zmdi zmdi-time no-mr color-info"></i>
+                  <small>{{ article.createdAt | amLocale:'fr' | amTimeAgo}}</small>
+              </span><br>
+              <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]">{{ article.author.displayName }}</a>
+              <p>{{ article.title }}</p>
+            </div>         
+          </a>
+      </div>
+      <div class="card-block text-center" *ngIf="!articles || articles.length <= 0">
+        <p class="card-text">Aucun article récent</p>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="tenders">
+        <div class="list-group" *ngIf="tenders && tenders.length > 0">
+            <a class="list-group-item media" *ngFor="let tender of tenders" [routerLink]="[ '/tender', tender._id, 'detail' ]">
+              <div class="align-self-center mr-3">
+                  <img src="{{ tender.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ tender.author.displayName }}" class="img-avatar-circle-sm mr-1">
+              </div>
+              <div class="media-body">
+                <span>
+                    <i class="zmdi zmdi-time no-mr color-info"></i>
+                    <small>{{ tender.createdAt | amLocale:'fr' | amTimeAgo}}</small>
+                </span><br>
+                <a class="btn-link" [routerLink]="[ '/account', tender.author._id, 'detail' ]">{{ tender.author.displayName }}</a>
+                <p>{{ tender.title }}</p>
+              </div>         
+            </a>
+        </div>
+        <div class="card-block text-center" *ngIf="!tenders || tenders.length <= 0">
+          <p class="card-text">Aucun appel d'offres récent</p>
+        </div>
+      </div>
+  </div>
+</div>
+

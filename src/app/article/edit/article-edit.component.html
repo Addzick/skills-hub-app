@@ -2,27 +2,33 @@
 <form [formGroup]="editForm" class="m-4">
   <fieldset>
     <app-input 
-        [label]="'Titre'" 
-        [errors]="editForm.controls.title.errors"
-        [messages]="{ 
+        [labelText]="'Titre'" 
+        [inputErrors]="editForm.controls.title.errors"
+        [errorsDefs]="{ 
             required: 'Un titre d\'article est requis',
             remote: 'Le titre d\'article est incorrect'
         }">
         <input type="text" formControlName="title" name="title" class="form-control">
     </app-input>                
     <app-input 
-        [errors]="editForm.controls.description"
-        [label]="'Description'">
+        [inputErrors]="editForm.controls.description"
+        [labelText]="'Description'">
         <textarea formControlName="description" name="description" class="form-control" rows="3"></textarea>  
     </app-input>
-    <div class="form-group row">
-        <div class="offset-md-2 col-md-10">
-                <textarea formControlName="body" name="body" class="form-control" rows="10"></textarea>
-        </div>
-    </div>
+    <app-input [labelText]="'Tags'">
+        <rl-tag-input 
+        formControlName="tags"
+        name="tags" 
+        autocomplete="true" 
+        autocompleteMustMatch="false"
+        autocompleteSelectFirstItem="true"></rl-tag-input>
+    </app-input>
+    <app-input [labelText]="'Contenu'">
+        <app-ngx-editor [config]="config"  formControlName="body" name="body" (ngModelChange)="sanitize($event)"></app-ngx-editor>
+    </app-input>
     <div class="form-group row">
         <div class="offset-md-2 col-md-10 text-right">
-            <a [routerLink]="['/article', article._id, 'detail' ]" class="btn btn-primary">
+            <a (click)="reset()" class="btn btn-primary">
                 <i class="zmdi zmdi-long-arrow-left no-ml mr-1"></i>
                 Annuler
             </a>

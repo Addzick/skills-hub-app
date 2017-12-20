@@ -29,9 +29,9 @@
     <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit" class="m-4">
         <fieldset>
             <app-input 
-                [errors]="editForm.controls.username"
-                [label]="'Nom d\'utilisateur'"
-                [messages]="{ 
+                [inputErrors]="editForm.controls.username"
+                [labelText]="'Nom d\'utilisateur'"
+                [errorsDefs]="{ 
                     required: 'Un nom d\'utilisateur est requis',
                     pattern: 'Le nom d\'utilisateur est incorrect',
                     remote: 'Le nom d\'utilisateur est incorrect'
@@ -39,9 +39,9 @@
                 <input type="text" formControlName="username" name="username" class="form-control">
             </app-input>
             <app-input
-                [errors]="editForm.controls.email"
-                [label]="'Adresse e-mail'"
-                [messages]="{
+                [inputErrors]="editForm.controls.email"
+                [labelText]="'Adresse e-mail'"
+                [errorsDefs]="{
                     required: 'Une adresse e-mail est requise',
                     email: 'L\'adresse e-mail est invalide',
                     remote: 'L\'adresse e-mail est déjà utilisée'
@@ -49,18 +49,18 @@
                 <input type="email" formControlName="email" name="email" class="form-control">
             </app-input>
             <app-input
-                [errors]="editForm.controls.lastname"
-                [label]="'Nom'">
+                [inputErrors]="editForm.controls.lastname"
+                [labelText]="'Nom'">
                 <input type="text" formControlName="lastname" name="lastname" class="form-control">
             </app-input>
             <app-input
-                [errors]="editForm.controls.firstname"
-                [label]="'Prénom'">
+                [inputErrors]="editForm.controls.firstname"
+                [labelText]="'Prénom'">
                 <input type="text" formControlName="firstname" name="firstname" class="form-control">
             </app-input>
             <app-input 
-                [errors]="editForm.controls.bio"
-                [label]="'Bio'">
+                [inputErrors]="editForm.controls.bio"
+                [labelText]="'Bio'">
                 <textarea formControlName="bio" name="bio" class="form-control" rows="3"></textarea>  
             </app-input>
         </fieldset>

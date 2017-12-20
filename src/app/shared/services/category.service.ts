@@ -9,6 +9,14 @@ import '../../core/rxjs-extensions';
 // Core service
 import { ApiService } from '../../core/api.service';
 
+// Query interface
+export interface CategoryQuery {
+  sortBy?: string;
+  sortDir?: string;
+  page?: number;
+  size?: number;
+}
+
 @Injectable()
 export class CategoryService extends ApiService {
 
@@ -16,9 +24,8 @@ export class CategoryService extends ApiService {
     super(http);
   }
 
-  findAll() {
-    // On renvoie le résultat après execution des requêtes
-    return this.get('/categories');
+  findAll(query: CategoryQuery) {
+    return this.get('/categories', { search: query });
   }
 
   findOne(id) {

@@ -27,9 +27,9 @@
         <form [formGroup]="loginForm" (submit)="login()">
             <fieldset>
                 <app-input 
-                    [label]="'Nom d\'utilisateur'"
-                    [errors]="loginForm.controls.username.errors"
-                    [messages]="{ 
+                    [labelText]="'Nom d\'utilisateur'"
+                    [inputErrors]="loginForm.controls.username.errors"
+                    [errorsDefs]="{ 
                         required: 'Un nom d\'utilisateur est requis',
                         pattern: 'Le nom d\'utilisateur est incorrect',
                         remote: 'Le nom d\'utilisateur est incorrect'
@@ -37,9 +37,9 @@
                     <input type="text" formControlName="username" name="username" class="form-control">
                 </app-input>
                 <app-input  
-                    [label]="'Mot de passe'"
-                    [errors]="loginForm.controls.password.errors"
-                    [messages]="{ 
+                    [labelText]="'Mot de passe'"
+                    [inputErrors]="loginForm.controls.password.errors"
+                    [errorsDefs]="{ 
                         required: 'Un mot de passe est requis',
                         remote: 'Le mot de passe est incorrect'
                     }">
@@ -52,6 +52,14 @@
                 </div>        
             </fieldset>
         </form>
+        <div class="text-center animated fadeInUp animation-delay-7">
+            <a [routerLink]="['/']" class="btn btn-white">
+                <i class="zmdi zmdi-home"></i> Accueil
+            </a>
+            <a [routerLink]="['/account/forgot']" class="btn btn-white">
+                <i class="zmdi zmdi-key"></i> Mot de passe oublié ?
+            </a>
+        </div>
     </div>
 </div>
 

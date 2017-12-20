@@ -2,6 +2,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+// 3rd Parties
+import { RlTagInputModule } from 'angular2-tag-input';
+import { NgxEditorModule } from 'ngx-editor';
+
 // Skills-hub modules
 import { SharedModule } from '../shared/shared.module';
 
@@ -20,6 +24,8 @@ import { routes } from './article.routing';
 @NgModule({
   imports: [
     SharedModule,
+    RlTagInputModule,
+    NgxEditorModule,
     RouterModule.forChild(routes),
   ],
   declarations: [

@@ -15,7 +15,13 @@ import { ArticleService } from '../../shared/services/article.service';
   templateUrl: './article-create.component.html',
   styleUrls: ['./article-create.component.scss']
 })
-export class ArticleCreateComponent implements OnInit {
+export class ArticleCreateComponent implements OnInit, OnDestroy {
+  public createForm: FormGroup;
+  public article: any = { title: '', description: '', body: '', tags:[''] };
+  public tags = [];
+
+  private tagsSub: any;
+
   public config: any = {
     "editable": true,
     "spellcheck": false,
@@ -26,7 +32,6 @@ export class ArticleCreateComponent implements OnInit {
     "translate": "no",
     "toolbar": []
   }
-  public createForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -36,16 +41,26 @@ export class ArticleCreateComponent implements OnInit {
     this.createForm = this.formService.createFormGroup({ 
       'title' : ['', Validators.required],
       'description' : [''],
-      'body': ['']
-    }); 
+      'body': [''],
+      'tags': ['']
+    });
   }
 
   ngOnInit() {
+    this.tagsSub = this.articleService.getTags().subscribe(
+      res => this.tags = res.tags,
+      err => console.error(err)
+    );
+  }
+
+  ngOnDestroy() {
+    if(this.tagsSub) { this.tagsSub.unsubscribe(); }
   }
 
   submit() {
     if (this.createForm.valid) {
-      this.articleService.create({ article: this.createForm.value}).subscribe(
+      this.article = this.formService.getFormGroupValues(this.createForm,this.article);
+      this.articleService.create({ article: this.article }).subscribe(
         res => this.router.navigate(['/article', res.article._id, 'detail']),
         err => this.formService.setFormGroupErrors(this.createForm, err)
       );

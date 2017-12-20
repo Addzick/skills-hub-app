@@ -21,13 +21,13 @@ export class ArticleService extends PublicationService {
   constructor(protected http: Http) {
     super(http);
     this.apiname = 'articles';
-   }
-
-   getTags(): Observable<any> {
-     return this.get('/articles/tags');
-   }
-
-   findAll(query: ArticleQuery) {
+  }
+  
+  findAll(query: ArticleQuery) {
     return this.get('/articles', { search: query });
+  }
+
+  getTags(): Observable<any> {
+    return this.get('/tags');
   }
 }

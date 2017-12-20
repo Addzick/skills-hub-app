@@ -19,8 +19,22 @@ import { ExtendInputComponent } from '../../shared/components/extend-input/exten
 })
 export class ArticleEditComponent implements OnInit, OnDestroy {
   public editForm: FormGroup;  
-  public article: any = { title: '', description: '', body: '' };  
+  public article: any = { title: '', description: '', body: '', tags:[''] };
+  public tags = [];
+  
   private articleSub: any;
+  private tagsSub: any;
+
+  public config: any = {
+    "editable": true,
+    "spellcheck": false,
+    "height": "100%",
+    "minHeight": "400px",
+    "width":"100%",
+    "minWidth":"300px",
+    "translate": "no",
+    "toolbar": []
+  }
 
   constructor(
     private router: Router,
@@ -31,29 +45,47 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
       this.editForm = this.formService.createFormGroup({ 
         'title' : ['', Validators.required],
         'description' : [''],
-        'body': ['']
+        'body': [''],
+        'tags': ['']
       });
     }
 
   ngOnInit() {
     this.articleSub =  this.route.data.
     subscribe(
-      res => { this.article = res.article.article; this.formService.setFormGroupValues(this.editForm, this.article); },
-      err => console.error(err));
+      res => { 
+        this.article = res.article.article; 
+        this.formService.setFormGroupValues(this.editForm, this.article); 
+        this.tagsSub = this.articleService.getTags().subscribe(
+          res => this.tags = res.tags,
+          err => console.error(err)
+        );
+      },
+      err => console.error(err)
+    );
   }
 
   ngOnDestroy() {
     if(this.articleSub) { this.articleSub.unsubscribe(); }
+    if(this.tagsSub) { this.tagsSub.unsubscribe(); }
   }
 
   submit() {
     if (this.editForm.valid) {
-      this.articleService.edit(this.article._id, { article: this.editForm.value}).subscribe(
-        res => this.router.navigate(['/article', this.article._id, 'detail']),
+      this.formService.getFormGroupValues(this.editForm,this.article);
+      this.articleService.edit(this.article._id, { article: this.article }).subscribe(
+        res => {
+          this.article = res.article;
+          this.router.navigate(['/article', this.article._id, 'detail']);
+        },
         err => this.formService.setFormGroupErrors(this.editForm, err)
       );
     }
   }
+  reset() {
+    this.router.navigate(['/article', this.article._id, 'detail']);
+  }
+
   sanitize(body: string){
   }
 }

@@ -11,20 +11,21 @@ import { ApiService } from './api.service';
 
 // Query interface
 export interface UserQuery {
-  lastname: string;
-  firstname: string;
-  abos: Array<string>;
-  categories: Array<string>;
-  startStars: number;
-  endStars: number;
-  localisation: {
+  lastname?: string;
+  firstname?: string;
+  abos?: Array<string>;
+  categories?: Array<string>;
+  startStars?: number;
+  endStars?: number;
+  localisation?: {
     longitude: number,
     latitude: number,
     distance: number
   };
-  sort: {};
-  page: number;
-  size: number;
+  sortBy?: string;
+  sortDir?: string;
+  page?: number;
+  size?: number;
 }
 
 @Injectable()
