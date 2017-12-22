@@ -39,6 +39,6 @@ export class LikeService extends ApiService {
   }
 
   unlike(id) {
-    return this.delete(`/likes/${ id }`);
+    return this.post(`/likes/${ id }`);
   }
 }

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 // Core services
 import { UserService, UserQuery } from '../../core/user.service';
 //Shared services
-import { EventService, EventQuery } from '../../shared/services/event.service';
+import { EventQuery } from '../../shared/services/event.service';
 
 @Component({
   selector: 'app-account',
@@ -17,7 +17,7 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
   public user: any;
   public events: Array<any>;
 
-  public query: EventQuery = {
+  public eventQuery: EventQuery = {
     author: '',
     excludes: [
       'user_connected',
@@ -33,8 +33,7 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
   private subscription: any;
   
   constructor(
-    private userService: UserService,
-    private eventService: EventService) {
+    private userService: UserService) {
   }
 
   ngOnInit() {
@@ -45,10 +44,6 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   } 
 
-  onNotify(user: any):void {
-    this.refresh();
-  }
-
   refresh() {
     this.subscription.unsubscribe();
     this.subscription = this.getUser().subscribe();
@@ -57,22 +52,12 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
   getUser() {
     return this.userService
     .getUser()
-    .flatMap(
-      (res) => {
+    .map((res) => {
         this.user = res.user;
-        this.query.author = this.user._id;
-        return this.eventService
-        .findAll(this.query)
-        .map(
-          (res) => {
-            this.events = res.events;
-          })
-         .catch((error) => {
-            throw error;
-          });
-      })
-     .catch((error) => {
-        throw error;
-      });
+        this.eventQuery.author = this.user._id;
+      }
+    ).catch((error) => {
+      throw error;
+    });
   }
 }

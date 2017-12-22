@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <article class="card card-event wow materialUp">
-
-    <div class="card-header bg-white color-dark">
+    <div class="card-header media bg-dark color-white">
         <div class="media">
             <div class="align-self-center mr-3">
                 <img src="{{ event.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ event.author.displayName }}" class="img-avatar-circle-sm mr-1">
             </div>
             <div class="media-body">
-                <a class="btn-link" [routerLink]="[ '/account', event.author._id, 'detail' ]">{{ event.isMine ? 'vous' : event.author.displayName }}</a>
+                <a class="btn-link" [routerLink]="[ '/account', event.author._id, 'detail' ]" *ngIf="!event.isMine">{{ event.author.displayName }}</a>
+                <a class="btn-link" [routerLink]="[ '/account/profile' ]" *ngIf="event.isMine">vous</a>
                 <small>{{ event.type | eventType:event.isMine}}</small><br>
                 <span>
                     <i class="zmdi zmdi-time no-mr color-info"></i>
@@ -44,7 +44,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
+                    <a (click)="setEdit()"
                     fragment="comments" 
                     class="btn btn-info color-white btn-raised btn-block btn-sm no-mt" 
                     *ngIf="isPublication">
@@ -67,6 +67,16 @@
                     </a>
                 </div>
             </div>
+            <form *ngIf="isEdit && isPublication">
+                <fieldset>
+                    <div class="form-group">
+                        <input type="text" name="text" class="form-control" [(ngModel)]="text" placeholder="Votre commentaire ..."/>
+                        <div class="text-right">
+                            <a class="btn btn-sm btn-primary btn-raised" (click)="comment()">Commenter</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 </article>

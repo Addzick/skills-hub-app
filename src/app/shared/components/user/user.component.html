@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <div class="card-block">
-    <a [routerLink]="['/account', user._id, 'detail']">
+    <a [routerLink]="['/account', user._id, 'detail']" *ngIf="!user.canEdit">
+        <h3 class="color-warning">{{ user.displayName }}</h3> 
+    </a>
+    <a [routerLink]="['/account/profile']" *ngIf="user.canEdit">
         <h3 class="color-warning">{{ user.displayName }}</h3> 
     </a>
     <blockquote>{{ user.bio | truncate }}</blockquote>

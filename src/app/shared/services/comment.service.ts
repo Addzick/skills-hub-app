@@ -39,6 +39,6 @@ export class CommentService extends ApiService {
   }
 
   uncomment(id) {
-    return this.delete(`/comments/${ id }`);
+    return this.post(`/comments/${ id }`);
   }
 }

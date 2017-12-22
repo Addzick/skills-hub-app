@@ -26,7 +26,7 @@ export abstract class ApiService {
         });
     }
 
-    protected post(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+    protected post(url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http
         .post(this.updateUrl(url), body, options)
         .map((res: Response) => {
@@ -34,7 +34,7 @@ export abstract class ApiService {
         });
     }
 
-    protected put(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+    protected put(url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http
         .put(this.updateUrl(url), body, options)
         .map((res: Response) => {
@@ -42,7 +42,7 @@ export abstract class ApiService {
         });
     }
 
-    protected patch(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+    protected patch(url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
         return this.http
         .patch(this.updateUrl(url), body, options)
         .map((res: Response) => {

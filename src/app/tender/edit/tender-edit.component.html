@@ -1,3 +1,68 @@
-<p>
-  tender-edit works!
-</p>
+<!DOCTYPE html>
+<h1 class="color-primary text-center mt-6 text-uppercase">Modifier un appel d'offres</h1>
+<form [formGroup]="editForm" class="m-4">
+    <fieldset>
+        <app-input 
+        [labelText]="'Titre'"
+        [inputErrors]="editForm.controls.title.errors"
+        [errorsDefs]="{ 
+            required: 'Un titre d\'appel d\'offres est requis',
+            remote: 'Le titre d\'appel d\'offres est incorrect'
+            }">
+            <input type="text" formControlName="title" name="title" class="form-control">
+        </app-input>
+        <app-input 
+        [labelText]="'Catégorie'"
+        [inputErrors]="editForm.controls.category.errors"
+        [errorsDefs]="{ 
+            required: 'Une catégorie d\'appel d\'offres est requise',
+            remote: 'La catégorie d\'appel d\'offres est incorrecte'
+            }">
+            <select id="categories" formControlName="category" class="form-control form-control-lg">
+                <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.title }}</option>
+            </select>
+        </app-input>
+        <app-input 
+        [labelText]="'A faire le'"
+        [inputErrors]="editForm.controls.workDate.errors"
+        [errorsDefs]="{ 
+            required: 'Une date de réalisation est requise',
+            remote: 'La date de réalisation est incorrecte'
+            }">
+            <input type="date" formControlName="workDate" name="workDate" class="form-control" useValueAsDate>
+        </app-input>
+        <app-input 
+        [labelText]="'Ouvert du'"
+        [inputErrors]="editForm.controls.validityStart.errors"
+        [errorsDefs]="{ 
+            required: 'Une date de début de validité est requise',
+            remote: 'La date de début de validité est incorrecte'
+            }">
+            <input type="date"  formControlName="validityStart" name="validityStart" class="form-control" useValueAsDate>
+        </app-input>
+        <app-input 
+        [labelText]="'au'"
+        [inputErrors]="editForm.controls.validityEnd.errors"
+        [errorsDefs]="{ 
+            required: 'Une date de fin de validité est requise',
+            remote: 'La date de fin de validité est incorrecte'
+            }">
+            <input type="date" formControlName="validityEnd" name="validityEnd" class="form-control" useValueAsDate>
+        </app-input>
+        <app-input [labelText]="'Description'">
+            <textarea formControlName="description" name="description" class="form-control" rows="6"></textarea>
+        </app-input>
+        <div class="form-group">
+            <div class="text-right">
+                <button (click)="reset()" class="btn btn-primary">
+                    <i class="zmdi zmdi-long-arrow-left no-mr ml-1"></i>
+                    Annuler
+                </button>
+                <button (click)="submit()" class="btn btn-raised btn-primary">
+                    Valider
+                    <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>  

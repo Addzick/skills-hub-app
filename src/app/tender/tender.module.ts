@@ -13,8 +13,8 @@ import { TenderComponent } from './tender.component';
 import { TenderCreateComponent } from './create/tender-create.component';
 import { TenderEditComponent } from './edit/tender-edit.component';
 import { TenderDetailComponent } from './detail/tender-detail.component';
-import { TenderPropositionsComponent } from './propositions/tender-propositions.component';
-import { TenderTasksComponent } from './tasks/tender-tasks.component';
+import { PropositionsComponent } from './propositions/propositions.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 // Routing
 import { routes } from './tender.routing';
@@ -29,16 +29,19 @@ import { routes } from './tender.routing';
     TenderCreateComponent,
     TenderEditComponent,
     TenderDetailComponent,
-    TenderPropositionsComponent,
-    TenderTasksComponent,
+    PropositionsComponent,
+    TasksComponent,
   ],
   exports: [
     TenderComponent,
     TenderCreateComponent,
     TenderEditComponent,
     TenderDetailComponent,
-    TenderPropositionsComponent,
-    TenderTasksComponent,
+    PropositionsComponent,
+    TasksComponent,
+  ],
+  providers:[
+    TenderResolver,
   ]
 })
 export class TenderModule { }

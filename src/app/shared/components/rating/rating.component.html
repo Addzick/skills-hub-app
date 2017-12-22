@@ -39,7 +39,7 @@
         <p>{{ rating.body }}</p>
     </div>
     <div class="mt-2">
-        <app-reactions [nbComments]="rating.nbComments" [nbLikes]="rating.nbLikes"></app-reactions>
+        <app-reactions [nbComments]="rating.nbComments" [nbLikes]="rating.nbLikes"[link]="['/rating', rating._id, 'detail']"></app-reactions>
     </div>
 </div>
 

@@ -11,10 +11,9 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AccountJournalComponent implements OnInit {
   @Input() events: Array<any>;
-  
+
   constructor() { }
 
   ngOnInit() {
   }
-  
 }

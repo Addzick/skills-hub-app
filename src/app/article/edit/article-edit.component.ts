@@ -9,9 +9,6 @@ import '../../core/rxjs-extensions';
 import { FormService } from '../../shared/services/form.service';
 import { ArticleService } from '../../shared/services/article.service';
 
-// Skills-hub components
-import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
-
 @Component({
   selector: 'app-article-edit',
   templateUrl: './article-edit.component.html',

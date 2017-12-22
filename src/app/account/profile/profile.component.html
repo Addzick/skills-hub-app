@@ -17,7 +17,7 @@
         <app-account-infos [user]="user" (notify)="onNotify($event)"></app-account-infos>
         <app-account-address [address]="user.address"></app-account-address>
     </div>
-    <div class="container" *ngIf="events">
-        <app-account-journal [events]="events"></app-account-journal>
+    <div class="container">
+        <app-events [query]="eventQuery"></app-events>
     </div>
 </div>

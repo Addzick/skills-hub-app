@@ -54,8 +54,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
   getCategories() {
     return this.categoryService
     .findAll({
-      page: 1,
-      size: 5,
       sortBy: 'title',
       sortDir: 'asc'
     })

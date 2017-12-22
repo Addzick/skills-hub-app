@@ -1,5 +1,5 @@
 // Angular modules
-import { Component, OnInit, ViewContainerRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef, Renderer2 } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart, ActivatedRoute } from '@angular/router';
 
 // RxJs stuff
@@ -19,9 +19,12 @@ declare var $: any;
   templateUrl: './skills-hub.component.html',
   styleUrls: ['./skills-hub.component.scss']
 })
-export class SkillsHubComponent implements OnInit {
+export class SkillsHubComponent implements OnInit, OnDestroy {
   title = 'Skills Hub';
   loading = true;
+
+  private navigationStartSub: any;
+  private navigationEndSub: any;
 
   constructor(
     private router: Router,
@@ -29,17 +32,18 @@ export class SkillsHubComponent implements OnInit {
     private toastr: ToastsManager,
     private vcr: ViewContainerRef,
     private renderer: Renderer2) {
-      // On définit le conteneur pour ng2-toastr
       this.toastr.setRootViewContainerRef(vcr);
-      this.toastr.onClickToast().subscribe( toast => {            
-        this.scrollToTop();
-      });
     }
 
-   ngOnInit() {
-    this.onNavigationStart();
-    this.onNavigationEnd();
-   }
+    ngOnInit() {
+      this.navigationStartSub = this.onNavigationStart();
+      this.navigationEndSub = this.onNavigationEnd();
+    }
+
+    ngOnDestroy() {
+      if(this.navigationStartSub) { this.navigationStartSub.unsubscribe(); }
+      if(this.navigationEndSub) { this.navigationEndSub.unsubscribe(); }
+    }
 
   scrollToTop() {
     try { 
@@ -50,20 +54,20 @@ export class SkillsHubComponent implements OnInit {
   }
 
   onNavigationEnd() {
-    this.router.events
+    return this.router.events
     .filter(event => event instanceof NavigationEnd)
     .map(() => this.activatedRoute)
     .subscribe((event) => {
       setTimeout(() => {
-        this.scrollToTop();
-        this.renderer.removeClass(document.getElementById('ms-slidebar'), 'open');  
+        this.renderer.removeClass(document.getElementById('ms-slidebar'), 'open');
         this.loading = false;
+        this.scrollToTop();
       }, 500); 
      });
   }
 
   onNavigationStart() {
-    this.router.events
+    return this.router.events
     .filter(event => event instanceof NavigationStart)
     .map(() => this.activatedRoute)
     .subscribe((event) => {

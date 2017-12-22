@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<div class="wow materialUp" *ngIf="hasPropositions">
+    <div class="list-group">
+      <div class="list-group-item media" *ngFor="let proposition of propositions">
+          <div class="align-self-center mr-3">
+              <img src="{{ proposition.author.image || '/assets/img/no-picture.jpg'}}" alt="" class="img-avatar-circle-sm mr-1">
+          </div>
+          <div class="media-body">
+              <a [routerLink]="['/account', proposition.author._id, 'detail' ]" *ngIf="!proposition.canEdit">{{ proposition.author.displayName }}</a> 
+              <a [routerLink]="['/account/profile']" *ngIf="proposition.canEdit">vous</a> 
+              <span class="ml-1 d-none d-sm-inline">
+                  <i class="zmdi zmdi-time mr-05 color-info"></i>
+                  <small class="color-medium-dark">{{ proposition.createdAt | amLocale:'fr' | amTimeAgo}}</small>
+              </span>
+              <p><em>{{ proposition.body }}</em></p>
+          </div>
+          <div class="media-right media-object media-middle" *ngIf="proposition.canEdit">
+              <a class="btn-circle btn-circle-sm btn-circle-primary color-danger" (click)="delete(proposition._id)">
+                  <i class="zmdi zmdi-delete"></i>
+              </a>
+          </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page - 1)" *ngIf="hasPrec">
+          <i class="zmdi zmdi-arrow-left mr-1"></i>
+          Prec
+      </a>
+      <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page + 1)" *ngIf="hasNext">
+          Suiv
+          <i class="zmdi zmdi-arrow-right ml-1"></i> 
+      </a>
+    </div>
+</div>
+
+<div class="card-block bg-light text-center wow materialUp" *ngIf="!hasPropositions">
+    <h2 class="card-text">Soyez le premier à faire une proposition ...</h2>
+</div>
+
+<div class="card-block bg-light text-right">
+    <a [routerLink]="['/', 'proposition', 'create', source._id]" 
+        class="btn btn-success color-white btn-raised btn-sm no-mt" *ngIf="source.canPropose">
+        <i class="zmdi zmdi-receipt no-mr"></i>
+        <span class="d-none d-md-inline-block ml-1">Proposer</span>
+    </a>
+</div>
+

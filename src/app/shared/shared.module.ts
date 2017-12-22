@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 // 3rd parties
 import { MomentModule } from 'angular2-moment';
 import { AgmCoreModule } from '@agm/core';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 // Shared services
 import { FormService } from './services/form.service';
@@ -40,6 +41,7 @@ import { TaskComponent } from './components/task/task.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { PropositionComponent } from './components/proposition/proposition.component';
 import { EventComponent } from './components/event/event.component';
+import { EventsComponent } from './components/event/events.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentsComponent } from './components/comment/comments.component';
 import { LikeComponent } from './components/like/like.component';
@@ -58,7 +60,8 @@ import { UserComponent } from './components/user/user.component';
     AgmCoreModule.forRoot({
       apiKey: environment.googleApiKey,
       libraries: ['places']
-    })
+    }),
+    DateValueAccessorModule,
   ],
   declarations: [
     EventTypePipe,
@@ -74,6 +77,7 @@ import { UserComponent } from './components/user/user.component';
     RatingComponent,
     PropositionComponent,
     EventComponent,
+    EventsComponent,
     CommentComponent,
     CommentsComponent,
     LikeComponent,
@@ -87,6 +91,7 @@ import { UserComponent } from './components/user/user.component';
     ReactiveFormsModule,
     MomentModule,
     AgmCoreModule,
+    DateValueAccessorModule,
     EventTypePipe,
     TextTruncatePipe,
     NavbarComponent,
@@ -100,6 +105,7 @@ import { UserComponent } from './components/user/user.component';
     RatingComponent,
     PropositionComponent,
     EventComponent,
+    EventsComponent,
     CommentComponent,
     CommentsComponent,
     LikeComponent,

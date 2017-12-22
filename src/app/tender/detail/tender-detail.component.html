@@ -1,3 +1,67 @@
-<p>
-  tender-detail works!
-</p>
+<!DOCTYPE html>
+<div *ngIf="tender">
+    <div class="card-header media bg-dark color-white">
+        <div class="align-self-center mr-3">
+            <img src="{{ tender.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ tender.author.displayName }}" class="img-avatar-circle-sm mr-1">
+        </div>
+        <div class="media-body">
+            <a class="btn-link" [routerLink]="[ '/account', tender.author._id, 'detail' ]" *ngIf="!tender.canEdit">{{ tender.author.displayName }}</a>
+            <a class="btn-link" [routerLink]="[ '/account/profile' ]" *ngIf="tender.canEdit">vous</a>
+            <span class="d-block">
+                <i class="zmdi zmdi-time no-mr color-info"></i>
+                <small>{{ tender.createdAt | amLocale:'fr' | amCalendar }}</small>
+            </span>                
+        </div>
+        <div class="align-self-center ml-3" *ngIf="tender.canEdit">
+            <a [routerLink]="['/tender', tender._id, 'edit' ]" class="btn-circle btn-circle-primary color-warning">
+                <i class="zmdi zmdi-edit ml-1"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-block">
+        <h2 class="text-justify mb-2">{{ tender.title }}</h2>
+        <table class="table table-no-border table-striped table-condensed">
+            <tr>
+                <th><i class="zmdi zmdi-bookmark mr-1 color-warning"></i> <span class="d-none d-md-inline-block">Catégorie</span></th>
+                <td>{{ tender.category.title }}</td>
+            </tr>
+            <tr>
+                <th><i class="zmdi zmdi-map mr-1 color-success"></i> <span class="d-none d-md-inline-block">Localite</span></th>
+                <td>{{ tender.address.short }}</td>
+            </tr>
+            <tr>
+                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> <span class="d-none d-md-inline-block">Date</span></th>
+                <td>{{ tender.workDate  | amLocale: 'fr' | amCalendar }}</td>
+            </tr>
+            <tr>
+                <th><i class="zmdi zmdi-notifications-active mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Echéance</span></th>
+                <td>{{ tender.validityEnd  | amLocale: 'fr' | amCalendar }}</td>
+            </tr>
+        </table>
+    </div>
+    <blockquote class="blockquote">{{ tender.description }}</blockquote>
+    <div class="card-block">
+        <a class="ms-icon color-royal" [class.ms-icon-inverse]="fragment != 'likes'" (click)="setFragment('likes')">
+            <i class="zmdi zmdi-favorite"></i>
+            {{ tender.nbLikes || 0}} 
+        </a>
+        <a class="ms-icon color-info" [class.ms-icon-inverse]="fragment != 'comments'" (click)="setFragment('comments')">
+            <i class="zmdi zmdi-comments"></i>
+            {{ tender.nbComments || 0}} 
+        </a>
+        <a class="ms-icon color-warning" [class.ms-icon-inverse]="fragment != 'propositions'" (click)="setFragment('propositions')">
+          <i class="zmdi zmdi-receipt"></i>
+          {{ tender.nbPropositions || 0}} 
+      </a>
+    </div>
+    <div *ngIf="fragment == 'likes'" class="animated fadeIn animation-delay-2">
+        <app-likes [kind]="'tender'" [item]="tender" [mylike]="tender.myLike" (notify)="onNotify($event)"></app-likes>
+    </div>
+    <div *ngIf="fragment == 'comments'" class="animated fadeIn animation-delay-2">
+        <app-comments [kind]="'tender'" [item]="tender" (notify)="onNotify($event)"></app-comments>
+    </div>
+    <div *ngIf="fragment == 'propositions'" class="animated fadeIn animation-delay-2">
+      <app-propositions [source]="tender" (notify)="onNotify($event)"></app-propositions>
+  </div>  
+</div>
+

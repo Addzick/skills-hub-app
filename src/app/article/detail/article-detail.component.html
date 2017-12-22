@@ -5,8 +5,9 @@
             <img src="{{ article.author.image || '/assets/img/no-picture.jpg'}}" alt="{{ article.author.displayName }}" class="img-avatar-circle-sm mr-1">
         </div>
         <div class="media-body">
-            <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]">{{ article.author.displayName }}</a><br>
-            <span>
+            <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]" *ngIf="!article.canEdit">{{ article.author.displayName }}</a>
+            <a class="btn-link" [routerLink]="[ '/account/profile' ]" *ngIf="article.canEdit">vous</a>
+            <span class="d-block">
                 <i class="zmdi zmdi-time no-mr color-info"></i>
                 <small>{{ article.createdAt | amLocale:'fr' | amCalendar }}</small>
             </span>                
@@ -36,10 +37,10 @@
         </a>
     </div>
     <div *ngIf="fragment == 'likes'" class="animated fadeIn animation-delay-2">
-        <app-likes [kind]="'article'" [item]="article" [mylike]="article.myLike" (notify)="onNotify()"></app-likes>
+        <app-likes [kind]="'article'" [item]="article" [mylike]="article.myLike" (notify)="onNotify($event)"></app-likes>
     </div>
     <div *ngIf="fragment == 'comments'" class="animated fadeIn animation-delay-2">
-        <app-comments [kind]="'article'" [item]="article" (notify)="onNotify()"></app-comments>
+        <app-comments [kind]="'article'" [item]="article" (notify)="onNotify($event)"></app-comments>
     </div>  
 </div>
 

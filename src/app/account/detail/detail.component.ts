@@ -17,7 +17,7 @@ export class AccountDetailComponent implements OnInit {
   public user: any;
   public events: Array<any>;
 
-  public query: EventQuery = {
+  public eventQuery: EventQuery = {
     author: '',
     types: [
       'user_registered',
@@ -68,22 +68,11 @@ export class AccountDetailComponent implements OnInit {
 
   getUser() {
     return this.route.data
-    .flatMap(
-      (res) => {
-        this.user = res.account.user;
-        this.query.author = this.user._id;
-        return this.eventService
-        .findAll(this.query)
-        .map(
-          (res) => {
-            this.events = res.events;
-          })
-         .catch((error) => {
-            throw error;
-          });
-      })
-     .catch((error) => {
-        throw error;
-      });
+    .map((res) => {
+      this.user = res.account.user;
+      this.eventQuery.author = this.user._id;
+    }).catch((error) => {
+      throw error;
+    });
   }
 }

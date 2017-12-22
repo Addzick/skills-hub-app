@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ReactionsComponent implements OnInit {
   @Input() nbComments: number;
   @Input() nbLikes: number;
+  @Input() link: any;
 
   constructor() { }
 

@@ -14,7 +14,7 @@ import { LikeService } from '../../shared/services/like.service';
   styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit, OnDestroy {
-  public article: any = { title: '', description: '', body: '', author: { _id: '' } }; 
+  public article; 
   private articleSub: any;
 
   private fragment: string;
@@ -47,7 +47,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
    });
   }
   
-  onNotify(){
+  onNotify(event){
     if(this.articleSub) { this.articleSub.unsubscribe(); }
     this.articleSub =  this.getArticle().subscribe();
   }

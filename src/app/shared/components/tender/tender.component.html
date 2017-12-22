@@ -22,11 +22,11 @@
         </table>
     </div>    
     <div class="mt-2">
-        <span class="ms-icon ms-icon-inverse color-info">
+        <app-reactions [nbComments]="tender.nbComments" [nbLikes]="tender.nbLikes" [link]="['/tender', tender._id, 'detail']"></app-reactions>
+        <a [routerLink]="['/tender', tender._id, 'detail']" fragment="propositions" class="ms-icon ms-icon-inverse color-warning">
             <i class="zmdi zmdi-receipt"></i>
             {{ tender.nbPropositions || 0}}
-        </span>
-        <app-reactions [nbComments]="tender.nbComments" [nbLikes]="tender.nbLikes"></app-reactions>
+        </a>
     </div>
 </div>
 

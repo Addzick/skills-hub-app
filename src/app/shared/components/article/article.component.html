@@ -6,6 +6,6 @@
         <a [routerLink]="['/search', 'tag', tag ]" class="ms-tag ms-tag-info" *ngFor="let tag of article.tags">{{ tag }}</a>
     </div>
     <div class="mt-1">
-        <app-reactions [nbComments]="article.nbComments" [nbLikes]="article.nbLikes"></app-reactions>
+        <app-reactions [nbComments]="article.nbComments" [nbLikes]="article.nbLikes" [link]="['/article', article._id, 'detail']"></app-reactions>
     </div>
 </div>

@@ -16,9 +16,13 @@
     <h3 class="color-primary text-center">Qui suis-je</h3>
     <blockquote>{{ currentUser.bio | truncate }}</blockquote>
     <div class="text-right">
-        <a [routerLink]="['/account', currentUser._id, 'detail' ]" class="btn btn-primary color-white btn-raised btn-sm no-mt">
+        <a [routerLink]="['/account', currentUser._id, 'detail' ]" class="btn btn-primary color-white btn-raised btn-sm no-mt" *ngIf="!currentUser.canEdit">
             <i class="zmdi zmdi-eye mr-05"></i>
             <span class="d-none d-md-inline-block ml-1">Découvrir</span>
+        </a>
+        <a [routerLink]="['/account/profile' ]" class="btn btn-primary color-white btn-raised btn-sm no-mt" *ngIf="currentUser.canEdit">
+            <i class="zmdi zmdi-eye mr-05"></i>
+            <span class="d-none d-md-inline-block ml-1">Mon compte</span>
         </a>
     </div>
   </div>

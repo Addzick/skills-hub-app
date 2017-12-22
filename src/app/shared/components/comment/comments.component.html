@@ -6,7 +6,8 @@
                 <img src="{{ comment.author.image || '/assets/img/no-picture.jpg'}}" alt="" class="img-avatar-circle-sm mr-1">
             </div>
             <div class="media-body">
-                <a [routerLink]="['/account', comment.author._id, 'detail' ]">{{ comment.author.displayName }}</a> 
+                <a [routerLink]="['/account', comment.author._id, 'detail' ]" *ngIf="!comment.canEdit">{{ comment.author.displayName }}</a> 
+                <a [routerLink]="['/account/profile' ]" *ngIf="comment.canEdit">vous</a> 
                 <span class="ml-1 d-none d-sm-inline">
                     <i class="zmdi zmdi-time mr-05 color-info"></i>
                     <small class="color-medium-dark">{{ comment.createdAt | amLocale:'fr' | amTimeAgo}}</small>
@@ -14,7 +15,7 @@
                 <p><em>{{ comment.body }}</em></p>
             </div>
             <div class="media-right media-object media-middle" *ngIf="comment.canEdit">
-                <a class="btn-circle btn-circle-sm btn-circle-primary color-danger" (click)="uncomment(comment._id)">
+                <a class="btn-circle btn-circle-sm btn-circle-primary color-danger" (click)="delete(comment._id)">
                     <i class="zmdi zmdi-delete"></i>
                 </a>
             </div>
@@ -40,9 +41,9 @@
     <form>
         <fieldset>
             <div class="form-group">
-                <textarea name="comment" class="form-control" [(ngModel)]="text" placeholder="Votre commentaire ..."></textarea>
+                <textarea #comment name="text" class="form-control" [(ngModel)]="text" placeholder="Votre commentaire ..."></textarea>
                 <div class="text-right">
-                    <a class="btn btn-sm btn-primary btn-raised" (click)="comment()">Commenter</a>
+                    <a class="btn btn-sm btn-primary btn-raised" (click)="post()">Commenter</a>
                 </div>
             </div>
         </fieldset>

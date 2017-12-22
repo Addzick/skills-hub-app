@@ -22,17 +22,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.usersSub = this.userService.findAll({
-      page: 1,
-      size: 5,
-      sortBy: 'createdAt',
-      sortDir: 'desc'
-    }).subscribe(
-      res => {
-        this.users = res.users;
-        this.timer = this.autoSetCurrentUser();
-      },
-      err => console.error(err));
+    this.usersSub = this.getUsers().subscribe();
   }
 
   ngOnDestroy() {
@@ -40,14 +30,36 @@ export class UsersComponent implements OnInit, OnDestroy {
     if(this.timer) { this.timer.unsubscribe(); }
   }
 
-  autoSetCurrentUser(){
-    return Observable.interval(5000).subscribe(i => {
-      if(this.users && this.users.length > 0) { 
-        this.currentUser = this.users[this.next];
-        this.next ++;
-        if(this.next >= this.users.length) { this.next = 0; }
-      }
+  getUsers(){
+    return this.userService.findAll({
+      page: 1,
+      size: 5,
+      sortBy: 'createdAt',
+      sortDir: 'desc'
+    })
+    .map(res => {
+      this.users = res.users;
+      this.currentUser = this.getNextUser();
+      this.timer = this.autoSetCurrentUser();
+    })
+    .catch(err => { 
+      console.error(err);
+      throw err;
     });
+  }
+
+  getNextUser( ){
+    let user: any;    
+    if(this.users && this.users.length > 0) { 
+      user = this.users[this.next];
+      this.next ++;
+      if(this.next >= this.users.length) { this.next = 0; }
+    }
+    return user;
+  }
+
+  autoSetCurrentUser(){
+    return Observable.interval(5000).subscribe(i => this.currentUser = this.getNextUser());
   }
 
 }

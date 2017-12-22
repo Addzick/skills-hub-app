@@ -13,18 +13,17 @@ import { LikeService, LikeQuery } from '../../services/like.service';
   styleUrls: ['./likes.component.scss']
 })
 export class LikesComponent implements OnInit, OnDestroy {
-  @Input() kind: string; 
-  @Input() item: any; 
-  @Input() mylike: any; 
+  @Input() kind; 
+  @Input() item; 
+  @Input() mylike; 
+
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   
   public likes: Array<any>;
   public total: number;
   public query: LikeQuery = {
-    source: '',
     sortBy: 'updatedAt',
     sortDir: 'desc',
-    page: 1,
     size: 5
   };
   
@@ -37,53 +36,56 @@ export class LikesComponent implements OnInit, OnDestroy {
   constructor(private likeService: LikeService) { }
 
   ngOnInit() {
-    this.likesSub = this.getLikes().subscribe();
+    this.getLikes();
   }
 
   ngOnDestroy() {
     if(this.likesSub) { this.likesSub.unsubscribe(); }
   }
 
-  refresh(){
-    if(this.likesSub) { this.likesSub.unsubscribe(); }
-    this.likesSub = this.getLikes().subscribe();
-    this.notify.emit();
-  }
-
   getLikes() {
-    if(this.item) {
-      this.query.source = this.item._id;
-      return this.likeService
-      .findAll(this.query)
-      .map(res => { 
+    if(this.likesSub) { this.likesSub.unsubscribe(); }
+    if(!this.item || typeof this.item == 'undefined' || !this.item._id || typeof this.item._id == 'undefined'){
+      return;
+    }
+    this.query['source'] = this.item['_id'];
+    this.likesSub = this.likeService
+    .findAll(this.query)
+    .subscribe(
+      res => { 
         this.likes = res.likes;
         this.total = res.count;
-        
         this.hasLikes = this.total > 0;
         this.hasPrec = this.query.page > 1;
         this.hasNext = this.query.page * this.query.size < this.total;
-      })
-      .catch((error) => { throw error; });
-    }
+      },
+      err => console.error(err));
   }
 
   like(){
     this.likeService.like({ source: { item: this.item, kind: this.kind }})
     .subscribe(
-      res => { this.mylike = res.like; this.refresh(); },
+      res => { 
+        this.mylike = res.like; 
+        this.notify.emit();
+        this.getLikes();
+      },
       err => console.error(err));
   }
 
   unlike() {
     this.likeService.unlike(this.mylike._id)
     .subscribe(
-      res => { this.mylike = undefined; this.refresh(); },
+      res => { 
+        this.mylike = undefined; 
+        this.notify.emit(); 
+        this.getLikes();
+      },
       err => console.error(err));
   } 
 
   navigate(page){
-    this.query.page = page;
-    if(this.likesSub) { this.likesSub.unsubscribe(); }
-    this.likesSub = this.getLikes().subscribe();
+    this.query['page'] = page;
+    this.getLikes();
   }
 }

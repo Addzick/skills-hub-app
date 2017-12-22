@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <div class="form-group row" [class.has-error]="errorMessage !== ''">
-  <label for="email" class="col-md-2 control-label">{{ labelText }}</label>
+  <label class="col-md-2 control-label">{{ labelText }}</label>
   <div class="col-md-10">
     <ng-content></ng-content>
     <small class="text-danger" *ngIf="errorMessage !== ''">* {{ errorMessage }}</small>

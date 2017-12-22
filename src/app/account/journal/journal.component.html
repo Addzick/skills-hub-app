@@ -2,6 +2,6 @@
 <h1 class="color-primary text-center mt-4">Activités récentes</h1>
 <ul class="list-unstyled mt-4">
     <li *ngFor="let event of events">
-        <app-event [event]="event" (notify)="onNotify($event)"></app-event>  
+        <app-event [event]="event"></app-event>  
     </li>
 </ul>

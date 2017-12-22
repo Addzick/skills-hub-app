@@ -17,11 +17,11 @@
 <div class="card card-hero card-light-inverse card-block animated fadeInUp animation-delay-2">
     <div class="row">
         <div class="col-lg-8 order-2 order-lg-1">
-            <app-events></app-events>
+            <app-events [query]="eventQuery"></app-events>
         </div>
         <div class="col-lg-4 order-1 order-lg-2">
-            <app-navigation></app-navigation>
             <app-users></app-users>
+            <app-navigation></app-navigation>
         </div>
     </div>
 </div>

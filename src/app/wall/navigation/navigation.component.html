@@ -29,7 +29,7 @@
       <div class="list-group">
         <a [routerLink]="[ '/search', 'category', category._id ]" class="list-group-item list-group-item-action withripple" *ngFor="let category of categories">
           <i class=" color-info zmdi zmdi-folder"></i>{{ category.title }}
-          <span class="ml-auto badge-pill badge-pill-info" *ngIf="category && category.count && category.count > 0">{{ category.count }}</span>
+          <span class="ml-auto badge-pill badge-pill-info" *ngIf="category && category.nbTenders && category.nbTenders > 0">{{ category.nbTenders }}</span>
         </a>
       </div>
     </div>

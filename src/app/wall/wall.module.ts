@@ -10,7 +10,6 @@ import { routes } from './wall.routing';
 
 // Wall components
 import { WallComponent } from './wall.component';
-import { EventsComponent } from './events/events.component';
 import { UsersComponent } from './users/users.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
@@ -21,7 +20,6 @@ import { NavigationComponent } from './navigation/navigation.component';
   ],
   declarations: [
     WallComponent,
-    EventsComponent,
     UsersComponent,
     NavigationComponent,
   ],
