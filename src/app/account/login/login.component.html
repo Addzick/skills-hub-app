@@ -35,21 +35,25 @@
                     }">
                     <input type="password" formControlName="password" name="password" class="form-control">
                 </app-input>
-                <div class="form-group row text-right">
+                <div class="form-group row">
                     <div class="offset-md-2 col-md-10">
-                        <div class="row justify-content-end">
-                            <div class="col-4">
-                                <a [routerLink]="['/account/forgot']" class="btn btn-link btn-block color-dark">
-                                    <i class="zmdi zmdi-key"></i> J'ai oublié mon mot de passe ?
-                                </a>
+                        <div class="row justify-content-end">                            
+                            <div class="col-lg-4 order-lg-3">
+                                <button class="btn btn-raised btn-block btn-primary" type="submit">
+                                    Je me connecte
+                                </button>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-md-6 order-lg-2">
                                 <a [routerLink]="['/account/register']" class="btn btn-link btn-block color-dark">
-                                    <i class="zmdi zmdi-account-add"></i> Je m'inscris
+                                    <i class="zmdi zmdi-account-add mr-05"></i>
+                                    Pas encore inscrit
                                 </a>
                             </div>
-                            <div class="col-4">
-                                <button class="btn btn-raised btn-block btn-primary" type="submit">Je me connecte</button>
+                            <div class="col-lg-4 col-md-6 order-lg-1">
+                                <a [routerLink]="['/account/forgot']" class="btn btn-link btn-block color-dark">
+                                    <i class="zmdi zmdi-key mr-05"></i>
+                                    Mot de passe oublié
+                                </a>
                             </div>
                         </div>
                     </div>      

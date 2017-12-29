@@ -10,6 +10,10 @@ import { DashboardComponent } from './dashboard.component';
 
 // Routing
 import { routes } from './dashboard.routing';
+import { PublicationsComponent } from './publications/publications.component';
+import { TodolistComponent } from './todolist/todolist.component';
+import { PlanningComponent } from './planning/planning.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -18,6 +22,10 @@ import { routes } from './dashboard.routing';
   ],
   declarations: [
     DashboardComponent,
+    PublicationsComponent,
+    TodolistComponent,
+    PlanningComponent,
+    NotificationsComponent,
   ],
   providers: [
   ],

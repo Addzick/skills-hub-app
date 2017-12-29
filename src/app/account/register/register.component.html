@@ -62,19 +62,23 @@
                 </app-input> 
                 <div class="form-group row text-right">
                     <div class="offset-md-2 col-md-10">
-                        <div class="row justify-content-end">
-                            <div class="col-4">
-                                <a [routerLink]="['/account/forgot']" class="btn btn-link btn-block color-dark">
-                                    <i class="zmdi zmdi-key"></i> J'ai oublié mon mot de passe ?
-                                </a>
+                        <div class="row justify-content-end">                            
+                            <div class="col-lg-4 order-lg-3">
+                                <button class="btn btn-raised btn-block btn-primary" type="submit">
+                                    Je m'inscris
+                                </button>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-md-6 order-lg-2">
                                 <a [routerLink]="['/account/login']" class="btn btn-link btn-block color-dark">
-                                    <i class="zmdi zmdi-account"></i> J'ai déjà un compte
+                                    <i class="zmdi zmdi-account mr-05"></i>
+                                    J'ai déjà un compte
                                 </a>
                             </div>
-                            <div class="col-4">
-                                <button class="btn btn-raised btn-block btn-primary" type="submit">Je m'inscris</button>
+                            <div class="col-lg-4 col-md-6 order-lg-1">
+                                <a [routerLink]="['/account/forgot']" class="btn btn-link btn-block color-dark">
+                                    <i class="zmdi zmdi-key mr-05"></i>
+                                    Mot de passe oublié
+                                </a>
                             </div>
                         </div>
                     </div>      

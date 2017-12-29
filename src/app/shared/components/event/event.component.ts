@@ -41,6 +41,18 @@ export class EventComponent implements OnInit {
       res => { 
         this.text = '';
         this.isEdit = false;
+        switch(this.event.source.kind) {
+          case 'comment': 
+          case 'like': {
+            this.event.source.item.source = res.comment.source;
+            break;
+          }
+          default: {
+            this.event.source = res.comment.source;
+            break;
+          }
+        }
+        this.setSource();
       },
       err => console.error(err)
     );
@@ -49,7 +61,20 @@ export class EventComponent implements OnInit {
   like() {
     this.likeService.like({ source: this.source })
     .subscribe(
-      res => { },
+      res => { 
+        switch(this.event.source.kind) {
+          case 'comment': 
+          case 'like': {
+            this.event.source.item.source = res.like.source;
+            break;
+          }
+          default: {
+            this.event.source = res.like.source;
+            break;
+          }
+        }
+        this.setSource();
+      },
       err => console.error(err)
     );
   }
