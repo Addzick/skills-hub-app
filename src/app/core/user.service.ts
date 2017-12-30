@@ -55,10 +55,6 @@ export class UserService extends ApiService {
     return this.post('/account', user);
   }
 
-  setAddress(address): Observable<any> {
-    return this.put('/account', address);
-  }
-
   findAll(query: UserQuery): Observable<any> {
       return this.get('/users', { search: query });
   }

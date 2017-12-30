@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<div class="card card-hero animated fadeInUp animation-delay-7">
-    <div class="card-header-100 bg-dark">
-        <div class="row justify-content-center">
-            <div class="col-md-3">
-                <div class="text-center">
-                    <h3><strong>{{ user.nbArticles || 0 }}</strong></h3> 
-                    Articles 
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="text-center">
-                    <h3><strong>{{ user.NbTenders || 0 }}</strong></h3> 
-                    Appels d'offres
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="text-center">
-                    <h3><strong>{{ user.nbComments || 0 }}</strong></h3>
-                    Commentaires
-                </div>
-            </div>
+<div class="row justify-content-center">
+    <div class="col-sm-3">
+        <div class="text-center">
+            <i class="fa fa-4x fa-briefcase"></i>
+            <h2 class="counter">{{ user.nbTenders || 0 }}</h2>
+            <p class="mt-2 no-mb lead small-caps">Appels d'offres</p>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="text-center">
+            <i class="fa fa-4x fa-file-text"></i>
+            <h2 class="counter">{{ user.nbArticles || 0 }}</h2>
+            <p class="mt-2 no-mb lead small-caps">Articles</p>
         </div>
     </div> 
+    <div class="col-sm-3">
+        <div class="text-center">
+            <i class="fa fa-4x fa-thumbs-up"></i>
+            <h2 class="counter">{{ user.nbLikes || 0 }}</h2>
+            <p class="mt-2 no-mb lead small-caps">J'aime</p>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="text-center">
+            <i class="fa fa-4x fa-comments"></i>
+            <h2 class="counter">{{ user.nbComments || 0 }}</h2>
+            <p class="mt-2 no-mb lead small-caps">Commentaires</p>
+        </div>
+    </div>
 </div>
 

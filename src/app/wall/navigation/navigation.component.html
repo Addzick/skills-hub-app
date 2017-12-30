@@ -4,22 +4,22 @@
     <ul class="nav nav-tabs nav-tabs-full nav-tabs-4 shadow-2dp" role="tablist">
       <li class="nav-item">
         <a href="#categories" aria-controls="categories" role="tab" data-toggle="tab" class="nav-link withoutripple active">
-          <i class="no-mr zmdi zmdi-folder"></i>
+          <i class="no-mr fa fa-folder"></i>
         </a>
       </li>
       <li class="nav-item">
         <a href="#tags" aria-controls="tags" role="tab" data-toggle="tab" class="nav-link withoutripple">
-          <i class="no-mr zmdi zmdi-tag-more"></i>
+          <i class="no-mr fa fa-tags"></i>
         </a>
       </li>
       <li class="nav-item">
         <a href="#articles" aria-controls="articles" role="tab" data-toggle="tab" class="nav-link withoutripple">
-          <i class="no-mr zmdi zmdi-collection-text"></i>
+          <i class="no-mr fa fa-file-text"></i>
         </a>
       </li>
       <li class="nav-item">
         <a href="#tenders" aria-controls="tenders" role="tab" data-toggle="tab" class="nav-link withoutripple">
-          <i class="no-mr zmdi zmdi-roller"></i>
+          <i class="no-mr fa fa-briefcase"></i>
         </a>
       </li>
     </ul>
@@ -28,7 +28,7 @@
     <div role="tabpanel" class="tab-pane fade active show" id="categories">
       <div class="list-group">
         <a [routerLink]="[ '/search', 'category', category._id ]" class="list-group-item list-group-item-action withripple" *ngFor="let category of categories">
-          <i class=" color-info zmdi zmdi-folder"></i>{{ category.title }}
+          <i class=" color-info fa fa-folder"></i>{{ category.title }}
           <span class="ml-auto badge-pill badge-pill-info" *ngIf="category && category.nbTenders && category.nbTenders > 0">{{ category.nbTenders }}</span>
         </a>
       </div>
@@ -47,7 +47,7 @@
             <div class="media-body">
               <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]">{{ article.author.displayName }}</a><br>
               <span>
-                  <i class="zmdi zmdi-time no-mr color-info"></i>
+                  <i class="fa fa-clock-o no-mr color-info"></i>
                   <small>{{ article.createdAt | amLocale:'fr' | amTimeAgo}}</small>
               </span><br>
               <p>{{ article.title }}</p>
@@ -67,7 +67,7 @@
               <div class="media-body">
                 <a class="btn-link" [routerLink]="[ '/account', tender.author._id, 'detail' ]">{{ tender.author.displayName }}</a><br>
                 <span>
-                    <i class="zmdi zmdi-time no-mr color-info"></i>
+                    <i class="fa fa-clock-o no-mr color-info"></i>
                     <small>{{ tender.createdAt | amLocale:'fr' | amTimeAgo}}</small>
                 </span><br>
                 <p>{{ tender.title }}</p>

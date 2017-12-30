@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <app-header [image]="'cook'">
     <img class="ms-avatar-hero" src="{{ user.image || '/assets/img/no-picture.jpg'}}" alt="{{ user.displayName }}"/>
-    <h1 class="color-white mt-4">{{ user.displayName }}</h1>        
-    <div class="rating-list">
-        <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
-        <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
-        <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
-        <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
-        <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
+    <div class="rating-list mt-4 mb-4">
+        <span class="rating-list-item" [class.color-warning]="user.nbStars>=1"><i class="fa fa-star" ></i></span>
+        <span class="rating-list-item" [class.color-warning]="user.nbStars>=2"><i class="fa fa-star" ></i></span>
+        <span class="rating-list-item" [class.color-warning]="user.nbStars>=3"><i class="fa fa-star" ></i></span>
+        <span class="rating-list-item" [class.color-warning]="user.nbStars>=4"><i class="fa fa-star" ></i></span>
+        <span class="rating-list-item" [class.color-warning]="user.nbStars>=5"><i class="fa fa-star" ></i></span>
     </div>
-    <blockquote class="blockquote color-medium mt-4 d-none d-md-block">{{ user.bio }}</blockquote>
+    <h1 class="color-white mt-2 mb-2">{{ user.displayName }}</h1>
+    <div class="color-white d-none d-md-block mt-4">
+        <app-account-stats [user]="user"></app-account-stats>
+    </div>
 </app-header>
 <div class="container">
-    <app-account-stats [user]="user"></app-account-stats>
-    <div class="card card-primary p-1 animated fadeInUp animation-delay-9">
-        <table class="table table-no-border table-striped">
-            <tr>
-                <th><i class="zmdi zmdi-account mr-1 color-danger"></i>  <span class="d-none d-md-inline-block">Nom d'utilisateur</span></th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th><i class="zmdi zmdi-face mr-1 color-success"></i>  <span class="d-none d-md-inline-block">Nom</span></th>
-                <td>{{ user.displayName }}</td>
-            </tr>        
-            <tr>
-                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i>  <span class="d-none d-md-inline-block">Inscrit depuis le</span></th>
-                <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
-            </tr>
-        </table>
+    <div class="card card-hero wow materialUp">
+        <div class="card-header bg-dark">
+            <h1 class="card-title color-white">Qui suis-je</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <table class="table table-no-border table-striped">
+                    <tr>
+                        <th><i class="fa fa-user-circle mr-1 color-danger"></i>  <span class="d-none d-md-inline-block">Nom d'utilisateur</span></th>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th><i class="fa fa-id-card-o mr-1 color-success"></i>  <span class="d-none d-md-inline-block">Nom</span></th>
+                        <td>{{ user.displayName }}</td>
+                    </tr>        
+                    <tr>
+                        <th><i class="fa fa-calendar mr-1 color-info"></i>  <span class="d-none d-md-inline-block">Inscrit depuis le</span></th>
+                        <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-lg-7">
+                <blockquote class="blockquote blockquote-big pr-2 pl-2 pt-1 pb-1">{{ user.bio }}</blockquote>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container">

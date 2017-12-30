@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<blockquote class="blockquote" *ngIf="!isEdit && !address">
+    Vous n'avez pas encore saisi d'adresse !
+</blockquote>
+<div *ngIf="!isEdit && address">
+    <div class="row">
+        <div class="col-xl-6 col-12">
+            <table class="table table-no-border table-striped">
+                <tr>
+                    <th><i class="fa fa-map mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Rue</span></th>
+                    <td><a href="#">{{ address.street + ', ' + address.number }}</a></td>
+                </tr>
+                <tr *ngIf="address.complement">
+                    <th><i class="fa fa-map-marker mr-1 color-info"></i> <span class="d-none d-md-inline-block">Complément</span></th>
+                    <td>{{ address.complement }}</td>
+                </tr>        
+                <tr>
+                    <th><i class="fa fa-building mr-1 color-royal"></i> <span class="d-none d-md-inline-block">Localité</span></th>
+                    <td>{{ address.zip + ' ' + address.city }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xl-6 col-12">
+            <agm-map [latitude]="address.loc.coordinates[1]" [longitude]="address.loc.coordinates[0]" [zoom]="14">
+                <agm-marker [latitude]="address.loc.coordinates[1]" [longitude]="address.loc.coordinates[0]"></agm-marker>
+            </agm-map>
+        </div>
+    </div>
+</div>
+<div class="text-right m-4" *ngIf="!isEdit">
+    <a (click)="setEdit()" class="btn btn-raised btn-primary">
+        <i class="fa fa-edit"></i>
+        Editer
+    </a>
+</div>
+<div [hidden]="!isEdit" class="m-4">
+    <app-input 
+        [labelText]="'Addresse'" 
+        [inputErrors]="searchControl.errors"
+        [errorsDefs]="{ invalid: 'L\'adresse est invalide' }">
+        <input
+            #search
+            [formControl]="searchControl"
+            type="text" 
+            class="form-control" 
+            autocorrect="off" 
+            autocapitalize="off" 
+            spellcheck="off">
+    </app-input>
+    <div class="text-right">
+        <button type="button" class="btn btn-primary" (click)="setEdit()">
+            <i class="fa fa-arrow-left no-ml mr-1"></i>
+            Annuler
+        </button>
+        <button type="button" class="btn btn-raised btn-primary" (click)="submit()">
+            Enregister
+            <i class="fa fa-arrow-right no-mr ml-1"></i>
+        </button>
+    </div>
+</div>
+
+
+

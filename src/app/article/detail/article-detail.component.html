@@ -8,13 +8,13 @@
             <a class="btn-link" [routerLink]="[ '/account', article.author._id, 'detail' ]" *ngIf="!article.canEdit">{{ article.author.displayName }}</a>
             <a class="btn-link" [routerLink]="[ '/account/profile' ]" *ngIf="article.canEdit">vous</a>
             <span class="d-block">
-                <i class="zmdi zmdi-time no-mr color-info"></i>
+                <i class="fa fa-clock-o no-mr color-info"></i>
                 <small>{{ article.createdAt | amLocale:'fr' | amCalendar }}</small>
             </span>                
         </div>
         <div class="align-self-center ml-3" *ngIf="article.canEdit">
             <a [routerLink]="['/article', article._id, 'edit' ]" class="btn-circle btn-circle-primary color-warning">
-                <i class="zmdi zmdi-edit ml-1"></i>
+                <i class="fa fa-edit ml-1"></i>
             </a>
         </div>
     </div>
@@ -28,11 +28,11 @@
     </div>
     <div class="card-block">
         <a class="ms-icon color-royal" [class.ms-icon-inverse]="fragment != 'likes'" (click)="setFragment('likes')">
-            <i class="zmdi zmdi-favorite"></i>
+            <i class="fa fa-thumbs-up"></i>
             {{ article.nbLikes || 0}} 
         </a>
         <a class="ms-icon color-info" [class.ms-icon-inverse]="fragment != 'comments'" (click)="setFragment('comments')">
-            <i class="zmdi zmdi-comments"></i>
+            <i class="fa fa-comments"></i>
             {{ article.nbComments || 0}} 
         </a>
     </div>

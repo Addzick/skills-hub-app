@@ -1,81 +1,86 @@
 <!DOCTYPE html>
-<div class="card card-primary p-1 animated fadeInUp animation-delay-9">
-    <div *ngIf="!isEdit">
-        <table class="table table-no-border table-striped">
-            <tr>
-                <th><i class="zmdi zmdi-account mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Nom d'utilisateur</span></th>
-                <td><a href="#">{{ user.username }}</a></td>
-            </tr>
-            <tr>
-                <th><i class="zmdi zmdi-email mr-1 color-primary"></i> <span class="d-none d-md-inline-block">Email</span></th>
-                <td><a href="#">{{ user.email }}</a></td>
-            </tr>
-            <tr>
-                <th><i class="zmdi zmdi-face mr-1 color-success"></i> <span class="d-none d-md-inline-block">Nom</span></th>
-                <td>{{ user.displayName }}</td>
-            </tr>        
-            <tr>
-                <th><i class="zmdi zmdi-calendar mr-1 color-info"></i> <span class="d-none d-md-inline-block">Inscription</span></th>
-                <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
-            </tr>
-        </table>
-        <div class="text-right">
-            <a (click)="setEdit()" class="btn btn-raised btn-primary">
-                <i class="zmdi zmdi-edit"></i>
-                Editer
-            </a>
+<div *ngIf="!isEdit">
+    <div class="row">
+        <div class="col-lg-5">
+            <table class="table table-no-border table-striped">
+                <tr>
+                    <th><i class="fa fa-user-circle mr-1 color-danger"></i> <span class="d-none d-md-inline-block">Nom d'utilisateur</span></th>
+                    <td><a href="#">{{ user.username }}</a></td>
+                </tr>
+                <tr>
+                    <th><i class="fa fa-envelope mr-1 color-primary"></i> <span class="d-none d-md-inline-block">Email</span></th>
+                    <td><a href="#">{{ user.email }}</a></td>
+                </tr>
+                <tr>
+                    <th><i class="fa fa-id-card-o mr-1 color-success"></i> <span class="d-none d-md-inline-block">Nom</span></th>
+                    <td>{{ user.displayName }}</td>
+                </tr>        
+                <tr>
+                    <th><i class="fa fa-calendar mr-1 color-info"></i> <span class="d-none d-md-inline-block">Inscription</span></th>
+                    <td>{{ user.createdAt  | amLocale: 'fr' | amCalendar }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-7">
+            <blockquote class="blockquote blockquote-big pr-2 pl-2 pt-1 pb-1">{{ user.bio }}</blockquote>
         </div>
     </div>
-    <form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit" class="m-4">
-        <fieldset>
-            <app-input 
-                [inputErrors]="editForm.controls.username"
-                [labelText]="'Nom d\'utilisateur'"
-                [errorsDefs]="{ 
-                    required: 'Un nom d\'utilisateur est requis',
-                    pattern: 'Le nom d\'utilisateur est incorrect',
-                    remote: 'Le nom d\'utilisateur est incorrect'
-                }">
-                <input type="text" formControlName="username" name="username" class="form-control">
-            </app-input>
-            <app-input
-                [inputErrors]="editForm.controls.email"
-                [labelText]="'Adresse e-mail'"
-                [errorsDefs]="{
-                    required: 'Une adresse e-mail est requise',
-                    email: 'L\'adresse e-mail est invalide',
-                    remote: 'L\'adresse e-mail est déjà utilisée'
-                }">
-                <input type="email" formControlName="email" name="email" class="form-control">
-            </app-input>
-            <app-input
-                [inputErrors]="editForm.controls.lastname"
-                [labelText]="'Nom'">
-                <input type="text" formControlName="lastname" name="lastname" class="form-control">
-            </app-input>
-            <app-input
-                [inputErrors]="editForm.controls.firstname"
-                [labelText]="'Prénom'">
-                <input type="text" formControlName="firstname" name="firstname" class="form-control">
-            </app-input>
-            <app-input 
-                [inputErrors]="editForm.controls.bio"
-                [labelText]="'Bio'">
-                <textarea formControlName="bio" name="bio" class="form-control" rows="3"></textarea>  
-            </app-input>
-        </fieldset>
-        <div class="text-right">
-            <button type="button" class="btn btn-primary" (click)="setEdit()">
-                <i class="zmdi zmdi-long-arrow-left no-ml mr-1"></i>
-                Annuler
-            </button>
-            <button type="submit" class="btn btn-raised btn-primary">
-                Enregister
-                <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
-            </button>
-        </div>
-    </form>  
+    <div class="text-right m-4">
+        <a (click)="setEdit()" class="btn btn-raised btn-primary">
+            <i class="fa fa-edit"></i>
+            Editer
+        </a>
+    </div>
 </div>
+<form [formGroup]="editForm" (submit)="submit()" *ngIf="isEdit" class="m-4">
+    <fieldset>
+        <app-input 
+            [inputErrors]="editForm.controls.username"
+            [labelText]="'Nom d\'utilisateur'"
+            [errorsDefs]="{ 
+                required: 'Un nom d\'utilisateur est requis',
+                pattern: 'Le nom d\'utilisateur est incorrect',
+                remote: 'Le nom d\'utilisateur est incorrect'
+            }">
+            <input type="text" formControlName="username" name="username" class="form-control">
+        </app-input>
+        <app-input
+            [inputErrors]="editForm.controls.email"
+            [labelText]="'Adresse e-mail'"
+            [errorsDefs]="{
+                required: 'Une adresse e-mail est requise',
+                email: 'L\'adresse e-mail est invalide',
+                remote: 'L\'adresse e-mail est déjà utilisée'
+            }">
+            <input type="email" formControlName="email" name="email" class="form-control">
+        </app-input>
+        <app-input
+            [inputErrors]="editForm.controls.lastname"
+            [labelText]="'Nom'">
+            <input type="text" formControlName="lastname" name="lastname" class="form-control">
+        </app-input>
+        <app-input
+            [inputErrors]="editForm.controls.firstname"
+            [labelText]="'Prénom'">
+            <input type="text" formControlName="firstname" name="firstname" class="form-control">
+        </app-input>
+        <app-input 
+            [inputErrors]="editForm.controls.bio"
+            [labelText]="'Bio'">
+            <textarea formControlName="bio" name="bio" class="form-control" rows="3"></textarea>  
+        </app-input>
+    </fieldset>
+    <div class="text-right">
+        <button type="button" class="btn btn-primary" (click)="setEdit()">
+            <i class="fa fa-arrow-left no-ml mr-1"></i>
+            Annuler
+        </button>
+        <button type="submit" class="btn btn-raised btn-primary">
+            Enregister
+            <i class="fa fa-arrow-right no-mr ml-1"></i>
+        </button>
+    </div>
+</form>  
 
 
 

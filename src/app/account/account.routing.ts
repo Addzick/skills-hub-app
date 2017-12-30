@@ -14,7 +14,6 @@ import { AccountRegisterComponent } from './register/register.component';
 import { AccountForgotComponent } from './forgot/forgot.component';
 import { AccountDetailComponent } from './detail/detail.component';
 import { AccountInfosComponent } from './infos/infos.component';
-import { AccountAddressComponent } from './address/address.component';
 import { AccountJournalComponent } from './journal/journal.component';
 import { AccountFavoritesComponent } from './favorites/favorites.component';
 import { AccountStatsComponent } from './stats/stats.component';

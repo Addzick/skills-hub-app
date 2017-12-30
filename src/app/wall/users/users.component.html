@@ -4,11 +4,11 @@
     <div class="color-white index-1 text-center no-m pt-4">
         <h2>{{ currentUser.displayName }}</h2>
         <div class="rating-list index-1 text-center mt-4">
-            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=1"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=2"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=3"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=4"><i class="zmdi zmdi-star" ></i></span>
-            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=5"><i class="zmdi zmdi-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=1"><i class="fa fa-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=2"><i class="fa fa-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=3"><i class="fa fa-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=4"><i class="fa fa-star" ></i></span>
+            <span class="rating-list-item" [class.color-warning]="currentUser.nbStars>=5"><i class="fa fa-star" ></i></span>
         </div>
     </div>
     <img src="{{ currentUser.image || 'assets/img/no-picture.jpg'}}" class="img-avatar-circle"> </div>
@@ -17,11 +17,11 @@
     <blockquote>{{ currentUser.bio | truncate }}</blockquote>
     <div class="text-right">
         <a [routerLink]="['/account', currentUser._id, 'detail' ]" class="btn btn-primary color-white btn-raised btn-sm no-mt" *ngIf="!currentUser.canEdit">
-            <i class="zmdi zmdi-eye mr-05"></i>
+            <i class="fa fa-info-circle mr-05"></i>
             <span class="d-none d-md-inline-block ml-1">Découvrir</span>
         </a>
         <a [routerLink]="['/account/profile' ]" class="btn btn-primary color-white btn-raised btn-sm no-mt" *ngIf="currentUser.canEdit">
-            <i class="zmdi zmdi-eye mr-05"></i>
+            <i class="fa fa-info-circle mr-05"></i>
             <span class="d-none d-md-inline-block ml-1">Mon compte</span>
         </a>
     </div>

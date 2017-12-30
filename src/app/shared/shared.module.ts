@@ -11,6 +11,7 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 // Shared services
 import { FormService } from './services/form.service';
+import { AddressService } from './services/address.service';
 import { ArticleService } from './services/article.service';
 import { TenderService } from './services/tender.service';
 import { TaskService } from './services/task.service';
@@ -35,6 +36,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ExtendInputComponent } from './components/extend-input/extend-input.component';
 import { ReactionsComponent } from './components/reactions/reactions.component';
+import { AddressComponent } from './components/address/address.component';
 import { ArticleComponent } from './components/article/article.component';
 import { TenderComponent } from './components/tender/tender.component';
 import { TaskComponent } from './components/task/task.component';
@@ -71,6 +73,7 @@ import { UserComponent } from './components/user/user.component';
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,
+    AddressComponent,
     ArticleComponent,
     TenderComponent,
     TaskComponent,
@@ -99,6 +102,7 @@ import { UserComponent } from './components/user/user.component';
     MenuComponent,
     FooterComponent,
     ExtendInputComponent,
+    AddressComponent,
     ArticleComponent,
     TenderComponent,
     TaskComponent,
@@ -115,6 +119,7 @@ import { UserComponent } from './components/user/user.component';
   ],
   providers: [
     FormService,
+    AddressService,
     ArticleService,
     CategoryService,
     EventService,

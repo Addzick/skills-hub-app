@@ -1,34 +1,35 @@
 // Angular stuff
-import { Component, OnInit, Input, ElementRef, NgZone, ViewChild  } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ElementRef, NgZone, ViewChild  } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 // RxJs stuff
 import { Observable } from 'rxjs/Observable';
-import '../../core/rxjs-extensions';
+import '../../../core/rxjs-extensions';
 // 3rd parties
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
+
 // Skills-hub services
-import { UserService } from '../../core/user.service';
-// Skills-hub components
-import { ExtendInputComponent } from '../../shared/components/extend-input/extend-input.component';
+import { AddressService } from '../../services/address.service';
 
 @Component({
-  selector: 'app-account-address',
+  selector: 'app-address',
   templateUrl: './address.component.html',
-  styleUrls: ['./address.component.scss']
+  styleUrls: ['./address.component.scss'],
+  providers: [AddressService]
 })
-export class AccountAddressComponent implements OnInit {
-  @Input() address: any;
+export class AddressComponent implements OnInit {
+  @Input() id?: string;
+  @Input() tender?: string;
+  @ViewChild('search')  searchElementRef: ElementRef;
+
+  public address: any;
   public isEdit = false;
   public searchControl: FormControl;
 
-  @ViewChild('search')
-  public searchElementRef: ElementRef;
+  private addressSub: any;
 
   constructor(
-    private userService: UserService,
-    private toastr: ToastsManager,
+    private addrService: AddressService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
      }
@@ -36,24 +37,22 @@ export class AccountAddressComponent implements OnInit {
   ngOnInit() {
     // Initialisation du controle de recherche
     this.searchControl = new FormControl();
-    if (this.hasAddress()) {
-      this.searchControl.setValue(this.address.long);
-    }
+    this.refresh();
   }
 
   submit() {
-    if (!this.hasAddress()) {
-      this.toastr.error('Veuillez contrôler les informations saisies !');
+    if (!this.address || !this.address.loc) {
+      this.searchControl.setErrors({ 'invalid': true }, { emitEvent: true });
     } else {
-      this.userService.setAddress({ address: this.address })
+      this.addrService.upsert({
+        address: this.address, 
+        tender : this.tender})
       .subscribe(
         res => {
           this.isEdit = false;
           this.address = res.address;
         },
-        err => {
-          this.toastr.error('Veuillez contrôler les informations saisies !');
-        }
+        err => this.searchControl.setErrors({ 'invalid': true }, { emitEvent: true })
       );
     }
   }
@@ -63,9 +62,18 @@ export class AccountAddressComponent implements OnInit {
     if (this.isEdit) { this.loadAutoComplete(); }
   }
 
-  hasAddress(){
-    return (this.address && this.address !== undefined && this.address !== null) 
-      && (this.address.loc && this.address.loc !== undefined && this.address.loc !== null); 
+  private refresh(){
+    if(this.addressSub){ this.addressSub.unsubscribe(); }
+    this.addressSub = this.getAddress().subscribe();
+  }
+
+  private getAddress(){
+    return this.addrService
+    .findById(this.id)
+    .map(res => {
+      this.address = res.address;
+      this.searchControl.setValue(this.address.long);
+    });
   }
 
   private loadAutoComplete() {

@@ -14,7 +14,6 @@ import { AccountLoginComponent } from './login/login.component';
 import { AccountRegisterComponent } from './register/register.component';
 import { AccountForgotComponent } from './forgot/forgot.component';
 import { AccountInfosComponent } from './infos/infos.component';
-import { AccountAddressComponent } from './address/address.component';
 import { AccountFavoritesComponent } from './favorites/favorites.component';
 import { AccountJournalComponent } from './journal/journal.component';
 import { AccountStatsComponent } from './stats/stats.component';
@@ -32,7 +31,6 @@ import { routes } from './account.routing';
   declarations: [
     AccountComponent,
     AccountInfosComponent,
-    AccountAddressComponent,
     AccountJournalComponent,
     AccountLoginComponent,
     AccountRegisterComponent,

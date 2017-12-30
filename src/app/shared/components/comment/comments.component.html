@@ -9,26 +9,26 @@
                 <a [routerLink]="['/account', comment.author._id, 'detail' ]" *ngIf="!comment.canEdit">{{ comment.author.displayName }}</a> 
                 <a [routerLink]="['/account/profile' ]" *ngIf="comment.canEdit">vous</a> 
                 <span class="ml-1 d-none d-sm-inline">
-                    <i class="zmdi zmdi-time mr-05 color-info"></i>
+                    <i class="fa fa-clock-o mr-05 color-info"></i>
                     <small class="color-medium-dark">{{ comment.createdAt | amLocale:'fr' | amTimeAgo}}</small>
                 </span>
                 <p><em>{{ comment.body }}</em></p>
             </div>
             <div class="media-right media-object media-middle" *ngIf="comment.canEdit">
                 <a class="btn-circle btn-circle-sm btn-circle-primary color-danger" (click)="delete(comment._id)">
-                    <i class="zmdi zmdi-delete"></i>
+                    <i class="fa fa-trash"></i>
                 </a>
             </div>
         </div>
     </div>
     <div class="text-center">
         <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page - 1)" *ngIf="hasPrec">
-            <i class="zmdi zmdi-arrow-left mr-1"></i>
+            <i class="fa fa-arrow-left mr-1"></i>
             Prec
         </a>
         <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page + 1)" *ngIf="hasNext">
             Suiv
-            <i class="zmdi zmdi-arrow-right ml-1"></i> 
+            <i class="fa fa-arrow-right ml-1"></i> 
         </a>
             </div>
 </div>

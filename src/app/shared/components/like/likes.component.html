@@ -14,19 +14,19 @@
                 </a>
             </div>
             <div class="media-footer media-bottom text-right">
-                <i class="zmdi zmdi-time no-mr"></i>
+                <i class="fa fa-clock-o no-mr"></i>
                 <small>{{ like.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
             </div>
         </div>
     </div>
     <div class="text-center">
         <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page - 1)" *ngIf="hasPrec">
-            <i class="zmdi zmdi-arrow-left mr-1"></i>
+            <i class="fa fa-arrow-left mr-1"></i>
             Prec
         </a>
         <a class="btn btn-primary mt-1 mb-1" (click)="navigate(query.page + 1)" *ngIf="hasNext">
             Suiv
-            <i class="zmdi zmdi-arrow-right ml-1"></i> 
+            <i class="fa fa-arrow-right ml-1"></i> 
         </a>
     </div>
 </div>
@@ -38,9 +38,9 @@
 <div class="card-block bg-light text-right">
     <a (click)="mylike ? unlike() : like()" 
         class="btn btn-royal color-white btn-raised btn-sm no-mt">
-        <i class="zmdi no-mr" 
-            [class.zmdi-favorite-outline]="!mylike"
-            [class.zmdi-favorite]="mylike"></i>
+        <i class="fa no-mr" 
+            [class.fa-thumbs-o-up]="!mylike"
+            [class.fa-thumbs-up]="mylike"></i>
         <span class="d-none d-md-inline-block ml-1">{{ mylike ? 'Je n\'aime plus' : 'J\'aime'}}</span>
     </a>
 </div>

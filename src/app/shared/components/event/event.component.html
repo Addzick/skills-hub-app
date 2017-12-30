@@ -10,7 +10,7 @@
                 <a class="btn-link" [routerLink]="[ '/account/profile' ]" *ngIf="event.isMine">vous</a>
                 <small>{{ event.type | eventType:event.isMine}}</small><br>
                 <span>
-                    <i class="zmdi zmdi-time no-mr color-info"></i>
+                    <i class="fa fa-clock-o no-mr color-info"></i>
                     <small>{{ event.updatedAt | amLocale:'fr' | amTimeAgo}}</small>
                 </span>
             </div>
@@ -35,9 +35,9 @@
                     fragment="likes"
                     class="btn btn-royal color-white btn-raised btn-block btn-sm no-mt"
                     *ngIf="isPublication">
-                        <i class="zmdi no-mr"
-                        [class.zmdi-favorite-outline]="canLike"
-                        [class.zmdi-favorite]="!canLike"></i>
+                        <i class="fa no-mr"
+                        [class.fa-thumbs-o-up]="canLike"
+                        [class.fa-thumbs-up]="!canLike"></i>
                         <span class="d-none d-md-inline-block ml-1">
                             {{ canLike ? 'J\'aime' : 'Je n\'aime plus' }}
                         </span>
@@ -48,7 +48,7 @@
                     fragment="comments" 
                     class="btn btn-info color-white btn-raised btn-block btn-sm no-mt" 
                     *ngIf="isPublication">
-                        <i class="zmdi zmdi-comments no-mr"></i>
+                        <i class="fa fa-comments no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Commenter</span>
                     </a>
                 </div>
@@ -56,13 +56,13 @@
                     <a [routerLink]="['/', source.kind , source.item._id, 'detail' ]" 
                     class="btn btn-primary color-white btn-block btn-raised btn-sm no-mt"
                     *ngIf="isPublication">
-                        <i class="zmdi zmdi-more no-mr"></i>
+                        <i class="fa fa-ellipsis-h no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Plus</span>
                     </a>
                     <a [routerLink]="['/account', source.item._id, 'detail' ]" 
                     class="btn btn-primary color-white btn-block btn-raised btn-sm no-mt"
                     *ngIf="!isPublication">
-                        <i class="zmdi zmdi-eye no-mr"></i>
+                        <i class="fa fa-info-circle no-mr"></i>
                         <span class="d-none d-md-inline-block ml-1">Decouvrir</span>
                     </a>
                 </div>
